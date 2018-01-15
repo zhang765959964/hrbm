@@ -1,0 +1,377 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.xunfeng</groupId>
+		<artifactId>hrbm</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>hrbm-commons-deps</artifactId>
+	<build>
+		<plugins>
+			<!-- maven-compiler-plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${org.apache.maven.plugins.maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<!-- 分析项目依赖 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>${org.apache.maven.plugins.maven-dependency-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>install</id>
+						<phase>install</phase>
+						<goals>
+							<goal>sources</goal>
+						</goals>
+					</execution>
+				</executions> 
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<!-- == Begin Google == -->
+		<!-- <dependency> -->
+		<!-- <groupId>com.google.guava</groupId> -->
+		<!-- <artifactId>guava</artifactId> -->
+		<!-- <version>${com.google.guava.version}</version> -->
+		<!-- <exclusions> -->
+		<!-- <exclusion> -->
+		<!-- <groupId>com.google.code.findbugs</groupId> -->
+		<!-- <artifactId>jsr305</artifactId> -->
+		<!-- </exclusion> -->
+		<!-- </exclusions> -->
+		<!-- </dependency> -->
+		<!-- == End Google == -->
+
+		<!-- == Begin Apache Commons == -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.7</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>${commons-beanutils.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>${commons-collections.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>${commons-io.version}</version>
+		</dependency>
+		<!-- <dependency> <groupId>commons-dbcp</groupId> <artifactId>commons-dbcp</artifactId> 
+			<version>${commons-dbcp.version}</version> </dependency> <dependency> <groupId>commons-pool</groupId> 
+			<artifactId>commons-pool</artifactId> <version>${commons-pool.version}</version> 
+			</dependency> -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${commons-lang.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>${commons-codec.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>${commons-fileupload.version}</version>
+		</dependency>
+		<!-- == End Apache Commons == -->
+
+		<!-- == jdbc pool == -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.tomcat</groupId> -->
+		<!-- <artifactId>tomcat-jdbc</artifactId> -->
+		<!-- <version>${jdbc-pool.version}</version> -->
+		<!-- </dependency> -->
+		<!-- == jdbc pool end== -->
+
+		<!-- == Begin orika== http://orika-mapper.github.io/orika-docs/intro.html -->
+		<!-- <dependency> -->
+		<!-- <groupId>ma.glasnost.orika</groupId> -->
+		<!-- <artifactId>orika-core</artifactId> -->
+		<!-- <version>${ma.glasnost.orika}</version>or latest version -->
+		<!-- </dependency> -->
+		<!-- == End orika== -->
+
+		<!-- == Begin juel== -->
+		<!-- <dependency> -->
+		<!-- <groupId>juel</groupId> -->
+		<!-- <artifactId>juel-impl</artifactId> -->
+		<!-- <version>${juel-impl.version}</version> -->
+		<!-- </dependency> -->
+		<!-- == End juel== -->
+
+		<!-- == Begin Joda-Time == -->
+		<!-- <dependency> -->
+		<!-- <groupId>joda-time</groupId> -->
+		<!-- <artifactId>joda-time</artifactId> -->
+		<!-- <version>${joda-time.version}</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>joda-time</groupId> -->
+		<!-- <artifactId>joda-time-jsptags</artifactId> -->
+		<!-- <version>${joda-time.joda-time-jsptags.version}</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.jadira.usertype</groupId> -->
+		<!-- <artifactId>usertype.core</artifactId> -->
+		<!-- <version>${jadira-usertype-core.version}</version> -->
+		<!-- <exclusions> -->
+		<!-- <exclusion> -->
+		<!-- <groupId>org.hibernate</groupId> -->
+		<!-- <artifactId>hibernate-entitymanager</artifactId> -->
+		<!-- </exclusion> -->
+		<!-- <exclusion> -->
+		<!-- <groupId>org.slf4j</groupId> -->
+		<!-- <artifactId>slf4j-api</artifactId> -->
+		<!-- </exclusion> -->
+		<!-- <exclusion> -->
+		<!-- <groupId>org.joda</groupId> -->
+		<!-- <artifactId>joda-money</artifactId> -->
+		<!-- </exclusion> -->
+		<!-- </exclusions> -->
+		<!-- </dependency> -->
+		<!-- == End Joda-Time == -->
+
+		<!-- == Begin AspectJ == -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>
+		<!-- == End AspectJ == -->
+
+		<!-- == Begin Jackson == -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>${org.codehaus.jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${org.codehaus.jackson.version}</version>
+		</dependency>
+		<!-- == End Jackson == -->
+
+
+		<!-- == Begin Logging == -->
+		<!-- SLF4J -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${org.slf4j-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${org.slf4j-version}</version>
+		</dependency>
+		<!-- Logback -->
+		<!-- <dependency> -->
+		<!-- <groupId>ch.qos.logback</groupId> -->
+		<!-- <artifactId>logback-classic</artifactId> -->
+		<!-- <version>${ch.qos.logback.version}</version> -->
+		<!-- </dependency> -->
+		<!-- Log4JDBC -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.lazyluke</groupId> -->
+		<!-- <artifactId>log4jdbc-remix</artifactId> -->
+		<!-- <version>${log4jdbc.version}</version> -->
+		<!-- </dependency> -->
+		<!-- == End Logging == -->
+
+		<!-- == Begin Spring == -->
+		<!-- Spring Framework -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
+		<!-- Spring MVC -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
+		<!-- Spring Data -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework.data</groupId> -->
+		<!-- <artifactId>spring-data-commons</artifactId> -->
+		<!-- <version>${org.springframework.data.version}</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework.data</groupId> -->
+		<!-- <artifactId>spring-data-jpa</artifactId> -->
+		<!-- <version>${org.springframework.data.spring-data-jpa.version}</version> -->
+		<!-- </dependency> -->
+
+		
+		<!-- shiro -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.shiro</groupId> -->
+		<!-- <artifactId>shiro-core</artifactId> -->
+		<!-- <version>${org.apache.shiro.version}</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.shiro</groupId> -->
+		<!-- <artifactId>shiro-web</artifactId> -->
+		<!-- <version>${org.apache.shiro.version}</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.shiro</groupId> -->
+		<!-- <artifactId>shiro-spring</artifactId> -->
+		<!-- <version>${org.apache.shiro.version}</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.shiro</groupId> -->
+		<!-- <artifactId>shiro-ehcache</artifactId> -->
+		<!-- <version>${org.apache.shiro.version}</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.shiro</groupId> -->
+		<!-- <artifactId>shiro-aspectj</artifactId> -->
+		<!-- <version>${org.apache.shiro.version}</version> -->
+		<!-- </dependency> -->
+		<!-- Spring Test -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${org.springframework-version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- == End Spring == -->
+
+
+		<!-- == Begin Other JavaEE/SE APIs == -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${javax.servlet.jstl.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.transaction</groupId>
+			<artifactId>jta</artifactId>
+			<version>${javax.transaction.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>${javax.inject.version}</version>
+		</dependency>
+
+		<!-- == End Other JavaEE/SE APIs == -->
+
+		<!-- == flyway == -->
+		<!-- <dependency> -->
+		<!-- <groupId>com.googlecode.flyway</groupId> -->
+		<!-- <artifactId>flyway-core</artifactId> -->
+		<!-- <version>${com.googlecode.flyway.version}</version> -->
+		<!-- </dependency> -->
+		<!-- == flyway end == -->
+		<!-- == kaptcha start == -->
+		<!-- <dependency> -->
+		<!-- <groupId>com.google.code.kaptcha</groupId> -->
+		<!-- <artifactId>kaptcha</artifactId> -->
+		<!-- <version>${kaptcha.version}</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>com.belerweb</groupId> -->
+		<!-- <artifactId>pinyin4j</artifactId> -->
+		<!-- <version>${pinyin4j.version}</version> -->
+		<!-- </dependency> -->
+		<!-- ==activiti begin== -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.activiti</groupId> -->
+		<!-- <artifactId>activiti-spring</artifactId> -->
+		<!-- <version>${activiti.version}</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.activiti</groupId> -->
+		<!-- <artifactId>activiti-rest</artifactId> -->
+		<!-- <version>${activiti.version}</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.activiti</groupId> -->
+		<!-- <artifactId>activiti-diagram-rest</artifactId> -->
+		<!-- <version>${activiti.version}</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>com.fasterxml.uuid</groupId> -->
+		<!-- <artifactId>java-uuid-generator</artifactId> -->
+		<!-- <version>${fasterxml-uuid.version}</version> -->
+		<!-- </dependency> -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>${mybatis.version}</version> 
+		</dependency>
+		<!-- ==activiti end== -->
+		<!-- <dependency> -->
+		<!-- <groupId>com.mortennobel</groupId> -->
+		<!-- <artifactId>java-image-scaling</artifactId> -->
+		<!-- <version>${java-image-scaling.version}</version> -->
+		<!-- </dependency> -->
+	</dependencies>
+</project>
