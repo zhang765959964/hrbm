@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.archive.model.ArchiveLend">
+	<resultMap id="ArchiveLend" type="com.xunfeng.business.personagency.archive.model.ArchiveLend">
+		<id property="lendId" column="LEND_ID" jdbcType="NUMERIC"/>
+		<result property="archivesId" column="ARCHIVES_ID" jdbcType="NUMERIC"/>
+		<result property="archivesLendWhere" column="ARCHIVES_LEND_WHERE" jdbcType="VARCHAR"/>
+		<result property="lendDate" column="LEND_DATE" jdbcType="DATE"/>
+		<result property="lendReason" column="LEND_REASON" jdbcType="NUMERIC"/>
+		<result property="lendRemarks" column="LEND_REMARKS" jdbcType="VARCHAR"/>
+		<result property="lendFlowStatus" column="LEND_FLOW_STATUS" jdbcType="NUMERIC"/>
+		<result property="lendName" column="LEND_NAME" jdbcType="VARCHAR"/>
+		<result property="lendIdNumber" column="LEND_ID_NUMBER" jdbcType="VARCHAR"/>
+		<result property="lendPhone" column="LEND_PHONE" jdbcType="VARCHAR"/>
+		<result property="lendPeopleMention" column="LEND_PEOPLE_MENTION" jdbcType="VARCHAR"/>
+		<result property="lendPeoplePhone" column="LEND_PEOPLE_PHONE" jdbcType="VARCHAR"/>
+		<result property="lendPeopleCard" column="LEND_PEOPLE_CARD" jdbcType="VARCHAR"/>
+		<result property="lendCreaterId" column="LEND_CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="lendCreaterName" column="LEND_CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="lendCreaterOrgId" column="LEND_CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="lendCreaterOrgName" column="LEND_CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="lendCreaterDate" column="LEND_CREATER_DATE" jdbcType="TIMESTAMP"/>
+		<result property="lendStringReason" column="LEND_STRING_REASON" jdbcType="VARCHAR"/>
+		<result property="lendConfirmId" column="LEND_CONFIRM_ID" jdbcType="NUMERIC"/>
+		<result property="lendConfirmName" column="LEND_CONFIRM_NAME" jdbcType="VARCHAR"/>
+		<result property="lendConfirmOrgId" column="LEND_CONFIRM_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="lendConfirmOrgName" column="LEND_CONFIRM_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="lendConfirmDate" column="LEND_CONFIRM_DATE" jdbcType="DATE"/>
+	</resultMap>
+	
+	<resultMap id="ArchiveLendAppDto" type="com.xunfeng.business.personagency.archive.dto.ArchiveLendAppDto">
+		<result property="position" column="position" jdbcType="VARCHAR"/>
+		<result property="archiveCode" column="archiveCode" jdbcType="VARCHAR"/>
+		<result property="aac003" column="aac003" jdbcType="VARCHAR"/>
+		<result property="aac002" column="aac002" jdbcType="VARCHAR"/>
+		<result property="archiveReceiveName" column="archiveReceiveName" jdbcType="VARCHAR"/>
+		<result property="genderName" column="genderName" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		LEND_ID,ARCHIVES_ID,ARCHIVES_LEND_WHERE,LEND_DATE,LEND_REASON,LEND_REMARKS,LEND_FLOW_STATUS,LEND_NAME,LEND_ID_NUMBER,LEND_PHONE,LEND_PEOPLE_MENTION,LEND_PEOPLE_PHONE,LEND_PEOPLE_CARD,LEND_CREATER_ID,LEND_CREATER_NAME,LEND_CREATER_ORG_ID,LEND_CREATER_ORG_NAME,LEND_CREATER_DATE,LEND_STRING_REASON,LEND_CONFIRM_ID,LEND_CONFIRM_NAME,LEND_CONFIRM_ORG_ID,LEND_CONFIRM_ORG_NAME,LEND_CONFIRM_DATE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(lendId)"> AND LEND_ID  =#{lendId} </if>
+			<if test="@Ognl@isNotEmpty(archivesId)"> AND ARCHIVES_ID  =#{archivesId} </if>
+			<if test="@Ognl@isNotEmpty(archivesLendWhere)"> AND ARCHIVES_LEND_WHERE  LIKE #{archivesLendWhere}  </if>
+			<if test="@Ognl@isNotEmpty(lendDate)"> AND LEND_DATE  =#{lendDate} </if>
+			<if test="@Ognl@isNotEmpty(beginlendDate)"> AND LEND_DATE  >=#{beginlendDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endlendDate)"> AND LEND_DATE <![CDATA[ <=#{endlendDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(lendReason)"> AND LEND_REASON  =#{lendReason} </if>
+			<if test="@Ognl@isNotEmpty(lendRemarks)"> AND LEND_REMARKS  LIKE #{lendRemarks}  </if>
+			<if test="@Ognl@isNotEmpty(lendFlowStatus)"> AND LEND_FLOW_STATUS  =#{lendFlowStatus} </if>
+			<if test="@Ognl@isNotEmpty(lendName)"> AND LEND_NAME  LIKE #{lendName}  </if>
+			<if test="@Ognl@isNotEmpty(lendIdNumber)"> AND LEND_ID_NUMBER  LIKE #{lendIdNumber}  </if>
+			<if test="@Ognl@isNotEmpty(lendPhone)"> AND LEND_PHONE  LIKE #{lendPhone}  </if>
+			<if test="@Ognl@isNotEmpty(lendPeopleMention)"> AND LEND_PEOPLE_MENTION  LIKE #{lendPeopleMention}  </if>
+			<if test="@Ognl@isNotEmpty(lendPeoplePhone)"> AND LEND_PEOPLE_PHONE  LIKE #{lendPeoplePhone}  </if>
+			<if test="@Ognl@isNotEmpty(lendPeopleCard)"> AND LEND_PEOPLE_CARD  LIKE #{lendPeopleCard}  </if>
+			<if test="@Ognl@isNotEmpty(lendCreaterId)"> AND LEND_CREATER_ID  =#{lendCreaterId} </if>
+			<if test="@Ognl@isNotEmpty(lendCreaterName)"> AND LEND_CREATER_NAME  LIKE #{lendCreaterName}  </if>
+			<if test="@Ognl@isNotEmpty(lendCreaterOrgId)"> AND LEND_CREATER_ORG_ID  =#{lendCreaterOrgId} </if>
+			<if test="@Ognl@isNotEmpty(lendCreaterOrgName)"> AND LEND_CREATER_ORG_NAME  LIKE #{lendCreaterOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(lendCreaterDate)"> AND LEND_CREATER_DATE  =#{lendCreaterDate} </if>
+			<if test="@Ognl@isNotEmpty(beginlendCreaterDate)"> AND LEND_CREATER_DATE  >=#{beginlendCreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endlendCreaterDate)"> AND LEND_CREATER_DATE <![CDATA[ <=#{endlendCreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(lendStringReason)"> AND LEND_STRING_REASON  LIKE #{lendStringReason}  </if>
+			<if test="@Ognl@isNotEmpty(lendConfirmId)"> AND LEND_CONFIRM_ID  =#{lendConfirmId} </if>
+			<if test="@Ognl@isNotEmpty(lendConfirmName)"> AND LEND_CONFIRM_NAME  LIKE #{lendConfirmName}  </if>
+			<if test="@Ognl@isNotEmpty(lendConfirmOrgId)"> AND LEND_CONFIRM_ORG_ID  =#{lendConfirmOrgId} </if>
+			<if test="@Ognl@isNotEmpty(lendConfirmOrgName)"> AND LEND_CONFIRM_ORG_NAME  LIKE #{lendConfirmOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(lendConfirmDate)"> AND LEND_CONFIRM_DATE  =#{lendConfirmDate} </if>
+			<if test="@Ognl@isNotEmpty(beginlendConfirmDate)"> AND LEND_CONFIRM_DATE  >=#{beginlendConfirmDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endlendConfirmDate)"> AND LEND_CONFIRM_DATE <![CDATA[ <=#{endlendConfirmDate,jdbcType=DATE}]]> </if>
+			
+			
+			<if test="@Ognl@isNotEmpty(archiveCode)"> AND upper(a.ARCHIVE_CODE) LIKE upper(#{archiveCode}) </if>
+			<if test="@Ognl@isNotEmpty(aac002)"> AND upper(p.AAC002) LIKE upper(#{aac002})  </if>
+			<if test="@Ognl@isNotEmpty(aac003)"> AND p.AAC003  LIKE #{aac003}  </if>
+			<if test="@Ognl@isNotEmpty(aac004)"> AND p.AAC004  LIKE #{aac004}  </if>
+			<if test="@Ognl@isNotEmpty(archiveReceiveStatus)"> AND a.ARCHIVE_RECEIVE_STATUS  =#{archiveReceiveStatus} </if>
+			<if test="@Ognl@isNotEmpty(archiveType)"> AND a.ARCHIVE_TYPE  =#{archiveType} </if>
+			<if test="@Ognl@isNotEmpty(archiveName)"> AND a.ARCHIVE_NAME  LIKE #{archiveName}  </if>
+			<if test="@Ognl@isNotEmpty(beginreceiveDate)"> AND a.RECEIVE_DATE  >=#{beginreceiveDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endreceiveDate)"> AND a.RECEIVE_DATE <![CDATA[ <=#{endreceiveDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(archiveStatus)"> AND a.ARCHIVE_STATUS  =#{archiveStatus} </if>
+			
+			<if test="@Ognl@isNotEmpty(lendCreaterOrgIdApp)"> AND LEND_CREATER_ORG_ID in (${lendCreaterOrgIdApp})</if>
+			<if test="@Ognl@isNotEmpty(lendIds)"> AND LEND_ID in (${lendIds}) </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.archive.model.ArchiveLend">
+		INSERT INTO RSDA_BS_ARCHIVE_LEND
+		(LEND_ID,ARCHIVES_ID,ARCHIVES_LEND_WHERE,LEND_DATE,LEND_REASON,LEND_REMARKS,LEND_FLOW_STATUS,LEND_NAME,LEND_ID_NUMBER,LEND_PHONE,LEND_PEOPLE_MENTION,LEND_PEOPLE_PHONE,LEND_PEOPLE_CARD,LEND_CREATER_ID,LEND_CREATER_NAME,LEND_CREATER_ORG_ID,LEND_CREATER_ORG_NAME,LEND_CREATER_DATE,LEND_STRING_REASON,LEND_CONFIRM_ID,LEND_CONFIRM_NAME,LEND_CONFIRM_ORG_ID,LEND_CONFIRM_ORG_NAME,LEND_CONFIRM_DATE)
+		VALUES
+		(#{lendId,jdbcType=NUMERIC}, #{archivesId,jdbcType=NUMERIC}, #{archivesLendWhere,jdbcType=VARCHAR}, #{lendDate,jdbcType=DATE}, #{lendReason,jdbcType=NUMERIC}, #{lendRemarks,jdbcType=VARCHAR}, #{lendFlowStatus,jdbcType=NUMERIC}, #{lendName,jdbcType=VARCHAR}, #{lendIdNumber,jdbcType=VARCHAR}, #{lendPhone,jdbcType=VARCHAR}, #{lendPeopleMention,jdbcType=VARCHAR}, #{lendPeoplePhone,jdbcType=VARCHAR}, #{lendPeopleCard,jdbcType=VARCHAR}, #{lendCreaterId,jdbcType=NUMERIC}, #{lendCreaterName,jdbcType=VARCHAR}, #{lendCreaterOrgId,jdbcType=NUMERIC}, #{lendCreaterOrgName,jdbcType=VARCHAR}, #{lendCreaterDate,jdbcType=TIMESTAMP}, #{lendStringReason,jdbcType=VARCHAR}, #{lendConfirmId,jdbcType=NUMERIC}, #{lendConfirmName,jdbcType=VARCHAR}, #{lendConfirmOrgId,jdbcType=NUMERIC}, #{lendConfirmOrgName,jdbcType=VARCHAR}, #{lendConfirmDate,jdbcType=DATE})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_ARCHIVE_LEND 
+		WHERE
+		LEND_ID=#{lendId}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.archive.model.ArchiveLend">
+		UPDATE RSDA_BS_ARCHIVE_LEND SET
+		ARCHIVES_ID=#{archivesId,jdbcType=NUMERIC},
+		ARCHIVES_LEND_WHERE=#{archivesLendWhere,jdbcType=VARCHAR},
+		LEND_DATE=#{lendDate,jdbcType=DATE},
+		LEND_REASON=#{lendReason,jdbcType=NUMERIC},
+		LEND_REMARKS=#{lendRemarks,jdbcType=VARCHAR},
+		LEND_FLOW_STATUS=#{lendFlowStatus,jdbcType=NUMERIC},
+		LEND_NAME=#{lendName,jdbcType=VARCHAR},
+		LEND_ID_NUMBER=#{lendIdNumber,jdbcType=VARCHAR},
+		LEND_PHONE=#{lendPhone,jdbcType=VARCHAR},
+		LEND_PEOPLE_MENTION=#{lendPeopleMention,jdbcType=VARCHAR},
+		LEND_PEOPLE_PHONE=#{lendPeoplePhone,jdbcType=VARCHAR},
+		LEND_PEOPLE_CARD=#{lendPeopleCard,jdbcType=VARCHAR},
+		LEND_CREATER_ID=#{lendCreaterId,jdbcType=NUMERIC},
+		LEND_CREATER_NAME=#{lendCreaterName,jdbcType=VARCHAR},
+		LEND_CREATER_ORG_ID=#{lendCreaterOrgId,jdbcType=NUMERIC},
+		LEND_CREATER_ORG_NAME=#{lendCreaterOrgName,jdbcType=VARCHAR},
+		LEND_CREATER_DATE=#{lendCreaterDate,jdbcType=TIMESTAMP},
+		LEND_STRING_REASON=#{lendStringReason,jdbcType=VARCHAR},
+		LEND_CONFIRM_ID=#{lendConfirmId,jdbcType=NUMERIC},
+		LEND_CONFIRM_NAME=#{lendConfirmName,jdbcType=VARCHAR},
+		LEND_CONFIRM_ORG_ID=#{lendConfirmOrgId,jdbcType=NUMERIC},
+		LEND_CONFIRM_ORG_NAME=#{lendConfirmOrgName,jdbcType=VARCHAR},
+		LEND_CONFIRM_DATE=#{lendConfirmDate,jdbcType=DATE}
+		WHERE
+		LEND_ID=#{lendId}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="ArchiveLend">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_ARCHIVE_LEND
+		WHERE
+		LEND_ID=#{lendId}
+	</select>
+	
+	<select id="getByIdForUpdate" parameterType="java.lang.Long" resultMap="ArchiveLend">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_ARCHIVE_LEND
+		WHERE
+		LEND_ID=#{lendId} for update
+	</select>
+	
+	<select id="getAll" resultMap="ArchiveLend">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_ARCHIVE_LEND   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by LEND_ID  desc
+		</if>
+	</select>
+	<select id="getArchiveLendByArchiveId" resultMap="ArchiveLend">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_ARCHIVE_LEND t
+		
+		WHERE t.ARCHIVES_ID=#{archivesId} and t.LEND_FLOW_STATUS=#{lendFlowStatus}
+		order by LEND_ID  desc
+	</select>
+	<!-- 调出确认查询列表 -->
+	<select id="getAllArchiveLend" resultType="java.util.HashMap">
+		SELECT  m.LEND_ID as "lendId",a.ARCHIVE_CODE as "archiveCode",p.AAC003 as "aac003",p.AAC002 as "aac002",e.name as "genderName"
+				,m.LEND_FLOW_STATUS as "lendFlowStatus",decode(m.LEND_FLOW_STATUS , 4, '调出登记', 5, '调出确认') as "lendFlowStatusName",h.name as "archiveTypeName"
+				,l.name as "archiveReceiveStatusName",a.MARKET_POSITION as "marketPosition"
+				,a.CABINETS_LIBRARY as "cabinetsLibrary",a.CABINETS_CODE as "cabinetsCode",a.CABINETS_LAYER as "cabinetsLayer",a.CABINETS_LATTICE as "cabinetsLattice"
+				,to_char(m.LEND_DATE,'yyyy-mm-dd') as "lendDate",m.LEND_NAME as "lendName",m.ARCHIVES_LEND_WHERE as "archivesLendWhere"
+				,m.LEND_STRING_REASON as "lendStringReason",m.LEND_ID_NUMBER as "lendIdNumber",m.LEND_PHONE as "lendPhone"
+				,m.LEND_CREATER_NAME as "lendCreaterName"
+				,to_char(m.LEND_CREATER_DATE,'yyyy-mm-dd') as "lendCreaterDate"
+				,m.LEND_CREATER_ORG_NAME as "lendCreaterOrgName"
+				,m.LEND_CONFIRM_NAME as "lendConfirmName"
+				,to_char(m.LEND_CONFIRM_DATE,'yyyy-mm-dd') as "lendConfirmDate"
+				,m.LEND_CONFIRM_ORG_NAME as "lendConfirmOrgName"
+				,n.name as "lendReasonName"
+				,to_char(a.RECEIVE_DATE,'yyyy-mm-dd') as "receiveDate"
+				,a.MARKET_POSITION as "position"
+		
+		FROM RSDA_BS_ARCHIVE_LEND m 
+		left join RSDA_BS_ARCHIVE_ARCHIVES a on a.ID=m.ARCHIVES_ID
+		left join ac01 p on p.aac001=a.person_id
+        left join RSDA_TAB_ARCHIVETYPE h on h.code=a.ARCHIVE_TYPE
+        left join TAB_SEX e on e.code=p.AAC004
+        left join RSDA_TAB_ARECEIVESTATUS l on l.code=a.ARCHIVE_RECEIVE_STATUS
+       	left join RSDA_TAB_LEND_REASON n on n.code=m.LEND_REASON
+        
+        <include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+			order by m.LEND_CREATER_DATE  desc,m.LEND_ID desc
+		</if>
+	</select>
+	<!-- 根据档案状态查询条数 -->
+	<select id="getArchivesLendCount"  parameterType="java.lang.Long" resultType="java.lang.Long">
+		select count(*)
+		FROM RSDA_BS_ARCHIVE_LEND
+		WHERE
+		LEND_FLOW_STATUS =#{lendFlowStatus} 
+		<include refid="dynamicOrgWhere" />
+	</select>
+	<sql id="dynamicOrgWhere">
+		<if test="@Ognl@isNotEmpty(lendCreaterOrgId)"> AND LEND_CREATER_ORG_ID  in (${lendCreaterOrgId}) </if>
+	</sql>
+	<!-- 调出确认查询列表 -->
+	<select id="getAllArchiveLendApp" resultMap="ArchiveLendAppDto">
+		SELECT  m.LEND_ID as "lendId",a.ARCHIVE_CODE as "archiveCode",p.AAC003 as "aac003"
+				,p.AAC002 as "aac002",e.name as "genderName",m.ARCHIVES_ID as "archiveId"
+				,m.LEND_FLOW_STATUS as "lendFlowStatus",decode(m.LEND_FLOW_STATUS , 4, '调出登记', 5, '调出确认') as "lendFlowStatusName"
+				,a.MARKET_POSITION as "marketPosition",a.MARKET_POSITION as "position",m.LEND_CREATER_NAME as "lendCreaterName"
+		
+		FROM RSDA_BS_ARCHIVE_LEND m 
+		left join RSDA_BS_ARCHIVE_ARCHIVES a on a.ID=m.ARCHIVES_ID
+		left join ac01 p on p.aac001=a.person_id
+        left join TAB_SEX e on e.code=p.AAC004
+        
+        <include refid="dynamicWhereApp" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+			order by m.LEND_ID  asc
+		</if>
+	</select>
+	<sql id="dynamicWhereApp">
+		<where>
+			<if test="@Ognl@isNotEmpty(lendFlowStatus)"> AND LEND_FLOW_STATUS  =#{lendFlowStatus} </if>
+			<if test="@Ognl@isNotEmpty(lendCreaterOrgIdApp)"> AND LEND_CREATER_ORG_ID in (${lendCreaterOrgIdApp})</if>
+		</where>
+	</sql>
+	<!-- 档案调出综合查询 -->
+	<select id="getAllArchiveLendSearch" resultType="java.util.HashMap">
+	select * from (	
+       	SELECT  m.LEND_ID as "lendId",a.ARCHIVE_CODE as "archiveCode",a.AAC003 as "aac003",a.AAC002 as "aac002",e.name as "genderName"
+		        ,m.LEND_FLOW_STATUS as "lendFlowStatus",decode(m.LEND_FLOW_STATUS , 4, '调出登记', 5, '调出确认') as "lendFlowStatusName",h.name as "archiveTypeName"
+		        ,'未入库' as "archiveReceiveStatusName",a.MARKET_POSITION as "marketPosition"
+		        ,a.CABINETS_LIBRARY as "cabinetsLibrary",a.CABINETS_CODE as "cabinetsCode",a.CABINETS_LAYER as "cabinetsLayer",a.CABINETS_LATTICE as "cabinetsLattice"
+		        ,to_char(m.LEND_DATE,'yyyy-mm-dd') as "lendDate",m.LEND_NAME as "lendName",m.ARCHIVES_LEND_WHERE as "archivesLendWhere"
+		        ,m.LEND_STRING_REASON as "lendStringReason",m.LEND_ID_NUMBER as "lendIdNumber",m.LEND_PHONE as "lendPhone"
+		        ,m.LEND_CREATER_NAME as "lendCreaterName"
+		        ,to_char(m.LEND_CREATER_DATE,'yyyy-mm-dd') as "lendCreaterDate"
+			    ,m.LEND_CREATER_ORG_NAME as "lendCreaterOrgName"
+			    ,m.LEND_CONFIRM_NAME as "lendConfirmName"
+			    ,to_char(m.LEND_CONFIRM_DATE,'yyyy-mm-dd') as "lendConfirmDate"
+			    ,m.LEND_CONFIRM_ORG_NAME as "lendConfirmOrgName"
+		        ,n.name as "lendReasonName"
+			    ,to_char(a.RECEIVE_DATE,'yyyy-mm-dd') as "receiveDate"
+			    ,a.MARKET_POSITION as "position"
+			    ,a.AAC004 as "aac004"
+			    ,a.ARCHIVE_TYPE as ARCHIVE_TYPE
+			    ,m.LEND_REASON as LEND_REASON
+      			
+    FROM RSDA_BS_ARCHIVE_LEND m    
+    left join rsda_bs_archive_lend_exp a on a.exp_lend_id = m.lend_id
+    left join RSDA_TAB_ARCHIVETYPE h on h.code=a.ARCHIVE_TYPE
+    left join TAB_SEX e on e.code=a.aac004
+    left join RSDA_TAB_LEND_REASON n on n.code=m.LEND_REASON
+    where m.lend_flow_status = 5
+    
+    union all 
+    
+    SELECT  m.LEND_ID as "lendId",a.ARCHIVE_CODE as "archiveCode",p.AAC003 as "aac003",p.AAC002 as "aac002",e.name as "genderName"
+				,m.LEND_FLOW_STATUS as "lendFlowStatus",decode(m.LEND_FLOW_STATUS , 4, '调出登记', 5, '调出确认') as "lendFlowStatusName",h.name as "archiveTypeName"
+				,l.name as "archiveReceiveStatusName",a.MARKET_POSITION as "marketPosition"
+				,a.CABINETS_LIBRARY as "cabinetsLibrary",a.CABINETS_CODE as "cabinetsCode",a.CABINETS_LAYER as "cabinetsLayer",a.CABINETS_LATTICE as "cabinetsLattice"
+				,to_char(m.LEND_DATE,'yyyy-mm-dd') as "lendDate",m.LEND_NAME as "lendName",m.ARCHIVES_LEND_WHERE as "archivesLendWhere"
+				,m.LEND_STRING_REASON as "lendStringReason",m.LEND_ID_NUMBER as "lendIdNumber",m.LEND_PHONE as "lendPhone"
+				,m.LEND_CREATER_NAME as "lendCreaterName"
+				,to_char(m.LEND_CREATER_DATE,'yyyy-mm-dd') as "lendCreaterDate"
+				,m.LEND_CREATER_ORG_NAME as "lendCreaterOrgName"
+				,m.LEND_CONFIRM_NAME as "lendConfirmName"
+				,to_char(m.LEND_CONFIRM_DATE,'yyyy-mm-dd') as "lendConfirmDate"
+				,m.LEND_CONFIRM_ORG_NAME as "lendConfirmOrgName"
+				,n.name as "lendReasonName"
+				,to_char(a.RECEIVE_DATE,'yyyy-mm-dd') as "receiveDate"
+				,a.MARKET_POSITION as "position"
+				,p.AAC004 as "aac004"
+				,a.ARCHIVE_TYPE as ARCHIVE_TYPE
+				,m.LEND_REASON as LEND_REASON
+		
+		FROM RSDA_BS_ARCHIVE_LEND m 
+		left join RSDA_BS_ARCHIVE_ARCHIVES a on a.ID=m.ARCHIVES_ID
+		left join ac01 p on p.aac001=a.person_id
+    	left join RSDA_TAB_ARCHIVETYPE h on h.code=a.ARCHIVE_TYPE
+   	 	left join TAB_SEX e on e.code=p.AAC004
+    	left join RSDA_TAB_ARECEIVESTATUS l on l.code=a.ARCHIVE_RECEIVE_STATUS
+    	left join RSDA_TAB_LEND_REASON n on n.code=m.LEND_REASON
+    where m.lend_flow_status = 4   )
+        
+        <include refid="dynamicWhereSearch" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+			order by "lendCreaterDate"  desc,"lendId" desc
+		</if>
+	</select>
+	<sql id="dynamicWhereSearch">
+		<where>
+			<if test="@Ognl@isNotEmpty(archiveCode)"> AND upper("archiveCode") LIKE upper(#{archiveCode}) </if>
+			<if test="@Ognl@isNotEmpty(aac003)"> AND "aac003"  LIKE #{aac003}  </if>
+			<if test="@Ognl@isNotEmpty(aac004)"> AND "aac004"  LIKE #{aac004}  </if>
+			<if test="@Ognl@isNotEmpty(aac002)"> AND upper("aac002") LIKE upper(#{aac002})  </if>
+			<if test="@Ognl@isNotEmpty(archiveType)"> AND ARCHIVE_TYPE  =#{archiveType} </if>
+			<if test="@Ognl@isNotEmpty(lendFlowStatus)"> AND "lendFlowStatus"  =#{lendFlowStatus} </if>
+			<if test="@Ognl@isNotEmpty(beginreceiveDate)"> AND "receiveDate"  >=#{beginreceiveDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endreceiveDate)"> AND "receiveDate" <![CDATA[ <=#{endreceiveDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(beginlendDate)"> AND "lendDate"  >=#{beginlendDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endlendDate)"> AND "lendDate" <![CDATA[ <=#{endlendDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(archivesLendWhere)"> AND "archivesLendWhere"  LIKE #{archivesLendWhere}  </if>
+			<if test="@Ognl@isNotEmpty(lendReason)"> AND LEND_REASON  =#{lendReason} </if>
+			<if test="@Ognl@isNotEmpty(lendCreaterName)"> AND "lendCreaterName"  LIKE #{lendCreaterName}  </if>
+			<if test="@Ognl@isNotEmpty(lendCreaterOrgName)"> AND "lendCreaterOrgName"  LIKE #{lendCreaterOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(beginlendCreaterDate)"> AND "lendCreaterDate"  >=#{beginlendCreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endlendCreaterDate)"> AND "lendCreaterDate" <![CDATA[ <=#{endlendCreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(archiveCodes)"> AND "archiveCode" in (${archiveCodes}) </if>
+		</where>
+	</sql>
+</mapper>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.person.model.PersonSkill">
+	<resultMap id="PersonSkill" type="com.xunfeng.business.person.model.PersonSkill">
+		<id property="acc0d0" column="ACC0D0" jdbcType="NUMERIC"/>
+		<result property="aac001" column="AAC001" jdbcType="NUMERIC"/>
+		<result property="acc0d1" column="ACC0D1" jdbcType="VARCHAR"/>
+		<result property="acc041" column="ACC041" jdbcType="TIMESTAMP"/>
+		<result property="aac015" column="AAC015" jdbcType="VARCHAR"/>
+		<result property="aca111" column="ACA111" jdbcType="VARCHAR"/>
+		<result property="aca112" column="ACA112" jdbcType="VARCHAR"/>
+		<result property="acc0d5" column="ACC0D5" jdbcType="VARCHAR"/>
+		<result property="acc0d6" column="ACC0D6" jdbcType="VARCHAR"/>
+		<result property="aae013" column="AAE013" jdbcType="VARCHAR"/>
+		<result property="aae011" column="AAE011" jdbcType="VARCHAR"/>
+		<result property="aae019" column="AAE019" jdbcType="VARCHAR"/>
+		<result property="aae017" column="AAE017" jdbcType="VARCHAR"/>
+		<result property="aae020" column="AAE020" jdbcType="VARCHAR"/>
+		<result property="aae022" column="AAE022" jdbcType="VARCHAR"/>
+		<result property="aae036" column="AAE036" jdbcType="TIMESTAMP"/>
+		<result property="cczy06" column="CCZY06" jdbcType="VARCHAR"/>
+		<result property="ccpr05" column="CCPR05" jdbcType="TIMESTAMP"/>
+		<result property="ccpr06" column="CCPR06" jdbcType="VARCHAR"/>
+		<result property="ccpr07" column="CCPR07" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ACC0D0,AAC001,ACC0D1,ACC041,AAC015,ACA111,ACA112,ACC0D5,ACC0D6,AAE013,AAE011,AAE019,AAE017,AAE020,AAE022,AAE036,CCZY06,CCPR05,CCPR06,CCPR07,CCPR08
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(acc0d0)"> AND ACC0D0  =#{acc0d0} </if>
+			<if test="@Ognl@isNotEmpty(aac001)"> AND AAC001  =#{aac001} </if>
+			<if test="@Ognl@isNotEmpty(acc0d1)"> AND ACC0D1  LIKE #{acc0d1}  </if>
+			<if test="@Ognl@isNotEmpty(acc041)"> AND ACC041  =#{acc041} </if>
+			<if test="@Ognl@isNotEmpty(beginacc041)"> AND ACC041  >=#{beginacc041,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endacc041)"> AND ACC041 <![CDATA[ <=#{endacc041,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aac015)"> AND AAC015  LIKE #{aac015}  </if>
+			<if test="@Ognl@isNotEmpty(aca111)"> AND ACA111  LIKE #{aca111}  </if>
+			<if test="@Ognl@isNotEmpty(aca112)"> AND ACA112  LIKE #{aca112}  </if>
+			<if test="@Ognl@isNotEmpty(acc0d5)"> AND ACC0D5  LIKE #{acc0d5}  </if>
+			<if test="@Ognl@isNotEmpty(acc0d6)"> AND ACC0D6  LIKE #{acc0d6}  </if>
+			<if test="@Ognl@isNotEmpty(aae013)"> AND AAE013  LIKE #{aae013}  </if>
+			<if test="@Ognl@isNotEmpty(aae011)"> AND AAE011  LIKE #{aae011}  </if>
+			<if test="@Ognl@isNotEmpty(aae019)"> AND AAE019  LIKE #{aae019}  </if>
+			<if test="@Ognl@isNotEmpty(aae017)"> AND AAE017  LIKE #{aae017}  </if>
+			<if test="@Ognl@isNotEmpty(aae020)"> AND AAE020  LIKE #{aae020}  </if>
+			<if test="@Ognl@isNotEmpty(aae022)"> AND AAE022  LIKE #{aae022}  </if>
+			<if test="@Ognl@isNotEmpty(aae036)"> AND AAE036  =#{aae036} </if>
+			<if test="@Ognl@isNotEmpty(beginaae036)"> AND AAE036  >=#{beginaae036,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaae036)"> AND AAE036 <![CDATA[ <=#{endaae036,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(cczy06)"> AND CCZY06  LIKE #{cczy06}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr05)"> AND CCPR05  =#{ccpr05} </if>
+			<if test="@Ognl@isNotEmpty(beginccpr05)"> AND CCPR05  >=#{beginccpr05,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endccpr05)"> AND CCPR05 <![CDATA[ <=#{endccpr05,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(ccpr06)"> AND CCPR06  LIKE #{ccpr06}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr07)"> AND CCPR07  LIKE #{ccpr07}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr08)"> AND CCPR08  LIKE #{ccpr08}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.person.model.PersonSkill">
+		INSERT INTO CC0D
+		(ACC0D0,AAC001,ACC0D1,ACC041,AAC015,ACA111,ACA112,ACC0D5,ACC0D6,AAE013,AAE011,AAE019,AAE017,AAE020,AAE022,AAE036,CCZY06,CCPR05,CCPR06,CCPR07,CCPR08)
+		VALUES
+		(#{acc0d0,jdbcType=NUMERIC}, #{aac001,jdbcType=NUMERIC}, #{acc0d1,jdbcType=VARCHAR}, #{acc041,jdbcType=TIMESTAMP}, #{aac015,jdbcType=VARCHAR}, #{aca111,jdbcType=VARCHAR}, #{aca112,jdbcType=VARCHAR}, #{acc0d5,jdbcType=VARCHAR}, #{acc0d6,jdbcType=VARCHAR}, #{aae013,jdbcType=VARCHAR}, #{aae011,jdbcType=VARCHAR}, #{aae019,jdbcType=VARCHAR}, #{aae017,jdbcType=VARCHAR}, #{aae020,jdbcType=VARCHAR}, #{aae022,jdbcType=VARCHAR}, #{aae036,jdbcType=TIMESTAMP}, #{cczy06,jdbcType=VARCHAR}, #{ccpr05,jdbcType=TIMESTAMP}, #{ccpr06,jdbcType=VARCHAR}, #{ccpr07,jdbcType=VARCHAR}, #{ccpr08,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM CC0D 
+		WHERE
+		ACC0D0=#{acc0d0}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.person.model.PersonSkill">
+		UPDATE CC0D SET
+		AAC001=#{aac001,jdbcType=NUMERIC},
+		ACC0D1=#{acc0d1,jdbcType=VARCHAR},
+		ACC041=#{acc041,jdbcType=TIMESTAMP},
+		AAC015=#{aac015,jdbcType=VARCHAR},
+		ACA111=#{aca111,jdbcType=VARCHAR},
+		ACA112=#{aca112,jdbcType=VARCHAR},
+		ACC0D5=#{acc0d5,jdbcType=VARCHAR},
+		ACC0D6=#{acc0d6,jdbcType=VARCHAR},
+		AAE013=#{aae013,jdbcType=VARCHAR},
+		AAE011=#{aae011,jdbcType=VARCHAR},
+		AAE019=#{aae019,jdbcType=VARCHAR},
+		AAE017=#{aae017,jdbcType=VARCHAR},
+		AAE020=#{aae020,jdbcType=VARCHAR},
+		AAE022=#{aae022,jdbcType=VARCHAR},
+		AAE036=#{aae036,jdbcType=TIMESTAMP},
+		CCZY06=#{cczy06,jdbcType=VARCHAR},
+		CCPR05=#{ccpr05,jdbcType=TIMESTAMP},
+		CCPR06=#{ccpr06,jdbcType=VARCHAR},
+		CCPR07=#{ccpr07,jdbcType=VARCHAR},
+		CCPR08=#{ccpr08,jdbcType=VARCHAR}
+		WHERE
+		ACC0D0=#{acc0d0}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="PersonSkill">
+		SELECT <include refid="columns"/>
+		FROM CC0D
+		WHERE
+		ACC0D0=#{acc0d0}
+	</select>
+	
+	<select id="getAll" resultMap="PersonSkill">
+		SELECT <include refid="columns"/>
+		FROM CC0D   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ACC0D0  desc
+		</if>
+	</select>
+</mapper>

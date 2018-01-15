@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.advert.model.AdCompany">
+	<resultMap id="AdCompany" type="com.xunfeng.business.advert.model.AdCompany">
+		<id property="caae01" column="CAAE01" jdbcType="NUMERIC"/>
+		<result property="caac01" column="CAAC01" jdbcType="NUMERIC"/>
+		<result property="caae02" column="CAAE02" jdbcType="VARCHAR"/>
+		<result property="aab001" column="AAB001" jdbcType="NUMERIC"/>
+		<result property="caae03" column="CAAE03" jdbcType="VARCHAR"/>
+		<result property="caae04" column="CAAE04" jdbcType="VARCHAR"/>
+		<result property="caae05" column="CAAE05" jdbcType="NUMERIC"/>
+		<result property="caae06" column="CAAE06" jdbcType="NUMERIC"/>
+		<result property="caae07" column="CAAE07" jdbcType="NUMERIC"/>
+		<result property="caae08" column="CAAE08" jdbcType="TIMESTAMP"/>
+		<result property="caae09" column="CAAE09" jdbcType="TIMESTAMP"/>
+		<result property="caae10" column="CAAE10" jdbcType="NUMERIC"/>
+		<result property="caae11" column="CAAE11" jdbcType="NUMERIC"/>
+		<result property="aae011" column="AAE011" jdbcType="VARCHAR"/>
+		<result property="aae017" column="AAE017" jdbcType="VARCHAR"/>
+		<result property="aae036" column="AAE036" jdbcType="TIMESTAMP"/>
+		<result property="aae019" column="AAE019" jdbcType="VARCHAR"/>
+		<result property="aae020" column="AAE020" jdbcType="VARCHAR"/>
+		<result property="aae022" column="AAE022" jdbcType="VARCHAR"/>
+		<result property="caae12" column="CAAE12" jdbcType="NUMERIC"/>
+		<result property="caad14" column="CAAD14" jdbcType="NUMERIC"/>
+		<result property="jobid" column="JOBID" jdbcType="NUMERIC"/>
+		<result property="cczy06" column="CCZY06" jdbcType="VARCHAR"/>
+	</resultMap>
+    <resultMap id="Corp" type="com.xunfeng.business.corp.dto.CorpDto">
+		<id property="aab001" column="AAB001" jdbcType="NUMERIC"/>
+		<result property="aab002" column="AAB002" jdbcType="VARCHAR"/>
+		<result property="aab036" column="AAB036" jdbcType="TIMESTAMP"/>
+		<result property="aab003" column="AAB003" jdbcType="VARCHAR"/>
+		<result property="aab004" column="AAB004" jdbcType="VARCHAR"/>
+		<result property="aab041" column="AAB041" jdbcType="VARCHAR"/>
+		<result property="aab042" column="AAB042" jdbcType="VARCHAR"/>
+		<result property="aab043" column="AAB043" jdbcType="VARCHAR"/>
+		<result property="aab038" column="AAB038" jdbcType="VARCHAR"/>
+		<result property="aab019" column="AAB019" jdbcType="VARCHAR"/>
+		<result property="aab020" column="AAB020" jdbcType="VARCHAR"/>
+		<result property="aab054" column="AAB054" jdbcType="VARCHAR"/>
+		<result property="aab022" column="AAB022" jdbcType="VARCHAR"/>
+		<result property="aae007" column="AAE007" jdbcType="VARCHAR"/>
+		<result property="aae004" column="AAE004" jdbcType="VARCHAR"/>
+		<result property="aae005" column="AAE005" jdbcType="VARCHAR"/>
+		<result property="aae006" column="AAE006" jdbcType="VARCHAR"/>
+		<result property="aae015" column="AAE015" jdbcType="VARCHAR"/>
+		<result property="aae016" column="AAE016" jdbcType="VARCHAR"/>
+		<result property="aab301" column="AAB301" jdbcType="VARCHAR"/>
+		<result property="aaa021" column="AAA021" jdbcType="VARCHAR"/>
+		<result property="aab007" column="AAB007" jdbcType="VARCHAR"/>
+		<result property="aab010" column="AAB010" jdbcType="TIMESTAMP"/>
+		<result property="aab011" column="AAB011" jdbcType="TIMESTAMP"/>
+		<result property="cabq05" column="CABQ05" jdbcType="NUMERIC"/>
+		<result property="cabq06" column="CABQ06" jdbcType="VARCHAR"/>
+		<result property="cabq07" column="CABQ07" jdbcType="NUMERIC"/>
+		<result property="cabq08" column="CABQ08" jdbcType="NUMERIC"/>
+		<result property="aab006" column="AAB006" jdbcType="VARCHAR"/>
+		<result property="aab008" column="AAB008" jdbcType="TIMESTAMP"/>
+		<result property="aab021" column="AAB021" jdbcType="VARCHAR"/>
+		<result property="aab013" column="AAB013" jdbcType="VARCHAR"/>
+		<result property="aab014" column="AAB014" jdbcType="VARCHAR"/>
+		<result property="aab015" column="AAB015" jdbcType="VARCHAR"/>
+		<result property="aab052" column="AAB052" jdbcType="VARCHAR"/>
+		<result property="aab023" column="AAB023" jdbcType="VARCHAR"/>
+		<result property="aab048" column="AAB048" jdbcType="VARCHAR"/>
+		<result property="aab053" column="AAB053" jdbcType="VARCHAR"/>
+		<result property="acb101" column="ACB101" jdbcType="VARCHAR"/>
+		<result property="aab01d" column="AAB01D" jdbcType="VARCHAR"/>
+		<result property="aae013" column="AAE013" jdbcType="VARCHAR"/>
+		<result property="aae011" column="AAE011" jdbcType="VARCHAR"/>
+		<result property="aae017" column="AAE017" jdbcType="VARCHAR"/>
+		<result property="aae036" column="AAE036" jdbcType="TIMESTAMP"/>
+		<result property="aae019" column="AAE019" jdbcType="VARCHAR"/>
+		<result property="aae020" column="AAE020" jdbcType="VARCHAR"/>
+		<result property="bae011" column="BAE011" jdbcType="VARCHAR"/>
+		<result property="bae017" column="BAE017" jdbcType="VARCHAR"/>
+		<result property="bae036" column="BAE036" jdbcType="TIMESTAMP"/>
+		<result property="bae019" column="BAE019" jdbcType="VARCHAR"/>
+		<result property="bae020" column="BAE020" jdbcType="VARCHAR"/>
+		<result property="bae022" column="BAE022" jdbcType="VARCHAR"/>
+		<result property="aab025" column="AAB025" jdbcType="VARCHAR"/>
+		<result property="aab026" column="AAB026" jdbcType="VARCHAR"/>
+		<result property="aab01e" column="AAB01E" jdbcType="NUMERIC"/>
+		<result property="aab01f" column="AAB01F" jdbcType="NUMERIC"/>
+		<result property="aab01g" column="AAB01G" jdbcType="NUMERIC"/>
+		<result property="aae119" column="AAE119" jdbcType="VARCHAR"/>
+		<result property="aab039" column="AAB039" jdbcType="VARCHAR"/>
+		<result property="aaa130" column="AAA130" jdbcType="VARCHAR"/>
+		<result property="aab040" column="AAB040" jdbcType="VARCHAR"/>
+		<result property="aab056" column="AAB056" jdbcType="VARCHAR"/>
+		<result property="aab045" column="AAB045" jdbcType="VARCHAR"/>
+		<result property="bab002" column="BAB002" jdbcType="VARCHAR"/>
+		<result property="aab012" column="AAB012" jdbcType="VARCHAR"/>
+		<result property="aae008" column="AAE008" jdbcType="VARCHAR"/>
+		<result property="aae009" column="AAE009" jdbcType="VARCHAR"/>
+		<result property="aae010" column="AAE010" jdbcType="VARCHAR"/>
+		<result property="aab027" column="AAB027" jdbcType="VARCHAR"/>
+		<result property="aab028" column="AAB028" jdbcType="VARCHAR"/>
+		<result property="aab029" column="AAB029" jdbcType="VARCHAR"/>
+		<result property="aab030" column="AAB030" jdbcType="VARCHAR"/>
+		<result property="aab031" column="AAB031" jdbcType="VARCHAR"/>
+		<result property="aab032" column="AAB032" jdbcType="VARCHAR"/>
+		<result property="aab037" column="AAB037" jdbcType="TIMESTAMP"/>
+		<result property="aab046" column="AAB046" jdbcType="VARCHAR"/>
+		<result property="aab047" column="AAB047" jdbcType="VARCHAR"/>
+		<result property="aab016" column="AAB016" jdbcType="VARCHAR"/>
+		<result property="aab017" column="AAB017" jdbcType="VARCHAR"/>
+		<result property="aab018" column="AAB018" jdbcType="VARCHAR"/>
+		<result property="aab024" column="AAB024" jdbcType="VARCHAR"/>
+		<result property="aab033" column="AAB033" jdbcType="VARCHAR"/>
+		<result property="aab500" column="AAB500" jdbcType="VARCHAR"/>
+		<result property="aab034" column="AAB034" jdbcType="VARCHAR"/>
+		<result property="aab341" column="AAB341" jdbcType="VARCHAR"/>
+		<result property="aab342" column="AAB342" jdbcType="VARCHAR"/>
+		<result property="aab343" column="AAB343" jdbcType="VARCHAR"/>
+		<result property="ccmu01" column="CCMU01" jdbcType="NUMERIC"/>
+		<result property="cabq01" column="CABQ01" jdbcType="NUMERIC"/>
+		<result property="cabq02" column="CABQ02" jdbcType="NUMERIC"/>
+		<result property="cabq03" column="CABQ03" jdbcType="NUMERIC"/>
+		<result property="cabq04" column="CABQ04" jdbcType="NUMERIC"/>
+		<result property="cabq09" column="CABQ09" jdbcType="TIMESTAMP"/>
+		<result property="cabq10" column="CABQ10" jdbcType="TIMESTAMP"/>
+		<result property="cabq11" column="CABQ11" jdbcType="TIMESTAMP"/>
+		<result property="cabq12" column="CABQ12" jdbcType="TIMESTAMP"/>
+		<result property="cabq13" column="CABQ13" jdbcType="VARCHAR"/>
+		<result property="cabq14" column="CABQ14" jdbcType="VARCHAR"/>
+		<result property="cabq15" column="CABQ15" jdbcType="TIMESTAMP"/>
+		<result property="cabq16" column="CABQ16" jdbcType="TIMESTAMP"/>
+		<result property="acb206" column="ACB206" jdbcType="VARCHAR"/>
+		<result property="acb205" column="ACB205" jdbcType="VARCHAR"/>
+		<result property="cab011" column="CAB011" jdbcType="TIMESTAMP"/>
+		<result property="cczy06" column="CCZY06" jdbcType="VARCHAR"/>
+		<result property="cabq17" column="CABQ17" jdbcType="NUMERIC"/>
+		<result property="ccpr05" column="CCPR05" jdbcType="TIMESTAMP"/>
+		<result property="aae139" column="AAE139" jdbcType="VARCHAR"/>
+		<result property="aab049" column="AAB049" jdbcType="NUMERIC"/>
+		<result property="ccpr06" column="CCPR06" jdbcType="VARCHAR"/>
+		<result property="ccpr07" column="CCPR07" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+		<result property="ccpr09" column="CCPR09" jdbcType="VARCHAR"/>
+		<result property="ccpr10" column="CCPR10" jdbcType="VARCHAR"/>
+		<result property="ccpr11" column="CCPR11" jdbcType="NUMERIC"/>
+		<result property="ccpr12" column="CCPR12" jdbcType="VARCHAR"/>
+		<result property="ccpr13" column="CCPR13" jdbcType="NUMERIC"/>
+		<result property="bab014" column="BAB014" jdbcType="VARCHAR"/>
+		<result property="bab015" column="BAB015" jdbcType="VARCHAR"/>
+		<result property="cahy12" column="CAHY12" jdbcType="VARCHAR"/>
+		<result property="aab113" column="AAB113" jdbcType="VARCHAR"/>
+		<result property="aab114" column="AAB114" jdbcType="VARCHAR"/>
+		<result property="aab115" column="AAB115" jdbcType="VARCHAR"/>
+		<result property="ccpr14" column="CCPR14" jdbcType="VARCHAR"/>
+		<result property="ccpr15" column="CCPR15" jdbcType="VARCHAR"/>
+		<result property="ccpr16" column="CCPR16" jdbcType="VARCHAR"/>
+		<result property="ccpr17" column="CCPR17" jdbcType="VARCHAR"/>
+		<result property="ccpr18" column="CCPR18" jdbcType="VARCHAR"/>
+		<result property="ccpr19" column="CCPR19" jdbcType="VARCHAR"/>
+		<result property="ccpr20" column="CCPR20" jdbcType="VARCHAR"/>
+		<result property="ccpr21" column="CCPR21" jdbcType="VARCHAR"/>
+		<result property="ccpr22" column="CCPR22" jdbcType="VARCHAR"/>
+		<result property="ccpr23" column="CCPR23" jdbcType="VARCHAR"/>
+		<result property="ccpr24" column="CCPR24" jdbcType="VARCHAR"/>
+		<result property="economicTypeName" column="economicTypeName" jdbcType="VARCHAR"/>
+		<result property="corpTypeName" column="corpTypeName" jdbcType="VARCHAR"/>
+		<result property="scaleName" column="scaleName" jdbcType="VARCHAR"/>
+		<!--证件类型-->
+		<result property="certificateTypeName" column="certificateTypeName" jdbcType="VARCHAR"/>
+	</resultMap>
+	<sql id="columns">
+		CAAE01,CAAC01,CAAE02,AAB001,CAAE03,CAAE04,CAAE05,CAAE06,CAAE07,CAAE08,CAAE09,CAAE10,CAAE11,AAE011,AAE017,AAE036,AAE019,AAE020,AAE022,CAAE12,JOBID,cczy06,CAAD14
+	</sql>
+	<sql id="adcolumns">
+		AAB001,AAB002,AAB036,AAB003,AAB004,AAB041,AAB042,AAB043,AAB038,AAB019,AAB020,AAB054,AAB022,AAE007,AAE004,AAE005,AAE006,AAE015,AAE016,AAB301,AAA021,AAB007,AAB010,AAB011,CABQ05,CABQ06,CABQ07,CABQ08,AAB006,AAB008,AAB021,AAB013,AAB014,AAB015,AAB052,AAB023,AAB048,AAB053,ACB101,AAB01D,AAE013,AAE011,AAE017,AAE036,AAE019,AAE020,BAE011,BAE017,BAE036,BAE019,BAE020,BAE022,AAB025,AAB026,AAB01E,AAB01F,AAB01G,AAE119,AAB039,AAA130,AAB040,AAB056,AAB045,BAB002,AAB012,AAE008,AAE009,AAE010,AAB027,AAB028,AAB029,AAB030,AAB031,AAB032,AAB037,AAB046,AAB047,AAB016,AAB017,AAB018,AAB024,AAB033,AAB500,AAB034,AAB341,AAB342,AAB343,CCMU01,CABQ01,CABQ02,CABQ03,CABQ04,CABQ09,CABQ10,CABQ11,CABQ12,CABQ13,CABQ14,CABQ15,CABQ16,ACB206,ACB205,CAB011,CCZY06,CABQ17,CCPR05,AAE139,AAB049,CCPR06,CCPR07,CCPR08,CCPR09,CCPR10,CCPR11,CCPR12,CCPR13,BAB014,BAB015,CAHY12,AAB113,AAB114,AAB115,CCPR14,CCPR15,CCPR16,CCPR17,CCPR18,CCPR19,CCPR20,CCPR21,CCPR22,CCPR23,CCPR24,CAAD14
+	</sql>
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(caae01)"> AND CAAE01  =#{caae01} </if>
+			<if test="@Ognl@isNotEmpty(caac01)"> AND CAAC01  =#{caac01} </if>
+			<if test="@Ognl@isNotEmpty(caae02)"> AND CAAE02  LIKE #{caae02}  </if>
+			<if test="@Ognl@isNotEmpty(aab001)"> AND AAB001  =#{aab001} </if>
+			<if test="@Ognl@isNotEmpty(caae03)"> AND CAAE03  LIKE #{caae03}  </if>
+			<if test="@Ognl@isNotEmpty(caae04)"> AND CAAE04  LIKE #{caae04}  </if>
+			<if test="@Ognl@isNotEmpty(caae05)"> AND CAAE05  =#{caae05} </if>
+			<if test="@Ognl@isNotEmpty(caae06)"> AND CAAE06  =#{caae06} </if>
+			<if test="@Ognl@isNotEmpty(caae07)"> AND CAAE07  =#{caae07} </if>
+			<if test="@Ognl@isNotEmpty(caae08)"> AND CAAE08  =#{caae08} </if>
+			<if test="@Ognl@isNotEmpty(begincaae08)"> AND CAAE08  >=#{begincaae08,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcaae08)"> AND CAAE08 <![CDATA[ <=#{endcaae08,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(caae09)"> AND CAAE09  =#{caae09} </if>
+			<if test="@Ognl@isNotEmpty(begincaae09)"> AND CAAE09  >=#{begincaae09,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcaae09)"> AND CAAE09 <![CDATA[ <=#{endcaae09,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(caae10)"> AND CAAE10  =#{caae10} </if>
+			<if test="@Ognl@isNotEmpty(caae11)"> AND CAAE11  =#{caae11} </if>
+			<if test="@Ognl@isNotEmpty(aae011)"> AND AAE011  LIKE #{aae011}  </if>
+			<if test="@Ognl@isNotEmpty(aae017)"> AND AAE017  LIKE #{aae017}  </if>
+			<if test="@Ognl@isNotEmpty(aae036)"> AND AAE036  =#{aae036} </if>
+			<if test="@Ognl@isNotEmpty(beginaae036)"> AND AAE036  >=#{beginaae036,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaae036)"> AND AAE036 <![CDATA[ <=#{endaae036,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aae019)"> AND AAE019  LIKE #{aae019}  </if>
+			<if test="@Ognl@isNotEmpty(aae020)"> AND AAE020  LIKE #{aae020}  </if>
+			<if test="@Ognl@isNotEmpty(aae022)"> AND AAE022  LIKE #{aae022}  </if>
+			<if test="@Ognl@isNotEmpty(caae12)"> AND CAAE12  =#{caae12} </if>
+			<if test="@Ognl@isNotEmpty(jobid)"> AND JOBID  =#{jobid} </if>
+			<if test="@Ognl@isNotEmpty(cczy06)"> AND CCZY06  =#{cczy06} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.advert.model.AdCompany">
+		INSERT INTO CAA03
+		(CAAE01,CAAC01,CAAE02,AAB001,CAAE03,CAAE04,CAAE05,CAAE06,CAAE07,CAAE08,CAAE09,CAAE10,CAAE11,AAE011,AAE017,AAE036,AAE019,AAE020,AAE022,CAAE12,JOBID,CCZY06)
+		VALUES
+		(#{caae01,jdbcType=NUMERIC}, #{caac01,jdbcType=NUMERIC}, #{caae02,jdbcType=VARCHAR}, #{aab001,jdbcType=NUMERIC}, #{caae03,jdbcType=VARCHAR}, #{caae04,jdbcType=VARCHAR}, #{caae05,jdbcType=NUMERIC}, #{caae06,jdbcType=NUMERIC}, #{caae07,jdbcType=NUMERIC}, #{caae08,jdbcType=TIMESTAMP}, #{caae09,jdbcType=TIMESTAMP}, #{caae10,jdbcType=NUMERIC}, #{caae11,jdbcType=NUMERIC}, #{aae011,jdbcType=VARCHAR}, #{aae017,jdbcType=VARCHAR}, #{aae036,jdbcType=TIMESTAMP}, #{aae019,jdbcType=VARCHAR}, #{aae020,jdbcType=VARCHAR}, #{aae022,jdbcType=VARCHAR}, #{caae12,jdbcType=NUMERIC}, #{jobid,jdbcType=NUMERIC},#{cczy06,jdbcType=VARCHAR})
+	</insert>
+	<!-- 网站添加职位广告 2016-04-14-->
+	<insert id="addjobWebsite" >
+	  INSERT INTO CAA03
+		(caae01,caac01,jobid,cczy06)
+		VALUES (#{id},(select caac01 from caa01 where indent =#{indent}) ,#{jobid},2)
+    </insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM CAA03 
+		WHERE
+		CAAE01=#{caae01}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.advert.model.AdCompany">
+		UPDATE CAA03 SET
+		CAAC01=#{caac01,jdbcType=NUMERIC},
+		CAAE02=#{caae02,jdbcType=VARCHAR},
+		AAB001=#{aab001,jdbcType=NUMERIC},
+		CAAE03=#{caae03,jdbcType=VARCHAR},
+		CAAE04=#{caae04,jdbcType=VARCHAR},
+		CAAE05=#{caae05,jdbcType=NUMERIC},
+		CAAE06=#{caae06,jdbcType=NUMERIC},
+		CAAE07=#{caae07,jdbcType=NUMERIC},
+		CAAE08=#{caae08,jdbcType=TIMESTAMP},
+		CAAE09=#{caae09,jdbcType=TIMESTAMP},
+		CAAE10=#{caae10,jdbcType=NUMERIC},
+		CAAE11=#{caae11,jdbcType=NUMERIC},
+		AAE011=#{aae011,jdbcType=VARCHAR},
+		AAE017=#{aae017,jdbcType=VARCHAR},
+		AAE036=#{aae036,jdbcType=TIMESTAMP},
+		AAE019=#{aae019,jdbcType=VARCHAR},
+		AAE020=#{aae020,jdbcType=VARCHAR},
+		AAE022=#{aae022,jdbcType=VARCHAR},
+		CAAE12=#{caae12,jdbcType=NUMERIC},
+		JOBID=#{jobid,jdbcType=NUMERIC},
+		CCZY06=#{cczy06,jdbcType=VARCHAR}
+		WHERE
+		CAAE01=#{caae01}
+	</update>
+	<update id="updateImgPathById" >
+		UPDATE CAA03 SET
+		 CAAE03=#{caae03,jdbcType=VARCHAR},
+		 CAAE08=#{caae08,jdbcType=TIMESTAMP}
+		WHERE
+		CAAE01=#{caae01}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="AdCompany">
+		SELECT <include refid="columns"/>
+		FROM CAA03
+		WHERE
+		CAAE01=#{caae01}
+	</select>
+	
+	<select id="getAll" resultMap="AdCompany">
+		SELECT <include refid="columns"/>
+		FROM CAA03   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by CAAE01  desc,CAAE01  desc
+		</if>
+	</select>
+	<!--通过标示获得广告企业信息 -->
+	<select id="getadCompanyByIndent" resultType="java.util.HashMap">
+		SELECT a.CAAE01,a.CAAC01,a.CAAE02,a.CAAE03,a.AAB001,a.CAAE05,a.CAAE06,a.CAAE10,a.CAAE11,a.CAAD14,
+				to_char(a.AAE036,'yyyy-mm-dd') AAE036,a.AAE019,	b.AAB004,c.caac02
+		FROM CAA03 a,AB01 b ,CAA01 c 
+		 where 
+		      a.AAB001 =b.AAB001 
+          	  and a.CAAC01=c.caac01
+		  	  and a.CAAC01 in (select CAAC01  from CAA01 where indent=#{_parameter}) 
+		order by   a.CAAE12 asc, a.CAAE01  desc
+	</select>
+	<!--通过标示获得广告企业信息 -->
+	<select id="getadCompanyByIndentPage" resultType="java.util.HashMap">
+		SELECT a.CAAE01,
+		a.CAAC01,
+		a.CAAE02,
+		a.CAAE03,
+		a.AAB001,
+		a.CAAE05,
+		a.CAAE04,
+		a.CAAE06,
+		a.CAAE10,
+		a.CAAE11,
+		a.CAAD14,
+		b.AAB004,
+		b.ACB206,
+		nvl(c.JOBCOUNT,0) as JOBCOUNT,
+		nvl(g.imgcount,'0') as IMGCOUNT,
+        nvl(h.videCount,'0') as VIDECOUNT, 
+        nvl(b.CABQ08,'0') as CABQ08,
+		d.CCMU15 
+		FROM CAA03 a,
+			AB01 b, 
+			(select count(*) as jobCount,cc.aab001 from cb21 cc,cb20 cb where cc.acb200= cb.acb200  and cb.ACB201=2 and cc.ccpr08=0 and cc.ACB208 = 0  and cc.ABB773=1 
+					group by  cc.aab001 ) c,
+			(select count(*) as imgCount,aab001 from CAO04  where CAOA04=6 and caoa07=1 and ccpr08=0 and aab001 is not null  
+		        	group by aab001 ) g,
+		    (select count(*) as videCount,aab001 from CAO04  where CAOA04=7 and caoa07=1 and ccpr08=0 and aab001 is not null  
+		            group by aab001 )h,
+		 	ccm01 d
+		 where a.CAAC01 in (select CAAC01  from CAA01 where indent=#{indent}) 
+		  		and a.aab001=g.aab001(+)
+			    and a.aab001=h.aab001(+)
+		        and a.AAB001 =b.AAB001 
+		        and  a.aab001 = c.aab001(+) 
+		        and b.ccmu01=d.ccmu01
+		        and c.jobCount>0
+		order by CAAE12 asc, CAAE01  desc
+	</select>
+	
+	<!-- 通过标示获得不做广告企业信息 登记在册账号有效-->
+	<select id="getCompanyByExcept" resultMap="Corp">
+		select a.aab001 ,a.aab004, a.aae036, a.aab113, a.aab115, a.cabq08, a.aae004,a.aae005,
+			   c.name as aab022 ,d.name as aab019
+		from ab01 a,ccm01 b, INDUSTRY_AS c , TAB_UNITNATURE d
+		where a.ccmu01=b.ccmu01 
+			and a.AAB022 = c.id(+)
+			and a.aab019=d.code(+)
+			and b.ccmu10=1 
+			and a.AAB001 not in (select AAB001 from CAA03 where CAAC01 in( 
+				select CAAC01  from CAA01 where indent=#{indent}))
+		<if test="@Ognl@isNotEmpty(aab004)">
+		   and a.AAB004 LIKE CONCAT(CONCAT('%', #{aab004}),'%')
+		</if>
+		   and a.AAE119=1
+		   order by
+		<if test="@Ognl@isNotEmpty(caae12)">
+		   a.CAAE12 ASC,
+		</if>
+		   a.AAE036  desc
+	</select>
+	
+	<!-- 通过企业id和标示获得企业广告 -->
+	<select id="getAdByCorpidAndIndent" resultType="java.util.HashMap">
+	    SELECT <include refid="columns"/>
+		FROM CAA03 a
+		where a.aab001=#{aab001}
+		and a.caac01 = (select distinct(caac01) from caa01 where indent=#{indent})
+		order by  a.CAAE12 asc, a.CAAE01 desc
+	</select>
+	
+	<update id="updateOrderNum">
+		UPDATE CAA03 SET
+		CAAE12=#{ordernum,jdbcType=NUMERIC}
+		WHERE
+		CAAE01=#{id}
+	</update>
+	<!-- 通过标示获得职位广告 -->
+	<select id="getadJobByExcept" resultType="java.util.HashMap">
+		SELECT a.CAAE01,a.CAAC01,a.CAAE02,a.CAAE05,a.CAAE06,a.CAAE11,
+			to_char(a.AAE036,'yyyy-mm-dd') as AAE036,a.AAE019,a.CAAE10,
+			 b.AAB001,b.AAB004,b.CCA113,b.ACB210,
+			 c.caac02
+		FROM CAA03 a,CB21 b,cb20 cb,caa01 c 
+		where a.CAAC01 in (select CAAC01  from CAA01 where indent=#{indent}) 
+		 		and a.caac01=c.caac01
+		        and a.JOBID = b.ACB210 and b.acb200= cb.acb200 and cb.ACB201=2 and  b.CCPR08 = 0  
+		        and b.ACB208 = 0 and b.ABB773=1
+		order by  a.CAAE12 asc, a.CAAE01 desc
+	</select>
+	<!-- 通过标示获得没有做广告的职位 -->
+	<select id="getJobByExcept" resultType="java.util.HashMap">
+		SELECT cc.ACB210,cc.AAB001,cc.AAB004,cc.CCA113,a.name as AAC011, d.name as ACC034, b.name as ACC217
+			FROM CB21 cc, cb20 cb, TAB_EDUCATION  a ,TAB_WORKYEARS b ,TAB_SALARY d
+			where cc.ACB210 not in (select JOBID from CAA03 where CAAC01 in( 
+						select CAAC01  from CAA01 where indent=#{indent}))
+					and  a.code(+) = cc.AAC011
+			        and  b.code(+) = cc.ACC217 
+			        and  d.code(+) = cc.acc034
+					<if test="@Ognl@isNotEmpty(aab004)">
+					  and cc.AAB004 LIKE CONCAT(CONCAT('%', #{aab004}),'%') 
+					 </if>
+					<if test="@Ognl@isNotEmpty(cca113)">
+					  and cc.CCA113 LIKE CONCAT(CONCAT('%', #{cca113}),'%') 
+					 </if>
+					 and cc.acb200=cb.acb200
+					 and cb.ACB201=2  and cc.ACB208 = 0  and cc.ABB773=1
+					 and cc.CCPR08!=1
+			order by cc.ACB210
+	</select>
+	<!--通过标示获得做广告的职位 职位列表 包括有工资 学历 经验 公司详情-->
+	<select id="getadJob" resultType="java.util.HashMap">
+	select 
+        a.ACB210,
+        a.AAB001,
+        a.AAB004, 
+        a.CCA113,      
+        b.name as SALARY,
+        c.name as EDUCATION,
+        d.name as WORKYEARS,
+        a.ACB21R,  
+        a.ACB202,
+        a.ACB203,
+        a.ACB204
+      from cb21 a ,TAB_SALARY b,TAB_EDUCATION c, TAB_WORKYEARS  d,cb20 cb ,(select *   from CAA03  where CAAC01 in (select CAAC01 from CAA01 where indent=#{indent})) job
+      where a.acb210 =job.jobid
+           and b.code(+)=a.ACC034
+           and c.code(+)=a.AAC011
+           and d.code(+) = a.ACC217
+           and cb.acb200=a.acb200 and cb.ACB201=2 and a.ACB208 = 0  and a.ABB773=1
+      and a.CCPR08 = 0
+      order by   job.CAAE12 asc,  job.CAAE01 desc
+	</select>
+	
+	<select id="checkedAdCompany" resultType="java.lang.Long">
+		SELECT count(*) 
+		FROM CAA03 a
+		where a.caac01=#{caac01} and a.jobid=#{jobid} and a.cczy06=#{cczy06}
+	</select>
+	<!-- 修改浏览次数 -->
+	<update id="updateHitNum" parameterType="java.util.Map">
+		UPDATE CAA03 SET  CAAD14=nvl(CAAD14,0)+1
+		WHERE
+		CAAE01=#{CAAE01}
+	</update>  
+</mapper>

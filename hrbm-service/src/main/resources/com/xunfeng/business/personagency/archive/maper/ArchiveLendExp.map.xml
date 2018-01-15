@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.archive.model.ArchiveLendExp">
+	<resultMap id="ArchiveLendExp" type="com.xunfeng.business.personagency.archive.model.ArchiveLendExp">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="expLendId" column="EXP_LEND_ID" jdbcType="NUMERIC"/>
+		<result property="archiveCode" column="ARCHIVE_CODE" jdbcType="VARCHAR"/>
+		<result property="aac003" column="AAC003" jdbcType="VARCHAR"/>
+		<result property="aac002" column="AAC002" jdbcType="VARCHAR"/>
+		<result property="aac004" column="AAC004" jdbcType="VARCHAR"/>
+		<result property="archiveType" column="ARCHIVE_TYPE" jdbcType="NUMERIC"/>
+		<result property="receiveDate" column="RECEIVE_DATE" jdbcType="DATE"/>
+		<result property="marketPosition" column="MARKET_POSITION" jdbcType="VARCHAR"/>
+		<result property="cabinetsLibrary" column="CABINETS_LIBRARY" jdbcType="VARCHAR"/>
+		<result property="cabinetsCode" column="CABINETS_CODE" jdbcType="VARCHAR"/>
+		<result property="cabinetsLayer" column="CABINETS_LAYER" jdbcType="VARCHAR"/>
+		<result property="cabinetsLattice" column="CABINETS_LATTICE" jdbcType="VARCHAR"/>
+		<result property="aab004" column="AAB004" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,EXP_LEND_ID,ARCHIVE_CODE,AAC003,AAC002,AAC004,ARCHIVE_TYPE,RECEIVE_DATE,MARKET_POSITION,CABINETS_LIBRARY,CABINETS_CODE,CABINETS_LAYER,CABINETS_LATTICE,AAB004
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(expLendId)"> AND EXP_LEND_ID  =#{expLendId} </if>
+			<if test="@Ognl@isNotEmpty(archiveCode)"> AND ARCHIVE_CODE  LIKE #{archiveCode}  </if>
+			<if test="@Ognl@isNotEmpty(aac003)"> AND AAC003  LIKE #{aac003}  </if>
+			<if test="@Ognl@isNotEmpty(aac002)"> AND AAC002  LIKE #{aac002}  </if>
+			<if test="@Ognl@isNotEmpty(aac004)"> AND AAC004  LIKE #{aac004}  </if>
+			<if test="@Ognl@isNotEmpty(archiveType)"> AND ARCHIVE_TYPE  =#{archiveType} </if>
+			<if test="@Ognl@isNotEmpty(receiveDate)"> AND RECEIVE_DATE  =#{receiveDate} </if>
+			<if test="@Ognl@isNotEmpty(beginreceiveDate)"> AND RECEIVE_DATE  >=#{beginreceiveDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endreceiveDate)"> AND RECEIVE_DATE <![CDATA[ <=#{endreceiveDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(marketPosition)"> AND MARKET_POSITION  LIKE #{marketPosition}  </if>
+			<if test="@Ognl@isNotEmpty(cabinetsLibrary)"> AND CABINETS_LIBRARY  LIKE #{cabinetsLibrary}  </if>
+			<if test="@Ognl@isNotEmpty(cabinetsCode)"> AND CABINETS_CODE  LIKE #{cabinetsCode}  </if>
+			<if test="@Ognl@isNotEmpty(cabinetsLayer)"> AND CABINETS_LAYER  LIKE #{cabinetsLayer}  </if>
+			<if test="@Ognl@isNotEmpty(cabinetsLattice)"> AND CABINETS_LATTICE  LIKE #{cabinetsLattice}  </if>
+			<if test="@Ognl@isNotEmpty(aab004)"> AND AAB004  LIKE #{aab004}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.archive.model.ArchiveLendExp">
+		INSERT INTO RSDA_BS_ARCHIVE_LEND_EXP
+		(ID,EXP_LEND_ID,ARCHIVE_CODE,AAC003,AAC002,AAC004,ARCHIVE_TYPE,RECEIVE_DATE,MARKET_POSITION,CABINETS_LIBRARY,CABINETS_CODE,CABINETS_LAYER,CABINETS_LATTICE,AAB004)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{expLendId,jdbcType=NUMERIC}, #{archiveCode,jdbcType=VARCHAR}, #{aac003,jdbcType=VARCHAR}, #{aac002,jdbcType=VARCHAR}, #{aac004,jdbcType=VARCHAR}, #{archiveType,jdbcType=NUMERIC}, #{receiveDate,jdbcType=DATE}, #{marketPosition,jdbcType=VARCHAR}, #{cabinetsLibrary,jdbcType=VARCHAR}, #{cabinetsCode,jdbcType=VARCHAR}, #{cabinetsLayer,jdbcType=VARCHAR}, #{cabinetsLattice,jdbcType=VARCHAR}, #{aab004,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_ARCHIVE_LEND_EXP 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.archive.model.ArchiveLendExp">
+		UPDATE RSDA_BS_ARCHIVE_LEND_EXP SET
+		EXP_LEND_ID=#{expLendId,jdbcType=NUMERIC},
+		ARCHIVE_CODE=#{archiveCode,jdbcType=VARCHAR},
+		AAC003=#{aac003,jdbcType=VARCHAR},
+		AAC002=#{aac002,jdbcType=VARCHAR},
+		AAC004=#{aac004,jdbcType=VARCHAR},
+		ARCHIVE_TYPE=#{archiveType,jdbcType=NUMERIC},
+		RECEIVE_DATE=#{receiveDate,jdbcType=DATE},
+		MARKET_POSITION=#{marketPosition,jdbcType=VARCHAR},
+		CABINETS_LIBRARY=#{cabinetsLibrary,jdbcType=VARCHAR},
+		CABINETS_CODE=#{cabinetsCode,jdbcType=VARCHAR},
+		CABINETS_LAYER=#{cabinetsLayer,jdbcType=VARCHAR},
+		CABINETS_LATTICE=#{cabinetsLattice,jdbcType=VARCHAR},
+		AAB004=#{aab004,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="ArchiveLendExp">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_ARCHIVE_LEND_EXP
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="ArchiveLendExp">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_ARCHIVE_LEND_EXP   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

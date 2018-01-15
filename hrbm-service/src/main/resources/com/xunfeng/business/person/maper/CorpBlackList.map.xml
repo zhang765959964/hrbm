@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.person.model.CorpBlackList">
+	<resultMap id="CorpBlackList" type="com.xunfeng.business.person.model.CorpBlackList">
+		<id property="aac0g0" column="AAC0G0" jdbcType="NUMERIC"/>
+		<result property="aac001" column="AAC001" jdbcType="NUMERIC"/>
+		<result property="aab004" column="AAB004" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		AAC0G0,AAC001,AAB004
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(aac0g0)"> AND AAC0G0  =#{aac0g0} </if>
+			<if test="@Ognl@isNotEmpty(aac001)"> AND AAC001  =#{aac001} </if>
+			<if test="@Ognl@isNotEmpty(aab004)"> AND AAB004  LIKE #{aab004}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.person.model.CorpBlackList">
+		INSERT INTO AC0G
+		(AAC0G0,AAC001,AAB004)
+		VALUES
+		(#{aac0g0,jdbcType=NUMERIC}, #{aac001,jdbcType=NUMERIC}, #{aab004,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM AC0G 
+		WHERE
+		AAC0G0=#{aac0g0}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.person.model.CorpBlackList">
+		UPDATE AC0G SET
+		AAC001=#{aac001,jdbcType=NUMERIC},
+		AAB004=#{aab004,jdbcType=VARCHAR}
+		WHERE
+		AAC0G0=#{aac0g0}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="CorpBlackList">
+		SELECT <include refid="columns"/>
+		FROM AC0G
+		WHERE
+		AAC0G0=#{aac0g0}
+	</select>
+	
+	<select id="getAll" resultMap="CorpBlackList">
+		SELECT <include refid="columns"/>
+		FROM AC0G   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by AAC0G0  desc
+		</if>
+	</select>
+</mapper>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.entrust.model.CommissionChange">
+	<resultMap id="CommissionChange" type="com.xunfeng.business.personagency.entrust.model.CommissionChange">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="commissionType" column="COMMISSION_TYPE" jdbcType="VARCHAR"/>
+		<result property="commissionDate" column="COMMISSION_DATE" jdbcType="DATE"/>
+		<result property="archiveCodeBefore" column="ARCHIVE_CODE_BEFORE" jdbcType="VARCHAR"/>
+		<result property="archiveCodeAfter" column="ARCHIVE_CODE_AFTER" jdbcType="VARCHAR"/>
+		<result property="commissionCorpName" column="COMMISSION_CORP_NAME" jdbcType="VARCHAR"/>
+		<result property="description" column="DESCRIPTION" jdbcType="VARCHAR"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="DATE"/>
+		<result property="cczy06" column="CCZY06" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+		<result property="printNumber" column="PRINT_NUMBER" jdbcType="NUMERIC"/>
+		<result property="archivesId" column="ARCHIVES_ID" jdbcType="NUMERIC"/>
+		<result property="personId" column="PERSON_ID" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,COMMISSION_TYPE,COMMISSION_DATE,ARCHIVE_CODE_BEFORE,ARCHIVE_CODE_AFTER,COMMISSION_CORP_NAME,DESCRIPTION,CREATER_ID,CREATER_NAME,CREATER_ORG_ID,CREATER_ORG_NAME,CREATER_DATE,CCZY06,CCPR08,PRINT_NUMBER,ARCHIVES_ID,PERSON_ID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(commissionType)"> AND COMMISSION_TYPE  LIKE #{commissionType}  </if>
+			<if test="@Ognl@isNotEmpty(commissionDate)"> AND COMMISSION_DATE  =#{commissionDate} </if>
+			<if test="@Ognl@isNotEmpty(begincommissionDate)"> AND COMMISSION_DATE  >=#{begincommissionDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcommissionDate)"> AND COMMISSION_DATE <![CDATA[ <=#{endcommissionDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(archiveCodeBefore)"> AND ARCHIVE_CODE_BEFORE  LIKE #{archiveCodeBefore}  </if>
+			<if test="@Ognl@isNotEmpty(archiveCodeAfter)"> AND ARCHIVE_CODE_AFTER  LIKE #{archiveCodeAfter}  </if>
+			<if test="@Ognl@isNotEmpty(commissionCorpName)"> AND COMMISSION_CORP_NAME  LIKE #{commissionCorpName}  </if>
+			<if test="@Ognl@isNotEmpty(description)"> AND DESCRIPTION  LIKE #{description}  </if>
+			<if test="@Ognl@isNotEmpty(createrId)"> AND CREATER_ID  =#{createrId} </if>
+			<if test="@Ognl@isNotEmpty(createrName)"> AND CREATER_NAME  LIKE #{createrName}  </if>
+			<if test="@Ognl@isNotEmpty(createrOrgId)"> AND CREATER_ORG_ID  =#{createrOrgId} </if>
+			<if test="@Ognl@isNotEmpty(createrOrgName)"> AND CREATER_ORG_NAME  LIKE #{createrOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(createrDate)"> AND CREATER_DATE  =#{createrDate} </if>
+			<if test="@Ognl@isNotEmpty(begincreaterDate)"> AND CREATER_DATE  >=#{begincreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(cczy06)"> AND CCZY06  LIKE #{cczy06}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr08)"> AND m.CCPR08  LIKE #{ccpr08}  </if>
+			<if test="@Ognl@isNotEmpty(printNumber)"> AND PRINT_NUMBER  =#{printNumber} </if>
+			<if test="@Ognl@isNotEmpty(archivesId)"> AND ARCHIVES_ID  =#{archivesId} </if>
+			
+			<if test="@Ognl@isNotEmpty(archiveCode)"> AND upper(a.ARCHIVE_CODE) LIKE upper(#{archiveCode}) </if>
+			<!-- <if test="@Ognl@isNotEmpty(archiveCodehb)"> AND (upper(m.ARCHIVE_CODE_AFTER) LIKE upper(#{archiveCodehb}) or upper(m.ARCHIVE_CODE_BEFORE) LIKE upper(#{archiveCodehb}))</if> -->
+			<if test="@Ognl@isNotEmpty(archiveCodehb)"> AND upper(a.HISTORY_ARCHIVE_CODE)  LIKE upper(#{archiveCodehb})  </if>
+			<if test="@Ognl@isNotEmpty(aac002)"> AND upper(p.AAC002) LIKE upper(#{aac002})  </if>
+			<if test="@Ognl@isNotEmpty(personId)"> AND p.AAC001  LIKE #{personId}  </if>
+			<if test="@Ognl@isNotEmpty(aac003)"> AND p.AAC003  LIKE #{aac003}  </if>
+			<if test="@Ognl@isNotEmpty(aac004)"> AND p.AAC004  LIKE #{aac004}  </if>
+			<if test="@Ognl@isNotEmpty(archiveType)"> AND a.ARCHIVE_TYPE  =#{archiveType} </if>
+			<if test="@Ognl@isNotEmpty(archiveName)"> AND a.ARCHIVE_NAME  LIKE #{archiveName}  </if>
+			<if test="@Ognl@isNotEmpty(beginreceiveDate)"> AND a.RECEIVE_DATE  >=#{beginreceiveDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endreceiveDate)"> AND a.RECEIVE_DATE <![CDATA[ <=#{endreceiveDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(archiveStatus)"> AND a.ARCHIVE_STATUS  =#{archiveStatus} </if>
+			
+			<if test="@Ognl@isNotEmpty(ids)"> AND m.ID in (${ids})</if>
+			
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.entrust.model.CommissionChange">
+		INSERT INTO RSDA_BS_COMMISSION_CHANGE
+		(ID,COMMISSION_TYPE,COMMISSION_DATE,ARCHIVE_CODE_BEFORE,ARCHIVE_CODE_AFTER,COMMISSION_CORP_NAME,DESCRIPTION,CREATER_ID,CREATER_NAME,CREATER_ORG_ID,CREATER_ORG_NAME,CREATER_DATE,CCZY06,CCPR08,PRINT_NUMBER,ARCHIVES_ID,PERSON_ID)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{commissionType,jdbcType=VARCHAR}, #{commissionDate,jdbcType=DATE}, #{archiveCodeBefore,jdbcType=VARCHAR}, #{archiveCodeAfter,jdbcType=VARCHAR}, #{commissionCorpName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{createrId,jdbcType=NUMERIC}, #{createrName,jdbcType=VARCHAR}, #{createrOrgId,jdbcType=NUMERIC}, #{createrOrgName,jdbcType=VARCHAR}, #{createrDate,jdbcType=DATE}, #{cczy06,jdbcType=VARCHAR}, #{ccpr08,jdbcType=VARCHAR}, #{printNumber,jdbcType=NUMERIC}, #{archivesId,jdbcType=NUMERIC}, #{personId,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_COMMISSION_CHANGE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.entrust.model.CommissionChange">
+		UPDATE RSDA_BS_COMMISSION_CHANGE SET
+		COMMISSION_TYPE=#{commissionType,jdbcType=VARCHAR},
+		COMMISSION_DATE=#{commissionDate,jdbcType=DATE},
+		ARCHIVE_CODE_BEFORE=#{archiveCodeBefore,jdbcType=VARCHAR},
+		ARCHIVE_CODE_AFTER=#{archiveCodeAfter,jdbcType=VARCHAR},
+		COMMISSION_CORP_NAME=#{commissionCorpName,jdbcType=VARCHAR},
+		DESCRIPTION=#{description,jdbcType=VARCHAR},
+		CREATER_ID=#{createrId,jdbcType=NUMERIC},
+		CREATER_NAME=#{createrName,jdbcType=VARCHAR},
+		CREATER_ORG_ID=#{createrOrgId,jdbcType=NUMERIC},
+		CREATER_ORG_NAME=#{createrOrgName,jdbcType=VARCHAR},
+		CREATER_DATE=#{createrDate,jdbcType=DATE},
+		CCZY06=#{cczy06,jdbcType=VARCHAR},
+		CCPR08=#{ccpr08,jdbcType=VARCHAR},
+		PRINT_NUMBER=#{printNumber,jdbcType=NUMERIC},
+		ARCHIVES_ID=#{archivesId,jdbcType=NUMERIC},
+		PERSON_ID=#{personId,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="CommissionChange">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_COMMISSION_CHANGE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="CommissionChange">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_COMMISSION_CHANGE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<!-- 查询所有委托变更数据 -->
+	<select id="getAllCommissionChange" resultType="java.util.HashMap">
+		SELECT  m.ID as "id",p.AAC003 as "aac003",p.AAC002 as "aac002",e.name as "genderName",to_char(p.AAC006,'yyyy-mm-dd') as "aac006"
+				,b.name as "commissionTypeName",to_char(m.COMMISSION_DATE,'yyyy-mm-dd') as "commissionDate"
+				,m.ARCHIVE_CODE_BEFORE as "archiveCodeBefore",m.ARCHIVE_CODE_AFTER as "archiveCodeAfter"
+				,m.COMMISSION_CORP_NAME as "commissionCorpName"
+				,a.ARCHIVE_CODE as "archiveCode",a.ARCHIVE_NAME as "archiveName"
+				,to_char(a.ARCHIVE_BIRTH_DATE,'yyyy-mm-dd') as "archiveBirthDate"
+				,to_char(a.RECEIVE_DATE,'yyyy-mm-dd') as "receiveDate"
+				,s.name as "archiveStatusName"
+				,h.name as "archiveTypeName"
+				,p.AAE005 as "aae005"
+				,i.EXP_PERSON_PHONE as "expPersonPhone"
+				,to_char(m.CREATER_DATE,'yyyy-mm-dd') as "createrDate"
+				,m.CREATER_NAME as "createrName"
+				,m.CREATER_ORG_NAME as "createrOrgName"
+				,m.DESCRIPTION as "description"
+				
+		FROM rsda_bs_commission_change m 
+		left join RSDA_BS_ARCHIVE_ARCHIVES a on a.ID=m.ARCHIVES_ID
+		left join ac01 p on p.AAC001=a.PERSON_ID
+		left join RSDA_BS_PERSON_EXPAND i on i.EXP_PERSON_ID=a.PERSON_ID
+        left join RSDA_TAB_ARCHIVETYPE h on h.code=a.ARCHIVE_TYPE
+        left join TAB_SEX e on e.code=p.AAC004
+        left join RSDA_TAB_TYPE_CHANGE b on b.code=m.COMMISSION_TYPE
+        left join RSDA_TAB_ARCHIVESTATUS s on s.code=a.ARCHIVE_STATUS
+        
+        <include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+			order by m.CREATER_DATE  desc,m.ID desc
+		</if>
+	</select>
+	
+</mapper>

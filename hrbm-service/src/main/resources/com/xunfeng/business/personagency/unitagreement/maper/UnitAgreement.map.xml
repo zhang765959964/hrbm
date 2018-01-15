@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.unitagreement.model.UnitAgreement">
+	<resultMap id="UnitAgreement" type="com.xunfeng.business.personagency.unitagreement.model.UnitAgreement">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="uaNo" column="UA_NO" jdbcType="VARCHAR"/>
+		<result property="uaCreatetime" column="UA_CREATETIME" jdbcType="DATE"/>
+		<result property="uaName" column="UA_NAME" jdbcType="VARCHAR"/>
+		<result property="uaPhone" column="UA_PHONE" jdbcType="VARCHAR"/>
+		<result property="uaIsFree" column="UA_IS_FREE" jdbcType="NUMERIC"/>
+		<result property="uaCard" column="UA_CARD" jdbcType="VARCHAR"/>
+		<result property="uaContent" column="UA_CONTENT" jdbcType="VARCHAR"/>
+		<result property="uaNote" column="UA_NOTE" jdbcType="VARCHAR"/>
+		<result property="uaStopEndtime" column="UA_STOP_ENDTIME" jdbcType="DATE"/>
+		<result property="uaStopCause" column="UA_STOP_CAUSE" jdbcType="VARCHAR"/>
+		<result property="uaUnitId" column="UA_UNIT_ID" jdbcType="NUMERIC"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="uaStatus" column="UA_STATUS" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="DATE"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="stopDatexx" column="STOP_DATEXX" jdbcType="DATE"/>
+		<result property="stopId" column="STOP_ID" jdbcType="NUMERIC"/>
+		<result property="stopName" column="STOP_NAME" jdbcType="VARCHAR"/>
+		<result property="stopDate" column="STOP_DATE" jdbcType="DATE"/>
+		<result property="stopOrgId" column="STOP_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="stopOrgName" column="STOP_ORG_NAME" jdbcType="VARCHAR"/>
+		
+		
+		
+		<!-- 单位基本信息字段 -->	
+		<result property="aab004" column="AAB004" jdbcType="VARCHAR"/>
+		<result property="aae007" column="AAE007" jdbcType="VARCHAR"/>
+		<result property="aab019" column="AAB019" jdbcType="VARCHAR"/>
+		<result property="aab020" column="AAB020" jdbcType="VARCHAR"/>		
+		<result property="aae006" column="AAE006" jdbcType="VARCHAR"/>
+		<result property="aab301" column="AAB301" jdbcType="VARCHAR"/>
+		<result property="aae004" column="AAE004" jdbcType="VARCHAR"/>
+	    <result property="aae005" column="AAE005" jdbcType="VARCHAR"/>
+		<result property="bab002" column="BAB002" jdbcType="VARCHAR"/>
+		<result property="aaa021" column="AAA021" jdbcType="VARCHAR"/>
+		
+	</resultMap>
+	
+
+	
+	
+	<sql id="columns">
+		ID,UA_NO,UA_CREATETIME,UA_NAME,UA_PHONE,UA_IS_FREE,UA_CARD,UA_CONTENT,UA_NOTE,UA_STOP_ENDTIME,
+		UA_STOP_CAUSE,UA_UNIT_ID,UA_STATUS,CREATER_ID,CREATER_NAME,CREATER_DATE,CREATER_ORG_ID,CREATER_ORG_NAME,STOP_DATEXX,STOP_ID,STOP_NAME,STOP_DATE,STOP_ORG_ID,STOP_ORG_NAME,
+		AAB001,AAB004,AAB007,AAB019,AAB020,AAE006,AAB301,AAE004,AAA021,
+		tab_unitnature.name as unitname,tab_economic.name as econname
+	</sql>
+	
+	
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(ids)"> AND ID  in (${ids}) </if>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(uaNo)"> AND UA_NO    LIKE #{uaNo} </if>
+			<if test="@Ognl@isNotEmpty(uaCreatetime)"> AND UA_CREATETIME  =#{uaCreatetime} </if>
+			<if test="@Ognl@isNotEmpty(beginuaCreatetime)"> AND UA_CREATETIME  >=#{beginuaCreatetime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(enduaCreatetime)"> AND UA_CREATETIME <![CDATA[ <=#{enduaCreatetime,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(uaName)"> AND UA_NAME  LIKE #{uaName}  </if>
+			<if test="@Ognl@isNotEmpty(uaPhone)"> AND UA_PHONE  LIKE #{uaPhone}  </if>
+			<if test="@Ognl@isNotEmpty(uaIsFree)"> AND UA_IS_FREE  =#{uaIsFree} </if>
+			<if test="@Ognl@isNotEmpty(uaCard)"> AND UA_CARD  LIKE #{uaCard}  </if>
+			<if test="@Ognl@isNotEmpty(uaContent)"> AND UA_CONTENT  LIKE #{uaContent}  </if>
+			<if test="@Ognl@isNotEmpty(uaNote)"> AND UA_NOTE  LIKE #{uaNote}  </if>
+			<if test="@Ognl@isNotEmpty(uaStopEndtime)"> AND UA_STOP_ENDTIME  =#{uaStopEndtime} </if>
+			<if test="@Ognl@isNotEmpty(beginuaStopEndtime)"> AND UA_STOP_ENDTIME  >=#{beginuaStopEndtime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(enduaStopEndtime)"> AND UA_STOP_ENDTIME <![CDATA[ <=#{enduaStopEndtime,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(uaStopCause)"> AND UA_STOP_CAUSE  LIKE #{uaStopCause}  </if>
+			<if test="@Ognl@isNotEmpty(uaUnitId)"> AND UA_UNIT_ID  =#{uaUnitId} </if>
+			<if test="@Ognl@isNotEmpty(uaStatus)"> AND UA_STATUS  =#{uaStatus} </if>
+			<if test="@Ognl@isNotEmpty(createrId)"> AND CREATER_ID  =#{createrId} </if>
+			<if test="@Ognl@isNotEmpty(createrName)"> AND CREATER_NAME  LIKE #{createrName}  </if>
+			<if test="@Ognl@isNotEmpty(createrDate)"> AND CREATER_DATE  =#{createrDate} </if>
+			<if test="@Ognl@isNotEmpty(begincreaterDate)"> AND CREATER_DATE  >=#{begincreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(createrOrgId)"> AND CREATER_ORG_ID  =#{createrOrgId} </if>
+			<if test="@Ognl@isNotEmpty(createrOrgName)"> AND CREATER_ORG_NAME  LIKE #{createrOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(aab001)"> AND AAB001=#{aab001} </if>
+			<if test="@Ognl@isNotEmpty(aab004)"> AND AAB004 like #{aab004} </if>
+			<if test="@Ognl@isNotEmpty(aab007)"> AND AAB007 like #{aab007} </if>
+			<if test="@Ognl@isNotEmpty(aab301)"> AND AAB301 like #{aab301} </if>
+			<if test="@Ognl@isNotEmpty(aab019)"> AND AAB019 like #{aab019} </if>
+			<if test="@Ognl@isNotEmpty(aab020)"> AND AAB020 like #{aab020} </if>
+			<if test="@Ognl@isNotEmpty(aae016)"> AND AAE016 like #{aae016} </if>
+			<if test="@Ognl@isNotEmpty(aae004)"> AND AAE004 like #{aae004} </if>
+		
+			
+			<if test="@Ognl@isNotEmpty(searchValue)"> AND (t.AAB004 LIKE #{searchValue} or k.UA_NO like #{searchValue}) </if>
+			
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.unitagreement.model.UnitAgreement">
+		INSERT INTO RSDA_BS_UNIT_AGREEMENT
+		(ID,UA_NO,UA_CREATETIME,UA_NAME,UA_PHONE,UA_IS_FREE,UA_CARD,UA_CONTENT,UA_NOTE,UA_STOP_ENDTIME,UA_STOP_CAUSE,UA_UNIT_ID,UA_STATUS,CREATER_ID,CREATER_NAME,CREATER_DATE,CREATER_ORG_ID,CREATER_ORG_NAME)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{uaNo,jdbcType=VARCHAR}, #{uaCreatetime,jdbcType=TIMESTAMP}, #{uaName,jdbcType=VARCHAR}, #{uaPhone,jdbcType=VARCHAR}, #{uaIsFree,jdbcType=NUMERIC}, #{uaCard,jdbcType=VARCHAR}, #{uaContent,jdbcType=CLOB}, #{uaNote,jdbcType=VARCHAR}, #{uaStopEndtime,jdbcType=TIMESTAMP}, #{uaStopCause,jdbcType=VARCHAR}, #{uaUnitId,jdbcType=NUMERIC}, #{uaStatus,jdbcType=NUMERIC},  #{createrId,jdbcType=NUMERIC}, #{createrName,jdbcType=VARCHAR}, #{createrDate,jdbcType=TIMESTAMP}, #{createrOrgId,jdbcType=NUMERIC}, #{createrOrgName,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_UNIT_AGREEMENT 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	
+	<!-- 单位协议编号查询 -->
+	<select id="getByUnitNo" parameterType="java.lang.Long" resultType="java.lang.Long">
+		SELECT count(*)
+		FROM RSDA_BS_UNIT_AGREEMENT
+		where UA_NO = #{uaNo}
+	</select>
+	
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.unitagreement.model.UnitAgreement">
+		UPDATE RSDA_BS_UNIT_AGREEMENT SET
+		UA_NO=#{uaNo,jdbcType=VARCHAR},
+		UA_CREATETIME=#{uaCreatetime,jdbcType=DATE},
+		UA_NAME=#{uaName,jdbcType=VARCHAR},
+		UA_PHONE=#{uaPhone,jdbcType=VARCHAR},
+		UA_IS_FREE=#{uaIsFree,jdbcType=NUMERIC},
+		UA_CARD=#{uaCard,jdbcType=VARCHAR},
+		UA_CONTENT=#{uaContent,jdbcType=CLOB},
+		UA_NOTE=#{uaNote,jdbcType=VARCHAR},
+		UA_STOP_ENDTIME=#{uaStopEndtime,jdbcType=DATE},
+		UA_STOP_CAUSE=#{uaStopCause,jdbcType=VARCHAR},
+		UA_UNIT_ID=#{uaUnitId,jdbcType=NUMERIC},
+	    UA_STATUS=#{uaStatus,jdbcType=NUMERIC},
+		CREATER_ID=#{createrId,jdbcType=NUMERIC},
+		CREATER_NAME=#{createrName,jdbcType=VARCHAR},
+		CREATER_DATE=#{createrDate,jdbcType=DATE},
+		CREATER_ORG_ID=#{createrOrgId,jdbcType=NUMERIC},
+		CREATER_ORG_NAME=#{createrOrgName,jdbcType=VARCHAR},
+		STOP_DATEXX=#{stopDatexx,jdbcType=DATE},
+		STOP_ID=#{stopId,jdbcType=NUMERIC},
+		STOP_NAME=#{stopName,jdbcType=VARCHAR},
+		STOP_DATE=#{stopDate,jdbcType=DATE},
+		STOP_ORG_ID=#{stopOrgId,jdbcType=NUMERIC},
+		STOP_ORG_NAME=#{stopOrgName,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="UnitAgreement">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_UNIT_AGREEMENT
+		left join AB01 on RSDA_BS_UNIT_AGREEMENT.UA_UNIT_ID  = AB01.aab001
+		left join tab_unitnature on ab01.aab019 = tab_unitnature.code
+		left join tab_economic on ab01.aab020 = tab_economic.code
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<!-- 根据单位名称查询信息 -->
+	<select id="getByCorpName" parameterType="java.lang.String" resultMap="UnitAgreement">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_UNIT_AGREEMENT
+		left join AB01 on RSDA_BS_UNIT_AGREEMENT.UA_UNIT_ID  = AB01.aab001
+		left join tab_unitnature on AB01.aab019 = tab_unitnature.code
+		left join tab_economic on AB01.aab020 = tab_economic.code
+		WHERE
+		AAB004=#{aab004}
+	</select>
+	
+	<select id="getByCopyId" parameterType="java.lang.Long"  resultMap="UnitAgreement">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_UNIT_AGREEMENT
+		left join AB01 on RSDA_BS_UNIT_AGREEMENT.UA_UNIT_ID  = AB01.aab001
+		left join tab_unitnature on AB01.aab019 = tab_unitnature.code
+		left join tab_economic on AB01.aab020 = tab_economic.code
+		WHERE
+		UA_UNIT_ID = #{aab001}
+	</select>
+	
+	<!-- 条件查询 -->
+	<select id="getAll" resultMap="UnitAgreement">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_UNIT_AGREEMENT   
+		left join AB01 on RSDA_BS_UNIT_AGREEMENT.UA_UNIT_ID  = AB01.aab001
+		left join tab_unitnature on ab01.aab019 = tab_unitnature.code
+		left join tab_economic on ab01.aab020 = tab_economic.code
+		
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<!-- 单位协议查询 -->
+	<select id="getUnitAgreementList"  resultType="java.util.Map">
+		SELECT * from V_RSDA_BS_UNIT_AGREEMENT_LIST 
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+		</select>
+	
+	
+	
+	<select id="getAllCorp" resultType="java.util.HashMap">
+		SELECT 	  t.aae006 as "aae006",t.aab001 as "aab001"
+				  ,t.aab003 as "aab003",t.aab004 as "aab004",t.aae004 as "aae004"
+				  ,t.aae005 as "aae005",t.aab007 as "aab007",t.aab013 as "aab013",t.aab014 as "aab014"
+				  ,t.aaa021 as "aaa021",t.aae019 as "aae019",t.aae020 as "aae020",y.name as "aab020",f.name as "aab054",k.UA_NO as "uaNo"
+		          
+		          FROM AB01  t
+			      LEFT  JOIN TAB_ECONOMIC        y ON y.code=t.aab020 
+			      LEFT  JOIN TAB_INDUSTRYCLASSES f ON f.code=t.aab054
+			      LEFT  JOIN RSDA_BS_UNIT_AGREEMENT  k ON k.UA_UNIT_ID=t.aab001
+		
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+	<!-- 根据协议签订状态返回单位id 单位名称 单位营业号 -->
+	<select id="getByUnitStatus" resultType="java.util.HashMap"> 
+		select * from V_RSDA_BS_UNIT_COPY t
+		<where>
+			<if test="@Ognl@isNotEmpty(uaStatus)">  t.UA_STATUS  = #{uaStatus} </if>
+			<if test="@Ognl@isNotEmpty(aab004)">  and t.AAB004  like #{aab004} </if>		
+		</where>
+		
+	</select>
+	
+</mapper>

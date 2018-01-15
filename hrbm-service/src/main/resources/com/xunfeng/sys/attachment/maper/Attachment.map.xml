@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.sys.attachment.model.Attachment">
+	<resultMap id="Attachment" type="com.xunfeng.sys.attachment.model.Attachment">
+		<id property="caoa01" column="CAOA01" jdbcType="NUMERIC"/>
+		<result property="ccmu01" column="CCMU01" jdbcType="NUMERIC"/>
+		<result property="caoa02" column="CAOA02" jdbcType="VARCHAR"/>
+		<result property="caoa03" column="CAOA03" jdbcType="VARCHAR"/>
+		<result property="caoa04" column="CAOA04" jdbcType="NUMERIC"/>
+		<result property="caoa05" column="CAOA05" jdbcType="TIMESTAMP"/>
+		<result property="acd230" column="ACD230" jdbcType="NUMERIC"/>
+		<result property="caoa06" column="CAOA06" jdbcType="TIMESTAMP"/>
+		<result property="caoa07" column="CAOA07" jdbcType="NUMERIC"/>
+		<result property="caoa08" column="CAOA08" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+		<result property="cczy06" column="CCZY06" jdbcType="VARCHAR"/>
+		<result property="caoa09" column="CAOA09" jdbcType="NUMERIC"/>
+		<result property="caoa10" column="CAOA10" jdbcType="VARCHAR"/>
+		<result property="aab001" column="AAB001" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		CAOA01,CCMU01,CAOA02,CAOA03,CAOA04,CAOA05,ACD230,CAOA06,CAOA07,CAOA08,CCPR08,CCZY06,CAOA09,CAOA10,AAB001
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(caoa01)"> AND CAOA01  =#{caoa01} </if>
+			<if test="@Ognl@isNotEmpty(ccmu01)"> AND CCMU01  =#{ccmu01} </if>
+			<if test="@Ognl@isNotEmpty(caoa02)"> AND CAOA02  LIKE #{caoa02}  </if>
+			<if test="@Ognl@isNotEmpty(caoa03)"> AND CAOA03  LIKE #{caoa03}  </if>
+			<if test="@Ognl@isNotEmpty(caoa04)"> AND CAOA04  =#{caoa04} </if>
+			<if test="@Ognl@isNotEmpty(caoa05)"> AND CAOA05  =#{caoa05} </if>
+			<if test="@Ognl@isNotEmpty(begincaoa05)"> AND CAOA05  >=#{begincaoa05,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcaoa05)"> AND CAOA05 <![CDATA[ <=#{endcaoa05,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(acd230)"> AND ACD230  =#{acd230} </if>
+			<if test="@Ognl@isNotEmpty(caoa06)"> AND CAOA06  =#{caoa06} </if>
+			<if test="@Ognl@isNotEmpty(begincaoa06)"> AND CAOA06  >=#{begincaoa06,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcaoa06)"> AND CAOA06 <![CDATA[ <=#{endcaoa06,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(caoa07)"> AND CAOA07  =#{caoa07} </if>
+			<if test="@Ognl@isNotEmpty(caoa08)"> AND CAOA08  LIKE #{caoa08}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr08)"> AND CCPR08  LIKE #{ccpr08}  </if>
+			<if test="@Ognl@isNotEmpty(cczy06)"> AND CCZY06  LIKE #{cczy06}  </if>
+			<if test="@Ognl@isNotEmpty(caoa09)"> AND CAOA09  =#{caoa09} </if>
+			<if test="@Ognl@isNotEmpty(caoa10)"> AND CAOA10  LIKE #{caoa10}  </if>
+			<if test="@Ognl@isNotEmpty(aab001)"> AND AAB001  =#{aab001} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.sys.attachment.model.Attachment">
+		INSERT INTO CAO04
+		(CAOA01,CCMU01,CAOA02,CAOA03,CAOA04,CAOA05,ACD230,CAOA06,CAOA07,CAOA08,CCPR08,CCZY06,CAOA09,CAOA10,AAB001)
+		VALUES
+		(#{caoa01,jdbcType=NUMERIC}, #{ccmu01,jdbcType=NUMERIC}, #{caoa02,jdbcType=VARCHAR}, #{caoa03,jdbcType=VARCHAR}, #{caoa04,jdbcType=NUMERIC}, #{caoa05,jdbcType=TIMESTAMP}, #{acd230,jdbcType=NUMERIC}, #{caoa06,jdbcType=TIMESTAMP}, #{caoa07,jdbcType=NUMERIC}, #{caoa08,jdbcType=VARCHAR}, #{ccpr08,jdbcType=VARCHAR}, #{cczy06,jdbcType=VARCHAR}, #{caoa09,jdbcType=NUMERIC}, #{caoa10,jdbcType=VARCHAR}, #{aab001,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM CAO04 
+		WHERE
+		CAOA01=#{caoa01}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.sys.attachment.model.Attachment">
+		UPDATE CAO04 SET
+		CCMU01=#{ccmu01,jdbcType=NUMERIC},
+		CAOA02=#{caoa02,jdbcType=VARCHAR},
+		CAOA03=#{caoa03,jdbcType=VARCHAR},
+		CAOA04=#{caoa04,jdbcType=NUMERIC},
+		CAOA05=#{caoa05,jdbcType=TIMESTAMP},
+		ACD230=#{acd230,jdbcType=NUMERIC},
+		CAOA06=#{caoa06,jdbcType=TIMESTAMP},
+		CAOA07=#{caoa07,jdbcType=NUMERIC},
+		CAOA08=#{caoa08,jdbcType=VARCHAR},
+		CCPR08=#{ccpr08,jdbcType=VARCHAR},
+		CCZY06=#{cczy06,jdbcType=VARCHAR},
+		CAOA09=#{caoa09,jdbcType=NUMERIC},
+		CAOA10=#{caoa10,jdbcType=VARCHAR},
+		AAB001=#{aab001,jdbcType=NUMERIC}
+		WHERE
+		CAOA01=#{caoa01}
+	</update>
+	
+	
+	<resultMap id="CorpAttachmentDto" type="com.xunfeng.sys.attachment.dto.CorpAttachmentDto">
+		<result property="aab001" column="aab001" jdbcType="NUMERIC"/>
+		<result property="aab004" column="aab004" jdbcType="VARCHAR"/>
+		<result property="aab013" column="aab013" jdbcType="VARCHAR"/>
+		<result property="aab006" column="aab006" jdbcType="VARCHAR"/>
+		<result property="aae006" column="aae006" jdbcType="VARCHAR"/>
+		<result property="aab007" column="aab007" jdbcType="VARCHAR"/>
+		<result property="ccmu01" column="ccmu01" jdbcType="VARCHAR"/>
+		
+		<result property="caoa01" column="CAOA01" jdbcType="NUMERIC"/>
+		<result property="caoa02" column="CAOA02" jdbcType="VARCHAR"/>
+		<result property="caoa03" column="CAOA03" jdbcType="VARCHAR"/>
+		<result property="caoa04" column="CAOA04" jdbcType="NUMERIC"/>
+		<result property="caoa05" column="CAOA05" jdbcType="TIMESTAMP"/>
+		<result property="acd230" column="ACD230" jdbcType="NUMERIC"/>
+		<result property="caoa06" column="CAOA06" jdbcType="TIMESTAMP"/>
+		<result property="caoa07" column="CAOA07" jdbcType="NUMERIC"/>
+		<result property="caoa08" column="CAOA08" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+		<result property="cczy06" column="CCZY06" jdbcType="VARCHAR"/>
+		<result property="caoa09" column="CAOA09" jdbcType="NUMERIC"/>
+		<result property="caoa10" column="CAOA10" jdbcType="VARCHAR"/>
+	</resultMap>
+	  
+	<select id="getById" parameterType="java.lang.Long" resultMap="Attachment">
+		SELECT <include refid="columns"/>
+		FROM CAO04
+		WHERE
+		CAOA01=#{caoa01}
+	</select>
+	
+	<select id="getAll" resultMap="Attachment">
+		SELECT <include refid="columns"/>
+		FROM CAO04   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by CAOA01  desc
+		</if>
+	</select>
+
+	<!--根据ID改变删除状态-->
+	<update id="updateDelStatus" parameterType="hashmap" >
+		UPDATE CAO04 SET
+			ccpr08=#{ccpr08,jdbcType=VARCHAR}
+		WHERE
+			CAOA01=#{caoa01}
+	</update>
+	<!--根据账号ID和相应的类型-->
+	<select id="getByAccountId" parameterType="hashmap" resultMap="Attachment">
+		SELECT <include refid="columns"/>
+			FROM CAO04
+		WHERE
+			ccmu01=#{ccmu01}  AND caoa04 = #{caoa04} AND ccpr08=#{ccpr08}
+	</select>
+	<select id="getCorpAuthByAccountId" resultMap="CorpAttachmentDto">
+		SELECT  a.aab001,a.aab004,a.aab013,a.aab006,a.aae006,a.aab007,a.ccmu01,a.cabq08,
+				b.caoa01,b.CAOA03,b.caoa04,b.caoa08,b.caoa02,b.caoa10,
+				c.name as zhengJianName
+		
+		FROM AB01 a 
+		left join CAO04 b on b.aab001 = a.aab001 and b.CAOA04 in(4,5)
+		left join TAB_UCT c on c.code = a.aab006
+		WHERE   a.ccmu01=#{ccmu01}
+	</select>
+	
+	<!-- 根据标示获得上传的图片 按时间排序-->
+	<select id="getAttachImg" resultType="java.util.HashMap">
+		select * from CAO04 a 
+	    where a.ccmu01=#{ccmu01} 
+			  and a.caoa04 = #{caoa04}
+			   and caoa07 = #{caoa07}
+			  and a.ccpr08=0
+	    order by CAOA05 desc
+    </select>
+	<!-- 根据标示获得上传的最新视频-->
+	<select id="getLatestAttachVideo" resultType="java.util.HashMap">
+		select * from CAO04 a 
+	    where a.ccmu01=#{ccmu01}
+	         and  caoa04 = #{caoa04}
+	         and caoa07 = #{caoa07}
+	         and ccpr08=0
+	         and a.CAOA05 = (select max(CAOA05) from CAO04 where CAOA04 = #{caoa04} and ccmu01=#{ccmu01} and ccpr08=0 )
+    </select>
+	<select id="getCountAttach" resultType="java.lang.Long">
+		select count(*) from CAO04 a 
+	    where a.ccmu01=#{ccmu01}
+	         and caoa04 = #{caoa04}
+	         and caoa07 = #{caoa07}
+	         and ccpr08=0
+    </select>
+</mapper>

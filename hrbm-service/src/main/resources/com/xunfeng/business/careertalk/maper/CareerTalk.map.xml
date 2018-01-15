@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.careertalk.model.CareerTalk">
+	<resultMap id="CareerTalk" type="com.xunfeng.business.careertalk.model.CareerTalk">
+			<id property="ctId" column="CT_ID" jdbcType="NUMERIC"/>
+			<result property="ctTitle" column="CT_TITLE" jdbcType="VARCHAR"/>
+			<result property="ctContent" column="CT_CONTENT" jdbcType="CLOB"/>
+			<result property="ctStatus" column="CT_STATUS" jdbcType="NUMERIC"/>
+			<result property="ctCreateby" column="CT_CREATEBY" jdbcType="NUMERIC"/>
+			<result property="ctCreatetime" column="CT_CREATETIME" jdbcType="TIMESTAMP"/>
+			<result property="ctUpdateby" column="CT_UPDATEBY" jdbcType="NUMERIC"/>
+			<result property="ctUpdatetime" column="CT_UPDATETIME" jdbcType="TIMESTAMP"/>
+			<result property="ctbId" column="CTB_ID" jdbcType="NUMERIC"/>
+			<result property="ctCareerEndtime" column="CT_CAREER_ENDTIME" jdbcType="TIMESTAMP"/>
+			<result property="ctCareerStarttime" column="CT_CAREER_STARTTIME" jdbcType="TIMESTAMP"/>
+			<result property="ctApproveUserid" column="CT_APPROVE_USERID" jdbcType="NUMERIC"/>
+			<result property="ctApproveTime" column="CT_APPROVE_TIME" jdbcType="TIMESTAMP"/>
+			<result property="ctApproveOpinion" column="CT_APPROVE_OPINION" jdbcType="VARCHAR"/>
+		<result property="crId" column="CR_ID" jdbcType="NUMERIC"/>
+		<result property="linkMan" column="LINK_MAN" jdbcType="VARCHAR"/>
+		<result property="linkTel" column="LINK_TEL" jdbcType="VARCHAR"/>
+		<result property="linkQq" column="LINK_QQ" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		CT_ID,CT_TITLE,CT_CONTENT,CT_STATUS,CT_CREATEBY,CT_CREATETIME,CT_UPDATEBY,CT_UPDATETIME,CTB_ID,CT_CAREER_ENDTIME,CT_CAREER_STARTTIME,CT_APPROVE_USERID,CT_APPROVE_TIME,CT_APPROVE_OPINION,CR_ID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(ctId)"> AND CT_ID  =#{ctId} </if>
+			<if test="@Ognl@isNotEmpty(ctTitle)"> AND CT_TITLE  LIKE CONCAT(CONCAT('%',#{ctTitle},'%'))  </if>
+			<if test="@Ognl@isNotEmpty(ctContent)"> AND CT_CONTENT  LIKE CONCAT(CONCAT('%',#{ctContent},'%'))  </if>
+			<if test="@Ognl@isNotEmpty(ctStatus)"> AND CT_STATUS  =#{ctStatus} </if>
+			<if test="@Ognl@isNotEmpty(ctCreateby)"> AND CT_CREATEBY  =#{ctCreateby} </if>
+			<if test="@Ognl@isNotEmpty(ctCreatetime)"> AND CT_CREATETIME  =#{ctCreatetime} </if>
+			<if test="@Ognl@isNotEmpty(beginctCreatetime)"> AND CT_CREATETIME  >=to_date(#{beginctCreatetime,jdbcType=TIMESTAMP},'yyyy-MM-dd')  </if>
+			<if test="@Ognl@isNotEmpty(endctCreatetime)"> AND CT_CREATETIME <![CDATA[ <=to_date(#{endctCreatetime,jdbcType=TIMESTAMP}]]>,'yyyy-MM-dd') </if>
+			<if test="@Ognl@isNotEmpty(ctUpdateby)"> AND CT_UPDATEBY  =#{ctUpdateby} </if>
+			<if test="@Ognl@isNotEmpty(ctUpdatetime)"> AND CT_UPDATETIME  =#{ctUpdatetime} </if>
+			<if test="@Ognl@isNotEmpty(beginctUpdatetime)"> AND CT_UPDATETIME  >=to_date(#{beginctUpdatetime,jdbcType=TIMESTAMP},'yyyy-MM-dd')  </if>
+			<if test="@Ognl@isNotEmpty(endctUpdatetime)"> AND CT_UPDATETIME <![CDATA[ <=to_date(#{endctUpdatetime,jdbcType=TIMESTAMP}]]>,'yyyy-MM-dd') </if>
+			<if test="@Ognl@isNotEmpty(ctbId)"> AND CTB_ID  =#{ctbId} </if>
+			<if test="@Ognl@isNotEmpty(ctCareerEndtime)"> AND CT_CAREER_ENDTIME  =#{ctCareerEndtime} </if>
+			<if test="@Ognl@isNotEmpty(beginctCareerEndtime)"> AND CT_CAREER_ENDTIME  >=to_date(#{beginctCareerEndtime,jdbcType=TIMESTAMP},'yyyy-MM-dd  HH24:mi:ss')  </if>
+			<if test="@Ognl@isNotEmpty(endctCareerEndtime)"> AND CT_CAREER_ENDTIME <![CDATA[ <=to_date(#{endctCareerEndtime,jdbcType=TIMESTAMP}]]>,'yyyy-MM-dd') </if>
+			<if test="@Ognl@isNotEmpty(ctCareerStarttime)"> AND CT_CAREER_STARTTIME  =to_date(#{ctCareerStarttime},'yyyy-MM-dd HH24:mi') </if>
+			<if test="@Ognl@isNotEmpty(beginctCareerStarttime)"> AND CT_CAREER_STARTTIME  >=to_date(#{beginctCareerStarttime,jdbcType=TIMESTAMP},'yyyy-MM-dd HH24:mi')  </if>
+			<if test="@Ognl@isNotEmpty(endctCareerStarttime)"> AND CT_CAREER_STARTTIME <![CDATA[ <=to_date(#{endctCareerStarttime,jdbcType=TIMESTAMP}]]>,'yyyy-MM-dd HH24:mi') </if>
+			<if test="@Ognl@isNotEmpty(ctApproveUserid)"> AND CT_APPROVE_USERID  =#{ctApproveUserid} </if>
+			<if test="@Ognl@isNotEmpty(ctApproveTime)"> AND CT_APPROVE_TIME  =#{ctApproveTime} </if>
+			<if test="@Ognl@isNotEmpty(beginctApproveTime)"> AND CT_APPROVE_TIME  >=to_date(#{beginctApproveTime,jdbcType=TIMESTAMP},'yyyy-MM-dd')  </if>
+			<if test="@Ognl@isNotEmpty(endctApproveTime)"> AND CT_APPROVE_TIME <![CDATA[ <=to_date(#{endctApproveTime,jdbcType=TIMESTAMP}]]>,'yyyy-MM-dd') </if>
+			<if test="@Ognl@isNotEmpty(ctApproveOpinion)"> AND CT_APPROVE_OPINION  LIKE CONCAT(CONCAT('%',#{ctApproveOpinion},'%'))  </if>
+			<if test="@Ognl@isNotEmpty(crId)"> AND CR_ID  =#{crId} </if>
+		</where>
+	</sql>
+	
+	<sql id="dynamicWhereMpt">
+		<where>
+			<if test="@Ognl@isNotEmpty(ctCreateby)"> AND CT_CREATEBY  =#{ctCreateby} </if>
+			<if test="@Ognl@isNotEmpty(beginctCareerEndtime)"> AND CT_CAREER_ENDTIME  >=to_date(#{beginctCareerEndtime,jdbcType=TIMESTAMP},'yyyy-MM-dd  HH24:mi:ss')  </if>
+			<if test="@Ognl@isNotEmpty(endctCareerEndtime)"> AND CT_CAREER_ENDTIME <![CDATA[ <=to_date(#{endctCareerEndtime,jdbcType=TIMESTAMP}]]>,'yyyy-MM-dd  HH24:mi:ss') </if>
+			<if test="@Ognl@isNotEmpty(ctStatus)"> AND CT_STATUS  =#{ctStatus} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.careertalk.model.CareerTalk">
+		INSERT INTO CAREER_TALK
+		(CT_ID,CT_TITLE,CT_CONTENT,CT_STATUS,CT_CREATEBY,CT_CREATETIME,CT_UPDATEBY,CT_UPDATETIME,CTB_ID,CT_CAREER_ENDTIME,CT_CAREER_STARTTIME,CT_APPROVE_USERID,CT_APPROVE_TIME,CT_APPROVE_OPINION,CR_ID,LINK_MAN,LINK_TEL,LINK_QQ)
+		VALUES
+		(#{ctId,jdbcType=NUMERIC}, #{ctTitle,jdbcType=VARCHAR}, #{ctContent,jdbcType=CLOB}, #{ctStatus,jdbcType=NUMERIC}, #{ctCreateby,jdbcType=NUMERIC}, #{ctCreatetime,jdbcType=TIMESTAMP}, #{ctUpdateby,jdbcType=NUMERIC}, #{ctUpdatetime,jdbcType=TIMESTAMP}, #{ctbId,jdbcType=NUMERIC}, #{ctCareerEndtime,jdbcType=TIMESTAMP}, #{ctCareerStarttime,jdbcType=TIMESTAMP}, #{ctApproveUserid,jdbcType=NUMERIC}, #{ctApproveTime,jdbcType=TIMESTAMP}, #{ctApproveOpinion,jdbcType=VARCHAR}, #{crId,jdbcType=NUMERIC}, #{linkMan,jdbcType=VARCHAR}, #{linkTel,jdbcType=VARCHAR}, #{linkQq,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM CAREER_TALK 
+		WHERE
+		CT_ID=#{ctId}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.careertalk.model.CareerTalk">
+		UPDATE CAREER_TALK 
+		<set>
+		<trim suffixOverrides=",">
+		<if test="@Ognl@isNotEmpty(ctTitle)">CT_TITLE=#{ctTitle},</if>
+		<if test="@Ognl@isNotEmpty(ctContent)">CT_CONTENT=#{ctContent},</if>
+		<if test="@Ognl@isNotEmpty(ctStatus)">CT_STATUS=#{ctStatus},</if>
+		<if test="@Ognl@isNotEmpty(ctCreateby)">CT_CREATEBY=#{ctCreateby},</if>
+		<if test="@Ognl@isNotEmpty(ctCreatetime)">CT_CREATETIME=#{ctCreatetime,jdbcType=TIMESTAMP},</if>
+		<if test="@Ognl@isNotEmpty(ctUpdateby)">CT_UPDATEBY=#{ctUpdateby},</if>
+		<if test="@Ognl@isNotEmpty(ctUpdatetime)">CT_UPDATETIME=#{ctUpdatetime,jdbcType=TIMESTAMP},</if>
+		<if test="@Ognl@isNotEmpty(ctbId)">CTB_ID=#{ctbId},</if>
+		<if test="@Ognl@isNotEmpty(ctCareerEndtime)">CT_CAREER_ENDTIME=#{ctCareerEndtime,jdbcType=TIMESTAMP},</if>
+		<if test="@Ognl@isNotEmpty(ctCareerStarttime)">CT_CAREER_STARTTIME=#{ctCareerStarttime,jdbcType=TIMESTAMP},</if>
+		<if test="@Ognl@isNotEmpty(ctApproveUserid)">CT_APPROVE_USERID=#{ctApproveUserid},</if>
+		<if test="@Ognl@isNotEmpty(ctApproveTime)">CT_APPROVE_TIME=#{ctApproveTime},</if>
+		<if test="@Ognl@isNotEmpty(ctApproveOpinion)">CT_APPROVE_OPINION=#{ctApproveOpinion},</if>
+		CR_ID=#{crId,jdbcType=NUMERIC},
+		LINK_MAN=#{linkMan,jdbcType=VARCHAR},
+		LINK_TEL=#{linkTel,jdbcType=VARCHAR},
+		LINK_QQ=#{linkQq,jdbcType=VARCHAR}
+		</trim>
+		</set>
+		WHERE
+		CT_ID=#{ctId}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="CareerTalk">
+		SELECT <include refid="columns"/>
+		FROM CAREER_TALK
+		WHERE
+		CT_ID=#{ctId}
+	</select>
+	
+	<select id="getAll" resultMap="CareerTalk">
+		SELECT <include refid="columns"/>
+		FROM CAREER_TALK   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by CT_ID  desc
+		</if>
+	</select>
+	<resultMap id="CareerTalkView" type="com.xunfeng.business.careertalk.model.CareerTalkView">
+			<id property="ctId" column="CT_ID" jdbcType="NUMERIC"/>
+			<result property="ctTitle" column="CT_TITLE" jdbcType="VARCHAR"/>
+			<result property="ctContent" column="CT_CONTENT" jdbcType="CLOB"/>
+			<result property="ctStatus" column="CT_STATUS" jdbcType="NUMERIC"/>
+			<result property="ctCreateby" column="CT_CREATEBY" jdbcType="NUMERIC"/>
+			<result property="ctCreatetime" column="CT_CREATETIME" jdbcType="TIMESTAMP"/>
+			<result property="ctUpdateby" column="CT_UPDATEBY" jdbcType="NUMERIC"/>
+			<result property="ctUpdatetime" column="CT_UPDATETIME" jdbcType="TIMESTAMP"/>
+			<result property="ctCareerEndtime" column="CT_CAREER_ENDTIME" jdbcType="TIMESTAMP"/>
+			<result property="ctCareerStarttime" column="CT_CAREER_STARTTIME" jdbcType="TIMESTAMP"/>
+			<result property="ctApproveUserid" column="CT_APPROVE_USERID" jdbcType="NUMERIC"/>
+			<result property="ctApproveTime" column="CT_APPROVE_TIME" jdbcType="TIMESTAMP"/>
+			<result property="ctApproveOpinion" column="CT_APPROVE_OPINION" jdbcType="VARCHAR"/>
+			<result property="ctbId" column="CTB_ID" jdbcType="NUMERIC"/>
+			<result property="ctbStarttime" column="CTB_STARTTIME" jdbcType="VARCHAR"/>
+			<result property="ctbEndtime" column="CTB_ENDTIME" jdbcType="VARCHAR"/>
+			<result property="ctbWeekday" column="CTB_WEEKDAY" jdbcType="VARCHAR"/>
+			<result property="crId" column="CR_ID" jdbcType="NUMERIC"/>
+			<result property="crName" column="CR_NAME" jdbcType="VARCHAR" />
+			<result property="crAddress" column="CR_ADDRESS" jdbcType="VARCHAR" />
+			<result property="crMaxPeople" column="CR_MAX_PEOPLE" jdbcType="NUMERIC" />
+			<result property="crDesc" column="CR_DESC" jdbcType="VARCHAR" />
+			<result property="crStatus" column="CR_STATUS" jdbcType="NUMERIC" />
+			<result property="crCreatetime" column="CR_CREATETIME" jdbcType="TIMESTAMP" />
+			<result property="crUpdatetime" column="CR_UPDATETIME" jdbcType="TIMESTAMP" />
+			<result property="crCreateBy" column="CR_CREATE_BY" jdbcType="NUMERIC" />
+			<result property="crUpdateBy" column="CR_UPDATE_BY" jdbcType="NUMERIC" />
+			<result property="ctCreatebyname" column="CT_CREATEBYNAME" jdbcType="VARCHAR" />
+			<result property="ctUpdatebyname" column="CT_UPDATEBYNAME" jdbcType="VARCHAR" />
+			<result property="ctApproveUsername" column="CT_APPROVE_USERNAME" jdbcType="VARCHAR" />
+			<result property="crCreateByName" column="CR_CREATE_BY_NAME" jdbcType="VARCHAR" />
+			<result property="crUpdateByName" column="CR_UPDATE_BY_NAME" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<resultMap id="careerTalkJobfairDto" type="com.xunfeng.business.careertalk.dto.careerTalkJobfairDto">
+			<result property="mergeName" column="mergeName" jdbcType="VARCHAR"/>
+			<result property="mergeMonth" column="mergeMonth" jdbcType="VARCHAR"/>
+			<result property="mergeTitle" column="mergeTitle" jdbcType="VARCHAR"/>
+			<result property="mergeStartTime" column="mergeStartTime" jdbcType="TIMESTAMP"/>
+			<result property="mergeEndTime" column="mergeEndTime" jdbcType="TIMESTAMP"/>
+			<result property="mergeAddress" column="mergeAddress" jdbcType="VARCHAR"/>
+			<result property="startTime" column="StartTime" jdbcType="VARCHAR"/>
+			<result property="endTime" column="EndTime" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<sql id="CareerTalkViewWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(ctId)"> AND CT_ID = #{ctId} </if>
+			<if test="@Ognl@isNotEmpty(crName)"> AND CR_NAME LIKE CONCAT(CONCAT('%',#{crName},'%'))</if>
+			<if test="@Ognl@isNotEmpty(ctTitle)"> AND CT_TITLE  LIKE CONCAT(CONCAT('%',#{ctTitle},'%'))  </if>
+			<if test="@Ognl@isNotEmpty(ctContent)"> AND CT_CONTENT  LIKE CONCAT(CONCAT('%',#{ctContent},'%'))  </if>
+			<if test="@Ognl@isNotEmpty(ctCreateby)">CT_CREATEBY=#{ctCreateby}</if>
+			<if test="@Ognl@isNotEmpty(ctStatus)"> AND CT_STATUS  =#{ctStatus} </if>
+			<if test="@Ognl@isNotEmpty(allctStatus)"> AND CT_STATUS  in ${allctStatus} </if>
+			<if test="@Ognl@isNotEmpty(ctApproveUsername)"> AND CT_APPROVE_USERNAME LIKE CONCAT(CONCAT('%',#{ctApproveUsername},'%'))</if>
+			<if test="@Ognl@isNotEmpty(beginctApproveTime)"> AND CT_APPROVE_TIME  >=to_date(#{beginctApproveTime,jdbcType=TIMESTAMP},'yyyy-mm-dd hh24:mi:ss')  </if>
+			<if test="@Ognl@isNotEmpty(endctApproveTime)"> AND CT_APPROVE_TIME <![CDATA[ <=to_date(#{endctApproveTime,jdbcType=TIMESTAMP}]]>,'yyyy-mm-dd hh24:mi:ss') </if>
+			<if test="@Ognl@isNotEmpty(beginctCreatetime)"> AND CT_CREATETIME  >=to_date(#{beginctCreatetime,jdbcType=TIMESTAMP},'yyyy-mm-dd hh24:mi:ss')  </if>
+			<if test="@Ognl@isNotEmpty(endctCreatetime)"> AND CT_CREATETIME <![CDATA[ <=to_date(#{endctCreatetime,jdbcType=TIMESTAMP}]]>,'yyyy-mm-dd hh24:mi:ss') </if>
+			<if test="@Ognl@isNotEmpty(beginctCareerStarttime)"> AND CT_CAREER_STARTTIME  >=to_date(#{beginctCareerStarttime,jdbcType=TIMESTAMP},'yyyy-mm-dd hh24:mi:ss')  </if>
+			<if test="@Ognl@isNotEmpty(endctCareerEndtime)"> AND CT_CAREER_ENDTIME <![CDATA[ <=to_date(#{endctCareerEndtime,jdbcType=TIMESTAMP}]]>,'yyyy-mm-dd hh24:mi:ss') </if>
+			<if test="@Ognl@isNotEmpty(beginctCareerEndtime)"> AND CT_CAREER_ENDTIME <![CDATA[ >=to_date(#{beginctCareerEndtime,jdbcType=TIMESTAMP}]]>,'yyyy-mm-dd hh24:mi:ss') </if>
+		</where>
+	</sql>
+	
+	
+	<sql id="getAllCareerTalkJobfairWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(mergeId)"> AND MERGEID = #{mergeId} </if>
+			<if test="@Ognl@isNotEmpty(beginctCareerStarttime)"> AND MERGESTARTTIME  >=to_date(#{beginctCareerStarttime,jdbcType=TIMESTAMP},'yyyy-mm-dd hh24:mi:ss')  </if>
+			<if test="@Ognl@isNotEmpty(endctCareerEndtime)"> AND MERGESTARTTIME <![CDATA[ <=to_date(#{endctCareerEndtime,jdbcType=TIMESTAMP}]]>,'yyyy-mm-dd hh24:mi:ss') </if>
+		</where>
+	</sql>
+	
+	
+	<select id="selectCareertalkview" resultMap="CareerTalkView">
+		select * from career_talk_view 
+		<include refid="CareerTalkViewWhere"/>
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+			order by CT_CAREER_STARTTIME  desc
+		</if>
+	</select>
+	<!-- 获取当前公司下没有过期的宣讲会总数 -->
+	<select id="getCareerTalkCount" parameterType="java.lang.Long" resultType="java.lang.Long">
+		SELECT 	count(*)
+		FROM CAREER_TALK 
+		<include refid="dynamicWhereMpt" />
+	</select>
+	
+	<!-- 获取日历下所有的宣讲会和招聘会 -->
+	<select id="getAllCareerTalkJobfair" resultMap="careerTalkJobfairDto">
+		SELECT * from v_jobsview
+		<include refid="getAllCareerTalkJobfairWhere"/>
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+			order by MERGESTARTTIME  desc
+		</if>
+		
+           
+	</select>
+	
+</mapper>

@@ -1,0 +1,56 @@
+Manifest-Version: 1.0
+Class-Path: jdbc-4.jar jpa-3.0.jar xom-1.0.jar axis-1.4.jar comm-1.0.j
+ ar db2jcc-4.jar jdom-1.0.jar jimi-1.0.jar jstl-1.2.jar asm-3.3.1.jar 
+ cxf-2.5.2.jar framework.jar junit-4.8.jar sms-3.4.5.jar xbean-3.7.jar
+  castor-1.2.jar gson-2.2.2.jar h2-1.3.170.jar serial-1.0.jar antlr-2.
+ 7.7.jar cglib-2.2.2.jar dom4j-1.6.1.jar druid-0.2.5.jar hawtbuf-1.9.j
+ ar itext-2.1.7.jar jaxen-1.1.1.jar jsoup-1.7.1.jar wss4j-1.6.4.jar xa
+ lan-2.7.0.jar zip4j-1.3.1.jar backport-1.0.jar c3p0-0.9.1.1.jar diges
+ ter-1.6.jar JdbcDriver-6.jar log4j-1.2.13.jar neethi-3.0.1.jar pdfbox
+ -1.6.0.jar quartz-2.1.6.jar RXTXcomm-1.0.jar servlet-3.03.jar wsdl4j-
+ 1.6.2.jar xmlsec-1.4.6.jar cloning-1.9.0.jar ezmorph-1.0.6.jar fontbo
+ x-1.6.0.jar jdtcore-3.1.0.jar joda-time-2.3.jar mybatis-3.2.2.jar obj
+ enesis-1.2.jar poi-3.8-beta4.jar proxool-0.9.1.jar activation-1.1.jar
+  commons-io-2.1.jar displayTag-1.2.jar httpcore-4.1.2.jar jaxb-api-2.
+ 2.3.jar jcommon-1.0.15.jar json-smart-1.2.jar log4jdbc4-1.21.jar piny
+ in4j-2.5.0.jar sitemesh-3.0.1.jar xmlbeans-2.5.0.jar aopalliance-1.0.
+ jar fastjson-1.1.23.jar json-path-0.9.1.jar slf4j-api-1.7.5.jar stax2
+ -api-3.1.1.jar validator-1.3.1.jar xml-apis-1.3.02.jar bcmail-jdk14-1
+ 38.jar bcprov-jdk14-138.jar bctsp-jdk14-1.38.jar commons-dbcp-1.4.jar
+  commons-lang-2.6.jar groovy-all-2.0.1.jar httpclient-4.1.2.jar IKAna
+ lyzer-3.2.8.jar jsr311-api-1.1.1.jar poi-examples-3.8.jar poi-excelan
+ t-3.8.jar report-7.1-third.jar xercesImpl-2.6.2.jar xmemcached-1.3.8.
+ jar bcmail-jdk14-1.38.jar bcprov-jdk14-1.38.jar ehcache-web-2.0.4.jar
+  freemarker-2.3.18.jar itext-asian-5.1.0.jar jaxb-impl-2.2.4-1.jar jf
+ reechart-1.0.12.jar lucene-core-3.4.0.jar report-7.1-server.jar activ
+ emq-all-5.8.0.jar activemq-web-5.8.0.jar commons-pool-1.5.4.jar ehcac
+ he-core-2.5.0.jar jackson-core-2.0.5.jar jakarta-regexp-1.4.jar json-
+ lib-2.4-jdk15.jar activemq-amqp-5.8.0.jar activemq-pool-5.8.0.jar com
+ mons-lang3-3.3.2.jar jasperreports-5.1.0.jar lucene-memory-3.4.0.jar 
+ poi-ooxml-3.8-beta4.jar proxool-cglib-0.9.1.jar quartz-oracle-2.1.6.j
+ ar slf4j-log4j12-1.7.2.jar xmlParserAPIs-2.6.2.jar aspectjweaver-1.6.
+ 11.jar jcl-over-slf4j-1.6.0.jar lucene-queries-3.4.0.jar mybatis-spri
+ ng-1.2.0.jar xmlschema-core-2.0.1.jar activemq-broker-5.8.0.jar activ
+ emq-client-5.8.0.jar commons-digester3-3.2.jar commons-logging-1.1.1.
+ jar oracledriver-11.2.0.2.jar cas-client-core-3.1.10.jar jackson-data
+ bind-2.0.5.jar ws-commons-java5-1.0.1.jar commons-beanutils-1.8.3.jar
+  jackson-core-lgpl-1.9.0.jar spring-tx-3.0.7.RELEASE.jar woodstox-cor
+ e-asl-4.1.1.jar ckeditor-java-core-3.5.3.jar commons-fileupload-1.2.2
+ .jar lucene-highlighter-3.4.0.jar poi-scratchpad-3.8-beta4.jar spring
+ -aop-3.0.7.RELEASE.jar spring-asm-3.1.2.RELEASE.jar spring-jms-3.1.2.
+ RELEASE.jar spring-orm-3.1.2.RELEASE.jar spring-web-3.1.2.RELEASE.jar
+  commons-collections-3.2.1.jar jackson-annotations-2.0.5.jar jackson-
+ mapper-lgpl-1.9.0.jar java-uuid-generator-3.1.3.jar spring-core-3.1.2
+ .RELEASE.jar spring-jdbc-3.0.7.RELEASE.jar spring-test-3.1.2.RELEASE.
+ jar spring-beans-3.1.2.RELEASE.jar geronimo-jms_1.1_spec-1.1.1.jar my
+ sql-connector-java-5.1.27.jar poi-ooxml-schemas-3.8-beta4.jar spring-
+ webmvc-3.1.2.RELEASE.jar springmodules-validator-0.2.jar spring-conte
+ xt-3.1.2.RELEASE.jar commons-codec-20041127.091804.jar spring-ldap-1.
+ 3.1.RELEASE-all.jar geronimo-jta_1.0.1B_spec-1.0.1.jar spring-express
+ ion-3.1.2.RELEASE.jar spring-security-acl-3.1.2.RELEASE.jar spring-se
+ curity-web-3.1.2.RELEASE.jar spring-security-core-3.1.2.RELEASE.jar s
+ pring-context-support-3.1.2.RELEASE.jar spring-security-config-3.1.2.
+ RELEASE.jar spring-security-taglibs-3.1.2.RELEASE.jar geronimo-j2ee-m
+ anagement_1.1_spec-1.0.1.jar spring-security-cas-client-3.0.3.RELEASE
+ .jar
+

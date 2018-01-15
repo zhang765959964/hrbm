@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.payment.model.PaymentMain">
+	<resultMap id="PaymentMain" type="com.xunfeng.business.personagency.payment.model.PaymentMain">
+		<id property="pkId" column="PK_ID" jdbcType="NUMERIC"/>
+		<result property="fkPersonid" column="FK_PERSONID" jdbcType="NUMERIC"/>
+		<result property="fdStartPaymentDate" column="FD_START_PAYMENT_DATE" jdbcType="VARCHAR"/>
+		<result property="fdEndPaymentDate" column="FD_END_PAYMENT_DATE" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		PK_ID,FK_PERSONID,FD_START_PAYMENT_DATE,FD_END_PAYMENT_DATE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(pkId)"> AND PK_ID  =#{pkId} </if>
+			<if test="@Ognl@isNotEmpty(fkPersonid)"> AND FK_PERSONID  =#{fkPersonid} </if>
+			<if test="@Ognl@isNotEmpty(fdStartPaymentDate)"> AND FD_START_PAYMENT_DATE  LIKE #{fdStartPaymentDate}  </if>
+			<if test="@Ognl@isNotEmpty(fdEndPaymentDate)"> AND FD_END_PAYMENT_DATE  LIKE #{fdEndPaymentDate}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.payment.model.PaymentMain">
+		INSERT INTO RSDA_BS_PAYMENT_MAIN
+		(PK_ID,FK_PERSONID,FD_START_PAYMENT_DATE,FD_END_PAYMENT_DATE)
+		VALUES
+		(#{pkId,jdbcType=NUMERIC}, #{fkPersonid,jdbcType=NUMERIC}, #{fdStartPaymentDate,jdbcType=VARCHAR}, #{fdEndPaymentDate,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_PAYMENT_MAIN 
+		WHERE
+		PK_ID=#{pkId}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.payment.model.PaymentMain">
+		UPDATE RSDA_BS_PAYMENT_MAIN SET
+		FK_PERSONID=#{fkPersonid,jdbcType=NUMERIC},
+		FD_START_PAYMENT_DATE=#{fdStartPaymentDate,jdbcType=VARCHAR},
+		FD_END_PAYMENT_DATE=#{fdEndPaymentDate,jdbcType=VARCHAR}
+		WHERE
+		PK_ID=#{pkId}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="PaymentMain">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PAYMENT_MAIN
+		WHERE
+		PK_ID=#{pkId}
+	</select>
+	
+	<select id="getAll" resultMap="PaymentMain">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PAYMENT_MAIN   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by PK_ID  desc
+		</if>
+	</select>
+		<select id="getOverAll" resultMap="PaymentMain">
+	select t.*
+		 from V_RSDA_PERSON_PAYMENT_MAIN t
+                         where t.fd_end_payment_date <![CDATA[ < #{endPaymentDate}]]>
+                           and t.corp_id =#{corpId}
+	</select>
+
+</mapper>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.ovemp.corp.model.OvempCorpType">
+	<resultMap id="TrainOrgType" type="com.xunfeng.business.ovemp.corp.model.OvempCorpType">
+		<id property="typeId" column="TYPE_ID" jdbcType="NUMERIC"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="pid" column="PID" jdbcType="NUMERIC"/>
+		<result property="isDel" column="IS_DEL" jdbcType="VARCHAR"/>
+		<result property="aae011" column="AAE011" jdbcType="VARCHAR"/>
+		<result property="aae017" column="AAE017" jdbcType="VARCHAR"/>
+		<result property="aae036" column="AAE036" jdbcType="TIMESTAMP"/>
+		<result property="aae019" column="AAE019" jdbcType="VARCHAR"/>
+		<result property="aae020" column="AAE020" jdbcType="VARCHAR"/>
+		<result property="cczy06" column="CCZY06" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		TYPE_ID,NAME,PID,IS_DEL,AAE011,AAE017,AAE036,AAE019,AAE020,CCZY06
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(typeId)"> AND TYPE_ID  =#{typeId} </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME  = #{name}  </if>
+			<if test="@Ognl@isNotEmpty(pid)"> AND PID  =#{pid} </if>
+			<if test="@Ognl@isNotEmpty(isDel)"> AND IS_DEL  = #{isDel}  </if>
+			<if test="@Ognl@isNotEmpty(aae011)"> AND AAE011  LIKE #{aae011}  </if>
+			<if test="@Ognl@isNotEmpty(aae017)"> AND AAE017  LIKE #{aae017}  </if>
+			<if test="@Ognl@isNotEmpty(aae036)"> AND AAE036  =#{aae036} </if>
+			<if test="@Ognl@isNotEmpty(beginaae036)"> AND AAE036  >=#{beginaae036,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaae036)"> AND AAE036 <![CDATA[ <=#{endaae036,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aae019)"> AND AAE019  LIKE #{aae019}  </if>
+			<if test="@Ognl@isNotEmpty(aae020)"> AND AAE020  LIKE #{aae020}  </if>
+			<if test="@Ognl@isNotEmpty(cczy06)"> AND CCZY06  LIKE #{cczy06}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.ovemp.corp.model.OvempCorpType">
+		INSERT INTO PX_ORG_TYPE
+		(TYPE_ID,NAME,PID,IS_DEL,AAE011,AAE017,AAE036,AAE019,AAE020,CCZY06)
+		VALUES
+		(#{typeId,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{pid,jdbcType=NUMERIC}, #{isDel,jdbcType=VARCHAR}, #{aae011,jdbcType=VARCHAR}, #{aae017,jdbcType=VARCHAR}, #{aae036,jdbcType=TIMESTAMP}, #{aae019,jdbcType=VARCHAR}, #{aae020,jdbcType=VARCHAR}, #{cczy06,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM PX_ORG_TYPE 
+		WHERE
+		TYPE_ID=#{typeId}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.ovemp.corp.model.OvempCorpType">
+		UPDATE PX_ORG_TYPE SET
+		NAME=#{name,jdbcType=VARCHAR},
+		PID=#{pid,jdbcType=NUMERIC},
+		IS_DEL=#{isDel,jdbcType=VARCHAR},
+		AAE011=#{aae011,jdbcType=VARCHAR},
+		AAE017=#{aae017,jdbcType=VARCHAR},
+		AAE036=#{aae036,jdbcType=TIMESTAMP},
+		AAE019=#{aae019,jdbcType=VARCHAR},
+		AAE020=#{aae020,jdbcType=VARCHAR},
+		CCZY06=#{cczy06,jdbcType=VARCHAR}
+		WHERE
+		TYPE_ID=#{typeId}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="TrainOrgType">
+		SELECT <include refid="columns"/>
+		FROM PX_ORG_TYPE
+		WHERE
+		TYPE_ID=#{typeId}
+	</select>
+	
+	<select id="getAll" resultMap="TrainOrgType">
+		SELECT <include refid="columns"/>
+		FROM PX_ORG_TYPE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by TYPE_ID  desc
+		</if>
+	</select>
+	
+	<!--批量更新培训机构类别的删除标志  -->
+	<update id="updateBatchDel" parameterType="java.util.HashMap">
+		UPDATE PX_ORG_TYPE SET
+		IS_DEL=#{isDel,jdbcType=VARCHAR},
+		AAE011=#{aae011,jdbcType=VARCHAR},
+		AAE017=#{aae017,jdbcType=VARCHAR},
+		AAE036=#{aae036,jdbcType=TIMESTAMP},
+		AAE019=#{aae019,jdbcType=VARCHAR},
+		AAE020=#{aae020,jdbcType=VARCHAR}
+		where 1=1 AND TYPE_ID in
+		<foreach item="item" collection="orgTypeIdList" separator="," open="(" close=")" index="">    
+                   #{item}    
+        </foreach>    
+	</update>
+	
+	<!--根据typeId查询该机构类别下的子类别数-->
+	<select id="getCountByPId" parameterType="java.lang.Long" resultType="java.lang.Integer">
+		SELECT count(1)
+		FROM PX_ORG_TYPE
+		WHERE 1=1 AND IS_DEL='0'
+		AND PID=#{typeId}
+	</select>
+	
+	<!-- 根据机构类别名称获取机构类别-->
+     <select id="getOrgTypeByName" parameterType="java.lang.String" resultMap="TrainOrgType">
+		SELECT <include refid="columns"/>
+		FROM PX_ORG_TYPE
+		WHERE IS_DEL='0' 
+		AND　NAME=#{orgTypeName,jdbcType=VARCHAR}
+	 </select>
+	
+</mapper>

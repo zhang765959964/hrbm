@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.payment.model.PaymentYearDetail">
+	<resultMap id="PaymentYearDetail" type="com.xunfeng.business.personagency.payment.model.PaymentYearDetail">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="recordId" column="RECORD_ID" jdbcType="NUMERIC"/>
+		<result property="fdStartDate" column="FD_START_DATE" jdbcType="VARCHAR"/>
+		<result property="fdEndDate" column="FD_END_DATE" jdbcType="VARCHAR"/>
+		<result property="fdPaymentAmount" column="FD_PAYMENT_AMOUNT" jdbcType="NUMERIC"/>
+		<result property="fdPaymentMonths" column="FD_PAYMENT_MONTHS" jdbcType="NUMERIC"/>
+		<result property="fdPaymentStandard" column="FD_PAYMENT_STANDARD" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,RECORD_ID,FD_START_DATE,FD_END_DATE,FD_PAYMENT_AMOUNT,FD_PAYMENT_MONTHS,FD_PAYMENT_STANDARD
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(recordId)"> AND RECORD_ID  =#{recordId} </if>
+			<if test="@Ognl@isNotEmpty(fdStartDate)"> AND FD_START_DATE  LIKE #{fdStartDate}  </if>
+			<if test="@Ognl@isNotEmpty(fdEndDate)"> AND FD_END_DATE  LIKE #{fdEndDate}  </if>
+			<if test="@Ognl@isNotEmpty(fdPaymentAmount)"> AND FD_PAYMENT_AMOUNT  LIKE #{fdPaymentAmount}  </if>
+			<if test="@Ognl@isNotEmpty(fdPaymentMonths)"> AND FD_PAYMENT_MONTHS  =#{fdPaymentMonths} </if>
+			<if test="@Ognl@isNotEmpty(fdPaymentStandard)"> AND FD_PAYMENT_STANDARD  LIKE #{fdPaymentStandard}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.payment.model.PaymentYearDetail">
+		INSERT INTO RSDA_BS_PAYMENT_YEARDETAIL
+		(ID,RECORD_ID,FD_START_DATE,FD_END_DATE,FD_PAYMENT_AMOUNT,FD_PAYMENT_MONTHS,FD_PAYMENT_STANDARD)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{recordId,jdbcType=NUMERIC}, #{fdStartDate,jdbcType=VARCHAR}, #{fdEndDate,jdbcType=VARCHAR}, #{fdPaymentAmount,jdbcType=NUMERIC}, #{fdPaymentMonths,jdbcType=NUMERIC}, #{fdPaymentStandard,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_PAYMENT_YEARDETAIL 
+		WHERE
+		ID=#{id}
+	</delete>
+	<delete id="delByRecordId" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_PAYMENT_YEARDETAIL 
+		WHERE
+		RECORD_ID  =#{recordId}
+	</delete>
+	<update id="update" parameterType="com.xunfeng.business.personagency.payment.model.PaymentYearDetail">
+		UPDATE RSDA_BS_PAYMENT_YEARDETAIL SET
+		RECORD_ID=#{recordId,jdbcType=NUMERIC},
+		FD_START_DATE=#{fdStartDate,jdbcType=VARCHAR},
+		FD_END_DATE=#{fdEndDate,jdbcType=VARCHAR},
+		FD_PAYMENT_AMOUNT=#{fdPaymentAmount,jdbcType=NUMERIC},
+		FD_PAYMENT_MONTHS=#{fdPaymentMonths,jdbcType=NUMERIC},
+		FD_PAYMENT_STANDARD=#{fdPaymentStandard,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="PaymentYearDetail">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PAYMENT_YEARDETAIL
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="PaymentYearDetail">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PAYMENT_YEARDETAIL   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	<select id="getPaymentYearDetail" resultMap="PaymentYearDetail">
+		SELECT  pk_ID as ID,RECORD_ID,FD_START_DATE,FD_END_DATE,FD_PAYMENT_AMOUNT,FD_PAYMENT_MONTHS,FD_PAYMENT_STANDARD
+		FROM V_RSDA_PAYMENTRECORD_DETAIL where 1=1   
+			<if test="@Ognl@isNotEmpty(recordId)"> AND RECORD_ID  =#{recordId} </if>
+			<if test="@Ognl@isNotEmpty(fdStartDate)"> AND FD_START_DATE  LIKE #{fdStartDate}  </if>
+			<if test="@Ognl@isNotEmpty(fdEndDate)"> AND FD_END_DATE  LIKE #{fdEndDate}  </if>
+			<if test="@Ognl@isNotEmpty(fdPaymentAmount)"> AND FD_PAYMENT_AMOUNT  LIKE #{fdPaymentAmount}  </if>
+			<if test="@Ognl@isNotEmpty(fdPaymentMonths)"> AND FD_PAYMENT_MONTHS  =#{fdPaymentMonths} </if>
+			<if test="@Ognl@isNotEmpty(fdPaymentStandard)"> AND FD_PAYMENT_STANDARD  LIKE #{fdPaymentStandard}  </if>
+			<if test="@Ognl@isNotEmpty(personId)"> AND FK_PERSON_ID  LIKE #{personId}  </if>
+			
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+</mapper>

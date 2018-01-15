@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: hessian:hessian:4.0.37">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/hessian/hessian/4.0.37/hessian-4.0.37.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/hessian/hessian/4.0.37/hessian-4.0.37-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/hessian/hessian/4.0.37/hessian-4.0.37-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

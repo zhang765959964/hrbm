@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.corp.model.CorpTalentFavorites">
+	<resultMap id="CorpTalentFavorites" type="com.xunfeng.business.corp.model.CorpTalentFavorites">
+		<id property="ccpg01" column="CCPG01" jdbcType="NUMERIC"/>
+		<result property="ccmc01" column="CCMC01" jdbcType="NUMERIC"/>
+		<result property="ccmp01" column="CCMP01" jdbcType="NUMERIC"/>
+		<result property="ccpg02" column="CCPG02" jdbcType="TIMESTAMP"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+		<result property="ccpr10" column="CCPR10" jdbcType="NUMERIC"/>
+		<result property="acb330" column="ACB330" jdbcType="NUMERIC"/>
+		<result property="acb210" column="ACB210" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		CCPG01,CCMC01,CCMP01,CCPG02,CCPR08,CCPR10,ACB330,ACB210
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(ccpg01)"> AND CCPG01  =#{ccpg01} </if>
+			<if test="@Ognl@isNotEmpty(ccmc01)"> AND CCMC01  =#{ccmc01} </if>
+			<if test="@Ognl@isNotEmpty(ccmp01)"> AND CCMP01  =#{ccmp01} </if>
+			<if test="@Ognl@isNotEmpty(ccpg02)"> AND CCPG02  =#{ccpg02} </if>
+			<if test="@Ognl@isNotEmpty(beginccpg02)"> AND CCPG02  >=#{beginccpg02,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endccpg02)"> AND CCPG02 <![CDATA[ <=#{endccpg02,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(ccpr08)"> AND CCPR08  LIKE #{ccpr08}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr10)"> AND CCPR10  =#{ccpr10} </if>
+			<if test="@Ognl@isNotEmpty(acb330)"> AND ACB330  =#{acb330} </if>
+			<if test="@Ognl@isNotEmpty(acb210)"> AND ACB210  =#{acb210} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.corp.model.CorpTalentFavorites">
+		INSERT INTO CCP08
+		(CCPG01,CCMC01,CCMP01,CCPG02,CCPR08,CCPR10,ACB330,ACB210)
+		VALUES
+		(#{ccpg01,jdbcType=NUMERIC}, #{ccmc01,jdbcType=NUMERIC}, #{ccmp01,jdbcType=NUMERIC}, #{ccpg02,jdbcType=TIMESTAMP}, #{ccpr08,jdbcType=VARCHAR}, #{ccpr10,jdbcType=NUMERIC}, #{acb330,jdbcType=NUMERIC}, #{acb210,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM CCP08 
+		WHERE
+		CCPG01=#{ccpg01}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.corp.model.CorpTalentFavorites">
+		UPDATE CCP08 SET
+		CCMC01=#{ccmc01,jdbcType=NUMERIC},
+		CCMP01=#{ccmp01,jdbcType=NUMERIC},
+		CCPG02=#{ccpg02,jdbcType=TIMESTAMP},
+		CCPR08=#{ccpr08,jdbcType=VARCHAR},
+		CCPR10=#{ccpr10,jdbcType=NUMERIC},
+		ACB330=#{acb330,jdbcType=NUMERIC},
+		ACB210=#{acb210,jdbcType=NUMERIC}
+		WHERE
+		CCPG01=#{ccpg01}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="CorpTalentFavorites">
+		SELECT <include refid="columns"/>
+		FROM CCP08
+		WHERE
+		CCPG01=#{ccpg01}
+	</select>
+	
+	<select id="getAll" resultMap="CorpTalentFavorites">
+		SELECT <include refid="columns"/>
+		FROM CCP08   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by CCPG01  desc
+		</if>
+	</select>
+	<!--企业人才库-->
+	<resultMap id="CorpTalentFavoritesDto" type="com.xunfeng.business.corp.dto.CorpTalentFavoritesDto">
+		<result property="ccpg01" column="ccpg01" jdbcType="NUMERIC"/>
+		<result property="ccmc01" column="ccmc01" jdbcType="NUMERIC"/>
+		<result property="ccmp01" column="ccmp01" jdbcType="NUMERIC"/>
+		<result property="CCPG02" column="CCPG02" jdbcType="VARCHAR"/>
+		<result property="aac003" column="aac003" jdbcType="VARCHAR"/>
+		<result property="aac004" column="aac004" jdbcType="VARCHAR"/>
+		<result property="eac004" column="eac004" jdbcType="VARCHAR"/>
+		<result property="aac011" column="aac011" jdbcType="VARCHAR"/>
+		<result property="eac011" column="eac011" jdbcType="VARCHAR"/>
+		<result property="aab301" column="aab301" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="ccpr08" jdbcType="VARCHAR"/>
+		<result property="ecpr10" column="ecpr10" jdbcType="VARCHAR"/>
+		<result property="aca112" column="aca112" jdbcType="VARCHAR"/>
+		<result property="acaa12" column="acaa12" jdbcType="VARCHAR"/>
+		<result property="acab12" column="acab12" jdbcType="VARCHAR"/>
+		<result property="bac006" column="bac006" jdbcType="NUMERIC"/>
+	</resultMap>
+	<sql id="dynamicCorpFavoritesWhere">
+			<if test="@Ognl@isNotEmpty(aac003)"> AND aac003  LIKE #{aac003} </if>
+			<if test="@Ognl@isNotEmpty(CCPG02)"> AND CCPG02  > #{CCPG02} </if>
+			<if test="@Ognl@isNotEmpty(ccmc01)"> AND ccmc01  = #{ccmc01} </if>
+	</sql>
+
+	<select id="getAllCorpTalentFavorites" resultMap="CorpTalentFavoritesDto">
+		SELECT a.* FROM v_ccp08 a WHERE CCPR08=0
+		<include refid="dynamicCorpFavoritesWhere" />
+		ORDER BY CCPG01 DESC
+	</select>
+	<!--删除企业人才库中的人员-->
+	<update id="delCorpTalentFavorites" parameterType="java.lang.Long">
+		 UPDATE CCP08 SET CCPR08= 1 WHERE CCPG01=#{ccpg01}
+	</update>
+
+	<!--企业感兴趣的人才-->
+	<resultMap id="CorpInterestTalent" type="com.xunfeng.business.corp.dto.CorpInterestTalentDto">
+		<result property="aac003" column="aac003" jdbcType="VARCHAR"/>
+		<result property="bca112" column="bca112" jdbcType="VARCHAR"/>
+		<result property="xl" column="xl" jdbcType="VARCHAR"/>
+		<result property="acc034" column="acc034" jdbcType="VARCHAR"/>
+		<result property="acc034n" column="acc034n" jdbcType="VARCHAR"/>
+		<result property="bcb202" column="bcb202" jdbcType="VARCHAR"/>
+		<result property="ccpr03" column="ccpr03" jdbcType="VARCHAR"/>
+		<result property="ecpr03" column="ecpr03" jdbcType="VARCHAR"/>
+		<result property="ccpr04" column="ccpr04" jdbcType="NUMERIC"/>
+		<result property="acb208" column="acb208" jdbcType="VARCHAR"/>
+		<result property="bcc20c" column="bcc20c" jdbcType="VARCHAR"/>
+		<result property="aac011" column="aac011" jdbcType="NUMERIC"/>
+		<result property="aac001" column="aac001" jdbcType="NUMERIC"/>
+	</resultMap>
+	<sql id="dynamicCorpWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(aac003)"> AND aac003  LIKE #{aac003} </if>
+			<if test="@Ognl@isNotEmpty(ccpr03)"> AND ccpr03  > #{ccpr03} </if>
+
+		</where>
+	</sql>
+	<select id="getAllCorpInterestTalent" resultMap="CorpInterestTalent">
+		SELECT a.* FROM v_xq_bs a
+		<include refid="dynamicCorpWhere" />
+	</select>
+
+</mapper>

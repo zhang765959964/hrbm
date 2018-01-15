@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.sys.setMeal.model.FeeOrderDetail">
+	<resultMap id="FeeOrderDetail" type="com.xunfeng.sys.setMeal.model.FeeOrderDetail">
+		<id property="detailSn" column="DETAIL_SN" jdbcType="NUMERIC"/>
+		<result property="orderSn" column="ORDER_SN" jdbcType="NUMERIC"/>
+		<result property="servCode" column="SERV_CODE" jdbcType="VARCHAR"/>
+		<result property="servCount" column="SERV_COUNT" jdbcType="NUMERIC"/>
+		<result property="restCount" column="REST_COUNT" jdbcType="NUMERIC"/>
+		<result property="servFee" column="SERV_FEE" jdbcType="NUMERIC"/>
+		<result property="discountFee" column="DISCOUNT_FEE" jdbcType="NUMERIC"/>
+		<result property="beginDate" column="BEGIN_DATE" jdbcType="DATE"/>
+		<result property="overDate" column="OVER_DATE" jdbcType="DATE"/>
+		<result property="isValid" column="IS_VALID" jdbcType="VARCHAR"/>
+		<result property="remark" column="REMARK" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		DETAIL_SN,ORDER_SN,SERV_CODE,SERV_COUNT,REST_COUNT,SERV_FEE,DISCOUNT_FEE,BEGIN_DATE,OVER_DATE,IS_VALID,REMARK
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(detailSn)"> AND DETAIL_SN  =#{detailSn} </if>
+			<if test="@Ognl@isNotEmpty(orderSn)"> AND ORDER_SN  =#{orderSn} </if>
+			<if test="@Ognl@isNotEmpty(servCode)"> AND SERV_CODE  LIKE #{servCode}  </if>
+			<if test="@Ognl@isNotEmpty(servCount)"> AND SERV_COUNT  =#{servCount} </if>
+			<if test="@Ognl@isNotEmpty(restCount)"> AND REST_COUNT  =#{restCount} </if>
+			<if test="@Ognl@isNotEmpty(servFee)"> AND SERV_FEE  =#{servFee} </if>
+			<if test="@Ognl@isNotEmpty(discountFee)"> AND DISCOUNT_FEE  =#{discountFee} </if>
+			<if test="@Ognl@isNotEmpty(beginDate)"> AND BEGIN_DATE  =#{beginDate} </if>
+			<if test="@Ognl@isNotEmpty(beginbeginDate)"> AND BEGIN_DATE  >=#{beginbeginDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endbeginDate)"> AND BEGIN_DATE <![CDATA[ <=#{endbeginDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(overDate)"> AND OVER_DATE  =#{overDate} </if>
+			<if test="@Ognl@isNotEmpty(beginoverDate)"> AND OVER_DATE  >=#{beginoverDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endoverDate)"> AND OVER_DATE <![CDATA[ <=#{endoverDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(isValid)"> AND IS_VALID  LIKE #{isValid}  </if>
+			<if test="@Ognl@isNotEmpty(remark)"> AND REMARK  LIKE #{remark}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.sys.setMeal.model.FeeOrderDetail">
+		INSERT INTO FEE_PKG_ORDER_DETAIL
+		(DETAIL_SN,ORDER_SN,SERV_CODE,SERV_COUNT,REST_COUNT,SERV_FEE,DISCOUNT_FEE,BEGIN_DATE,OVER_DATE,IS_VALID,REMARK)
+		VALUES
+		(#{detailSn,jdbcType=NUMERIC}, #{orderSn,jdbcType=NUMERIC}, #{servCode,jdbcType=VARCHAR}, #{servCount,jdbcType=NUMERIC}, #{restCount,jdbcType=NUMERIC}, #{servFee,jdbcType=NUMERIC}, #{discountFee,jdbcType=NUMERIC}, #{beginDate,jdbcType=DATE}, #{overDate,jdbcType=DATE}, #{isValid,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM FEE_PKG_ORDER_DETAIL 
+		WHERE
+		DETAIL_SN=#{detailSn}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.sys.setMeal.model.FeeOrderDetail">
+		UPDATE FEE_PKG_ORDER_DETAIL SET
+		ORDER_SN=#{orderSn,jdbcType=NUMERIC},
+		SERV_CODE=#{servCode,jdbcType=VARCHAR},
+		SERV_COUNT=#{servCount,jdbcType=NUMERIC},
+		REST_COUNT=#{restCount,jdbcType=NUMERIC},
+		SERV_FEE=#{servFee,jdbcType=NUMERIC},
+		DISCOUNT_FEE=#{discountFee,jdbcType=NUMERIC},
+		BEGIN_DATE=#{beginDate,jdbcType=DATE},
+		OVER_DATE=#{overDate,jdbcType=DATE},
+		IS_VALID=#{isValid,jdbcType=VARCHAR},
+		REMARK=#{remark,jdbcType=VARCHAR}
+		WHERE
+		DETAIL_SN=#{detailSn}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="FeeOrderDetail">
+		SELECT <include refid="columns"/>
+		FROM FEE_PKG_ORDER_DETAIL
+		WHERE
+		DETAIL_SN=#{detailSn}
+	</select>
+	
+	<select id="getAll" resultMap="FeeOrderDetail">
+		SELECT <include refid="columns"/>
+		FROM FEE_PKG_ORDER_DETAIL   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by DETAIL_SN  desc
+		</if>
+	</select>
+	<select id="getTotalCount" resultType="java.lang.Long">
+		select nvl(sum(rest_count),0) from FEE_PKG_ORDER_DETAIL a  
+			where a.IS_VALID =1 and SERV_CODE =#{servCode} and  a.order_sn in 
+		       (select order_sn from fee_pkg_order_main ordermain  where  ordermain.IS_VALID=1  and BEGIN_DATE <![CDATA[<]]> sysdate and  OVER_DATE <![CDATA[>]]>sysdate and aab001 =#{aab001})
+		              
+	</select>
+	<select id="getListOrderDetail" resultMap="FeeOrderDetail">
+		select *  from FEE_PKG_ORDER_DETAIL a  
+			where a.IS_VALID =1 and SERV_CODE =#{servCode} and REST_COUNT>0 and  a.order_sn in 
+		       (select order_sn from fee_pkg_order_main ordermain  where  ordermain.IS_VALID=1  and BEGIN_DATE <![CDATA[<]]> sysdate and OVER_DATE <![CDATA[>]]>sysdate and aab001 =#{aab001})
+		       order by a.OVER_DATE asc 
+	</select>
+</mapper>

@@ -1,0 +1,42 @@
+@charset "utf-8";
+body,div,ul,li,img,a,h1,h2,h3,span{margin:0;padding:0;list-style:none;border:0;}
+body{font:14px/1 "Microsoft Yahei";color:#000; background:#fff;}
+input,select,textarea{outline:none;}
+a,a:hover,a:visited{text-decoration:none;color:#000;}
+a.ablue{color:#0c5096;}
+.clearfix:after{ content: ""; display: block; clear: both; height: 0; visibility:hidden;}
+.clearfix{ *zoom: 1; }
+.fl{float:left;}
+.fr{float:right;}
+.dn{display:none;}
+.db{display:block;}
+.dib{display:inline-block;}
+.logContainer{width:100%;height:560px;margin:5% auto 0;}
+.logo{width:1000px;margin:0 auto 35px;}
+.logoImg{width:1000px;margin:0 auto;}
+.logoImg>span{margin-right:15px;}
+.logoh1{font-size:2.2em;color:#000;float:left;height: 55px;line-height: 55px;}
+.logContWrap{width:100%;height:530px;background: url(../images/bg1.jpg) center top no-repeat #022243;}
+.logCont{width:1000px;height:530px;margin:0 auto;}
+.leftBg{width:700px;height:420px;margin-top:20px;}
+.rightBox{width:300px;height:400px;margin-top:65px;background: #fff;}
+.rhead{height:64px;border-bottom:1px solid #e5e5e5;line-height:64px;font-size:26px;color:#ff7200;text-align:center;}
+.errortip{height:26px;width:69%;margin:8px auto 0;}
+.errortip>div{height:24px;border:1px solid #f8e144;line-height:24px;padding-left:25px;background:url('../images/error.png') center left no-repeat #fdf7ce;border-radius:4px;background-position: 5px 6px;}
+.rcont{width:260px;height:250px;margin:8px auto 0;}
+.rinput{width:234px;height:40px;line-height:40px;border:1px solid #e5e5e5;border-radius:3px;margin-bottom:20px;padding:0 12px;}
+.rinput:focus{border-color:blue;}
+.rinput input{border:none;padding-left:8px;height:32px;line-height:32px;width:190px;}
+.seccode{width:246px;height:30px;line-height:30px;border-radius:3px;margin-bottom:20px;padding-left:12px;}
+.seccode input{border:1px solid #e5e5e5;width:68px;padding: 0 5px;height:30px;line-height:30px;}
+.seccode div{float:right;width:auto;height:30px;cursor:pointer;line-height:30px;}
+.seccode div:last-child{margin-right:5px;}
+.rbtn{width:260px;height:40px;background:#0099cb;color:#fff;border-radius:4px;line-height:40px;font-size:16px;text-align:center;cursor:pointer;margin-bottom:10px;}
+.rbtn:hover{background:#008fcb;}
+.forgetBox{width:234px;padding:0 12px;height:30px;line-height:30px;color:#0099cb;}
+.forgetBox>div,.forgetBox>div label{cursor:pointer;}
+.forgetpsw{width:234px;text-align:center;}
+.copyRight{width:1000px;height:40px;line-height:40px;margin:20px auto;text-align:center;}
+
+/* chrome autofill cover*/
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill{background: #fff !important;-webkit-box-shadow: 0 0 0 1000px white inset;}

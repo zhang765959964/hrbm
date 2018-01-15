@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.jobfair.model.BoothBook">
+	<resultMap id="BoothBook" type="com.xunfeng.business.jobfair.model.BoothBook">
+		<id property="cczy01" column="CCZY01" jdbcType="NUMERIC"/>
+		<result property="ace200" column="ACE200" jdbcType="NUMERIC"/>
+		<result property="ace201" column="ACE201" jdbcType="VARCHAR"/>
+		<result property="ace209" column="ACE209" jdbcType="VARCHAR"/>
+		<result property="acd250" column="ACD250" jdbcType="NUMERIC"/>
+		<result property="acb330" column="ACB330" jdbcType="NUMERIC"/>
+		<result property="cczy02" column="CCZY02" jdbcType="NUMERIC"/>
+		<result property="cczy03" column="CCZY03" jdbcType="NUMERIC"/>
+		<result property="cczy04" column="CCZY04" jdbcType="NUMERIC"/>
+		<result property="aab001" column="AAB001" jdbcType="NUMERIC"/>
+		<result property="cczy05" column="CCZY05" jdbcType="VARCHAR"/>
+		<result property="cczy06" column="CCZY06" jdbcType="VARCHAR"/>
+		<result property="cczy07" column="CCZY07" jdbcType="TIMESTAMP"/>
+		<result property="cczy08" column="CCZY08" jdbcType="VARCHAR"/>
+		<result property="cczy09" column="CCZY09" jdbcType="VARCHAR"/>
+		<result property="acd200" column="ACD200" jdbcType="NUMERIC"/>
+		<result property="cczy10" column="CCZY10" jdbcType="NUMERIC"/>
+		<result property="cczy11" column="CCZY11" jdbcType="NUMERIC"/>
+		<result property="cczy12" column="CCZY12" jdbcType="VARCHAR"/>
+		<result property="ccpr05" column="CCPR05" jdbcType="TIMESTAMP"/>
+		<result property="ccpr06" column="CCPR06" jdbcType="VARCHAR"/>
+		<result property="ccpr07" column="CCPR07" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+		<result property="acb200" column="ACB200" jdbcType="NUMERIC"/>
+		<result property="cczy13" column="CCZY13" jdbcType="VARCHAR"/>
+		<result property="cczy14" column="CCZY14" jdbcType="NUMERIC"/>
+		<result property="cczy15" column="CCZY15" jdbcType="VARCHAR"/>
+	</resultMap>
+	<resultMap id="BookCorp" type="com.xunfeng.business.jobfair.dto.BookCorp">
+		<id property="cczy01" column="CCZY01" jdbcType="NUMERIC"/>
+		<result property="aab001" column="AAB001" jdbcType="NUMERIC"/>
+		<result property="aab004" column="AAB004" jdbcType="VARCHAR"/>
+		<result property="aaa021" column="AAA021" jdbcType="VARCHAR"/>
+	</resultMap>
+	<sql id="columns">
+		CCZY01,ACE200,ACE201,ACE209,ACD250,ACB330,CCZY02,CCZY03,CCZY04,AAB001,CCZY05,CCZY06,CCZY07,CCZY08,CCZY09,ACD200,CCZY10,CCZY11,CCZY12,CCPR05,CCPR06,CCPR07,CCPR08,ACB200,CCZY13,CCZY14,CCZY15
+	</sql>
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(cczy01)"> AND CCZY01  =#{cczy01} </if>
+			<if test="@Ognl@isNotEmpty(ace200)"> AND ACE200  =#{ace200} </if>
+			<if test="@Ognl@isNotEmpty(ace201)"> AND ACE201  LIKE #{ace201}  </if>
+			<if test="@Ognl@isNotEmpty(ace209)"> AND ACE209  LIKE #{ace209}  </if>
+			<if test="@Ognl@isNotEmpty(acd250)"> AND ACD250  =#{acd250} </if>
+			<if test="@Ognl@isNotEmpty(acb330)"> AND ACB330  =#{acb330} </if>
+			<if test="@Ognl@isNotEmpty(cczy02)"> AND CCZY02  =#{cczy02} </if>
+			<if test="@Ognl@isNotEmpty(cczy03)"> AND CCZY03  =#{cczy03} </if>
+			<if test="@Ognl@isNotEmpty(cczy04)"> AND CCZY04  =#{cczy04} </if>
+			<if test="@Ognl@isNotEmpty(aab001)"> AND AAB001  =#{aab001} </if>
+			<if test="@Ognl@isNotEmpty(cczy05)"> AND CCZY05  LIKE #{cczy05}  </if>
+			<if test="@Ognl@isNotEmpty(cczy06)"> AND CCZY06  LIKE #{cczy06}  </if>
+			<if test="@Ognl@isNotEmpty(cczy07)"> AND CCZY07  =#{cczy07} </if>
+			<if test="@Ognl@isNotEmpty(begincczy07)"> AND CCZY07  >=#{begincczy07,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcczy07)"> AND CCZY07 <![CDATA[ <=#{endcczy07,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(cczy08)"> AND CCZY08  LIKE #{cczy08}  </if>
+			<if test="@Ognl@isNotEmpty(cczy09)"> AND CCZY09  LIKE #{cczy09}  </if>
+			<if test="@Ognl@isNotEmpty(acd200)"> AND ACD200  =#{acd200} </if>
+			<if test="@Ognl@isNotEmpty(cczy10)"> AND CCZY10  =#{cczy10} </if>
+			<if test="@Ognl@isNotEmpty(cczy11)"> AND CCZY11  =#{cczy11} </if>
+			<if test="@Ognl@isNotEmpty(cczy12)"> AND CCZY12  LIKE #{cczy12}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr05)"> AND CCPR05  =#{ccpr05} </if>
+			<if test="@Ognl@isNotEmpty(beginccpr05)"> AND CCPR05  >=#{beginccpr05,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endccpr05)"> AND CCPR05 <![CDATA[ <=#{endccpr05,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(ccpr06)"> AND CCPR06  LIKE #{ccpr06}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr07)"> AND CCPR07  LIKE #{ccpr07}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr08)"> AND CCPR08  LIKE #{ccpr08}  </if>
+			<if test="@Ognl@isNotEmpty(acb200)"> AND ACB200  =#{acb200} </if>
+			<if test="@Ognl@isNotEmpty(cczy13)"> AND CCZY13  LIKE #{cczy13}  </if>
+			<if test="@Ognl@isNotEmpty(cczy14)"> AND CCZY14  =#{cczy14} </if>
+			<if test="@Ognl@isNotEmpty(cczy15)"> AND CCZY15  LIKE #{cczy15}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.jobfair.model.BoothBook">
+		INSERT INTO CCZ01
+		(CCZY01,ACE200,ACE201,ACE209,ACD250,ACB330,CCZY02,CCZY03,CCZY04,AAB001,CCZY05,CCZY06,CCZY07,CCZY08,CCZY09,ACD200,CCZY10,CCZY11,CCZY12,CCPR05,CCPR06,CCPR07,CCPR08,ACB200,CCZY13,CCZY14,CCZY15)
+		VALUES
+		(#{cczy01,jdbcType=NUMERIC}, #{ace200,jdbcType=NUMERIC}, #{ace201,jdbcType=VARCHAR}, #{ace209,jdbcType=VARCHAR}, #{acd250,jdbcType=NUMERIC}, #{acb330,jdbcType=NUMERIC}, #{cczy02,jdbcType=NUMERIC}, #{cczy03,jdbcType=NUMERIC}, #{cczy04,jdbcType=NUMERIC}, #{aab001,jdbcType=NUMERIC}, #{cczy05,jdbcType=VARCHAR}, #{cczy06,jdbcType=VARCHAR}, #{cczy07,jdbcType=TIMESTAMP}, #{cczy08,jdbcType=VARCHAR}, #{cczy09,jdbcType=VARCHAR}, #{acd200,jdbcType=NUMERIC}, #{cczy10,jdbcType=NUMERIC}, #{cczy11,jdbcType=NUMERIC}, #{cczy12,jdbcType=VARCHAR}, #{ccpr05,jdbcType=TIMESTAMP}, #{ccpr06,jdbcType=VARCHAR}, #{ccpr07,jdbcType=VARCHAR}, #{ccpr08,jdbcType=VARCHAR}, #{acb200,jdbcType=NUMERIC}, #{cczy13,jdbcType=VARCHAR}, #{cczy14,jdbcType=NUMERIC}, #{cczy15,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM CCZ01 
+		WHERE
+		CCZY01=#{cczy01}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.jobfair.model.BoothBook">
+		UPDATE CCZ01 SET
+		ACE200=#{ace200,jdbcType=NUMERIC},
+		ACE201=#{ace201,jdbcType=VARCHAR},
+		ACE209=#{ace209,jdbcType=VARCHAR},
+		ACD250=#{acd250,jdbcType=NUMERIC},
+		ACB330=#{acb330,jdbcType=NUMERIC},
+		CCZY02=#{cczy02,jdbcType=NUMERIC},
+		CCZY03=#{cczy03,jdbcType=NUMERIC},
+		CCZY04=#{cczy04,jdbcType=NUMERIC},
+		AAB001=#{aab001,jdbcType=NUMERIC},
+		CCZY05=#{cczy05,jdbcType=VARCHAR},
+		CCZY06=#{cczy06,jdbcType=VARCHAR},
+		CCZY07=#{cczy07,jdbcType=TIMESTAMP},
+		CCZY08=#{cczy08,jdbcType=VARCHAR},
+		CCZY09=#{cczy09,jdbcType=VARCHAR},
+		ACD200=#{acd200,jdbcType=NUMERIC},
+		CCZY10=#{cczy10,jdbcType=NUMERIC},
+		CCZY11=#{cczy11,jdbcType=NUMERIC},
+		CCZY12=#{cczy12,jdbcType=VARCHAR},
+		CCPR05=#{ccpr05,jdbcType=TIMESTAMP},
+		CCPR06=#{ccpr06,jdbcType=VARCHAR},
+		CCPR07=#{ccpr07,jdbcType=VARCHAR},
+		CCPR08=#{ccpr08,jdbcType=VARCHAR},
+		ACB200=#{acb200,jdbcType=NUMERIC},
+		CCZY13=#{cczy13,jdbcType=VARCHAR},
+		CCZY14=#{cczy14,jdbcType=NUMERIC},
+		CCZY15=#{cczy15,jdbcType=VARCHAR}
+		WHERE
+		CCZY01=#{cczy01}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="BoothBook">
+		SELECT <include refid="columns"/>
+		FROM CCZ01
+		WHERE
+		CCZY01=#{cczy01}
+	</select>
+	<select id="getByIdForUpdate" parameterType="java.lang.Long" resultMap="BoothBook">
+		SELECT <include refid="columns"/>
+		FROM CCZ01
+		WHERE
+		CCZY01=#{cczy01} for update
+	</select>
+	<select id="getAll" resultMap="BoothBook">
+		SELECT <include refid="columns"/>
+		FROM CCZ01   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by CCZY01  desc
+		</if>
+	</select>
+	<select id="getAllBookCorp" resultMap="BookCorp">
+		SELECT a.CCZY01,a.AAB001,a.ace201,to_char(a.cczy07,'yyyy-mm-dd') cczy07,b.AAB004,b.AAA021,b.aae006,c.ccmu15 ,
+	     (select count(*) from cb21 t where t.acb200 = a.acb200 and t.ccpr08=0 and t.ABB773=1 and t.ACB208 = 0) jobSum
+	    FROM CCZ01 a,AB01 b,ccm01 c where a.AAB001=b.AAB001 and c.ccmu01=b.ccmu01 and a.ACB330=#{acb330} and a.CCZY05>'1'
+	   	<if test="@Ognl@isNotEmpty(corpBookSiteDate)">
+			and a.CCZY07=to_date(#{corpBookSiteDate},'yyyy-mm-dd')
+		</if>
+		order by a.CCZY07 desc
+	</select>
+	<!-- 获取参会单位数 -->
+	<select id="getTotalCorp" parameterType="java.lang.Long" resultType="java.lang.Long">
+		SELECT COUNT(a.CCZY01)
+		FROM CCZ01 a,AB01 b 
+		where a.AAB001=b.AAB001 and a.ACB330=#{acb330} and a.CCZY05='4'
+	</select>
+	<select id="getBoothBook" parameterType="java.lang.Long" resultMap="BoothBook">
+		SELECT <include refid="columns"/>
+		FROM CCZ01
+		WHERE
+		ACB330=#{acb330} and ACB200=#{acb200}
+	</select>
+	
+	<select id="getMyBoothBookList" parameterType="java.lang.Long" resultType="java.util.Map">
+		SELECT t.cczy01,t.acd253,t.ACB200,t.acb330,t.acb331,t.cczy05,t.acb335n,t.ace201,t.cczy07,t.aae036,t.zws  
+		FROM V_CCZ01 t 
+		WHERE t.aab001=#{aab001}  
+		<if test="@Ognl@isNotEmpty(cczy05)"> AND eczy05  = #{cczy05}  </if>
+		order by to_date(t.cczy07,'yyyy-mm-dd') desc
+	</select>
+	
+	<select id="getMyJobFairBookList" parameterType="java.lang.Long" resultType="java.util.Map">
+		select t.acb330,t.acb331 from V_CB21_CCZ01 t   where t.aab001=#{aab001} group by t.acb330,t.acb331;
+	</select>
+	
+	<select id="getBoothBySiteId" parameterType="java.lang.Long" resultMap="BoothBook">
+		select t.* from CCZ01 t
+		   where  <![CDATA[ to_char( t.cczy07,'yyyy-MM-dd')=#{cczy07,jdbcType=VARCHAR} ]]>
+		   and t.acd250=#{acd250}
+	</select>
+	<!-- 获得同一场招聘会中同一个场地同一个企业统一使用时间的摊位数 -->
+	<select id="getTotalCountBooth" resultType="java.util.Map">
+		select nvl(count(*),0) as TOTALCOUNT from ccz01 t where 1=1 
+		<if test="@Ognl@isNotEmpty(acb330)">
+			and t.acb330=#{acb330}
+		</if>
+		<if test="@Ognl@isNotEmpty(acd250)">
+			and t.acd250=#{acd250}
+		</if>
+		<if test="@Ognl@isNotEmpty(aab001)">
+			and t.aab001=#{aab001}
+		</if>
+		<if test="@Ognl@isNotEmpty(cczy07)">
+			and to_char(t.cczy07,'yyyy-mm-dd')=#{cczy07}
+		</if>
+		  and t.cczy05 in (2,3,4)
+		  and t.CCPR08=0
+	</select>
+</mapper>

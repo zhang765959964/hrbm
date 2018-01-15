@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.affair.model.PersonLetter">
+	<resultMap id="PersonLetter" type="com.xunfeng.business.personagency.affair.model.PersonLetter">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="archivesId" column="ARCHIVES_ID" jdbcType="NUMERIC"/>
+		<result property="personId" column="PERSON_ID" jdbcType="NUMERIC"/>
+		<result property="aac003" column="AAC003" jdbcType="VARCHAR"/>
+		<result property="fileNumber" column="FILE_NUMBER" jdbcType="VARCHAR"/>
+		<result property="workUnit" column="WORK_UNIT" jdbcType="VARCHAR"/>
+		<result property="escrowContent" column="ESCROW_CONTENT" jdbcType="VARCHAR"/>
+		<result property="reason" column="REASON" jdbcType="VARCHAR"/>
+		<result property="handlingMatters" column="HANDLING_MATTERS" jdbcType="VARCHAR"/>
+		<result property="dateOfIssue" column="DATE_OF_ISSUE" jdbcType="DATE"/>
+		<result property="fourthItems" column="FOURTH_ITEMS" jdbcType="VARCHAR"/>
+		<result property="cczy06" column="CCZY06" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="DATE"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,ARCHIVES_ID,PERSON_ID,AAC003,FILE_NUMBER,WORK_UNIT,ESCROW_CONTENT,REASON,HANDLING_MATTERS,DATE_OF_ISSUE,FOURTH_ITEMS,CCZY06,CCPR08,CREATER_ID,CREATER_NAME,CREATER_ORG_ID,CREATER_ORG_NAME,CREATER_DATE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(archivesId)"> AND ARCHIVES_ID  =#{archivesId} </if>
+			<if test="@Ognl@isNotEmpty(personId)"> AND PERSON_ID  =#{personId} </if>
+			<if test="@Ognl@isNotEmpty(aac003)"> AND AAC003  LIKE #{aac003}  </if>
+			<if test="@Ognl@isNotEmpty(fileNumber)"> AND FILE_NUMBER  LIKE #{fileNumber}  </if>
+			<if test="@Ognl@isNotEmpty(workUnit)"> AND WORK_UNIT  LIKE #{workUnit}  </if>
+			<if test="@Ognl@isNotEmpty(escrowContent)"> AND ESCROW_CONTENT  LIKE #{escrowContent}  </if>
+			<if test="@Ognl@isNotEmpty(reason)"> AND REASON  LIKE #{reason}  </if>
+			<if test="@Ognl@isNotEmpty(handlingMatters)"> AND HANDLING_MATTERS  LIKE #{handlingMatters}  </if>
+			<if test="@Ognl@isNotEmpty(dateOfIssue)"> AND DATE_OF_ISSUE  =#{dateOfIssue} </if>
+			<if test="@Ognl@isNotEmpty(begindateOfIssue)"> AND DATE_OF_ISSUE  >=#{begindateOfIssue,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(enddateOfIssue)"> AND DATE_OF_ISSUE <![CDATA[ <=#{enddateOfIssue,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(fourthItems)"> AND FOURTH_ITEMS  LIKE #{fourthItems}  </if>
+			<if test="@Ognl@isNotEmpty(cczy06)"> AND CCZY06  LIKE #{cczy06}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr08)"> AND CCPR08  LIKE #{ccpr08}  </if>
+			<if test="@Ognl@isNotEmpty(createrId)"> AND CREATER_ID  =#{createrId} </if>
+			<if test="@Ognl@isNotEmpty(createrName)"> AND CREATER_NAME  LIKE #{createrName}  </if>
+			<if test="@Ognl@isNotEmpty(createrOrgId)"> AND CREATER_ORG_ID  =#{createrOrgId} </if>
+			<if test="@Ognl@isNotEmpty(createrOrgName)"> AND CREATER_ORG_NAME  LIKE #{createrOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(createrDate)"> AND CREATER_DATE  =#{createrDate} </if>
+			<if test="@Ognl@isNotEmpty(begincreaterDate)"> AND CREATER_DATE  >=#{begincreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+			
+			<if test="@Ognl@isNotEmpty(ids)"> AND ID in (${ids})</if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.affair.model.PersonLetter">
+		INSERT INTO RSDA_BS_PERSON_LETTER
+		(ID,ARCHIVES_ID,PERSON_ID,AAC003,FILE_NUMBER,WORK_UNIT,ESCROW_CONTENT,REASON,HANDLING_MATTERS,DATE_OF_ISSUE,FOURTH_ITEMS,CCZY06,CCPR08,CREATER_ID,CREATER_NAME,CREATER_ORG_ID,CREATER_ORG_NAME,CREATER_DATE)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{archivesId,jdbcType=NUMERIC}, #{personId,jdbcType=NUMERIC}, #{aac003,jdbcType=VARCHAR}, #{fileNumber,jdbcType=VARCHAR}, #{workUnit,jdbcType=VARCHAR}, #{escrowContent,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, #{handlingMatters,jdbcType=VARCHAR}, #{dateOfIssue,jdbcType=DATE}, #{fourthItems,jdbcType=VARCHAR}, #{cczy06,jdbcType=VARCHAR}, #{ccpr08,jdbcType=VARCHAR}, #{createrId,jdbcType=NUMERIC}, #{createrName,jdbcType=VARCHAR}, #{createrOrgId,jdbcType=NUMERIC}, #{createrOrgName,jdbcType=VARCHAR}, #{createrDate,jdbcType=DATE})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_PERSON_LETTER 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.affair.model.PersonLetter">
+		UPDATE RSDA_BS_PERSON_LETTER SET
+		ARCHIVES_ID=#{archivesId,jdbcType=NUMERIC},
+		PERSON_ID=#{personId,jdbcType=NUMERIC},
+		AAC003=#{aac003,jdbcType=VARCHAR},
+		FILE_NUMBER=#{fileNumber,jdbcType=VARCHAR},
+		WORK_UNIT=#{workUnit,jdbcType=VARCHAR},
+		ESCROW_CONTENT=#{escrowContent,jdbcType=VARCHAR},
+		REASON=#{reason,jdbcType=VARCHAR},
+		HANDLING_MATTERS=#{handlingMatters,jdbcType=VARCHAR},
+		DATE_OF_ISSUE=#{dateOfIssue,jdbcType=DATE},
+		FOURTH_ITEMS=#{fourthItems,jdbcType=VARCHAR},
+		CCZY06=#{cczy06,jdbcType=VARCHAR},
+		CCPR08=#{ccpr08,jdbcType=VARCHAR},
+		CREATER_ID=#{createrId,jdbcType=NUMERIC},
+		CREATER_NAME=#{createrName,jdbcType=VARCHAR},
+		CREATER_ORG_ID=#{createrOrgId,jdbcType=NUMERIC},
+		CREATER_ORG_NAME=#{createrOrgName,jdbcType=VARCHAR},
+		CREATER_DATE=#{createrDate,jdbcType=DATE}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="PersonLetter">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PERSON_LETTER
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="PersonLetter">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PERSON_LETTER   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	<!--取得打印数据  -->
+	<select id="getPersonLetterById" resultType="java.util.HashMap">
+		SELECT 	ID as "id",AAC003 as "aac003"
+				,FILE_NUMBER as "fileNumber",WORK_UNIT as "workUnit",ESCROW_CONTENT as "escrowContent"
+				,REASON as "reason",HANDLING_MATTERS as "handlingMatters"
+				,to_char(DATE_OF_ISSUE,'yyyy') as "year"
+				,to_char(DATE_OF_ISSUE,'mm') as "month"
+				,to_char(DATE_OF_ISSUE,'dd') as "day"
+				,FOURTH_ITEMS as "fourthItems"
+				
+		FROM RSDA_BS_PERSON_LETTER   
+		
+		where id =#{id}
+	</select>
+</mapper>

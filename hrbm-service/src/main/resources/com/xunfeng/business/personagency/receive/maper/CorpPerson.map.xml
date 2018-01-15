@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.receive.model.CorpPerson">
+	<resultMap id="CorpPerson" type="com.xunfeng.business.personagency.receive.model.CorpPerson">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="corpId" column="CORP_ID" jdbcType="NUMERIC"/>
+		<result property="personId" column="PERSON_ID" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,CORP_ID,PERSON_ID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(corpId)"> AND CORP_ID  =#{corpId} </if>
+			<if test="@Ognl@isNotEmpty(personId)"> AND PERSON_ID  =#{personId} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.receive.model.CorpPerson">
+		INSERT INTO RSDA_BS_CORP_PERSON
+		(ID,CORP_ID,PERSON_ID)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{corpId,jdbcType=NUMERIC}, #{personId,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_CORP_PERSON 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.receive.model.CorpPerson">
+		UPDATE RSDA_BS_CORP_PERSON SET
+		CORP_ID=#{corpId,jdbcType=NUMERIC},
+		PERSON_ID=#{personId,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="CorpPerson">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_CORP_PERSON
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="CorpPerson">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_CORP_PERSON   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getCorpPerson" resultMap="CorpPerson">
+		SELECT *
+		FROM RSDA_BS_CORP_PERSON WHERE 1=1 
+		
+		  <if test="@Ognl@isNotEmpty(corpId)"> AND CORP_ID = #{corpId}</if>
+          <if test="@Ognl@isNotEmpty(personId)"> AND PERSON_ID = #{personId}</if>
+	</select>
+	
+	<select id="getArchivesCountByCorpId"  parameterType="java.lang.Long" resultType="java.lang.Long">
+		select count(*) 
+		FROM RSDA_BS_CORP_PERSON WHERE 1=1 
+		<if test="@Ognl@isNotEmpty(corpId)"> AND CORP_ID = #{corpId}</if>
+        <if test="@Ognl@isNotEmpty(personId)"> AND PERSON_ID = #{personId}</if>
+	</select>
+</mapper>

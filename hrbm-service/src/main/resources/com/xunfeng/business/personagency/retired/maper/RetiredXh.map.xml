@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.retired.model.RetiredXh">
+	<resultMap id="RetiredXh" type="com.xunfeng.business.personagency.retired.model.RetiredXh">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="type" column="TYPE" jdbcType="VARCHAR"/>
+		<result property="xh" column="XH" jdbcType="VARCHAR"/>
+		<result property="bm" column="BM" jdbcType="VARCHAR"/>
+		<result property="flag" column="FLAG" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,TYPE,XH,BM,FLAG
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(type)"> AND TYPE  LIKE #{type}  </if>
+			<if test="@Ognl@isNotEmpty(xh)"> AND XH  LIKE #{xh}  </if>
+			<if test="@Ognl@isNotEmpty(bm)"> AND BM  LIKE #{bm}  </if>
+			<if test="@Ognl@isNotEmpty(flag)"> AND FLAG  =#{flag} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.retired.model.RetiredXh">
+		INSERT INTO RSDA_BS_RETIRED_XH
+		(ID,TYPE,XH,BM,FLAG)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{type,jdbcType=VARCHAR}, #{xh,jdbcType=VARCHAR}, #{bm,jdbcType=VARCHAR}, #{flag,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_RETIRED_XH 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.retired.model.RetiredXh">
+		UPDATE RSDA_BS_RETIRED_XH SET
+		TYPE=#{type,jdbcType=VARCHAR},
+		XH=#{xh,jdbcType=VARCHAR},
+		BM=#{bm,jdbcType=VARCHAR},
+		FLAG=#{flag,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="RetiredXh">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_RETIRED_XH
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="RetiredXh">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_RETIRED_XH   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<!-- 根据退休类型获得 当前最小的历史记录信息 -->
+	<select id="getByRetiredType" resultMap="RetiredXh">
+		  select <include refid="columns"/>
+		  from  RSDA_BS_RETIRED_XH t where t.bm in ( select min(bm) from RSDA_BS_RETIRED_XH )
+		 <if test="@Ognl@isNotEmpty(type)"> AND TYPE  = #{type}  </if>
+	</select>
+	
+	<!-- 根据退休类型和时间获得当前最小的历史记录信息 -->
+	<select id="getByRetiredTypeOrBm" resultMap="RetiredXh">
+		select <include refid="columns"/> 
+		from  RSDA_BS_RETIRED_XH t where t.bm in  (select min(t.bm) from (  select * from rsda_bs_retired_xh  t where
+		<if test="@Ognl@isNotEmpty(type)">  t.TYPE  = #{type}  </if>
+		<if test="@Ognl@isNotEmpty(bm)"> AND t.BM  LIKE #{bm}  </if>
+		) t);
+		
+	</select>
+	
+	
+	
+	<!-- 根据退休编码删除 -->
+	<delete id="delByBm" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_RETIRED_XH 
+		WHERE
+		BM=#{bm}
+	</delete>
+ 	
+	
+	
+</mapper>

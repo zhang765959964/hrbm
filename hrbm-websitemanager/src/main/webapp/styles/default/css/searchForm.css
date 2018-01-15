@@ -1,0 +1,13 @@
+	 .tdPlaceHolder{
+	 	 display:block;
+	 }
+	 .advancedSearchTr{
+	 	display:none;
+	 }
+	 .down{
+        background:transparent url('../images/other/up_down.png') no-repeat scroll -16px 0px;
+	 }
+	 .up{
+	  	background:transparent url('../images/other/up_down.png') no-repeat scroll 0px 0px;
+	 }
+ 

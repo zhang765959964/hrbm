@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.sys.accounts.model.Accounts">
+	<resultMap id="Accounts" type="com.xunfeng.sys.accounts.model.Accounts">
+		<id property="ccmu01" column="CCMU01" jdbcType="NUMERIC"/>
+		<result property="ccmu02" column="CCMU02" jdbcType="VARCHAR"/>
+		<result property="ccmu03" column="CCMU03" jdbcType="VARCHAR"/>
+		<result property="ccmu04" column="CCMU04" jdbcType="VARCHAR"/>
+		<result property="ccmu05" column="CCMU05" jdbcType="VARCHAR"/>
+		<result property="ccmu06" column="CCMU06" jdbcType="VARCHAR"/>
+		<result property="ccmu07" column="CCMU07" jdbcType="TIMESTAMP"/>
+		<result property="ccmu08" column="CCMU08" jdbcType="VARCHAR"/>
+		<result property="ccmu09" column="CCMU09" jdbcType="VARCHAR"/>
+		<result property="ccmu10" column="CCMU10" jdbcType="NUMERIC"/>
+		<result property="ccmu11" column="CCMU11" jdbcType="TIMESTAMP"/>
+		<result property="ccmu12" column="CCMU12" jdbcType="NUMERIC"/>
+		<result property="ccmu13" column="CCMU13" jdbcType="NUMERIC"/>
+		<result property="ccmu14" column="CCMU14" jdbcType="VARCHAR"/>
+		<result property="ccmu15" column="CCMU15" jdbcType="VARCHAR"/>
+		<result property="ccmu16" column="CCMU16" jdbcType="TIMESTAMP"/>
+		<result property="ccmu17" column="CCMU17" jdbcType="NUMERIC"/>
+		<result property="ccmu18" column="CCMU18" jdbcType="VARCHAR"/>
+		<result property="ccmu19" column="CCMU19" jdbcType="NUMERIC"/>
+		<result property="ccmu20" column="CCMU20" jdbcType="NUMERIC"/>
+		<result property="ccmu21" column="CCMU21" jdbcType="NUMERIC"/>
+		<result property="ccmu22" column="CCMU22" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		CCMU01,CCMU02,CCMU03,CCMU04,CCMU05,CCMU06,CCMU07,CCMU08,CCMU09,CCMU10,CCMU11,CCMU12,CCMU13,CCMU14,CCMU15,CCMU16,CCMU17,CCMU18,CCMU19,CCMU20,CCMU21,CCMU22,CCPR08
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(ccmu01)"> AND CCMU01  =#{ccmu01} </if>
+			<if test="@Ognl@isNotEmpty(ccmu02)"> AND CCMU02  LIKE #{ccmu02}  </if>
+			<if test="@Ognl@isNotEmpty(ccmu03)"> AND CCMU03  LIKE #{ccmu03}  </if>
+			<if test="@Ognl@isNotEmpty(ccmu04)"> AND CCMU04  LIKE #{ccmu04}  </if>
+			<if test="@Ognl@isNotEmpty(ccmu05)"> AND CCMU05  LIKE #{ccmu05}  </if>
+			<if test="@Ognl@isNotEmpty(ccmu06)"> AND CCMU06  LIKE #{ccmu06}  </if>
+			<if test="@Ognl@isNotEmpty(ccmu07)"> AND CCMU07  =#{ccmu07} </if>
+			<if test="@Ognl@isNotEmpty(beginccmu07)"> AND CCMU07  >=#{beginccmu07,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endccmu07)"> AND CCMU07 <![CDATA[ <=#{endccmu07,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(ccmu08)"> AND CCMU08  LIKE #{ccmu08}  </if>
+			<if test="@Ognl@isNotEmpty(ccmu09)"> AND CCMU09  LIKE #{ccmu09}  </if>
+			<if test="@Ognl@isNotEmpty(ccmu10)"> AND CCMU10  =#{ccmu10} </if>
+			<if test="@Ognl@isNotEmpty(ccmu11)"> AND CCMU11  =#{ccmu11} </if>
+			<if test="@Ognl@isNotEmpty(beginccmu11)"> AND CCMU11  >=#{beginccmu11,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endccmu11)"> AND CCMU11 <![CDATA[ <=#{endccmu11,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(ccmu12)"> AND CCMU12  =#{ccmu12} </if>
+			<if test="@Ognl@isNotEmpty(ccmu13)"> AND CCMU13  =#{ccmu13} </if>
+			<if test="@Ognl@isNotEmpty(ccmu14)"> AND CCMU14  LIKE #{ccmu14}  </if>
+			<if test="@Ognl@isNotEmpty(ccmu15)"> AND CCMU15  LIKE #{ccmu15}  </if>
+			<if test="@Ognl@isNotEmpty(ccmu16)"> AND CCMU16  =#{ccmu16} </if>
+			<if test="@Ognl@isNotEmpty(beginccmu16)"> AND CCMU16  >=#{beginccmu16,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endccmu16)"> AND CCMU16 <![CDATA[ <=#{endccmu16,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(ccmu17)"> AND CCMU17  =#{ccmu17} </if>
+			<if test="@Ognl@isNotEmpty(ccmu18)"> AND CCMU18  LIKE #{ccmu18}  </if>
+			<if test="@Ognl@isNotEmpty(ccmu19)"> AND CCMU19  =#{ccmu19} </if>
+			<if test="@Ognl@isNotEmpty(ccmu20)"> AND CCMU20  =#{ccmu20} </if>
+			<if test="@Ognl@isNotEmpty(ccmu21)"> AND CCMU21  =#{ccmu21} </if>
+			<if test="@Ognl@isNotEmpty(ccmu22)"> AND CCMU22  LIKE #{ccmu22}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr08)"> AND CCPR08  LIKE #{ccpr08}  </if>
+			<if test="@Ognl@isNotEmpty(aac002)"> AND AAC002  LIKE #{aac002}  </if>
+			<if test="@Ognl@isNotEmpty(aac003)"> AND AAC003  LIKE #{aac003}  </if>
+			<if test="@Ognl@isNotEmpty(bab305)"> AND BAB305  LIKE #{bab305}  </if>
+			<if test="@Ognl@isNotEmpty(aac009n)"> AND aac009n  =#{aac009n}  </if>
+			<if test="@Ognl@isNotEmpty(aac011n)"> AND aac011n  =#{aac011n}  </if>
+			<if test="@Ognl@isNotEmpty(aae011)"> AND aae011  =#{aae011}  </if>
+			<if test="@Ognl@isNotEmpty(aae017)"> AND aae017  =#{aae017}  </if>
+			<if test="@Ognl@isNotEmpty(aab004)"> AND aab004  like #{aab004}  </if>
+			<if test="@Ognl@isNotEmpty(aab007)"> AND aab007  like #{aab007}  </if>
+			<if test="@Ognl@isNotEmpty(aab003)"> AND aab003  like #{aab003}  </if>
+			<if test="@Ognl@isNotEmpty(aae004)"> AND aae004  like #{aae004}  </if>
+			<if test="@Ognl@isNotEmpty(aae005)"> AND aae005  like #{aae005}  </if>
+			<if test="@Ognl@isNotEmpty(aae006)"> AND aae006  like #{aae006}  </if>
+			<if test="@Ognl@isNotEmpty(aab054n)"> AND aab054n  =#{aab054n}  </if>
+			<if test="@Ognl@isNotEmpty(aab019n)"> AND aab019n  =#{aab019n}  </if>
+			<if test="@Ognl@isNotEmpty(aab020n)"> AND aab020n  =#{aab020n}  </if>
+			<if test="@Ognl@isNotEmpty(aab022n)"> AND aab022n  =#{aab022n}  </if>
+			<if test="@Ognl@isNotEmpty(ccmu10n)"> AND ccmu10n  =#{ccmu10n}  </if>
+			<if test="@Ognl@isNotEmpty(aab301)"> AND aab301  =#{aab301}  </if>
+			<if test="@Ognl@isNotEmpty(cczy06)"> AND cczy06  =#{cczy06}  </if>
+			<if test="@Ognl@isNotEmpty(beginaae036)"> AND aae036  <![CDATA[>=#{beginaae036,jdbcType=DATE}  ]]></if>
+			<if test="@Ognl@isNotEmpty(endaae036)"> AND aae036 <![CDATA[ <=#{endaae036,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(beginaac006)"> AND aac006  <![CDATA[>=#{beginaac006,jdbcType=DATE}  ]]></if>
+			<if test="@Ognl@isNotEmpty(endaac006)"> AND aac006 <![CDATA[ <=#{endaac006,jdbcType=DATE}]]> </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.sys.accounts.model.Accounts">
+		INSERT INTO CCM01
+		(CCMU01,CCMU02,CCMU03,CCMU04,CCMU05,CCMU06,CCMU07,CCMU08,CCMU09,CCMU10,CCMU11,CCMU12,CCMU13,CCMU14,CCMU15,CCMU16,CCMU17,CCMU18,CCMU19,CCMU20,CCMU21,CCMU22,CCPR08)
+		VALUES
+		(#{ccmu01,jdbcType=NUMERIC}, #{ccmu02,jdbcType=VARCHAR}, #{ccmu03,jdbcType=VARCHAR}, #{ccmu04,jdbcType=VARCHAR}, #{ccmu05,jdbcType=VARCHAR}, #{ccmu06,jdbcType=VARCHAR}, #{ccmu07,jdbcType=TIMESTAMP}, #{ccmu08,jdbcType=VARCHAR}, #{ccmu09,jdbcType=VARCHAR}, #{ccmu10,jdbcType=NUMERIC}, #{ccmu11,jdbcType=TIMESTAMP}, #{ccmu12,jdbcType=NUMERIC}, #{ccmu13,jdbcType=NUMERIC}, #{ccmu14,jdbcType=VARCHAR}, #{ccmu15,jdbcType=VARCHAR}, #{ccmu16,jdbcType=TIMESTAMP}, #{ccmu17,jdbcType=NUMERIC}, #{ccmu18,jdbcType=VARCHAR}, #{ccmu19,jdbcType=NUMERIC}, #{ccmu20,jdbcType=NUMERIC}, #{ccmu21,jdbcType=NUMERIC}, #{ccmu22,jdbcType=VARCHAR}, #{ccpr08,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM CCM01 
+		WHERE
+		CCMU01=#{ccmu01}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.sys.accounts.model.Accounts">
+		UPDATE CCM01 SET
+		CCMU02=#{ccmu02,jdbcType=VARCHAR},
+		CCMU03=#{ccmu03,jdbcType=VARCHAR},
+		CCMU04=#{ccmu04,jdbcType=VARCHAR},
+		CCMU05=#{ccmu05,jdbcType=VARCHAR},
+		CCMU06=#{ccmu06,jdbcType=VARCHAR},
+		CCMU07=#{ccmu07,jdbcType=TIMESTAMP},
+		CCMU08=#{ccmu08,jdbcType=VARCHAR},
+		CCMU09=#{ccmu09,jdbcType=VARCHAR},
+		CCMU10=#{ccmu10,jdbcType=NUMERIC},
+		CCMU11=#{ccmu11,jdbcType=TIMESTAMP},
+		CCMU12=#{ccmu12,jdbcType=NUMERIC},
+		CCMU13=#{ccmu13,jdbcType=NUMERIC},
+		CCMU14=#{ccmu14,jdbcType=VARCHAR},
+		CCMU15=#{ccmu15,jdbcType=VARCHAR},
+		CCMU16=#{ccmu16,jdbcType=TIMESTAMP},
+		CCMU17=#{ccmu17,jdbcType=NUMERIC},
+		CCMU18=#{ccmu18,jdbcType=VARCHAR},
+		CCMU19=#{ccmu19,jdbcType=NUMERIC},
+		CCMU20=#{ccmu20,jdbcType=NUMERIC},
+		CCMU21=#{ccmu21,jdbcType=NUMERIC},
+		CCMU22=#{ccmu22,jdbcType=VARCHAR},
+		CCPR08=#{ccpr08,jdbcType=VARCHAR}
+		WHERE
+		CCMU01=#{ccmu01}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Accounts">
+		SELECT <include refid="columns"/>
+		FROM CCM01
+		WHERE
+		CCMU01=#{ccmu01}
+	</select>
+	
+	<select id="getAccountsByName"  resultMap="Accounts">
+		SELECT <include refid="columns"/>
+		FROM CCM01
+		WHERE
+		ccmu02=#{ccmu02}
+		<if test="@Ognl@isNotEmpty(ccmu17)"> AND CCMU17  =#{ccmu17} </if>
+	</select>
+	
+	<select id="getAll" resultMap="Accounts">
+		SELECT <include refid="columns"/>
+		FROM CCM01   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by CCMU01  desc
+		</if>
+	</select>
+	<!--  -->
+	<update id="updateAccounts" parameterType="java.util.Map">
+		UPDATE CCM01 t SET
+		<if test="@Ognl@isNotEmpty(ccmu03)"> t.CCMU03=#{ccmu03,jdbcType=VARCHAR}, </if>
+		<if test="@Ognl@isNotEmpty(ccmu08)"> t.CCMU08=#{ccmu08,jdbcType=VARCHAR}, </if>
+		<if test="@Ognl@isNotEmpty(ccmu09)"> t.CCMU09=#{ccmu09,jdbcType=VARCHAR}, </if>
+		<if test="@Ognl@isNotEmpty(ccmu14)"> t.CCMU14=#{ccmu14,jdbcType=VARCHAR}, </if>
+		t.ccmu01=t.ccmu01
+		WHERE
+		t.CCMU01=#{ccmu01}
+	</update>
+	<!-- 根据用户编号修改用户密码 -->
+	<update id="updatePassword" parameterType="java.util.Map">
+		UPDATE CCM01 SET
+		CCMU03=#{password,jdbcType=VARCHAR}   
+		WHERE
+		CCMU01=#{accountId}
+	</update>
+	
+	<!-- 修改手机激活状态 -->
+	<update id="updateTelephoneStatus" parameterType="hashmap">
+		UPDATE CCM01 SET
+		CCMU13=#{telephoneStatus,jdbcType=NUMERIC}
+		WHERE
+		CCMU01=#{accountId}
+	</update>
+	<!-- 修改邮箱激活状态 -->
+	<update id="updateEmailStatus" parameterType="hashmap">
+		UPDATE CCM01 SET
+		CCMU12=#{emailStatus,jdbcType=NUMERIC} 
+		WHERE
+		CCMU01=#{accountId}
+	</update>
+	<!-- 验证密保问题 -->
+	<select id="getTotalByValidate" resultType="java.lang.Long">
+		select count(*) from CCM01 
+		where  1=1
+		<if test="@Ognl@isNotEmpty(ccmu02)"> and ccmu02=#{ccmu02} </if>
+		<if test="@Ognl@isNotEmpty(ccmu04)"> and ccmu04=#{ccmu04} </if>
+		<if test="@Ognl@isNotEmpty(ccmu05)"> and ccmu05=#{ccmu05} </if>
+		<if test="@Ognl@isNotEmpty(ccmu08)"> and ccmu08=#{ccmu08} </if>
+		<if test="@Ognl@isNotEmpty(ccmu09)"> and ccmu09=#{ccmu09} </if>
+		<if test="@Ognl@isNotEmpty(ccmu12)"> and ccmu12=#{ccmu12} </if>
+		<if test="@Ognl@isNotEmpty(ccmu13)"> and ccmu13=#{ccmu13} </if>
+	</select>
+	<!-- 修改用户密码 -->
+	<update id="updatePwd" parameterType="hashmap">
+		UPDATE CCM01 SET
+		ccmu03=#{ccmu03} 
+		WHERE 1=1
+		<if test="@Ognl@isNotEmpty(ccmu02)"> and ccmu02=#{ccmu02} </if>
+		<if test="@Ognl@isNotEmpty(ccmu04)"> and ccmu04=#{ccmu04} </if>
+		<if test="@Ognl@isNotEmpty(ccmu05)"> and ccmu05=#{ccmu05} </if>
+		<if test="@Ognl@isNotEmpty(ccmu08)"> and ccmu08=#{ccmu08} </if>
+		<if test="@Ognl@isNotEmpty(ccmu09)"> and ccmu09=#{ccmu09} </if>
+		<if test="@Ognl@isNotEmpty(ccmu12)"> and ccmu12=#{ccmu12} </if>
+		<if test="@Ognl@isNotEmpty(ccmu13)"> and ccmu13=#{ccmu13} </if>
+	</update>
+	<!-- 个人账号维护页面查询 -->
+	<select id="getAllByFilter" resultType="java.util.HashMap">
+		SELECT  CCMU01,AAC001,CCMU02,CCMU03, CCMU10N as CCMU10,AAC002,AAC003,AAC004,y.name as CCMU22,AAC005,AAC006,AAC009,BAB305,
+		AAC011,AAE005,AAC017,AAC024,AAB301,AAC00B,AAC00C,AAC00D,AAC022,AAC023,AAC025,AAC032,AAC033,AAC034,AAC035,AAC036,
+		AAE007,AAE015,AAC180,AAC181,AAC00E,AAC00A,AAE013,AAE019,AAE020,AAE036,CCZY06
+	    
+	    FROM V_AC01
+	    left join TAB_DATASOURCES y on y.code = cczy06      
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by CCMU01  desc
+		</if>
+	</select>
+	<!-- 单位账号维护页面查询 -->
+	<select id="getAllByCorp" resultType="java.util.HashMap">
+		SELECT  aab001,ccmu01,ccmu02,ccmu03,ccmu10n as ccmu10,aab004,aab019,aab020,aab022,aae004,aae005,y.name as ccmu22,
+		aaa021,aab007,aab010,aab011,aab003,aab021,aab013,aab014,aab023,aab048,aae119,aae019,aae036,aae020,cczy06
+	    FROM V_AB01
+	    left join TAB_DATASOURCES y on y.code = cczy06      
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by aae036  desc
+		</if>
+	</select>
+</mapper>

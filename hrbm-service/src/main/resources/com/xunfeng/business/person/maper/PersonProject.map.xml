@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.person.model.PersonProject">
+	<resultMap id="PersonProject" type="com.xunfeng.business.person.model.PersonProject">
+		<id property="aac0e0" column="AAC0E0" jdbcType="NUMERIC"/>
+		<result property="aac001" column="AAC001" jdbcType="NUMERIC"/>
+		<result property="aac0e1" column="AAC0E1" jdbcType="VARCHAR"/>
+		<result property="aac0e2" column="AAC0E2" jdbcType="VARCHAR"/>
+		<result property="aac0e3" column="AAC0E3" jdbcType="DATE"/>
+		<result property="aac0e4" column="AAC0E4" jdbcType="DATE"/>
+		<result property="aac0e5" column="AAC0E5" jdbcType="VARCHAR"/>
+		<result property="aac0e6" column="AAC0E6" jdbcType="VARCHAR"/>
+		<result property="aac0e7" column="AAC0E7" jdbcType="VARCHAR"/>
+		<result property="aac0e8" column="AAC0E8" jdbcType="VARCHAR"/>
+		<result property="aac0e9" column="AAC0E9" jdbcType="VARCHAR"/>
+		<result property="aac0ea" column="AAC0EA" jdbcType="VARCHAR"/>
+		<result property="aae013" column="AAE013" jdbcType="VARCHAR"/>
+		<result property="aae011" column="AAE011" jdbcType="VARCHAR"/>
+		<result property="aae017" column="AAE017" jdbcType="VARCHAR"/>
+		<result property="aae036" column="AAE036" jdbcType="TIMESTAMP"/>
+		<result property="aae019" column="AAE019" jdbcType="VARCHAR"/>
+		<result property="aae020" column="AAE020" jdbcType="VARCHAR"/>
+		<result property="aae022" column="AAE022" jdbcType="VARCHAR"/>
+		<result property="cczy06" column="CCZY06" jdbcType="VARCHAR"/>
+		<result property="ccpr05" column="CCPR05" jdbcType="TIMESTAMP"/>
+		<result property="ccpr06" column="CCPR06" jdbcType="VARCHAR"/>
+		<result property="ccpr07" column="CCPR07" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+		<result property="div001" column="DIV001" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		AAC0E0,AAC001,AAC0E1,AAC0E2,AAC0E3,AAC0E4,AAC0E5,AAC0E6,AAC0E7,AAC0E8,AAC0E9,AAC0EA,AAE013,AAE011,AAE017,AAE036,AAE019,AAE020,AAE022,CCZY06,CCPR05,CCPR06,CCPR07,CCPR08,DIV001
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(aac0e0)"> AND AAC0E0  =#{aac0e0} </if>
+			<if test="@Ognl@isNotEmpty(aac001)"> AND AAC001  =#{aac001} </if>
+			<if test="@Ognl@isNotEmpty(aac0e1)"> AND AAC0E1  LIKE #{aac0e1}  </if>
+			<if test="@Ognl@isNotEmpty(aac0e2)"> AND AAC0E2  LIKE #{aac0e2}  </if>
+			<if test="@Ognl@isNotEmpty(aac0e3)"> AND AAC0E3  =#{aac0e3} </if>
+			<if test="@Ognl@isNotEmpty(beginaac0e3)"> AND AAC0E3  >=#{beginaac0e3,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaac0e3)"> AND AAC0E3 <![CDATA[ <=#{endaac0e3,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aac0e4)"> AND AAC0E4  =#{aac0e4} </if>
+			<if test="@Ognl@isNotEmpty(beginaac0e4)"> AND AAC0E4  >=#{beginaac0e4,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaac0e4)"> AND AAC0E4 <![CDATA[ <=#{endaac0e4,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aac0e5)"> AND AAC0E5  LIKE #{aac0e5}  </if>
+			<if test="@Ognl@isNotEmpty(aac0e6)"> AND AAC0E6  LIKE #{aac0e6}  </if>
+			<if test="@Ognl@isNotEmpty(aac0e7)"> AND AAC0E7  LIKE #{aac0e7}  </if>
+			<if test="@Ognl@isNotEmpty(aac0e8)"> AND AAC0E8  LIKE #{aac0e8}  </if>
+			<if test="@Ognl@isNotEmpty(aac0e9)"> AND AAC0E9  LIKE #{aac0e9}  </if>
+			<if test="@Ognl@isNotEmpty(aac0ea)"> AND AAC0EA  LIKE #{aac0ea}  </if>
+			<if test="@Ognl@isNotEmpty(aae013)"> AND AAE013  LIKE #{aae013}  </if>
+			<if test="@Ognl@isNotEmpty(aae011)"> AND AAE011  LIKE #{aae011}  </if>
+			<if test="@Ognl@isNotEmpty(aae017)"> AND AAE017  LIKE #{aae017}  </if>
+			<if test="@Ognl@isNotEmpty(aae036)"> AND AAE036  =#{aae036} </if>
+			<if test="@Ognl@isNotEmpty(beginaae036)"> AND AAE036  >=#{beginaae036,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaae036)"> AND AAE036 <![CDATA[ <=#{endaae036,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aae019)"> AND AAE019  LIKE #{aae019}  </if>
+			<if test="@Ognl@isNotEmpty(aae020)"> AND AAE020  LIKE #{aae020}  </if>
+			<if test="@Ognl@isNotEmpty(aae022)"> AND AAE022  LIKE #{aae022}  </if>
+			<if test="@Ognl@isNotEmpty(cczy06)"> AND CCZY06  LIKE #{cczy06}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr05)"> AND CCPR05  =#{ccpr05} </if>
+			<if test="@Ognl@isNotEmpty(beginccpr05)"> AND CCPR05  >=#{beginccpr05,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endccpr05)"> AND CCPR05 <![CDATA[ <=#{endccpr05,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(ccpr06)"> AND CCPR06  LIKE #{ccpr06}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr07)"> AND CCPR07  LIKE #{ccpr07}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr08)"> AND CCPR08  LIKE #{ccpr08}  </if>
+			<if test="@Ognl@isNotEmpty(div001)"> AND DIV001  =#{div001} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.person.model.PersonProject">
+		INSERT INTO AC0E
+		(AAC0E0,AAC001,AAC0E1,AAC0E2,AAC0E3,AAC0E4,AAC0E5,AAC0E6,AAC0E7,AAC0E8,AAC0E9,AAC0EA,AAE013,AAE011,AAE017,AAE036,AAE019,AAE020,AAE022,CCZY06,CCPR05,CCPR06,CCPR07,CCPR08,DIV001)
+		VALUES
+		(#{aac0e0,jdbcType=NUMERIC}, #{aac001,jdbcType=NUMERIC}, #{aac0e1,jdbcType=VARCHAR}, #{aac0e2,jdbcType=VARCHAR}, #{aac0e3,jdbcType=DATE}, #{aac0e4,jdbcType=DATE}, #{aac0e5,jdbcType=VARCHAR}, #{aac0e6,jdbcType=VARCHAR}, #{aac0e7,jdbcType=VARCHAR}, #{aac0e8,jdbcType=VARCHAR}, #{aac0e9,jdbcType=VARCHAR}, #{aac0ea,jdbcType=VARCHAR}, #{aae013,jdbcType=VARCHAR}, #{aae011,jdbcType=VARCHAR}, #{aae017,jdbcType=VARCHAR}, #{aae036,jdbcType=TIMESTAMP}, #{aae019,jdbcType=VARCHAR}, #{aae020,jdbcType=VARCHAR}, #{aae022,jdbcType=VARCHAR}, #{cczy06,jdbcType=VARCHAR}, #{ccpr05,jdbcType=TIMESTAMP}, #{ccpr06,jdbcType=VARCHAR}, #{ccpr07,jdbcType=VARCHAR}, #{ccpr08,jdbcType=VARCHAR}, #{div001,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM AC0E 
+		WHERE
+		AAC0E0=#{aac0e0}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.person.model.PersonProject">
+		UPDATE AC0E SET
+		AAC001=#{aac001,jdbcType=NUMERIC},
+		AAC0E1=#{aac0e1,jdbcType=VARCHAR},
+		AAC0E2=#{aac0e2,jdbcType=VARCHAR},
+		AAC0E3=#{aac0e3,jdbcType=DATE},
+		AAC0E4=#{aac0e4,jdbcType=DATE},
+		AAC0E5=#{aac0e5,jdbcType=VARCHAR},
+		AAC0E6=#{aac0e6,jdbcType=VARCHAR},
+		AAC0E7=#{aac0e7,jdbcType=VARCHAR},
+		AAC0E8=#{aac0e8,jdbcType=VARCHAR},
+		AAC0E9=#{aac0e9,jdbcType=VARCHAR},
+		AAC0EA=#{aac0ea,jdbcType=VARCHAR},
+		AAE013=#{aae013,jdbcType=VARCHAR},
+		AAE011=#{aae011,jdbcType=VARCHAR},
+		AAE017=#{aae017,jdbcType=VARCHAR},
+		AAE036=#{aae036,jdbcType=TIMESTAMP},
+		AAE019=#{aae019,jdbcType=VARCHAR},
+		AAE020=#{aae020,jdbcType=VARCHAR},
+		AAE022=#{aae022,jdbcType=VARCHAR},
+		CCZY06=#{cczy06,jdbcType=VARCHAR},
+		CCPR05=#{ccpr05,jdbcType=TIMESTAMP},
+		CCPR06=#{ccpr06,jdbcType=VARCHAR},
+		CCPR07=#{ccpr07,jdbcType=VARCHAR},
+		CCPR08=#{ccpr08,jdbcType=VARCHAR},
+		DIV001=#{div001,jdbcType=NUMERIC}
+		WHERE
+		AAC0E0=#{aac0e0}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="PersonProject">
+		SELECT <include refid="columns"/>
+		FROM AC0E
+		WHERE
+		AAC0E0=#{aac0e0}
+	</select>
+	
+	<select id="getAll" resultMap="PersonProject">
+		SELECT <include refid="columns"/>
+		FROM AC0E   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by AAC0E0  desc
+		</if>
+	</select>
+</mapper>

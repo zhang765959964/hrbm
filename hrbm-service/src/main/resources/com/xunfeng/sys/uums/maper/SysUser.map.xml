@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.sys.uums.model.SysUser">
+	<resultMap id="SysUser" type="com.xunfeng.sys.uums.model.SysUser">
+		<id property="acd230" column="ACD230" jdbcType="NUMERIC"/>
+		<result property="acd200" column="ACD200" jdbcType="NUMERIC"/>
+		<result property="aac001" column="AAC001" jdbcType="NUMERIC"/>
+		<result property="aac002" column="AAC002" jdbcType="VARCHAR"/>
+		<result property="aac003" column="AAC003" jdbcType="VARCHAR"/>
+		<result property="aac004" column="AAC004" jdbcType="VARCHAR"/>
+		<result property="aac011" column="AAC011" jdbcType="VARCHAR"/>
+		<result property="aac006" column="AAC006" jdbcType="TIMESTAMP"/>
+		<result property="aac009" column="AAC009" jdbcType="VARCHAR"/>
+		<result property="aae005" column="AAE005" jdbcType="VARCHAR"/>
+		<result property="acd231" column="ACD231" jdbcType="VARCHAR"/>
+		<result property="aac015" column="AAC015" jdbcType="VARCHAR"/>
+		<result property="acc02i" column="ACC02I" jdbcType="VARCHAR"/>
+		<result property="acd232" column="ACD232" jdbcType="VARCHAR"/>
+		<result property="acd233" column="ACD233" jdbcType="VARCHAR"/>
+		<result property="aac026" column="AAC026" jdbcType="VARCHAR"/>
+		<result property="acd234" column="ACD234" jdbcType="NUMERIC"/>
+		<result property="aae013" column="AAE013" jdbcType="VARCHAR"/>
+		<result property="aae011" column="AAE011" jdbcType="VARCHAR"/>
+		<result property="aae019" column="AAE019" jdbcType="VARCHAR"/>
+		<result property="aae020" column="AAE020" jdbcType="VARCHAR"/>
+		<result property="aae017" column="AAE017" jdbcType="VARCHAR"/>
+		<result property="aae036" column="AAE036" jdbcType="TIMESTAMP"/>
+		<result property="cczh01" column="CCZH01" jdbcType="VARCHAR"/>
+		<result property="cczh02" column="CCZH02" jdbcType="VARCHAR"/>
+		<result property="cczh03" column="CCZH03" jdbcType="VARCHAR"/>
+		<result property="cczh04" column="CCZH04" jdbcType="VARCHAR"/>
+		<result property="cczh05" column="CCZH05" jdbcType="VARCHAR"/>
+		<result property="cczh06" column="CCZH06" jdbcType="VARCHAR"/>
+		<result property="ctzb01" column="CTZB01" jdbcType="NUMERIC"/>
+		<result property="cczh07" column="CCZH07" jdbcType="VARCHAR"/>
+		<result property="cczh08" column="CCZH08" jdbcType="VARCHAR"/>
+		<result property="rol001" column="ROL001" jdbcType="NUMERIC"/>
+		<result property="dep001" column="DEP001" jdbcType="NUMERIC"/>
+		<result property="email" column="EMAIL" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+		<result property="theme" column="THEME" jdbcType="VARCHAR"/>
+		<result property="cczh09" column="CCZH09" jdbcType="NUMERIC"/>
+		<result property="acd235" column="ACD235" jdbcType="NUMERIC"/>
+	</resultMap>
+	<sql id="basemanager">
+	 !='xfmanager'
+	</sql>
+	 
+	<sql id="columns">
+		CD23.ACD230,CD23.ACD200,CD23.AAC001,CD23.AAC002,CD23.AAC003,CD23.AAC004,CD23.AAC011,CD23.AAC006,CD23.AAC009,CD23.AAE005,CD23.ACD231,CD23.AAC015,CD23.ACC02I,CD23.ACD232,CD23.ACD233,CD23.AAC026,CD23.ACD234,CD23.AAE013,CD23.AAE011,CD23.AAE019,CD23.AAE020,CD23.AAE017,CD23.AAE036,CD23.CCZH01,CD23.CCZH02,CD23.CCZH03,CD23.CCZH04,CD23.CCZH05,CD23.CCZH06,CD23.CTZB01,CD23.CCZH07,CD23.CCZH08,CD23.ROL001,CD23.DEP001,CD23.EMAIL,CD23.CCPR08,CD23.THEME,CD23.CCZH09,CD23.ACD235
+	 </sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(acd230)"> AND CD23.ACD230  =#{acd230} </if>
+			<if test="@Ognl@isNotEmpty(noacd230)"> AND CD23.ACD230  !=#{noacd230} </if>
+			<if test="@Ognl@isNotEmpty(acd200)"> AND CD23.ACD200  =#{acd200} </if>
+			<if test="@Ognl@isNotEmpty(aac001)"> AND CD23.AAC001  =#{aac001} </if>
+			<if test="@Ognl@isNotEmpty(aac002)"> AND CD23.AAC002  LIKE #{aac002}  </if>
+			<if test="@Ognl@isNotEmpty(aac003)"> AND CD23.AAC003  LIKE #{aac003}  </if>
+			<if test="@Ognl@isNotEmpty(aac004)"> AND CD23.AAC004  LIKE #{aac004}  </if>
+			<if test="@Ognl@isNotEmpty(aac011)"> AND CD23.AAC011  LIKE #{aac011}  </if>
+			<if test="@Ognl@isNotEmpty(aac006)"> AND CD23.AAC006  =#{aac006} </if>
+			<if test="@Ognl@isNotEmpty(beginaac006)"> AND CD23.AAC006  >=#{beginaac006,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaac006)"> AND CD23.AAC006 <![CDATA[ <=#{endaac006,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aac009)"> AND CD23.AAC009  LIKE #{aac009}  </if>
+			<if test="@Ognl@isNotEmpty(aae005)"> AND CD23.AAE005  LIKE #{aae005}  </if>
+			<if test="@Ognl@isNotEmpty(acd231)"> AND CD23.ACD231  LIKE #{acd231}  </if>
+			<if test="@Ognl@isNotEmpty(aac015)"> AND CD23.AAC015  LIKE #{aac015}  </if>
+			<if test="@Ognl@isNotEmpty(acc02i)"> AND CD23.ACC02I  LIKE #{acc02i}  </if>
+			<if test="@Ognl@isNotEmpty(acd232)"> AND CD23.ACD232  LIKE #{acd232}  </if>
+			<if test="@Ognl@isNotEmpty(acd233)"> AND CD23.ACD233  LIKE #{acd233}  </if>
+			<if test="@Ognl@isNotEmpty(aac026)"> AND CD23.AAC026  LIKE #{aac026}  </if>
+			<if test="@Ognl@isNotEmpty(acd234)"> AND CD23.ACD234  =#{acd234} </if>
+			<if test="@Ognl@isNotEmpty(aae013)"> AND CD23.AAE013  LIKE #{aae013}  </if>
+			<if test="@Ognl@isNotEmpty(aae011)"> AND CD23.AAE011  LIKE #{aae011}  </if>
+			<if test="@Ognl@isNotEmpty(aae019)"> AND CD23.AAE019  LIKE #{aae019}  </if>
+			<if test="@Ognl@isNotEmpty(aae020)"> AND CD23.AAE020  LIKE #{aae020}  </if>
+			<if test="@Ognl@isNotEmpty(aae017)"> AND CD23.AAE017  LIKE #{aae017}  </if>
+			<if test="@Ognl@isNotEmpty(aae036)"> AND CD23.AAE036  =#{aae036} </if>
+			<if test="@Ognl@isNotEmpty(beginaae036)"> AND CD23.AAE036  >=#{beginaae036,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaae036)"> AND CD23.AAE036 <![CDATA[ <=#{endaae036,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(cczh01)"> AND CD23.CCZH01  LIKE #{cczh01}  </if>
+			<if test="@Ognl@isNotEmpty(cczh02)"> AND CD23.CCZH02  LIKE #{cczh02}  </if>
+			<if test="@Ognl@isNotEmpty(cczh03)"> AND CD23.CCZH03  LIKE #{cczh03}  </if>
+			<if test="@Ognl@isNotEmpty(cczh04)"> AND CD23.CCZH04  LIKE #{cczh04}  </if>
+			<if test="@Ognl@isNotEmpty(cczh05)"> AND CD23.CCZH05  LIKE #{cczh05}  </if>
+			<if test="@Ognl@isNotEmpty(cczh06)"> AND CD23.CCZH06  LIKE #{cczh06}  </if>
+			<if test="@Ognl@isNotEmpty(ctzb01)"> AND CD23.CTZB01  =#{ctzb01} </if>
+			<if test="@Ognl@isNotEmpty(cczh07)"> AND CD23.CCZH07  LIKE #{cczh07}  </if>
+			<if test="@Ognl@isNotEmpty(cczh08)"> AND CD23.CCZH08  LIKE #{cczh08}  </if>
+			<if test="@Ognl@isNotEmpty(rol001)"> AND CD23.ROL001  =#{rol001} </if>
+			<if test="@Ognl@isNotEmpty(dep001)"> AND CD23.DEP001  =#{dep001} </if>
+			<if test="@Ognl@isNotEmpty(noDepUser)"> AND CD23.DEP001  is null </if>
+			<if test="@Ognl@isNotEmpty(email)"> AND CD23.EMAIL  LIKE #{email}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr08)"> AND CD23.CCPR08  LIKE #{ccpr08}  </if>
+			<if test="@Ognl@isNotEmpty(theme)"> AND CD23.THEME  LIKE #{theme}  </if>
+			<if test="@Ognl@isNotEmpty(cczh09)"> AND CD23.CCZH09  =#{cczh09} </if>
+			<if test="@Ognl@isNotEmpty(findKeyword)"> AND ( CD23.AAC003  LIKE #{findKeyword} OR CD23.AAE005  LIKE #{findKeyword} OR CD23.CCZH01  LIKE #{findKeyword}  OR CD20.ACD202 LIKE #{findKeyword} OR OA_DEP.DEP002  LIKE #{findKeyword}) </if>
+			<if test="@Ognl@isNotEmpty(acd235)"> AND CD23.ACD235  =#{acd235} </if>
+			<choose>
+			<when test="@Ognl@isNotEmpty(view_sub)">
+			<if test="@Ognl@isNotEmpty(curr_org)">
+				AND CD23.ACD200 IN(SELECT  ACD200
+			    FROM CD20 M START WITH M.ACD200=#{curr_org} CONNECT BY M.AAB034=PRIOR M.ACD200)
+		    </if>
+			</when>
+			<otherwise>
+			<if test="@Ognl@isNotEmpty(curr_org)">
+			 AND CD23.ACD200 = #{curr_org}</if>
+			</otherwise>
+			</choose>
+			 AND CD23.CCZH01  <include refid="basemanager" />
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.sys.uums.model.SysUser">
+		INSERT INTO CD23
+		(ACD230,ACD200,AAC001,AAC002,AAC003,AAC004,AAC011,AAC006,AAC009,AAE005,ACD231,AAC015,ACC02I,ACD232,ACD233,AAC026,ACD234,AAE013,AAE011,AAE019,AAE020,AAE017,AAE036,CCZH01,CCZH02,CCZH03,CCZH04,CCZH05,CCZH06,CTZB01,CCZH07,CCZH08,ROL001,DEP001,EMAIL,CCPR08,THEME,CCZH09,ACD235)
+		VALUES
+		(#{acd230,jdbcType=NUMERIC}, #{acd200,jdbcType=NUMERIC}, #{aac001,jdbcType=NUMERIC}, #{aac002,jdbcType=VARCHAR}, #{aac003,jdbcType=VARCHAR}, #{aac004,jdbcType=VARCHAR}, #{aac011,jdbcType=VARCHAR}, #{aac006,jdbcType=TIMESTAMP}, #{aac009,jdbcType=VARCHAR}, #{aae005,jdbcType=VARCHAR}, #{acd231,jdbcType=VARCHAR}, #{aac015,jdbcType=VARCHAR}, #{acc02i,jdbcType=VARCHAR}, #{acd232,jdbcType=VARCHAR}, #{acd233,jdbcType=VARCHAR}, #{aac026,jdbcType=VARCHAR}, #{acd234,jdbcType=NUMERIC}, #{aae013,jdbcType=VARCHAR}, #{aae011,jdbcType=VARCHAR}, #{aae019,jdbcType=VARCHAR}, #{aae020,jdbcType=VARCHAR}, #{aae017,jdbcType=VARCHAR}, #{aae036,jdbcType=TIMESTAMP}, #{cczh01,jdbcType=VARCHAR}, #{cczh02,jdbcType=VARCHAR}, #{cczh03,jdbcType=VARCHAR}, #{cczh04,jdbcType=VARCHAR}, #{cczh05,jdbcType=VARCHAR}, #{cczh06,jdbcType=VARCHAR}, #{ctzb01,jdbcType=NUMERIC}, #{cczh07,jdbcType=VARCHAR}, #{cczh08,jdbcType=VARCHAR}, #{rol001,jdbcType=NUMERIC}, #{dep001,jdbcType=NUMERIC}, #{email,jdbcType=VARCHAR}, #{ccpr08,jdbcType=VARCHAR}, #{theme,jdbcType=VARCHAR}, #{cczh09,jdbcType=NUMERIC}, #{acd235,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM CD23 
+		WHERE
+		ACD230=#{acd230}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.sys.uums.model.SysUser">
+		UPDATE CD23 SET
+		ACD200=#{acd200,jdbcType=NUMERIC},
+		AAC001=#{aac001,jdbcType=NUMERIC},
+		AAC002=#{aac002,jdbcType=VARCHAR},
+		AAC003=#{aac003,jdbcType=VARCHAR},
+		AAC004=#{aac004,jdbcType=VARCHAR},
+		AAC011=#{aac011,jdbcType=VARCHAR},
+		AAC006=#{aac006,jdbcType=TIMESTAMP},
+		AAC009=#{aac009,jdbcType=VARCHAR},
+		AAE005=#{aae005,jdbcType=VARCHAR},
+		ACD231=#{acd231,jdbcType=VARCHAR},
+		AAC015=#{aac015,jdbcType=VARCHAR},
+		ACC02I=#{acc02i,jdbcType=VARCHAR},
+		ACD232=#{acd232,jdbcType=VARCHAR},
+		ACD233=#{acd233,jdbcType=VARCHAR},
+		AAC026=#{aac026,jdbcType=VARCHAR},
+		ACD234=#{acd234,jdbcType=NUMERIC},
+		AAE013=#{aae013,jdbcType=VARCHAR},
+		AAE011=#{aae011,jdbcType=VARCHAR},
+		AAE019=#{aae019,jdbcType=VARCHAR},
+		AAE020=#{aae020,jdbcType=VARCHAR},
+		AAE017=#{aae017,jdbcType=VARCHAR},
+		AAE036=#{aae036,jdbcType=TIMESTAMP},
+		CCZH01=#{cczh01,jdbcType=VARCHAR},
+		CCZH02=#{cczh02,jdbcType=VARCHAR},
+		CCZH03=#{cczh03,jdbcType=VARCHAR},
+		CCZH04=#{cczh04,jdbcType=VARCHAR},
+		CCZH05=#{cczh05,jdbcType=VARCHAR},
+		CCZH06=#{cczh06,jdbcType=VARCHAR},
+		CTZB01=#{ctzb01,jdbcType=NUMERIC},
+		CCZH07=#{cczh07,jdbcType=VARCHAR},
+		CCZH08=#{cczh08,jdbcType=VARCHAR},
+		ROL001=#{rol001,jdbcType=NUMERIC},
+		DEP001=#{dep001,jdbcType=NUMERIC},
+		EMAIL=#{email,jdbcType=VARCHAR},
+		CCPR08=#{ccpr08,jdbcType=VARCHAR},
+		THEME=#{theme,jdbcType=VARCHAR},
+		CCZH09=#{cczh09,jdbcType=NUMERIC},
+		ACD235=#{acd235,jdbcType=NUMERIC}
+		WHERE
+		ACD230=#{acd230}
+	</update>
+	<update id="udpateUserDept" parameterType="java.util.Map">
+		UPDATE CD23 SET
+		ACD200=#{acd200,jdbcType=NUMERIC},
+		DEP001=#{dep001,jdbcType=NUMERIC}
+		WHERE
+		ACD230 in
+		  <foreach collection="acd230s" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+	</update>
+	<update id="delDeptUser" parameterType="java.util.Map">
+		UPDATE CD23 SET
+		DEP001=null
+		WHERE
+		DEP001=#{dep001,jdbcType=NUMERIC}
+	</update>	  
+	<update id="udpateUserRoles" parameterType="com.xunfeng.sys.uums.model.SysUser">
+				UPDATE CD23 SET 
+				CCZH03=#{cczh03,jdbcType=VARCHAR}
+		        WHERE ACD230 = #{acd230}
+	</update>  
+	<select id="getUserListByUserIds" parameterType="java.util.Map" resultMap="SysUser">
+		SELECT <include refid="columns"/>
+		FROM CD23
+		WHERE
+		ACD230 in 
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        AND CCZH01  <include refid="basemanager" />
+	</select>
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysUser">
+		SELECT <include refid="columns"/>
+		FROM CD23
+		WHERE
+		ACD230=#{acd230}
+		AND CCZH01  <include refid="basemanager" />
+	</select>
+	
+	<select id="getAll" resultMap="SysUser">
+		SELECT <include refid="columns"/> ,CD20.ACD202,OA_DEP.DEP002
+		FROM CD23  LEFT JOIN CD20 ON CD20.ACD200 = CD23.ACD200 LEFT JOIN OA_DEP ON OA_DEP.DEP001 = CD23.DEP001
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ACD230  desc
+		</if>
+	</select>
+	
+	<select id="getByUserName" parameterType="java.lang.String" resultMap="SysUser">
+		SELECT <include refid="columns"/> 
+		from CD23 
+		where CCZH01=#{userName}
+	</select>
+<!-- 	<select id="getUserListByRoleId" parameterType="java.lang.Long" resultMap="SysUser"> -->
+<!-- 		SELECT <include refid="columns"/>  -->
+<!-- 		  from CD23 t,WS_M_SYS_ROLE_USER u -->
+<!--         where t.acd230=u.user_id  and u.role_id=#{roleId} -->
+<!-- 	</select> -->
+	<!--     获取角色下的用户 -->
+	<select id="getUserListByRoleId" parameterType="com.xunfeng.sys.uums.model.SysUser" resultMap="SysUser">
+		SELECT <include refid="columns"/>  ,CD20.ACD202,OA_DEP.DEP002
+		from CD23  LEFT JOIN CD20 ON CD20.ACD200 = CD23.ACD200 LEFT JOIN OA_DEP ON OA_DEP.DEP001 = CD23.DEP001
+		WHERE #{roleId}  IN  (SELECT COLUMN_VALUE FROM TABLE(SPLIT(CD23.CCZH03)))
+		AND CD23.CCZH01  <include refid="basemanager" />
+		<if test="@Ognl@isNotEmpty(findKeyword)"> AND ( CD23.AAC003  LIKE #{findKeyword} OR CD23.AAE005  LIKE #{findKeyword} OR CD23.CCZH01  LIKE #{findKeyword}  OR CD20.ACD202 LIKE #{findKeyword} OR OA_DEP.DEP002  LIKE #{findKeyword}) </if>
+	</select>
+	<!--    获取没有该角色的所有用户 -->
+	<select id="getUserListByNoRoleId" parameterType="com.xunfeng.sys.uums.model.SysUser" resultMap="SysUser">
+		SELECT <include refid="columns"/>  ,CD20.ACD202,OA_DEP.DEP002
+		FROM CD23  LEFT JOIN CD20 ON CD20.ACD200 = CD23.ACD200 LEFT JOIN OA_DEP ON OA_DEP.DEP001 = CD23.DEP001
+		WHERE (#{roleId}  NOT IN  (SELECT COLUMN_VALUE FROM TABLE(SPLIT(CD23.CCZH03))) OR CD23.CCZH03 IS NULL)
+		AND CD23.CCZH01  <include refid="basemanager" />
+		AND CD20.ACD200 = #{acd200}
+		<if test="@Ognl@isNotEmpty(findKeyword)"> AND ( CD23.AAC003  LIKE #{findKeyword} OR CD23.AAE005  LIKE #{findKeyword} OR CD23.CCZH01  LIKE #{findKeyword}  OR CD20.ACD202 LIKE #{findKeyword} OR OA_DEP.DEP002  LIKE #{findKeyword}) </if>
+	</select>
+		<!--    获取当该机构下其他部门人员列表 -->
+	<select id="getUserListOtherDeptPage" parameterType="com.xunfeng.sys.uums.model.SysUser" resultMap="SysUser">
+		SELECT <include refid="columns"/>  ,CD20.ACD202,OA_DEP.DEP002
+		from CD23  LEFT JOIN CD20 ON CD20.ACD200 = CD23.ACD200 LEFT JOIN OA_DEP ON OA_DEP.DEP001 = CD23.DEP001
+		where  CD23.ACD200 = #{acd200}  AND CD23.DEP001 != #{dep001} 
+		AND CD23.CCZH01  <include refid="basemanager" />
+		<if test="@Ognl@isNotEmpty(findKeyword)"> AND ( CD23.AAC003  LIKE #{findKeyword} OR CD23.AAE005  LIKE #{findKeyword} OR CD23.CCZH01  LIKE #{findKeyword}  OR CD20.ACD202 LIKE #{findKeyword} OR OA_DEP.DEP002  LIKE #{findKeyword}) </if>
+	</select>
+</mapper>

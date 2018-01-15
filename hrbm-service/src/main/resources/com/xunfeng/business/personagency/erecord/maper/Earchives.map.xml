@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.erecord.model.EArchives">
+	<resultMap id="EArchives" type="com.xunfeng.business.personagency.erecord.model.EArchives">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="catalogId" column="CATALOG_ID" jdbcType="NUMERIC"/>
+		<result property="personId" column="PERSON_ID" jdbcType="NUMERIC"/>
+		<result property="archivesId" column="ARCHIVES_ID" jdbcType="NUMERIC"/>
+		<result property="imageSize" column="IMAGE_SIZE" jdbcType="NUMERIC"/>
+		<result property="imagePath" column="IMAGE_PATH" jdbcType="VARCHAR"/>
+		<result property="sortNum" column="SORT_NUM" jdbcType="NUMERIC"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="creatDate" column="CREAT_DATE" jdbcType="TIMESTAMP"/>
+		<result property="imageStatus" column="IMAGE_STATUS" jdbcType="NUMERIC"/>
+		<result property="imageCompressPath" column="IMAGE_COMPRESS_PATH" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,CATALOG_ID,PERSON_ID,ARCHIVES_ID,IMAGE_SIZE,IMAGE_PATH,SORT_NUM,CREATER_ID,CREATER_NAME,CREAT_DATE,IMAGE_STATUS,IMAGE_COMPRESS_PATH
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(catalogId)"> AND CATALOG_ID  =#{catalogId} </if>
+			<if test="@Ognl@isNotEmpty(personId)"> AND PERSON_ID  =#{personId} </if>
+			<if test="@Ognl@isNotEmpty(archivesId)"> AND ARCHIVES_ID  =#{archivesId} </if>
+			<if test="@Ognl@isNotEmpty(imageSize)"> AND IMAGE_SIZE  =#{imageSize} </if>
+			<if test="@Ognl@isNotEmpty(imagePath)"> AND IMAGE_PATH  LIKE #{imagePath}  </if>
+			<if test="@Ognl@isNotEmpty(sortNum)"> AND SORT_NUM  =#{sortNum} </if>
+			<if test="@Ognl@isNotEmpty(createrId)"> AND CREATER_ID  =#{createrId} </if>
+			<if test="@Ognl@isNotEmpty(createrName)"> AND CREATER_NAME  LIKE #{createrName}  </if>
+			<if test="@Ognl@isNotEmpty(creatDate)"> AND CREAT_DATE  =#{creatDate} </if>
+			<if test="@Ognl@isNotEmpty(begincreatDate)"> AND CREAT_DATE  >=#{begincreatDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreatDate)"> AND CREAT_DATE <![CDATA[ <=#{endcreatDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(imageStatus)"> AND IMAGE_STATUS  =#{imageStatus} </if>
+			<if test="@Ognl@isNotEmpty(imageCompressPath)"> AND IMAGE_COMPRESS_PATH  LIKE #{imageCompressPath}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.erecord.model.EArchives">
+		INSERT INTO RSDA_BS_E_ARCHIVES
+		(ID,CATALOG_ID,PERSON_ID,ARCHIVES_ID,IMAGE_SIZE,IMAGE_PATH,SORT_NUM,CREATER_ID,CREATER_NAME,CREAT_DATE,IMAGE_STATUS,IMAGE_COMPRESS_PATH)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{catalogId,jdbcType=NUMERIC}, #{personId,jdbcType=NUMERIC}, #{archivesId,jdbcType=NUMERIC}, #{imageSize,jdbcType=NUMERIC}, #{imagePath,jdbcType=VARCHAR}, #{sortNum,jdbcType=NUMERIC}, #{createrId,jdbcType=NUMERIC}, #{createrName,jdbcType=VARCHAR}, #{creatDate,jdbcType=TIMESTAMP}, #{imageStatus,jdbcType=NUMERIC}, #{imageCompressPath,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_E_ARCHIVES 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.erecord.model.EArchives">
+		UPDATE RSDA_BS_E_ARCHIVES SET
+		CATALOG_ID=#{catalogId,jdbcType=NUMERIC},
+		PERSON_ID=#{personId,jdbcType=NUMERIC},
+		ARCHIVES_ID=#{archivesId,jdbcType=NUMERIC},
+		IMAGE_SIZE=#{imageSize,jdbcType=NUMERIC},
+		IMAGE_PATH=#{imagePath,jdbcType=VARCHAR},
+		SORT_NUM=#{sortNum,jdbcType=NUMERIC},
+		CREATER_ID=#{createrId,jdbcType=NUMERIC},
+		CREATER_NAME=#{createrName,jdbcType=VARCHAR},
+		CREAT_DATE=#{creatDate,jdbcType=TIMESTAMP},
+		IMAGE_STATUS=#{imageStatus,jdbcType=NUMERIC},
+		IMAGE_COMPRESS_PATH=#{imageCompressPath,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	<update id="updateByTargeId" parameterType="com.xunfeng.business.personagency.erecord.model.EArchives">
+		UPDATE RSDA_BS_E_ARCHIVES SET
+		SORT_NUM=SORT_NUM+1
+		WHERE
+		PERSON_ID=#{personId} AND  SORT_NUM>=#{sortNum}
+	</update>
+	<select id="getMaxNum" parameterType="java.lang.Long" resultType="java.lang.Long">
+		SELECT MAX(SORT_NUM)
+		FROM RSDA_BS_E_ARCHIVES
+		WHERE
+		PERSON_ID=#{personId}
+	</select>
+	<select id="getById" parameterType="java.lang.Long" resultMap="EArchives">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_E_ARCHIVES
+		WHERE
+		ID=#{id}
+	</select>
+	<select id="getAll" resultMap="EArchives">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_E_ARCHIVES   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by SORT_NUM
+		</if>
+	</select>
+</mapper>

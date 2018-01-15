@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.social.model.SocialsecTransfer">
+	<resultMap id="SocialsecTransfer" type="com.xunfeng.business.personagency.social.model.SocialsecTransfer">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="socialSecId" column="SOCIAL_SEC_ID" jdbcType="NUMERIC"/>
+		<result property="archiveCode" column="ARCHIVE_CODE" jdbcType="VARCHAR"/>
+		<result property="aac002" column="AAC002" jdbcType="VARCHAR"/>
+		<result property="aac004" column="AAC004" jdbcType="VARCHAR"/>
+		<result property="aac005" column="AAC005" jdbcType="VARCHAR"/>
+		<result property="aac003" column="AAC003" jdbcType="VARCHAR"/>
+		<result property="aac006" column="AAC006" jdbcType="DATE"/>
+		<result property="expPersonNumber" column="EXP_PERSON_NUMBER" jdbcType="VARCHAR"/>
+		<result property="expStartJobDate" column="EXP_START_JOB_DATE" jdbcType="DATE"/>
+		<result property="expPensionDate" column="EXP_PENSION_DATE" jdbcType="DATE"/>
+		<result property="expMedicalDate" column="EXP_MEDICAL_DATE" jdbcType="DATE"/>
+		<result property="employmentForm" column="EMPLOYMENT_FORM" jdbcType="VARCHAR"/>
+		<result property="aae005" column="AAE005" jdbcType="VARCHAR"/>
+		<result property="personId" column="PERSON_ID" jdbcType="NUMERIC"/>
+		<result property="aab301" column="AAB301" jdbcType="VARCHAR"/>
+		<result property="aae007" column="AAE007" jdbcType="VARCHAR"/>
+		<result property="changeContenttwo" column="CHANGE_CONTENTTWO" jdbcType="VARCHAR"/>
+		<result property="pensionBase" column="PENSION_BASE" jdbcType="VARCHAR"/>
+		<result property="archivesId" column="ARCHIVES_ID" jdbcType="NUMERIC"/>
+		<result property="expPersonPhone" column="EXP_PERSON_PHONE" jdbcType="VARCHAR"/>
+		<result property="medicalBase" column="MEDICAL_BASE" jdbcType="VARCHAR"/>
+		<result property="yuanStartDate" column="YUAN_START_DATE" jdbcType="DATE"/>
+		<result property="yuanEndDate" column="YUAN_END_DATE" jdbcType="DATE"/>
+		<result property="yuanCorpName" column="YUAN_CORP_NAME" jdbcType="VARCHAR"/>
+		<result property="yuanCorpNumber" column="YUAN_CORP_NUMBER" jdbcType="VARCHAR"/>
+		<result property="yuanSocialName" column="YUAN_SOCIAL_NAME" jdbcType="VARCHAR"/>
+		<result property="xianCorpName" column="XIAN_CORP_NAME" jdbcType="VARCHAR"/>
+		<result property="xianCorpNumber" column="XIAN_CORP_NUMBER" jdbcType="VARCHAR"/>
+		<result property="xianSocialName" column="XIAN_SOCIAL_NAME" jdbcType="VARCHAR"/>
+		<result property="description" column="DESCRIPTION" jdbcType="VARCHAR"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="DATE"/>
+		<result property="isEffective" column="IS_EFFECTIVE" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<resultMap id="SocialsecTransferDto" type="com.xunfeng.business.personagency.social.dto.SocialsecTransferDto">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="socialSecId" column="SOCIAL_SEC_ID" jdbcType="NUMERIC"/>
+		<result property="archiveCode" column="ARCHIVE_CODE" jdbcType="VARCHAR"/>
+		<result property="aac002" column="AAC002" jdbcType="VARCHAR"/>
+		<result property="aac004" column="AAC004" jdbcType="VARCHAR"/>
+		<result property="aac005" column="AAC005" jdbcType="VARCHAR"/>
+		<result property="aac003" column="AAC003" jdbcType="VARCHAR"/>
+		<result property="aac006" column="AAC006" jdbcType="DATE"/>
+		<result property="expPersonNumber" column="EXP_PERSON_NUMBER" jdbcType="VARCHAR"/>
+		<result property="expStartJobDate" column="EXP_START_JOB_DATE" jdbcType="DATE"/>
+		<result property="expPensionDate" column="EXP_PENSION_DATE" jdbcType="DATE"/>
+		<result property="expMedicalDate" column="EXP_MEDICAL_DATE" jdbcType="DATE"/>
+		<result property="employmentForm" column="EMPLOYMENT_FORM" jdbcType="VARCHAR"/>
+		<result property="aae005" column="AAE005" jdbcType="VARCHAR"/>
+		<result property="personId" column="PERSON_ID" jdbcType="NUMERIC"/>
+		<result property="aab301" column="AAB301" jdbcType="VARCHAR"/>
+		<result property="aae007" column="AAE007" jdbcType="VARCHAR"/>
+		<result property="changeContenttwo" column="CHANGE_CONTENTTWO" jdbcType="VARCHAR"/>
+		<result property="pensionBase" column="PENSION_BASE" jdbcType="VARCHAR"/>
+		<result property="archivesId" column="ARCHIVES_ID" jdbcType="NUMERIC"/>
+		<result property="expPersonPhone" column="EXP_PERSON_PHONE" jdbcType="VARCHAR"/>
+		<result property="medicalBase" column="MEDICAL_BASE" jdbcType="VARCHAR"/>
+		<result property="yuanStartDate" column="YUAN_START_DATE" jdbcType="DATE"/>
+		<result property="yuanEndDate" column="YUAN_END_DATE" jdbcType="DATE"/>
+		<result property="yuanCorpName" column="YUAN_CORP_NAME" jdbcType="VARCHAR"/>
+		<result property="yuanCorpNumber" column="YUAN_CORP_NUMBER" jdbcType="VARCHAR"/>
+		<result property="yuanSocialName" column="YUAN_SOCIAL_NAME" jdbcType="VARCHAR"/>
+		<result property="xianCorpName" column="XIAN_CORP_NAME" jdbcType="VARCHAR"/>
+		<result property="xianCorpNumber" column="XIAN_CORP_NUMBER" jdbcType="VARCHAR"/>
+		<result property="xianSocialName" column="XIAN_SOCIAL_NAME" jdbcType="VARCHAR"/>
+		<result property="description" column="DESCRIPTION" jdbcType="VARCHAR"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="DATE"/>
+		<result property="isEffective" column="IS_EFFECTIVE" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+		
+		<result property="genderName" column="genderName" jdbcType="VARCHAR"/>
+		<result property="nationName" column="nationName" jdbcType="VARCHAR"/>
+		<result property="employmentFormName" column="employmentFormName" jdbcType="VARCHAR"/>
+		<result property="changeContenttwoName" column="changeContenttwoName" jdbcType="VARCHAR"/>
+		<result property="pensionBaseName" column="pensionBaseName" jdbcType="VARCHAR"/>
+		<result property="medicalBaseName" column="medicalBaseName" jdbcType="VARCHAR"/>
+		<result property="isEffectiveName" column="isEffectiveName" jdbcType="VARCHAR"/>
+		
+	</resultMap>
+	<sql id="columns">
+		a.ID,SOCIAL_SEC_ID,ARCHIVE_CODE,AAC002,AAC004,AAC005,AAC003,AAC006,EXP_PERSON_NUMBER,EXP_START_JOB_DATE,EXP_PENSION_DATE,EXP_MEDICAL_DATE,EMPLOYMENT_FORM,AAE005,PERSON_ID,AAB301,AAE007,CHANGE_CONTENTTWO,PENSION_BASE,ARCHIVES_ID,EXP_PERSON_PHONE,MEDICAL_BASE,YUAN_START_DATE,YUAN_END_DATE,YUAN_CORP_NAME,YUAN_CORP_NUMBER,YUAN_SOCIAL_NAME,XIAN_CORP_NAME,XIAN_CORP_NUMBER,XIAN_SOCIAL_NAME,DESCRIPTION,CREATER_ID,CREATER_NAME,CREATER_ORG_ID,CREATER_ORG_NAME,CREATER_DATE,IS_EFFECTIVE,CCPR08
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(socialSecId)"> AND SOCIAL_SEC_ID  =#{socialSecId} </if>
+			<if test="@Ognl@isNotEmpty(archiveCode)"> AND upper(ARCHIVE_CODE) LIKE upper(#{archiveCode}) </if>
+			<if test="@Ognl@isNotEmpty(aac002)"> AND upper(AAC002) LIKE upper(#{aac002})  </if>
+			<if test="@Ognl@isNotEmpty(aac004)"> AND AAC004  LIKE #{aac004}  </if>
+			<if test="@Ognl@isNotEmpty(aac005)"> AND AAC005  LIKE #{aac005}  </if>
+			<if test="@Ognl@isNotEmpty(aac003)"> AND AAC003  LIKE #{aac003}  </if>
+			<if test="@Ognl@isNotEmpty(aac006)"> AND AAC006  =#{aac006} </if>
+			<if test="@Ognl@isNotEmpty(beginaac006)"> AND AAC006  >=#{beginaac006,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaac006)"> AND AAC006 <![CDATA[ <=#{endaac006,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(expPersonNumber)"> AND EXP_PERSON_NUMBER  LIKE #{expPersonNumber}  </if>
+			<if test="@Ognl@isNotEmpty(expStartJobDate)"> AND EXP_START_JOB_DATE  =#{expStartJobDate} </if>
+			<if test="@Ognl@isNotEmpty(beginexpStartJobDate)"> AND EXP_START_JOB_DATE  >=#{beginexpStartJobDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endexpStartJobDate)"> AND EXP_START_JOB_DATE <![CDATA[ <=#{endexpStartJobDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(expPensionDate)"> AND EXP_PENSION_DATE  =#{expPensionDate} </if>
+			<if test="@Ognl@isNotEmpty(beginexpPensionDate)"> AND EXP_PENSION_DATE  >=#{beginexpPensionDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endexpPensionDate)"> AND EXP_PENSION_DATE <![CDATA[ <=#{endexpPensionDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(expMedicalDate)"> AND EXP_MEDICAL_DATE  =#{expMedicalDate} </if>
+			<if test="@Ognl@isNotEmpty(beginexpMedicalDate)"> AND EXP_MEDICAL_DATE  >=#{beginexpMedicalDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endexpMedicalDate)"> AND EXP_MEDICAL_DATE <![CDATA[ <=#{endexpMedicalDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(employmentForm)"> AND EMPLOYMENT_FORM  LIKE #{employmentForm}  </if>
+			<if test="@Ognl@isNotEmpty(aae005)"> AND AAE005  LIKE #{aae005}  </if>
+			<if test="@Ognl@isNotEmpty(personId)"> AND PERSON_ID  =#{personId} </if>
+			<if test="@Ognl@isNotEmpty(aab301)"> AND AAB301  LIKE #{aab301}  </if>
+			<if test="@Ognl@isNotEmpty(aae007)"> AND AAE007  LIKE #{aae007}  </if>
+			<if test="@Ognl@isNotEmpty(changeContenttwo)"> AND CHANGE_CONTENTTWO  LIKE #{changeContenttwo}  </if>
+			<if test="@Ognl@isNotEmpty(pensionBase)"> AND PENSION_BASE  LIKE #{pensionBase}  </if>
+			<if test="@Ognl@isNotEmpty(archivesId)"> AND ARCHIVES_ID  =#{archivesId} </if>
+			<if test="@Ognl@isNotEmpty(expPersonPhone)"> AND EXP_PERSON_PHONE  LIKE #{expPersonPhone}  </if>
+			<if test="@Ognl@isNotEmpty(medicalBase)"> AND MEDICAL_BASE  LIKE #{medicalBase}  </if>
+			<if test="@Ognl@isNotEmpty(yuanStartDate)"> AND YUAN_START_DATE  =#{yuanStartDate} </if>
+			<if test="@Ognl@isNotEmpty(beginyuanStartDate)"> AND YUAN_START_DATE  >=#{beginyuanStartDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endyuanStartDate)"> AND YUAN_START_DATE <![CDATA[ <=#{endyuanStartDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(yuanEndDate)"> AND YUAN_END_DATE  =#{yuanEndDate} </if>
+			<if test="@Ognl@isNotEmpty(beginyuanEndDate)"> AND YUAN_END_DATE  >=#{beginyuanEndDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endyuanEndDate)"> AND YUAN_END_DATE <![CDATA[ <=#{endyuanEndDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(yuanCorpName)"> AND YUAN_CORP_NAME  LIKE #{yuanCorpName}  </if>
+			<if test="@Ognl@isNotEmpty(yuanCorpNumber)"> AND YUAN_CORP_NUMBER  LIKE #{yuanCorpNumber}  </if>
+			<if test="@Ognl@isNotEmpty(yuanSocialName)"> AND YUAN_SOCIAL_NAME  LIKE #{yuanSocialName}  </if>
+			<if test="@Ognl@isNotEmpty(xianCorpName)"> AND XIAN_CORP_NAME  LIKE #{xianCorpName}  </if>
+			<if test="@Ognl@isNotEmpty(xianCorpNumber)"> AND XIAN_CORP_NUMBER  LIKE #{xianCorpNumber}  </if>
+			<if test="@Ognl@isNotEmpty(xianSocialName)"> AND XIAN_SOCIAL_NAME  LIKE #{xianSocialName}  </if>
+			<if test="@Ognl@isNotEmpty(description)"> AND DESCRIPTION  LIKE #{description}  </if>
+			<if test="@Ognl@isNotEmpty(createrId)"> AND CREATER_ID  =#{createrId} </if>
+			<if test="@Ognl@isNotEmpty(createrName)"> AND CREATER_NAME  LIKE #{createrName}  </if>
+			<if test="@Ognl@isNotEmpty(createrOrgId)"> AND CREATER_ORG_ID  =#{createrOrgId} </if>
+			<if test="@Ognl@isNotEmpty(createrOrgName)"> AND CREATER_ORG_NAME  LIKE #{createrOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(createrDate)"> AND CREATER_DATE  =#{createrDate} </if>
+			<if test="@Ognl@isNotEmpty(begincreaterDate)"> AND CREATER_DATE  >=#{begincreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(isEffective)"> AND IS_EFFECTIVE  LIKE #{isEffective}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr08)"> AND a.CCPR08  LIKE #{ccpr08}  </if>
+			<if test="@Ognl@isNotEmpty(ids)"> AND a.ID in (${ids}) </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.social.model.SocialsecTransfer">
+		INSERT INTO RSDA_BS_SOCIALSEC_TRANSFER
+		(ID,SOCIAL_SEC_ID,ARCHIVE_CODE,AAC002,AAC004,AAC005,AAC003,AAC006,EXP_PERSON_NUMBER,EXP_START_JOB_DATE,EXP_PENSION_DATE,EXP_MEDICAL_DATE,EMPLOYMENT_FORM,AAE005,PERSON_ID,AAB301,AAE007,CHANGE_CONTENTTWO,PENSION_BASE,ARCHIVES_ID,EXP_PERSON_PHONE,MEDICAL_BASE,YUAN_START_DATE,YUAN_END_DATE,YUAN_CORP_NAME,YUAN_CORP_NUMBER,YUAN_SOCIAL_NAME,XIAN_CORP_NAME,XIAN_CORP_NUMBER,XIAN_SOCIAL_NAME,DESCRIPTION,CREATER_ID,CREATER_NAME,CREATER_ORG_ID,CREATER_ORG_NAME,CREATER_DATE,IS_EFFECTIVE,CCPR08)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{socialSecId,jdbcType=NUMERIC}, #{archiveCode,jdbcType=VARCHAR}, #{aac002,jdbcType=VARCHAR}, #{aac004,jdbcType=VARCHAR}, #{aac005,jdbcType=VARCHAR}, #{aac003,jdbcType=VARCHAR}, #{aac006,jdbcType=DATE}, #{expPersonNumber,jdbcType=VARCHAR}, #{expStartJobDate,jdbcType=DATE}, #{expPensionDate,jdbcType=DATE}, #{expMedicalDate,jdbcType=DATE}, #{employmentForm,jdbcType=VARCHAR}, #{aae005,jdbcType=VARCHAR}, #{personId,jdbcType=NUMERIC}, #{aab301,jdbcType=VARCHAR}, #{aae007,jdbcType=VARCHAR}, #{changeContenttwo,jdbcType=VARCHAR}, #{pensionBase,jdbcType=VARCHAR}, #{archivesId,jdbcType=NUMERIC}, #{expPersonPhone,jdbcType=VARCHAR}, #{medicalBase,jdbcType=VARCHAR}, #{yuanStartDate,jdbcType=DATE}, #{yuanEndDate,jdbcType=DATE}, #{yuanCorpName,jdbcType=VARCHAR}, #{yuanCorpNumber,jdbcType=VARCHAR}, #{yuanSocialName,jdbcType=VARCHAR}, #{xianCorpName,jdbcType=VARCHAR}, #{xianCorpNumber,jdbcType=VARCHAR}, #{xianSocialName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{createrId,jdbcType=NUMERIC}, #{createrName,jdbcType=VARCHAR}, #{createrOrgId,jdbcType=NUMERIC}, #{createrOrgName,jdbcType=VARCHAR}, #{createrDate,jdbcType=DATE}, #{isEffective,jdbcType=VARCHAR}, #{ccpr08,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_SOCIALSEC_TRANSFER 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.social.model.SocialsecTransfer">
+		UPDATE RSDA_BS_SOCIALSEC_TRANSFER SET
+		SOCIAL_SEC_ID=#{socialSecId,jdbcType=NUMERIC},
+		ARCHIVE_CODE=#{archiveCode,jdbcType=VARCHAR},
+		AAC002=#{aac002,jdbcType=VARCHAR},
+		AAC004=#{aac004,jdbcType=VARCHAR},
+		AAC005=#{aac005,jdbcType=VARCHAR},
+		AAC003=#{aac003,jdbcType=VARCHAR},
+		AAC006=#{aac006,jdbcType=DATE},
+		EXP_PERSON_NUMBER=#{expPersonNumber,jdbcType=VARCHAR},
+		EXP_START_JOB_DATE=#{expStartJobDate,jdbcType=DATE},
+		EXP_PENSION_DATE=#{expPensionDate,jdbcType=DATE},
+		EXP_MEDICAL_DATE=#{expMedicalDate,jdbcType=DATE},
+		EMPLOYMENT_FORM=#{employmentForm,jdbcType=VARCHAR},
+		AAE005=#{aae005,jdbcType=VARCHAR},
+		PERSON_ID=#{personId,jdbcType=NUMERIC},
+		AAB301=#{aab301,jdbcType=VARCHAR},
+		AAE007=#{aae007,jdbcType=VARCHAR},
+		CHANGE_CONTENTTWO=#{changeContenttwo,jdbcType=VARCHAR},
+		PENSION_BASE=#{pensionBase,jdbcType=VARCHAR},
+		ARCHIVES_ID=#{archivesId,jdbcType=NUMERIC},
+		EXP_PERSON_PHONE=#{expPersonPhone,jdbcType=VARCHAR},
+		MEDICAL_BASE=#{medicalBase,jdbcType=VARCHAR},
+		YUAN_START_DATE=#{yuanStartDate,jdbcType=DATE},
+		YUAN_END_DATE=#{yuanEndDate,jdbcType=DATE},
+		YUAN_CORP_NAME=#{yuanCorpName,jdbcType=VARCHAR},
+		YUAN_CORP_NUMBER=#{yuanCorpNumber,jdbcType=VARCHAR},
+		YUAN_SOCIAL_NAME=#{yuanSocialName,jdbcType=VARCHAR},
+		XIAN_CORP_NAME=#{xianCorpName,jdbcType=VARCHAR},
+		XIAN_CORP_NUMBER=#{xianCorpNumber,jdbcType=VARCHAR},
+		XIAN_SOCIAL_NAME=#{xianSocialName,jdbcType=VARCHAR},
+		DESCRIPTION=#{description,jdbcType=VARCHAR},
+		CREATER_ID=#{createrId,jdbcType=NUMERIC},
+		CREATER_NAME=#{createrName,jdbcType=VARCHAR},
+		CREATER_ORG_ID=#{createrOrgId,jdbcType=NUMERIC},
+		CREATER_ORG_NAME=#{createrOrgName,jdbcType=VARCHAR},
+		CREATER_DATE=#{createrDate,jdbcType=DATE},
+		IS_EFFECTIVE=#{isEffective,jdbcType=VARCHAR},
+		CCPR08=#{ccpr08,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SocialsecTransfer">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_SOCIALSEC_TRANSFER a
+		WHERE
+		a.ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SocialsecTransferDto">
+		SELECT <include refid="columns"/>
+				,e.name as "genderName"
+				,f.name as "nationName"
+				,b.name as "employmentFormName"
+				,c.name as "changeContenttwoName" 
+				,g.name as "pensionBaseName"
+				,h.name as "medicalBaseName" 
+				,decode(a.IS_EFFECTIVE , 0, '有效', 1, '无效') as "isEffectiveName"
+				
+		FROM RSDA_BS_SOCIALSEC_TRANSFER a
+		left join TAB_SEX e on e.code=a.AAC004
+		left join TAB_NATION f on f.code=a.AAC005
+		left join RSDA_TAB_EMPLOYMENT_FORM b on b.code=a.EMPLOYMENT_FORM
+		left join RSDA_TAB_CHANGE_CONTENTTWO c on c.code=a.CHANGE_CONTENTTWO
+		left join RSDA_TAB_PENSIONBASE g on g.code=a.PENSION_BASE
+		left join RSDA_TAB_MEDICALBASE h on h.code=a.MEDICAL_BASE
+		   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by a.ID  desc
+		</if>
+	</select>
+	
+	<select id="getByArchiveId" resultMap="SocialsecTransfer">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_SOCIALSEC_TRANSFER a
+		WHERE
+		a.ARCHIVES_ID=#{archivesId}
+	</select>
+</mapper>

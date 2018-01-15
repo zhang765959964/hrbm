@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+	   default-autowire="byName" default-lazy-init="false">
+
+	<!-- component-scan @Component , @Controller , @Service , @Repository  -->
+
+    <context:component-scan base-package="com.xunfeng.**.dao" />
+	<context:component-scan base-package="com.xunfeng.**.service" />
+	<context:component-scan base-package="com.xunfeng.core.table"/>
+	<context:component-scan base-package="com.xunfeng.core.db"/>
+	
+	<!-- 国际化资源 去掉后，保存操作会出错valid is not defined-->
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource" scope="prototype">
+		<property name="basenames">
+			<list>
+				<!--<value>classpath:resource/errors</value> -->
+				<value>classpath:resource/form</value>
+				<value>classpath:resource/message</value>
+				<value>classpath:resource/mobile</value>
+			</list>
+        </property>
+        <property name="useCodeAsDefaultMessage" value="true"/>
+        <property name="cacheSeconds" value="0"></property>
+        <property name="defaultEncoding" value="UTF-8"></property>
+    </bean> 
+
+    <bean id="localeResolver"
+	    class="org.springframework.web.servlet.i18n.SessionLocaleResolver">  
+	</bean>
+    <!--加载配置文件-->
+	<bean id="configproperties" 
+         class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+          <property name="location" value="classpath:/conf/app.properties"/>
+    </bean>
+     <bean id="propertyConfigurer"  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+         <property name="properties" ref="configproperties"/>
+    </bean>
+	
+	<!--对数据库操作都从这里取jdbcTemplate-->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!--专门用来产生ID-->
+    <bean id="jdbcTemplateSN" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSourceSN"/>
+    </bean>
+	<!--同步数据的原数据来源-->
+	<bean id="jdbcTemplateSouce" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource_Source"/>
+	</bean>
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:/conf/configuration.xml"/>
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" >
+        	<list>
+        		<value>classpath*:/com/xunfeng/**/maper/*.map.xml</value>
+        	</list>
+        </property>
+	</bean>
+
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+   
+   
+    <bean id="dataSourceSN" class="org.logicalcobwebs.proxool.ProxoolDataSource">  
+		<property name="driver" value="${jdbc.driverClassName}"/>
+		<property name="driverUrl" value="${jdbc.url}"/>
+		<property name="user" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+		<property name="alias" value="${db.aliasSN}"/>
+		<property name="simultaneousBuildThrottle" value="${db.simultaneousBuildThrottleSN}"/>
+		<property name="maximumActiveTime" value="${db.maximumActiveTimeSN}"/>
+		<property name="houseKeepingTestSql" value="${db.houseKeepingTestSqlSN}"/>
+		<property name="maximumConnectionCount" value="${db.maximumConnectionCountSN}"/>
+		<property name="minimumConnectionCount" value="${db.minimumConnectionCountSN}"/>
+		<property name="delegateProperties" value="characterEncoding=${db.characterEncodingSN}"/>
+	</bean>
+
+   <bean id="dataSource_Default" class="org.logicalcobwebs.proxool.ProxoolDataSource">  
+		<property name="driver" value="${jdbc.driverClassName}"/>
+		<property name="driverUrl" value="${jdbc.url}"/>
+		<property name="user" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+		<property name="alias" value="${db.alias}"/>
+		<property name="simultaneousBuildThrottle" value="${db.simultaneousBuildThrottle}"/>
+		<property name="maximumActiveTime" value="${db.maximumActiveTime}"/>
+		<property name="houseKeepingTestSql" value="${db.houseKeepingTestSql}"/>
+		<property name="maximumConnectionCount" value="${db.maximumConnectionCount}"/>
+		<property name="minimumConnectionCount" value="${db.minimumConnectionCount}"/>
+		<property name="delegateProperties" value="characterEncoding=${db.characterEncoding}"/>
+	</bean>
+	<bean id="dataSource_Source" class="org.logicalcobwebs.proxool.ProxoolDataSource">
+		<property name="driver" value="${sysch.jdbc.driverClassName}"/>
+		<property name="driverUrl" value="${sysch.jdbc.url}"/>
+		<property name="user" value="${sysch.jdbc.username}"/>
+		<property name="password" value="${sysch.jdbc.password}"/>
+		<property name="alias" value="dbpoolsource"/>
+		<property name="simultaneousBuildThrottle" value="${db.simultaneousBuildThrottle}"/>
+		<property name="maximumActiveTime" value="${db.maximumActiveTime}"/>
+		<property name="houseKeepingTestSql" value="${db.houseKeepingTestSql}"/>
+		<property name="maximumConnectionCount" value="${db.maximumConnectionCount}"/>
+		<property name="minimumConnectionCount" value="${db.minimumConnectionCount}"/>
+		<property name="delegateProperties" value="characterEncoding=${db.characterEncoding}"/>
+	</bean>
+	<!-- 动态数据源start############################################################-->
+	<!-- 数据源导入拦截bean -->
+<!--   	<bean id="dataSourceInitListener" class="com.xunfeng.core.db.datasource.DataSourceInitListener"></bean> -->
+	
+	<bean id="dataSource" class="com.xunfeng.core.db.datasource.DynamicDataSource">
+		<property name="targetDataSources"  >
+			<map>
+    			<entry key="dataSource_Default" value-ref="dataSource_Default" />
+   			</map>
+		</property>
+		<property name="defaultTargetDataSource" ref="dataSource_Default" />
+	</bean>
+	
+	
+	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<aop:config proxy-target-class="true">
+		<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.xunfeng.*..*.service..*.*(..))"  />		
+	</aop:config>
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+		  	<tx:method name="get*" read-only="true"/>
+			<tx:method name="is*" read-only="true"/>
+			<tx:method name="find*" read-only="true"/>
+			<tx:method name="*" isolation="DEFAULT"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	
+	<!-- Spring编程式事务  -->
+	<bean id="txTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+        <property name="transactionManager" ref="transactionManager"></property>
+        <property name="propagationBehaviorName" value="PROPAGATION_REQUIRED"></property>
+    </bean>
+
+	
+	<!-- 文件模版引擎配置 -->
+	<bean id="freemarkerConfiguration" class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
+	    <property name="templateLoaderPath" value="classpath:template/" />
+	    <property name="defaultEncoding" value="UTF-8"/>
+	</bean>
+	
+	
+	<bean id="templateLoader" class="freemarker.cache.StringTemplateLoader"></bean>
+	<!-- freemaker引擎 -->
+	<bean id="freemarkEngine" class="com.xunfeng.core.engine.FreemarkEngine">
+		<property name="configuration" ref="freemarkerConfiguration"/>
+		
+	</bean>
+
+	<!--动态数据源缓存器-->
+	<bean id="dynamicDataSourceCache" class="com.xunfeng.core.db.DynamicDataSourceCache"/>
+	<!--高级查询缓存器-->
+	<bean id="searchCache" class="com.xunfeng.core.web.query.scan.SearchCache">
+		<property name="basePackage" >
+			<list>
+				<value>classpath:com/xunfeng/**/model/*.class</value>
+			</list>
+		</property>
+	</bean>
+
+
+</beans>

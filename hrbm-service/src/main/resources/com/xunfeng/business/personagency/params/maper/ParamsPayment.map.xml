@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.params.model.ParamsPayment">
+	<resultMap id="ParamsPayment" type="com.xunfeng.business.personagency.params.model.ParamsPayment">
+		<id property="pkId" column="PK_ID" jdbcType="NUMERIC"/>
+		<result property="fdStartdate" column="FD_STARTDATE" jdbcType="VARCHAR"/>
+		<result property="fdEnddate" column="FD_ENDDATE" jdbcType="VARCHAR"/>
+		<result property="fdStandard" column="FD_STANDARD" jdbcType="NUMERIC"/>
+		<result property="fdDiscountStandard" column="FD_DISCOUNT_STANDARD" jdbcType="NUMERIC"/>
+		<result property="fkCreaterId" column="FK_CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="fdCreaterName" column="FD_CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="fdCreaterDate" column="FD_CREATER_DATE" jdbcType="DATE"/>
+		<result property="fdCreaterOrgName" column="FD_CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="fkCreaterOrgId" column="FK_CREATER_ORG_ID" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		PK_ID,FD_STARTDATE,FD_ENDDATE,FD_STANDARD,FD_DISCOUNT_STANDARD,FK_CREATER_ID,FD_CREATER_NAME,FD_CREATER_DATE,FD_CREATER_ORG_NAME,FK_CREATER_ORG_ID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(pkId)"> AND PK_ID  =#{pkId} </if>
+			<if test="@Ognl@isNotEmpty(fdStartdate)"> AND FD_STARTDATE  LIKE #{fdStartdate}  </if>
+			<if test="@Ognl@isNotEmpty(fdEnddate)"> AND FD_ENDDATE  LIKE #{fdEnddate}  </if>
+			<if test="@Ognl@isNotEmpty(currentDate)"> AND FD_STARTDATE  <![CDATA[ <= #{currentDate} AND FD_ENDDATE  > #{currentDate} ]]> </if>
+			<if test="@Ognl@isNotEmpty(fdStandard)"> AND FD_STANDARD  =#{fdStandard} </if>
+			<if test="@Ognl@isNotEmpty(fdDiscountStandard)"> AND FD_DISCOUNT_STANDARD  =#{fdDiscountStandard} </if>
+			<if test="@Ognl@isNotEmpty(fkCreaterId)"> AND FK_CREATER_ID  =#{fkCreaterId} </if>
+			<if test="@Ognl@isNotEmpty(fdCreaterName)"> AND FD_CREATER_NAME  LIKE #{fdCreaterName}  </if>
+			<if test="@Ognl@isNotEmpty(fdCreaterDate)"> AND FD_CREATER_DATE  =#{fdCreaterDate} </if>
+			<if test="@Ognl@isNotEmpty(beginfdCreaterDate)"> AND FD_CREATER_DATE  >=#{beginfdCreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endfdCreaterDate)"> AND FD_CREATER_DATE <![CDATA[ <=#{endfdCreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(fdCreaterOrgName)"> AND FD_CREATER_ORG_NAME  LIKE #{fdCreaterOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(fkCreaterOrgId)"> AND FK_CREATER_ORG_ID  =#{fkCreaterOrgId} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.params.model.ParamsPayment">
+		INSERT INTO RSDA_BS_PARAMS_PAYMENT
+		(PK_ID,FD_STARTDATE,FD_ENDDATE,FD_STANDARD,FD_DISCOUNT_STANDARD,FK_CREATER_ID,FD_CREATER_NAME,FD_CREATER_DATE,FD_CREATER_ORG_NAME,FK_CREATER_ORG_ID)
+		VALUES
+		(#{pkId,jdbcType=NUMERIC}, #{fdStartdate,jdbcType=VARCHAR}, #{fdEnddate,jdbcType=VARCHAR}, #{fdStandard,jdbcType=NUMERIC}, #{fdDiscountStandard,jdbcType=NUMERIC}, #{fkCreaterId,jdbcType=NUMERIC}, #{fdCreaterName,jdbcType=VARCHAR}, #{fdCreaterDate,jdbcType=DATE}, #{fdCreaterOrgName,jdbcType=VARCHAR}, #{fkCreaterOrgId,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_PARAMS_PAYMENT 
+		WHERE
+		PK_ID=#{pkId}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.params.model.ParamsPayment">
+		UPDATE RSDA_BS_PARAMS_PAYMENT SET
+		FD_STARTDATE=#{fdStartdate,jdbcType=VARCHAR},
+		FD_ENDDATE=#{fdEnddate,jdbcType=VARCHAR},
+		FD_STANDARD=#{fdStandard,jdbcType=NUMERIC},
+		FD_DISCOUNT_STANDARD=#{fdDiscountStandard,jdbcType=NUMERIC},
+		FK_CREATER_ID=#{fkCreaterId,jdbcType=NUMERIC},
+		FD_CREATER_NAME=#{fdCreaterName,jdbcType=VARCHAR},
+		FD_CREATER_DATE=#{fdCreaterDate,jdbcType=DATE},
+		FD_CREATER_ORG_NAME=#{fdCreaterOrgName,jdbcType=VARCHAR},
+		FK_CREATER_ORG_ID=#{fkCreaterOrgId,jdbcType=NUMERIC}
+		WHERE
+		PK_ID=#{pkId}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="ParamsPayment">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PARAMS_PAYMENT
+		WHERE
+		PK_ID=#{pkId}
+	</select>
+	
+	<select id="getAll" resultMap="ParamsPayment">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PARAMS_PAYMENT   
+		<include refid="dynamicWhere" />
+		order by FD_ENDDATE 
+	</select>
+</mapper>

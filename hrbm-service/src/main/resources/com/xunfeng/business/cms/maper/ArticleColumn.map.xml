@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.cms.model.ArticleColumn">
+	<resultMap id="ArticleColumn" type="com.xunfeng.business.cms.model.ArticleColumn">
+		<id property="canc01" column="CANC01" jdbcType="NUMERIC"/>
+		<result property="canc02" column="CANC02" jdbcType="NUMERIC"/>
+		<result property="canc03" column="CANC03" jdbcType="VARCHAR"/>
+		<result property="canc04" column="CANC04" jdbcType="VARCHAR"/>
+		<result property="canc05" column="CANC05" jdbcType="VARCHAR"/>
+		<result property="canc06" column="CANC06" jdbcType="VARCHAR"/>
+		<result property="canc07" column="CANC07" jdbcType="VARCHAR"/>
+		<result property="canc08" column="CANC08" jdbcType="VARCHAR"/>
+		<result property="canc09" column="CANC09" jdbcType="NUMERIC"/>
+		<result property="canc10" column="CANC10" jdbcType="NUMERIC"/>
+		<result property="canc11" column="CANC11" jdbcType="VARCHAR"/>
+		<result property="canc12" column="CANC12" jdbcType="VARCHAR"/>
+		<result property="canc13" column="CANC13" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		CANC01,CANC02,CANC03,CANC04,CANC05,CANC06,CANC07,CANC08,CANC09,CANC10,CANC11,CANC12,CANC13
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(canc01)"> AND CANC01  =#{canc01} </if>
+			<if test="@Ognl@isNotEmpty(canc02)"> AND CANC02  =#{canc02} </if>
+			<if test="@Ognl@isNotEmpty(canc03)"> AND CANC03  LIKE #{canc03}  </if>
+			<if test="@Ognl@isNotEmpty(canc04)"> AND CANC04  LIKE #{canc04}  </if>
+			<if test="@Ognl@isNotEmpty(canc05)"> AND CANC05  LIKE #{canc05}  </if>
+			<if test="@Ognl@isNotEmpty(canc06)"> AND CANC06  LIKE #{canc06}  </if>
+			<if test="@Ognl@isNotEmpty(canc07)"> AND CANC07  LIKE #{canc07}  </if>
+			<if test="@Ognl@isNotEmpty(canc08)"> AND CANC08  LIKE #{canc08}  </if>
+			<if test="@Ognl@isNotEmpty(canc09)"> AND CANC09  =#{canc09} </if>
+			<if test="@Ognl@isNotEmpty(canc10)"> AND CANC10  =#{canc10} </if>
+			<if test="@Ognl@isNotEmpty(canc11)"> AND CANC11  LIKE #{canc11}  </if>
+			<if test="@Ognl@isNotEmpty(canc12)"> AND CANC12  LIKE #{canc12}  </if>
+			<if test="@Ognl@isNotEmpty(canc13)"> AND CANC13  =#{canc13} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.cms.model.ArticleColumn">
+		INSERT INTO CAN01
+		(CANC01,CANC02,CANC03,CANC04,CANC05,CANC06,CANC07,CANC08,CANC09,CANC10,CANC11,CANC12,CANC13)
+		VALUES
+		(#{canc01,jdbcType=NUMERIC}, #{canc02,jdbcType=NUMERIC}, #{canc03,jdbcType=VARCHAR}, #{canc04,jdbcType=VARCHAR}, #{canc05,jdbcType=VARCHAR}, #{canc06,jdbcType=VARCHAR}, #{canc07,jdbcType=VARCHAR}, #{canc08,jdbcType=VARCHAR}, #{canc09,jdbcType=NUMERIC}, #{canc10,jdbcType=NUMERIC}, #{canc11,jdbcType=VARCHAR}, #{canc12,jdbcType=VARCHAR}, #{canc13,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM CAN01 
+		WHERE
+		CANC01=#{canc01}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.cms.model.ArticleColumn">
+		UPDATE CAN01 SET
+		CANC02=#{canc02,jdbcType=NUMERIC},
+		CANC03=#{canc03,jdbcType=VARCHAR},
+		CANC04=#{canc04,jdbcType=VARCHAR},
+		CANC05=#{canc05,jdbcType=VARCHAR},
+		CANC06=#{canc06,jdbcType=VARCHAR},
+		CANC07=#{canc07,jdbcType=VARCHAR},
+		CANC08=#{canc08,jdbcType=VARCHAR},
+		CANC09=#{canc09,jdbcType=NUMERIC},
+		CANC10=#{canc10,jdbcType=NUMERIC},
+		CANC11=#{canc11,jdbcType=VARCHAR},
+		CANC12=#{canc12,jdbcType=VARCHAR},
+		CANC13=#{canc13,jdbcType=NUMERIC}
+		WHERE
+		CANC01=#{canc01}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="ArticleColumn">
+		SELECT <include refid="columns"/>
+		FROM CAN01
+		WHERE
+		CANC01=#{canc01}
+	</select>
+	
+	<select id="getAll" resultMap="ArticleColumn">
+		SELECT <include refid="columns"/>
+		FROM CAN01   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by canc13
+		</if>
+	</select>
+	
+	<select id="getListLeftCms" parameterType="java.lang.String" resultMap="ArticleColumn">
+		SELECT <include refid="columns"/> 
+		FROM CAN01 WHERE CANC01 NOT IN(SELECT cmsid from CMS_BANNER_MANAGE WHERE INDENT=#{indent})
+	</select>
+	<select id="getListByIndent" parameterType="java.lang.String" resultMap="ArticleColumn">
+		SELECT <include refid="columns"/> 
+		FROM CAN01 WHERE CANC01  IN(SELECT cmsid from CMS_BANNER_MANAGE WHERE INDENT=#{indent})
+	</select>
+	<!-- 微信取得二级目录新闻菜单 -->
+	<select id="getCategoryList"  resultType="java.util.HashMap">
+		SELECT  * 
+		FROM CAN01 where 1=1 
+		<if test="@Ognl@isNotEmpty(canc02)"> 
+			AND CANC02 = #{canc02}
+		</if>
+		<if test="@Ognl@isEmpty(canc02)">
+		 and CANC02 =0
+		</if>
+	     and  (instr(','||canc14||',',',3,')>0 or instr(','||canc14||',',',0,')>0)
+	</select>
+</mapper>

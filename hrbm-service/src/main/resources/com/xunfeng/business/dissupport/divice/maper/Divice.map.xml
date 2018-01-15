@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.dissupport.divice.model.Divice">
+	<resultMap id="Divice" type="com.xunfeng.business.dissupport.divice.model.Divice">
+		<id property="div001" column="DIV001" jdbcType="NUMERIC"/>
+		<result property="div002" column="DIV002" jdbcType="VARCHAR"/>
+		<result property="acd200" column="ACD200" jdbcType="NUMERIC"/>
+		<result property="mod001" column="MOD001" jdbcType="NUMERIC"/>
+		<result property="div003" column="DIV003" jdbcType="VARCHAR"/>
+		<result property="div004" column="DIV004" jdbcType="VARCHAR"/>
+		<result property="div005" column="DIV005" jdbcType="TIMESTAMP"/>
+		<result property="div006" column="DIV006" jdbcType="VARCHAR"/>
+		<result property="div007" column="DIV007" jdbcType="VARCHAR"/>
+		<result property="div008" column="DIV008" jdbcType="VARCHAR"/>
+		<result property="div009" column="DIV009" jdbcType="TIMESTAMP"/>
+		<result property="aae013" column="AAE013" jdbcType="VARCHAR"/>
+		<result property="aae011" column="AAE011" jdbcType="VARCHAR"/>
+		<result property="aae017" column="AAE017" jdbcType="VARCHAR"/>
+		<result property="aae036" column="AAE036" jdbcType="TIMESTAMP"/>
+		<result property="aae019" column="AAE019" jdbcType="VARCHAR"/>
+		<result property="aae020" column="AAE020" jdbcType="VARCHAR"/>
+		<result property="div010" column="DIV010" jdbcType="VARCHAR"/>
+		<result property="div011" column="DIV011" jdbcType="VARCHAR"/>
+		<result property="div012" column="DIV012" jdbcType="VARCHAR"/>
+		<result property="sty001" column="STY001" jdbcType="NUMERIC"/>
+		<result property="sty002" column="STY002" jdbcType="NUMERIC"/>
+		<result property="div013" column="DIV013" jdbcType="VARCHAR"/>
+		<result property="div014" column="DIV014" jdbcType="NUMERIC"/>
+		<result property="div015" column="DIV015" jdbcType="VARCHAR"/>
+		<result property="div016" column="DIV016" jdbcType="NUMERIC"/>
+		<result property="div017" column="DIV017" jdbcType="VARCHAR"/>
+		<result property="div018" column="DIV018" jdbcType="VARCHAR"/>
+		<result property="div019" column="DIV019" jdbcType="VARCHAR"/>
+		<result property="div020" column="DIV020" jdbcType="NUMERIC"/>
+		<result property="div021" column="DIV021" jdbcType="NUMERIC"/>
+		<result property="div022" column="DIV022" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		DIV001,DIV002,ACD200,MOD001,DIV003,DIV004,DIV005,DIV006,DIV007,DIV008,DIV009,AAE013,AAE011,AAE017,AAE036,AAE019,AAE020,DIV010,DIV011,DIV012,STY001,STY002,DIV013,DIV014,DIV015,DIV016,DIV017,DIV018,DIV019,DIV020,DIV021,DIV022
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(div001)"> AND DIV001  =#{div001} </if>
+			<if test="@Ognl@isNotEmpty(div002)"> AND DIV002  LIKE #{div002}  </if>
+			<if test="@Ognl@isNotEmpty(acd200)"> AND ACD200  =#{acd200} </if>
+			<if test="@Ognl@isNotEmpty(mod001)"> AND MOD001  =#{mod001} </if>
+			<if test="@Ognl@isNotEmpty(div003)"> AND DIV003  LIKE #{div003}  </if>
+			<if test="@Ognl@isNotEmpty(div004)"> AND DIV004  LIKE #{div004}  </if>
+			<if test="@Ognl@isNotEmpty(div005)"> AND DIV005  =#{div005} </if>
+			<if test="@Ognl@isNotEmpty(begindiv005)"> AND DIV005  >=#{begindiv005,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(enddiv005)"> AND DIV005 <![CDATA[ <=#{enddiv005,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(div006)"> AND DIV006  LIKE #{div006}  </if>
+			<if test="@Ognl@isNotEmpty(div007)"> AND DIV007  LIKE #{div007}  </if>
+			<if test="@Ognl@isNotEmpty(div008)"> AND DIV008  LIKE #{div008}  </if>
+			<if test="@Ognl@isNotEmpty(div009)"> AND DIV009  =#{div009} </if>
+			<if test="@Ognl@isNotEmpty(begindiv009)"> AND DIV009  >=#{begindiv009,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(enddiv009)"> AND DIV009 <![CDATA[ <=#{enddiv009,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aae013)"> AND AAE013  LIKE #{aae013}  </if>
+			<if test="@Ognl@isNotEmpty(aae011)"> AND AAE011  LIKE #{aae011}  </if>
+			<if test="@Ognl@isNotEmpty(aae017)"> AND AAE017  LIKE #{aae017}  </if>
+			<if test="@Ognl@isNotEmpty(aae036)"> AND AAE036  =#{aae036} </if>
+			<if test="@Ognl@isNotEmpty(beginaae036)"> AND AAE036  >=#{beginaae036,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaae036)"> AND AAE036 <![CDATA[ <=#{endaae036,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aae019)"> AND AAE019  LIKE #{aae019}  </if>
+			<if test="@Ognl@isNotEmpty(aae020)"> AND AAE020  LIKE #{aae020}  </if>
+			<if test="@Ognl@isNotEmpty(div010)"> AND DIV010  LIKE #{div010}  </if>
+			<if test="@Ognl@isNotEmpty(div011)"> AND DIV011  LIKE #{div011}  </if>
+			<if test="@Ognl@isNotEmpty(div012)"> AND DIV012  LIKE #{div012}  </if>
+			<if test="@Ognl@isNotEmpty(sty001)"> AND STY001  =#{sty001} </if>
+			<if test="@Ognl@isNotEmpty(sty002)"> AND STY002  =#{sty002} </if>
+			<if test="@Ognl@isNotEmpty(div013)"> AND DIV013  LIKE #{div013}  </if>
+			<if test="@Ognl@isNotEmpty(div014)"> AND DIV014  =#{div014} </if>
+			<if test="@Ognl@isNotEmpty(div015)"> AND DIV015  LIKE #{div015}  </if>
+			<if test="@Ognl@isNotEmpty(div016)"> AND DIV016  =#{div016} </if>
+			<if test="@Ognl@isNotEmpty(div017)"> AND DIV017  LIKE #{div017}  </if>
+			<if test="@Ognl@isNotEmpty(div018)"> AND DIV018  LIKE #{div018}  </if>
+			<if test="@Ognl@isNotEmpty(div019)"> AND DIV019  LIKE #{div019}  </if>
+			<if test="@Ognl@isNotEmpty(div020)"> AND DIV020  =#{div020} </if>
+			<if test="@Ognl@isNotEmpty(div021)"> AND DIV021  =#{div021} </if>
+			<if test="@Ognl@isNotEmpty(div022)"> AND DIV022  =#{div022} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.dissupport.divice.model.Divice">
+		INSERT INTO G_DIVICE
+		(DIV001,DIV002,ACD200,MOD001,DIV003,DIV004,DIV005,DIV006,DIV007,DIV008,DIV009,AAE013,AAE011,AAE017,AAE036,AAE019,AAE020,DIV010,DIV011,DIV012,STY001,STY002,DIV013,DIV014,DIV015,DIV016,DIV017,DIV018,DIV019,DIV020,DIV021,DIV022)
+		VALUES
+		(#{div001,jdbcType=NUMERIC}, 
+		#{div002,jdbcType=VARCHAR},
+		 #{acd200,jdbcType=NUMERIC},
+		  #{mod001,jdbcType=NUMERIC}, 
+		  #{div003,jdbcType=VARCHAR}, 
+		  #{div004,jdbcType=VARCHAR}, 
+		  #{div005,jdbcType=TIMESTAMP},
+		   #{div006,jdbcType=VARCHAR}, 
+		   #{div007,jdbcType=VARCHAR}, 
+		   #{div008,jdbcType=VARCHAR}, 
+		   #{div009,jdbcType=TIMESTAMP},
+		    #{aae013,jdbcType=VARCHAR}, #{aae011,jdbcType=VARCHAR}, 
+		    #{aae017,jdbcType=VARCHAR}, #{aae036,jdbcType=TIMESTAMP}, 
+		    #{aae019,jdbcType=VARCHAR}, #{aae020,jdbcType=VARCHAR}, 
+		    #{div010,jdbcType=VARCHAR}, #{div011,jdbcType=VARCHAR}, 
+		      (select
+		        
+        '${acd201}'
+       ||'${typeSpl}'
+       ||<![CDATA[nvl(lpad(to_number(max(substr(g.div012,length(g.div012) - 2,3))) + 1,3,'0'),'001')]]>
+       from g_divice g where g.acd200 = #{acd200,jdbcType=NUMERIC} and g.mod001 = #{mod001,jdbcType=NUMERIC})
+        , #{sty001,jdbcType=NUMERIC}, #{sty002,jdbcType=NUMERIC}, #{div013,jdbcType=VARCHAR}, #{div014,jdbcType=NUMERIC}, #{div015,jdbcType=VARCHAR}, #{div016,jdbcType=NUMERIC}, #{div017,jdbcType=VARCHAR}, #{div018,jdbcType=VARCHAR}, #{div019,jdbcType=VARCHAR}, #{div020,jdbcType=NUMERIC}, #{div021,jdbcType=NUMERIC}, #{div022,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM G_DIVICE 
+		WHERE
+		DIV001=#{div001}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.dissupport.divice.model.Divice">
+		UPDATE G_DIVICE SET
+		DIV002=#{div002,jdbcType=VARCHAR},
+		ACD200=#{acd200,jdbcType=NUMERIC},
+		MOD001=#{mod001,jdbcType=NUMERIC},
+		DIV003=#{div003,jdbcType=VARCHAR},
+		DIV004=#{div004,jdbcType=VARCHAR},
+		DIV005=#{div005,jdbcType=TIMESTAMP},
+		DIV006=#{div006,jdbcType=VARCHAR},
+		DIV007=#{div007,jdbcType=VARCHAR},
+		DIV008=#{div008,jdbcType=VARCHAR},
+		DIV009=#{div009,jdbcType=TIMESTAMP},
+		AAE013=#{aae013,jdbcType=VARCHAR},
+		AAE011=#{aae011,jdbcType=VARCHAR},
+		AAE017=#{aae017,jdbcType=VARCHAR},
+		AAE036=#{aae036,jdbcType=TIMESTAMP},
+		AAE019=#{aae019,jdbcType=VARCHAR},
+		AAE020=#{aae020,jdbcType=VARCHAR},
+		DIV010=#{div010,jdbcType=VARCHAR},
+		DIV011=#{div011,jdbcType=VARCHAR},
+		DIV012=#{div012,jdbcType=VARCHAR},
+		STY001=#{sty001,jdbcType=NUMERIC},
+		STY002=#{sty002,jdbcType=NUMERIC},
+		DIV013=#{div013,jdbcType=VARCHAR},
+		DIV014=#{div014,jdbcType=NUMERIC},
+		DIV015=#{div015,jdbcType=VARCHAR},
+		DIV016=#{div016,jdbcType=NUMERIC},
+		DIV017=#{div017,jdbcType=VARCHAR},
+		DIV018=#{div018,jdbcType=VARCHAR},
+		DIV019=#{div019,jdbcType=VARCHAR},
+		DIV020=#{div020,jdbcType=NUMERIC},
+		DIV021=#{div021,jdbcType=NUMERIC},
+		DIV022=#{div022,jdbcType=NUMERIC}
+		WHERE
+		DIV001=#{div001}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Divice">
+		SELECT <include refid="columns"/>
+		FROM G_DIVICE
+		WHERE
+		DIV001=#{div001}
+	</select>
+	
+	<select id="getAll" resultMap="Divice">
+		SELECT <include refid="columns"/>
+		FROM G_DIVICE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by DIV001  desc
+		</if>
+	</select>
+	<select id="getViewList" resultType="map">
+		SELECT 
+        DIV001,DIV012,DIV002,ACD200,ACD202,MOD001,MOD002,MOD003,MOD004,DIV003,DIV004,DIV005,DIV006,DIV007,DIV008,DIV009,AAE013,AAE011,AAE017,AAE036,AAE019,AAE020,DIV010,DIV011,STY001,STY002_E,STY002,STY003,STY002N,STY003N,DIV013,ACE201,ACD250,ACD253,DIV014,DIV014N,DIV015,DIV016,DIV016N,DIV017,DIV018,DIV019,DIV020,DIV021,DIV021N,CON002,CON003,CON004,CON005,CON006,CON007,CON008,CON009,CON010,CON011,CON012,CON013,CON014,CON015,CON016,CON017,CON202,CON203,CON204,CON205,CON206,CON207,CON208,CON209,CON210,CON211,CON212,CON213,CON214,CON215,CON216,CON099,CON299,CON999
+		FROM V_G_DIVICE   
+		<include refid="dynamicWhere" />
+		ORDER BY AAE036 DESC, ACD202,MOD001
+	</select>
+</mapper>

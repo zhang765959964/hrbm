@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.death.model.DeathPerson">
+	<resultMap id="DeathPerson" type="com.xunfeng.business.personagency.death.model.DeathPerson">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="deathDeclareId" column="DEATH_DECLARE_ID" jdbcType="NUMERIC"/>
+		<result property="deathName" column="DEATH_NAME" jdbcType="VARCHAR"/>
+		<result property="deathBirthDate" column="DEATH_BIRTH_DATE" jdbcType="DATE"/>
+		<result property="deathRelation" column="DEATH_RELATION" jdbcType="VARCHAR"/>
+		<result property="deathResaon" column="DEATH_RESAON" jdbcType="VARCHAR"/>
+		<result property="isflag" column="ISFLAG" jdbcType="NUMERIC"/>
+		<result property="address" column="ADDRESS" jdbcType="VARCHAR"/>
+		<result property="deathEndDate" column="DEATH_END_DATE" jdbcType="DATE"/>
+		<result property="personId" column="PERSON_ID" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,DEATH_DECLARE_ID,DEATH_NAME,DEATH_BIRTH_DATE,DEATH_RELATION,DEATH_RESAON,ISFLAG,ADDRESS,DEATH_END_DATE,PERSON_ID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(deathDeclareId)"> AND DEATH_DECLARE_ID  =#{deathDeclareId} </if>
+			<if test="@Ognl@isNotEmpty(deathName)"> AND DEATH_NAME  LIKE #{deathName}  </if>
+			<if test="@Ognl@isNotEmpty(deathBirthDate)"> AND DEATH_BIRTH_DATE  =#{deathBirthDate} </if>
+			<if test="@Ognl@isNotEmpty(begindeathBirthDate)"> AND DEATH_BIRTH_DATE  >=#{begindeathBirthDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(enddeathBirthDate)"> AND DEATH_BIRTH_DATE <![CDATA[ <=#{enddeathBirthDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(deathRelation)"> AND DEATH_RELATION  LIKE #{deathRelation}  </if>
+			<if test="@Ognl@isNotEmpty(deathResaon)"> AND DEATH_RESAON  LIKE #{deathResaon}  </if>
+			<if test="@Ognl@isNotEmpty(isflag)"> AND ISFLAG  =#{isflag} </if>
+			<if test="@Ognl@isNotEmpty(address)"> AND ADDRESS  LIKE #{address}  </if>
+			<if test="@Ognl@isNotEmpty(deathEndDate)"> AND DEATH_END_DATE  =#{deathEndDate} </if>
+			<if test="@Ognl@isNotEmpty(begindeathEndDate)"> AND DEATH_END_DATE  >=#{begindeathEndDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(enddeathEndDate)"> AND DEATH_END_DATE <![CDATA[ <=#{enddeathEndDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(personId)"> AND PERSON_ID  =#{personId} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.death.model.DeathPerson">
+		INSERT INTO RSDA_BS_DEATH_PERSON
+		(ID,DEATH_DECLARE_ID,DEATH_NAME,DEATH_BIRTH_DATE,DEATH_RELATION,DEATH_RESAON,ISFLAG,ADDRESS,DEATH_END_DATE,PERSON_ID)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{deathDeclareId,jdbcType=NUMERIC}, #{deathName,jdbcType=VARCHAR}, #{deathBirthDate,jdbcType=DATE}, #{deathRelation,jdbcType=VARCHAR}, #{deathResaon,jdbcType=VARCHAR}, #{isflag,jdbcType=NUMERIC}, #{address,jdbcType=VARCHAR}, #{deathEndDate,jdbcType=DATE},#{personId,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_DEATH_PERSON 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<!-- 根据人员id删除供养直系亲属关系 -->
+	<delete id="delByPersonId" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_DEATH_PERSON 
+		WHERE
+		PERSON_ID=#{personId}
+	</delete>
+	
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.death.model.DeathPerson">
+		UPDATE RSDA_BS_DEATH_PERSON SET
+		DEATH_DECLARE_ID=#{deathDeclareId,jdbcType=NUMERIC},
+		DEATH_NAME=#{deathName,jdbcType=VARCHAR},
+		DEATH_BIRTH_DATE=#{deathBirthDate,jdbcType=DATE},
+		DEATH_RELATION=#{deathRelation,jdbcType=VARCHAR},
+		DEATH_RESAON=#{deathResaon,jdbcType=VARCHAR},
+		ISFLAG=#{isflag,jdbcType=NUMERIC},
+		ADDRESS=#{address,jdbcType=VARCHAR},
+		DEATH_END_DATE=#{deathEndDate,jdbcType=DATE},
+		PERSON_ID=#{personId,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="DeathPerson">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_DEATH_PERSON
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="DeathPerson">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_DEATH_PERSON   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+	<!-- 查询供养直系亲属情况信息适用于死亡待遇申报 -->
+	<select id="getByvDeathPerson" resultType="java.util.Map">
+		SELECT *
+		FROM V_RSDA_BS_DEATH_PERSONS t where 1=1
+		<if test="@Ognl@isNotEmpty(personId)"> AND t."personId"   =#{personId} </if>
+		<if test="@Ognl@isNotEmpty(ids)"> AND t."id" in (${ids}) </if>
+	</select>
+	
+	
+	
+	<!-- 根据人员id查询死亡待遇亲属信息  用于综合查询 -->
+	<select id="getByvPersonId" resultType="java.util.Map">
+		select * from V_RSDA_BS_DEATH_PERSON t
+		where 1=1
+		<if test="@Ognl@isNotEmpty(personId)"> AND t.PERSON_ID   =#{personId} </if>
+		<if test="@Ognl@isNotEmpty(ids)"> AND t.id in (${ids}) </if>
+	</select>
+	
+</mapper>

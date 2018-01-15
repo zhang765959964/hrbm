@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.person.model.JobApply">
+	<resultMap id="JobApply" type="com.xunfeng.business.person.model.JobApply">
+		<id property="ccpj01" column="CCPJ01" jdbcType="NUMERIC"/>
+		<result property="ccmu01" column="CCMU01" jdbcType="NUMERIC"/>
+		<result property="acb210" column="ACB210" jdbcType="NUMERIC"/>
+		<result property="ccpj02" column="CCPJ02" jdbcType="TIMESTAMP"/>
+		<result property="ccpj03" column="CCPJ03" jdbcType="NUMERIC"/>
+		<result property="ccpj04" column="CCPJ04" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+		<result property="acb330" column="ACB330" jdbcType="NUMERIC"/>
+		<result property="cczy06" column="CCZY06" jdbcType="VARCHAR"/>
+		<result property="div001" column="DIV001" jdbcType="NUMERIC"/>
+	</resultMap>
+	<sql id="columns">
+		CCPJ01,CCMU01,ACB210,CCPJ02,CCPJ03,CCPJ04,CCPR08,ACB330,CCZY06,DIV001
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(ccpj01)"> AND CCPJ01  =#{ccpj01} </if>
+			<if test="@Ognl@isNotEmpty(ccmu01)"> AND CCMU01  =#{ccmu01} </if>
+			<if test="@Ognl@isNotEmpty(acb210)"> AND ACB210  =#{acb210} </if>
+			<if test="@Ognl@isNotEmpty(ccpj02)"> AND CCPJ02  =#{ccpj02} </if>
+			<if test="@Ognl@isNotEmpty(beginccpj02)"> AND CCPJ02  >=#{beginccpj02,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endccpj02)"> AND CCPJ02 <![CDATA[ <=#{endccpj02,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(ccpj03)"> AND CCPJ03  =#{ccpj03} </if>
+			<if test="@Ognl@isNotEmpty(ccpj04)"> AND CCPJ04  LIKE #{ccpj04}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr08)"> AND CCPR08  LIKE #{ccpr08}  </if>
+			<if test="@Ognl@isNotEmpty(acb330)"> AND ACB330  =#{acb330} </if>
+			<if test="@Ognl@isNotEmpty(cczy06)"> AND CCZY06  LIKE #{cczy06}  </if>
+			<if test="@Ognl@isNotEmpty(div001)"> AND DIV001  =#{div001} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.person.model.JobApply">
+		INSERT INTO CCP04
+		(CCPJ01,CCMU01,ACB210,CCPJ02,CCPJ03,CCPJ04,CCPR08,ACB330,CCZY06,DIV001)
+		VALUES
+		(#{ccpj01,jdbcType=NUMERIC}, #{ccmu01,jdbcType=NUMERIC}, #{acb210,jdbcType=NUMERIC}, #{ccpj02,jdbcType=TIMESTAMP}, #{ccpj03,jdbcType=NUMERIC}, #{ccpj04,jdbcType=VARCHAR}, #{ccpr08,jdbcType=VARCHAR}, #{acb330,jdbcType=NUMERIC}, #{cczy06,jdbcType=VARCHAR}, #{div001,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM CCP04 
+		WHERE
+		CCPJ01=#{ccpj01}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.person.model.JobApply">
+		UPDATE CCP04 SET
+		CCMU01=#{ccmu01,jdbcType=NUMERIC},
+		ACB210=#{acb210,jdbcType=NUMERIC},
+		CCPJ02=#{ccpj02,jdbcType=TIMESTAMP},
+		CCPJ03=#{ccpj03,jdbcType=NUMERIC},
+		CCPJ04=#{ccpj04,jdbcType=VARCHAR},
+		CCPR08=#{ccpr08,jdbcType=VARCHAR},
+		ACB330=#{acb330,jdbcType=NUMERIC},
+		CCZY06=#{cczy06,jdbcType=VARCHAR},
+		DIV001=#{div001,jdbcType=NUMERIC}
+		WHERE
+		CCPJ01=#{ccpj01}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="JobApply">
+		SELECT <include refid="columns"/>
+		FROM CCP04
+		WHERE
+		CCPJ01=#{ccpj01}
+	</select>
+	
+	<select id="getAll" resultMap="JobApply">
+		SELECT <include refid="columns"/>
+		FROM CCP04   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by CCPJ01  desc
+		</if>
+	</select>
+	<select id="getJobApplyList" resultType="java.util.HashMap">
+		<!--SELECT p.ccpj01,p.acb210,decode(p.ccpj03,0,'未查看',1,'已查看') as ccpj03 ,to_char(p.CCPJ02,'yyyy-MM-dd') as CCPJ02,t.cca113,t.aab004,t.aab001,
+		case when t.ccpr08 = 1 then '已删除' else decode(t.acb208,0,'发布中',1,'已暂停')end ecb208
+		FROM CCP04 p,cb21 t
+		where t.acb210=p.acb210  and p.ccpr08 = 0-->
+		<![CDATA[
+		 SELECT  p.ccpj01,p.acb210,decode(p.ccpj03,0,'未查看',1,'已查看') as ccpj03 ,p.ccpj03 as ccpj003,to_char(p.CCPJ02,'yyyy-MM-dd') as CCPJ02,t.cca113,t.aab004,t.aab001,
+		 nvl(t.imgcount,'0') as IMGCOUNT,nvl(t.videCount,'0') as VIDECOUNT, nvl(t.CABQ08,'0') as CABQ08,
+         case when t.ccpr08 = 1 then '已删除' else decode(t.acb208,0,'发布中',1,'已暂停')end ecb208 
+         FROM CCP04 p, (   
+ 						select  c.aab001,g.videCount,g.imgCount,g.CABQ08,c.aab004,c.cca113,c.ccpr08,c.acb208,c.acb210 from cb21 c
+ 						
+ 						left  join 
+	  						(select d.aab001,d.CABQ08, imgcount, videCount from ab01 d,
+	        						(select count(*) as imgCount,aab001 from CAO04  where CAOA04=6 and caoa07=1 and ccpr08=0 and aab001 is not null  
+	         							group by aab001 )e,
+	         						(select count(*) as videCount,aab001 from CAO04  where CAOA04=7 and caoa07=1 and ccpr08=0 and aab001 is not null  
+	         							group by aab001 )f 
+	    					where d.aab001=e.aab001(+) and  d.aab001=f.aab001(+))g  
+ 			          on c.aab001 = g.aab001    
+    				) t
+        where t.acb210=p.acb210  and p.ccpr08 = 0 
+		]]>
+		and  p.ccmu01=#{ccmu01}
+		<!-- <choose>
+			<when test="resumeLook != null and (resumeLook==0 or resumeLook==1)">
+				 AND p.ccpj03 = #{resumeLook}
+			</when>
+		</choose>-->
+		 <if test="resumeLook != null "> 
+			<if test="resumeLook==0 || resumeLook==1"> 
+			 AND p.ccpj03 = #{resumeLook}
+		 	</if>
+		 </if>
+		<if test="@Ognl@isNotEmpty(ccb208)"> AND t.ccb208  =#{ccb208} </if>
+		order by p.ccpj01 desc
+	</select>
+
+	<select id="getJobApplyCount" resultType="java.lang.Long" >
+		SELECT count(*) FROM CCP04 p where  p.ccmu01=#{ccmu01} and p.ccpr08 = 0 
+	</select>
+	<!--企业简历管理-->
+	<resultMap id="CorpReceivedResumeDto" type="com.xunfeng.business.corp.dto.CorpReceivedResumeDto">
+		<result property="bca111" column="bca111" jdbcType="VARCHAR"/>
+		<result property="bca112" column="bca112" jdbcType="VARCHAR"/>
+		<result property="ccpj01" column="ccpj01" jdbcType="NUMERIC"/>
+		<result property="acc220" column="acc220" jdbcType="NUMERIC"/>
+		<result property="ccmu01" column="ccmu01" jdbcType="NUMERIC"/>
+		<result property="aac003" column="aac003" jdbcType="VARCHAR"/>
+		<result property="aac002" column="aac002" jdbcType="VARCHAR"/>
+		<result property="aac004" column="aac004" jdbcType="VARCHAR"/>
+		<result property="eac004" column="eac004" jdbcType="VARCHAR"/>
+		<result property="bac006" column="bac006" jdbcType="NUMERIC"/>
+		<result property="aac011" column="aac011" jdbcType="VARCHAR"/>
+		<result property="eac011" column="eac011" jdbcType="VARCHAR"/>
+		<result property="aab301" column="aab301" jdbcType="VARCHAR"/>
+		<result property="acb210" column="acb210" jdbcType="NUMERIC"/>
+		<result property="eca112" column="eca112" jdbcType="VARCHAR"/>
+		<result property="cca113" column="cca113" jdbcType="VARCHAR"/>
+		<result property="acb21r" column="acb21r" jdbcType="NUMERIC"/>
+		<result property="aab001" column="aab001" jdbcType="NUMERIC"/>
+		<result property="aab004" column="aab004" jdbcType="VARCHAR"/>
+		<result property="aae030" column="aae030" jdbcType="VARCHAR"/>
+		<result property="aae031" column="aae031" jdbcType="VARCHAR"/>
+		<result property="acc034" column="acc034" jdbcType="VARCHAR"/>
+		<result property="ecc034" column="ecc034" jdbcType="VARCHAR"/>
+		<result property="bcb202" column="bcb202" jdbcType="VARCHAR"/>
+		<result property="acb208" column="acb208" jdbcType="VARCHAR"/>
+		<result property="ecb208" column="ecb208" jdbcType="VARCHAR"/>
+		<result property="ecpr08" column="ecpr08" jdbcType="VARCHAR"/>
+		<result property="abb773" column="abb773" jdbcType="VARCHAR"/>
+		<result property="acb201" column="acb201" jdbcType="VARCHAR"/>
+		<result property="ebb773" column="ebb773" jdbcType="VARCHAR"/>
+		<result property="CCPJ02" column="CCPJ02" jdbcType="VARCHAR"/>
+		<result property="ccpj03" column="ccpj03" jdbcType="NUMERIC"/>
+		<result property="eccpj03" column="eccpj03" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="ccpr08" jdbcType="VARCHAR"/>
+		<result property="cczy06" column="cczy06" jdbcType="VARCHAR"/>
+		<result property="cczy06n" column="cczy06n" jdbcType="VARCHAR"/>
+		<result property="ccpr09" column="ccpr09" jdbcType="VARCHAR"/>
+		<result property="ccpj04" column="ccpj04" jdbcType="VARCHAR"/>
+		<result property="ccps01" column="ccps01" jdbcType="VARCHAR"/>
+		<result property="ccps01n" column="ccps01n" jdbcType="VARCHAR"/>
+		<result property="acc223" column="acc223" jdbcType="VARCHAR"/>
+		<result property="acc223n" column="acc223n" jdbcType="VARCHAR"/>
+		<result property="cabq01n" column="cabq01n" jdbcType="VARCHAR"/>
+		<result property="cabq01" column="cabq01" jdbcType="NUMERIC"/>
+		<result property="cabq02" column="cabq02" jdbcType="NUMERIC"/>
+		<result property="cabq03" column="cabq03" jdbcType="NUMERIC"/>
+		<result property="cabq04" column="cabq04" jdbcType="NUMERIC"/>
+		<result property="ccmu15" column="ccmu15" jdbcType="VARCHAR"/>
+		<result property="aac001" column="aac001" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="dynamicCorpWhere">
+			<!-- <if test="@Ognl@isNotEmpty(aab001)"> AND aab001  =#{aab001} </if> -->
+			<if test="@Ognl@isNotEmpty(acb208)"> AND acb208  =#{acb208} </if>
+			<if test="@Ognl@isNotEmpty(acc223)"> AND acc223  =#{acc223} </if>
+			<if test="@Ognl@isNotEmpty(ecpr08)"> AND ecpr08  =#{ecpr08} </if>
+			<if test="@Ognl@isNotEmpty(aac003)"> AND aac003  LIKE #{aac003} </if>
+			<if test="@Ognl@isNotEmpty(aac002)"> AND aac002  LIKE #{aac002} </if>
+			<if test="@Ognl@isNotEmpty(bca111)"> AND bca111  = #{bca111} </if>
+			<if test="@Ognl@isNotEmpty(ccpj03)"> AND CCPJ03  =#{ccpj03} </if>
+			<if test="@Ognl@isNotEmpty(cca113)"> AND CCA113  LIKE #{cca113} </if>
+			<if test="@Ognl@isNotEmpty(acb210)"> AND ACB210  =#{acb210} </if>
+	</sql>
+	<select id="getCorpReceivedResume" resultMap="CorpReceivedResumeDto">
+		select a.*
+		from v_ccp04 a 
+        where a.ccpr08=0 and a.aab001=#{aab001}
+        
+		 <include refid="dynamicCorpWhere" />
+		 <if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		 </if>
+		 <if test="@Ognl@isEmpty(orderField)">
+			order by CCPJ02  desc
+		 </if>
+	</select>
+	<select id="getViewCount" parameterType="java.lang.Long" resultType="java.lang.Long">
+		SELECT 	count(a.ccpj01)
+		from CCP04 a 
+		left join AC01 b on b.ccmu01=a.ccmu01
+		left join TAB_SEX d on d.code=b.aac004
+		left join CB21 c on c.acb210=a.acb210
+		where a.ccpr08=0 and c.aab001=#{aab001} AND a.ccpj03=#{ccpj03}
+	</select>
+	<!-- 根据职位id或者用户id获得申请总数  -->
+	<select id="getTotalCountApply"  resultType="java.lang.Long">
+		SELECT 	count(*)
+		from CCP04 a 
+		where a.ccpr08=0 
+			 and a.ccmu01=#{aac001} 
+			<if test="@Ognl@isNotEmpty(acb210)">and a.acb210=#{acb210}</if>
+	</select>
+	<!--根据企业编号 和状态 获得企业简历数量  -->
+	<select id="getTotalCorpResumeByState"  resultType="java.lang.Long">
+		SELECT 	count(*)
+		from CCP04 a 
+		where a.ccpr08=0
+			  and a.CCPJ03=#{ccpj03}
+			 and a.acb210 in (select acb210 from cb21 b where  b.aab001 = #{aab001} and b.ACB208=0 and  CCPR08=0)
+	</select>
+</mapper>

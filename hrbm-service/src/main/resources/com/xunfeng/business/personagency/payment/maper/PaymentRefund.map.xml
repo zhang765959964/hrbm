@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.payment.model.PaymentRefund">
+	<resultMap id="PaymentRefund" type="com.xunfeng.business.personagency.payment.model.PaymentRefund">
+		<id property="pkId" column="PK_ID" jdbcType="NUMERIC"/>
+		<result property="pkPersonId" column="PK_PERSON_ID" jdbcType="NUMERIC"/>
+		<result property="fkCreaterId" column="FK_CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="fdCreaterName" column="FD_CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="fdCreaterDate" column="FD_CREATER_DATE" jdbcType="DATE"/>
+		<result property="fdCreaterOrgName" column="FD_CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="fkCreaterOrgId" column="FK_CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="fdRefundDate" column="FD_REFUND_DATE" jdbcType="DATE"/>
+		<result property="fdRefundStartDate" column="FD_REFUND_START_DATE" jdbcType="VARCHAR"/>
+		<result property="fdRefundEndDate" column="FD_REFUND_END_DATE" jdbcType="VARCHAR"/>
+		<result property="fdRefundIsRefund" column="FD_REFUND_IS_REFUND" jdbcType="VARCHAR" typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler"/>
+		<result property="fdRefundLendDate" column="FD_REFUND_LEND_DATE" jdbcType="DATE"/>
+		<result property="fdRefundReason" column="FD_REFUND_REASON" jdbcType="VARCHAR"/>
+		<result property="fdRefundDesc" column="FD_REFUND_DESC" jdbcType="VARCHAR"/>
+		<result property="fdRefundMonths" column="FD_REFUND_MONTHS" jdbcType="NUMERIC"/>
+		<result property="fdRefundStandard" column="FD_REFUND_STANDARD" jdbcType="NUMERIC"/>
+		<result property="fdRefundAmount" column="FD_REFUND_AMOUNT" jdbcType="NUMERIC"/>
+		<result property="fkPaymentId" column="FK_PAYMENT_ID" jdbcType="NUMERIC"/>
+		<result property="fkConfirmsId" column="FK_CONFIRMS_ID" jdbcType="NUMERIC"/>
+		<result property="fdConfirmsName" column="FD_CONFIRMS_NAME" jdbcType="VARCHAR"/>
+		<result property="fdConfirmsDate" column="FD_CONFIRMS_DATE" jdbcType="DATE"/>
+		<result property="fdConfirmsOrgId" column="FD_CONFIRMS_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="fdConfirmsOrgName" column="FD_CONFIRMS_ORG_NAME" jdbcType="VARCHAR"/>
+	</resultMap>
+	<resultMap id="PaymentRefundDto" type="com.xunfeng.business.personagency.payment.dto.PaymentRefundDto">
+		<id property="pkId" column="PK_ID" jdbcType="NUMERIC"/>
+		<result property="pkPersonId" column="PK_PERSON_ID" jdbcType="NUMERIC"/>
+		<result property="fkCreaterId" column="FK_CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="fdCreaterName" column="FD_CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="fdCreaterDate" column="FD_CREATER_DATE" jdbcType="DATE"/>
+		<result property="fdCreaterOrgName" column="FD_CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="fkCreaterOrgId" column="FK_CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="fdRefundDate" column="FD_REFUND_DATE" jdbcType="DATE"/>
+		<result property="fdRefundStartDate" column="FD_REFUND_START_DATE" jdbcType="VARCHAR"/>
+		<result property="fdRefundEndDate" column="FD_REFUND_END_DATE" jdbcType="VARCHAR"/>
+		<result property="fdRefundIsRefund" column="FD_REFUND_IS_REFUND" jdbcType="VARCHAR" typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler"/>
+		<result property="fdRefundLendDate" column="FD_REFUND_LEND_DATE" jdbcType="DATE"/>
+		<result property="fdRefundReason" column="FD_REFUND_REASON" jdbcType="VARCHAR"/>
+		<result property="fdRefundDesc" column="FD_REFUND_DESC" jdbcType="VARCHAR"/>
+		<result property="fdRefundMonths" column="FD_REFUND_MONTHS" jdbcType="NUMERIC"/>
+		<result property="fdRefundStandard" column="FD_REFUND_STANDARD" jdbcType="NUMERIC"/>
+		<result property="fdRefundAmount" column="FD_REFUND_AMOUNT" jdbcType="NUMERIC"/>
+		<result property="fkPaymentId" column="FK_PAYMENT_ID" jdbcType="NUMERIC"/>
+		<result property="fkConfirmsId" column="FK_CONFIRMS_ID" jdbcType="NUMERIC"/>
+		<result property="fdConfirmsName" column="FD_CONFIRMS_NAME" jdbcType="VARCHAR"/>
+		<result property="fdConfirmsDate" column="FD_CONFIRMS_DATE" jdbcType="DATE"/>
+		<result property="fdConfirmsOrgId" column="FD_CONFIRMS_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="fdConfirmsOrgName" column="FD_CONFIRMS_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="archiveCode" column="archive_code" jdbcType="VARCHAR"/>
+		<result property="aac002" column="aac002" jdbcType="VARCHAR"/>
+		<result property="aac003" column="aac003" jdbcType="VARCHAR"/>
+	</resultMap>
+	<sql id="columns">
+		PK_ID,PK_PERSON_ID,FK_CREATER_ID,FD_CREATER_NAME,FD_CREATER_DATE,FD_CREATER_ORG_NAME,FK_CREATER_ORG_ID,FD_REFUND_DATE,FD_REFUND_START_DATE,FD_REFUND_END_DATE,FD_REFUND_IS_REFUND,FD_REFUND_LEND_DATE,FD_REFUND_REASON,FD_REFUND_DESC,FD_REFUND_MONTHS,FD_REFUND_STANDARD,FD_REFUND_AMOUNT,FK_PAYMENT_ID,FK_CONFIRMS_ID,FD_CONFIRMS_NAME,FD_CONFIRMS_DATE,FD_CONFIRMS_ORG_ID,FD_CONFIRMS_ORG_NAME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(pkId)"> AND PK_ID  =#{pkId} </if>
+			<if test="@Ognl@isNotEmpty(pkPersonId)"> AND PK_PERSON_ID  =#{pkPersonId} </if>
+			<if test="@Ognl@isNotEmpty(fkCreaterId)"> AND FK_CREATER_ID  =#{fkCreaterId} </if>
+			<if test="@Ognl@isNotEmpty(fdCreaterName)"> AND FD_CREATER_NAME  LIKE #{fdCreaterName}  </if>
+			<if test="@Ognl@isNotEmpty(fdCreaterDate)"> AND FD_CREATER_DATE  =#{fdCreaterDate} </if>
+			<if test="@Ognl@isNotEmpty(beginfdCreaterDate)"> AND FD_CREATER_DATE  >=#{beginfdCreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endfdCreaterDate)"> AND FD_CREATER_DATE <![CDATA[ <=#{endfdCreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(fdCreaterOrgName)"> AND FD_CREATER_ORG_NAME  LIKE #{fdCreaterOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(fkCreaterOrgId)"> AND FK_CREATER_ORG_ID  =#{fkCreaterOrgId} </if>
+			<if test="@Ognl@isNotEmpty(fdRefundDate)"> AND FD_REFUND_DATE  =#{fdRefundDate} </if>
+			<if test="@Ognl@isNotEmpty(beginfdRefundDate)"> AND FD_REFUND_DATE  >=#{beginfdRefundDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endfdRefundDate)"> AND FD_REFUND_DATE <![CDATA[ <=#{endfdRefundDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(fdRefundStartDate)"> AND FD_REFUND_START_DATE  LIKE #{fdRefundStartDate}  </if>
+			<if test="@Ognl@isNotEmpty(fdRefundEndDate)"> AND FD_REFUND_END_DATE  LIKE #{fdRefundEndDate}  </if>
+			<if test="@Ognl@isNotEmpty(fdRefundIsRefund)"> AND FD_REFUND_IS_REFUND  LIKE #{fdRefundIsRefund}  </if>
+			<if test="@Ognl@isNotEmpty(fdRefundLendDate)"> AND FD_REFUND_LEND_DATE  =#{fdRefundLendDate} </if>
+			<if test="@Ognl@isNotEmpty(beginfdRefundLendDate)"> AND FD_REFUND_LEND_DATE  >=#{beginfdRefundLendDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endfdRefundLendDate)"> AND FD_REFUND_LEND_DATE <![CDATA[ <=#{endfdRefundLendDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(fdRefundReason)"> AND FD_REFUND_REASON  LIKE #{fdRefundReason}  </if>
+			<if test="@Ognl@isNotEmpty(fdRefundDesc)"> AND FD_REFUND_DESC  LIKE #{fdRefundDesc}  </if>
+			<if test="@Ognl@isNotEmpty(fdRefundMonths)"> AND FD_REFUND_MONTHS  =#{fdRefundMonths} </if>
+			<if test="@Ognl@isNotEmpty(fdRefundStandard)"> AND FD_REFUND_STANDARD  LIKE #{fdRefundStandard}  </if>
+			<if test="@Ognl@isNotEmpty(fdRefundAmount)"> AND FD_REFUND_AMOUNT  LIKE #{fdRefundAmount}  </if>
+			<if test="@Ognl@isNotEmpty(fkPaymentId)"> AND FK_PAYMENT_ID  =#{fkPaymentId} </if>
+			<if test="@Ognl@isNotEmpty(fkConfirmsId)"> AND FK_CONFIRMS_ID  =#{fkConfirmsId} </if>
+			<if test="@Ognl@isNotEmpty(fdConfirmsName)"> AND FD_CONFIRMS_NAME  LIKE #{fdConfirmsName}  </if>
+			<if test="@Ognl@isNotEmpty(fdConfirmsDate)"> AND FD_CONFIRMS_DATE  =#{fdConfirmsDate} </if>
+			<if test="@Ognl@isNotEmpty(beginfdConfirmsDate)"> AND FD_CONFIRMS_DATE  >=#{beginfdConfirmsDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endfdConfirmsDate)"> AND FD_CONFIRMS_DATE <![CDATA[ <=#{endfdConfirmsDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(fdConfirmsOrgId)"> AND FD_CONFIRMS_ORG_ID  =#{fdConfirmsOrgId} </if>
+			<if test="@Ognl@isNotEmpty(fdConfirmsOrgName)"> AND FD_CONFIRMS_ORG_NAME  LIKE #{fdConfirmsOrgName}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.payment.model.PaymentRefund">
+		INSERT INTO RSDA_BS_PAYMENT_REFUND
+		(PK_ID,PK_PERSON_ID,FK_CREATER_ID,FD_CREATER_NAME,FD_CREATER_DATE,FD_CREATER_ORG_NAME,FK_CREATER_ORG_ID,FD_REFUND_DATE,FD_REFUND_START_DATE,FD_REFUND_END_DATE,FD_REFUND_IS_REFUND,FD_REFUND_LEND_DATE,FD_REFUND_REASON,FD_REFUND_DESC,FD_REFUND_MONTHS,FD_REFUND_STANDARD,FD_REFUND_AMOUNT,FK_PAYMENT_ID,FK_CONFIRMS_ID,FD_CONFIRMS_NAME,FD_CONFIRMS_DATE,FD_CONFIRMS_ORG_ID,FD_CONFIRMS_ORG_NAME)
+		VALUES
+		(#{pkId,jdbcType=NUMERIC}, #{pkPersonId,jdbcType=NUMERIC}, #{fkCreaterId,jdbcType=NUMERIC}, #{fdCreaterName,jdbcType=VARCHAR}, #{fdCreaterDate,jdbcType=DATE}, #{fdCreaterOrgName,jdbcType=VARCHAR}, #{fkCreaterOrgId,jdbcType=NUMERIC}, #{fdRefundDate,jdbcType=DATE}, #{fdRefundStartDate,jdbcType=VARCHAR}, #{fdRefundEndDate,jdbcType=VARCHAR}, #{fdRefundIsRefund,jdbcType=VARCHAR,typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler}, #{fdRefundLendDate,jdbcType=DATE}, #{fdRefundReason,jdbcType=VARCHAR}, #{fdRefundDesc,jdbcType=VARCHAR}, #{fdRefundMonths,jdbcType=NUMERIC}, #{fdRefundStandard,jdbcType=NUMERIC}, #{fdRefundAmount,jdbcType=NUMERIC}, #{fkPaymentId,jdbcType=NUMERIC}, #{fkConfirmsId,jdbcType=NUMERIC}, #{fdConfirmsName,jdbcType=VARCHAR}, #{fdConfirmsDate,jdbcType=DATE}, #{fdConfirmsOrgId,jdbcType=NUMERIC}, #{fdConfirmsOrgName,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_PAYMENT_REFUND 
+		WHERE
+		PK_ID=#{pkId}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.payment.model.PaymentRefund">
+		UPDATE RSDA_BS_PAYMENT_REFUND SET
+		PK_PERSON_ID=#{pkPersonId,jdbcType=NUMERIC},
+		FK_CREATER_ID=#{fkCreaterId,jdbcType=NUMERIC},
+		FD_CREATER_NAME=#{fdCreaterName,jdbcType=VARCHAR},
+		FD_CREATER_DATE=#{fdCreaterDate,jdbcType=DATE},
+		FD_CREATER_ORG_NAME=#{fdCreaterOrgName,jdbcType=VARCHAR},
+		FK_CREATER_ORG_ID=#{fkCreaterOrgId,jdbcType=NUMERIC},
+		FD_REFUND_DATE=#{fdRefundDate,jdbcType=DATE},
+		FD_REFUND_START_DATE=#{fdRefundStartDate,jdbcType=VARCHAR},
+		FD_REFUND_END_DATE=#{fdRefundEndDate,jdbcType=VARCHAR},
+		FD_REFUND_IS_REFUND=#{fdRefundIsRefund,jdbcType=VARCHAR,typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler},
+		FD_REFUND_LEND_DATE=#{fdRefundLendDate,jdbcType=DATE},
+		FD_REFUND_REASON=#{fdRefundReason,jdbcType=VARCHAR},
+		FD_REFUND_DESC=#{fdRefundDesc,jdbcType=VARCHAR},
+		FD_REFUND_MONTHS=#{fdRefundMonths,jdbcType=NUMERIC},
+		FD_REFUND_STANDARD=#{fdRefundStandard,jdbcType=NUMERIC},
+		FD_REFUND_AMOUNT=#{fdRefundAmount,jdbcType=NUMERIC},
+		FK_PAYMENT_ID=#{fkPaymentId,jdbcType=NUMERIC},
+		FK_CONFIRMS_ID=#{fkConfirmsId,jdbcType=NUMERIC},
+		FD_CONFIRMS_NAME=#{fdConfirmsName,jdbcType=VARCHAR},
+		FD_CONFIRMS_DATE=#{fdConfirmsDate,jdbcType=DATE},
+		FD_CONFIRMS_ORG_ID=#{fdConfirmsOrgId,jdbcType=NUMERIC},
+		FD_CONFIRMS_ORG_NAME=#{fdConfirmsOrgName,jdbcType=VARCHAR}
+		WHERE
+		PK_ID=#{pkId}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="PaymentRefund">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PAYMENT_REFUND
+		WHERE
+		PK_ID=#{pkId}
+	</select>
+	<select id="getRefundCount" parameterType="java.lang.Long" resultType="java.lang.Long">
+		SELECT count(*) 
+		FROM RSDA_BS_PAYMENT_REFUND
+		WHERE  PK_PERSON_ID  =#{pkPersonId}
+		<if test="@Ognl@isNotEmpty(fdRefundIsRefund)"> AND FD_REFUND_IS_REFUND  = #{fdRefundIsRefund}  </if>
+	</select>
+	<select id="getAll" resultMap="PaymentRefund">
+    SELECT PK_ID,PK_PERSON_ID,FK_CREATER_ID,FD_CREATER_NAME,FD_CREATER_DATE,FD_CREATER_ORG_NAME,
+    FK_CREATER_ORG_ID,FD_REFUND_DATE,FD_REFUND_START_DATE,FD_REFUND_END_DATE,FD_REFUND_IS_REFUND,
+    FD_REFUND_LEND_DATE,FD_REFUND_DESC,FD_REFUND_MONTHS,FD_REFUND_STANDARD,
+    FD_REFUND_AMOUNT,FK_PAYMENT_ID,FK_CONFIRMS_ID,FD_CONFIRMS_NAME,FD_CONFIRMS_DATE,
+    FD_CONFIRMS_ORG_ID,FD_CONFIRMS_ORG_NAME,b.name as "FD_REFUND_REASON"
+
+    FROM RSDA_BS_PAYMENT_REFUND a  left join RSDA_TAB_REFUND b  on a.fd_refund_reason=b.code
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by PK_ID  desc
+		</if>
+	</select>
+  <select id="getAllwithPersonInfo" resultMap="PaymentRefundDto">
+    SELECT * from v_rsda_bs_payment_refund
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by PK_ID  desc
+		</if>
+	</select>
+</mapper>

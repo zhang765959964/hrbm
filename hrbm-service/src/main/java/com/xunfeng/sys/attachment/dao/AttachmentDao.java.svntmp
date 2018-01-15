@@ -1,0 +1,23 @@
+package com.xunfeng.sys.attachment.dao;
+
+import org.springframework.stereotype.Repository;
+import com.xunfeng.core.db.BaseDao;
+import com.xunfeng.sys.attachment.model.Attachment;
+
+/** 
+* @company:河南讯丰信息技术有限公司
+* @Description: 网上认证提交信息表 Dao类
+* @author:jiangxin
+* @createDate 2015-11-26 14:17:23 
+* @version V1.0   
+*/
+@Repository
+public class AttachmentDao extends BaseDao<Attachment>
+{
+	@Override
+	public Class<?> getEntityClass()
+	{
+		return Attachment.class;
+	}
+
+}

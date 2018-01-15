@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.party.model.PartyPay">
+	<resultMap id="PartyPay" type="com.xunfeng.business.personagency.party.model.PartyPay">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="partyId" column="PARTY_ID" jdbcType="NUMERIC"/>
+		<result property="partyBeginDate" column="PARTY_BEGIN_DATE" jdbcType="DATE"/>
+		<result property="partyEndDate" column="PARTY_END_DATE" jdbcType="DATE"/>
+		<result property="partyPayMoney" column="PARTY_PAY_MONEY" jdbcType="NUMERIC"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="DATE"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="personId" column="PERSON_ID" jdbcType="NUMERIC"/>
+		
+		<result property="personCard" column="AAC002" jdbcType="VARCHAR"/>
+		<result property="archiveCode" column="ARCHIVE_CODE" jdbcType="VARCHAR"/>
+		<result property="personName" column="AAC003" jdbcType="VARCHAR"/>
+		<result property="sex" column="AAC004" jdbcType="VARCHAR"/>
+		
+		
+		<result property="partyStatus" column="PARTY_STATUS" jdbcType="NUMERIC"/>
+		<result property="partyIntoDate" column="PARTY_INTO_DATE" jdbcType="DATE"/>
+		<result property="partyOutReason" column="PARTY_OUT_REASON" jdbcType="VARCHAR"/>
+		<result property="partyOutDate" column="PARTY_OUT_DATE" jdbcType="DATE"/>
+		<result property="partyDate" column="PARTY_DATE" jdbcType="DATE"/>
+		
+	</resultMap>
+	
+
+	<sql id="columns">
+		ID,PARTY_ID,PARTY_BEGIN_DATE,PARTY_END_DATE,PARTY_PAY_MONEY,CREATER_ID,CREATER_NAME,CREATER_DATE,CREATER_ORG_ID,CREATER_ORG_NAME,PERSON_ID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(ids)"> AND ID  in (${ids}) </if>
+			<if test="@Ognl@isNotEmpty(partyId)"> AND PARTY_ID  =#{partyId} </if>
+			<if test="@Ognl@isNotEmpty(partyBeginDate)"> AND PARTY_BEGIN_DATE  =#{partyBeginDate} </if>
+			<if test="@Ognl@isNotEmpty(beginpartyBeginDate)"> AND PARTY_BEGIN_DATE  >=#{beginpartyBeginDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endpartyBeginDate)"> AND PARTY_BEGIN_DATE <![CDATA[ <=#{endpartyBeginDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(partyEndDate)"> AND PARTY_END_DATE  =#{partyEndDate} </if>
+			<if test="@Ognl@isNotEmpty(beginpartyEndDate)"> AND PARTY_END_DATE  >=#{beginpartyEndDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endpartyEndDate)"> AND PARTY_END_DATE <![CDATA[ <=#{endpartyEndDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(partyPayMoney)"> AND PARTY_PAY_MONEY  =#{partyPayMoney} </if>
+			<if test="@Ognl@isNotEmpty(createrId)"> AND CREATER_ID  =#{createrId} </if>
+			<if test="@Ognl@isNotEmpty(createrName)"> AND CREATER_NAME  LIKE #{createrName}  </if>
+			<if test="@Ognl@isNotEmpty(createrDate)"> AND CREATER_DATE  =#{createrDate} </if>
+			<if test="@Ognl@isNotEmpty(begincreaterDate)"> AND CREATER_DATE  >=#{begincreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(createrOrgId)"> AND CREATER_ORG_ID  =#{createrOrgId} </if>
+			<if test="@Ognl@isNotEmpty(createrOrgName)"> AND CREATER_ORG_NAME  LIKE #{createrOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(personId)"> AND PERSON_ID  = #{personId}  </if>
+		</where>
+	</sql>
+
+	
+	<!-- 人数统计条件 -->
+	<sql id="partyPayWhere">
+		<where>
+			  <if test="@Ognl@isNotEmpty(personCard)"> AND AAC002 like #{personCard} </if>
+			  <if test="@Ognl@isNotEmpty(archiveCode)"> AND ARCHIVE_CODE  like #{archiveCode} </if>			  
+		      <if test="@Ognl@isNotEmpty(personName)"> AND AAC003  like #{personName} </if>
+		      <if test="@Ognl@isNotEmpty(sex)"> AND AAC004  =#{sex} </if>
+		      <if test="@Ognl@isNotEmpty(partyBeginDate)"> AND PARTY_BEGIN_DATE  =#{partyBeginDate} </if>
+		      <if test="@Ognl@isNotEmpty(partyEndDate)"> AND PARTY_END_DATE  =#{partyEndDate} </if>
+		      <if test="@Ognl@isNotEmpty(partyStatus)"> AND PARTY_STATUS  =#{partyStatus} </if>
+		      <if test="@Ognl@isNotEmpty(isPay)"> AND IS_PAY  =#{isPay} </if>
+		      <if test="@Ognl@isNotEmpty(createrName)"> AND party.CREATER_NAME  like #{createrName} </if>
+		      <if test="@Ognl@isNotEmpty(createrDate)"> AND party.CREATER_DATE  =#{createrDate,jdbcType=DATE} </if>
+		      <if test="@Ognl@isNotEmpty(begincreaterDate)"> AND party.CREATER_DATE  >=#{begincreaterDate,jdbcType=DATE} </if>
+			  <if test="@Ognl@isNotEmpty(endcreaterDate)"> AND party.CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+		      <if test="@Ognl@isNotEmpty(createrOrgName)"> AND party.CREATER_ORG_NAME   =#{createrOrgName} </if>
+		      <if test="@Ognl@isNotEmpty(beginpartyIntoDate)"> AND  PARTY_INTO_DATE>=#{beginpartyIntoDate,jdbcType=DATE} </if>
+		      <if test="@Ognl@isNotEmpty(endpartyIntoDate)"> AND PARTY_INTO_DATE <![CDATA[ <=#{endpartyIntoDate,jdbcType=DATE}]]> </if>
+		      <if test="@Ognl@isNotEmpty(partyOutReason)"> AND PARTY_OUT_REASON  =#{partyOutReason} </if>
+		      <if test="@Ognl@isNotEmpty(beginpartyOutDate)"> AND PARTY_OUT_DATE  >=#{beginpartyOutDate,jdbcType=DATE} </if>
+		      <if test="@Ognl@isNotEmpty(endpartyOutDate)"> AND  PARTY_OUT_DATE <![CDATA[ <=#{endpartyOutDate,jdbcType=DATE}]]> </if>
+		      <if test="@Ognl@isNotEmpty(beginpartyDate)"> AND PARTY_DATE <![CDATA[ >=#{beginpartyDate,jdbcType=DATE}]]> </if>
+		      <if test="@Ognl@isNotEmpty(endpartyDate)"> AND  PARTY_DATE <![CDATA[ <=#{endpartyDate,jdbcType=DATE}]]> </if>
+		  </where>
+	</sql>
+
+
+	
+	<!-- 人数条件查询 -->
+	<sql id="payResultWhere">
+		<where>
+			  <if test="@Ognl@isNotEmpty(id)"> AND "partyId" = #{id} </if>
+			  <if test="@Ognl@isNotEmpty(ids)"> AND "partyId" in (${ids}) </if>
+			  <if test="@Ognl@isNotEmpty(personCard)"> AND "personCard" like #{personCard} </if>
+			  <if test="@Ognl@isNotEmpty(archiveCode)"> AND "archiveCode" like #{archiveCode} </if>			  
+		      <if test="@Ognl@isNotEmpty(personName)"> AND "personName"  like #{personName} </if>
+		      <if test="@Ognl@isNotEmpty(sex)"> AND "sexId"  =#{sex} </if>
+		      <if test="@Ognl@isNotEmpty(personId)"> AND "personId"  =#{personId} </if>
+		      <if test="@Ognl@isNotEmpty(beginpartyDate)"> AND party_date <![CDATA[ >= #{beginpartyDate,jdbcType=DATE} ]]></if>
+		      <if test="@Ognl@isNotEmpty(endpartyDate)"> AND party_date  <![CDATA[ < =#{endpartyDate,jdbcType=DATE} ]]> </if>
+		      <if test="@Ognl@isNotEmpty(partyStatus)"> AND "partyStatusId"  =#{partyStatus} </if>
+		      <if test="@Ognl@isNotEmpty(isPay)"> AND "isPay"  =#{isPay} </if>
+		      <if test="@Ognl@isNotEmpty(createrName)"> AND "createrName"  like #{createrName} </if>
+		      <if test="@Ognl@isNotEmpty(createrDate)"> AND "createrDate"  =#{createrDate,jdbcType=DATE} </if>
+		      <if test="@Ognl@isNotEmpty(begincreaterDate)"> AND "createrDate"  >=#{begincreaterDate,jdbcType=DATE} </if>
+			  <if test="@Ognl@isNotEmpty(endcreaterDate)"> AND "createrDate" <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+		      <if test="@Ognl@isNotEmpty(createrOrgName)"> AND  "createrOrgName"  =#{createrOrgName} </if>
+		      <if test="@Ognl@isNotEmpty(beginpartyIntoDate)"> AND PARTY_INTO_DATE  >=#{beginpartyIntoDate,jdbcType=DATE} </if>
+		      <if test="@Ognl@isNotEmpty(endpartyIntoDate)"> AND  PARTY_INTO_DATE  <![CDATA[ <=#{endpartyIntoDate,jdbcType=DATE}]]> </if>
+		      <if test="@Ognl@isNotEmpty(partyOutReason)"> AND  "partyOutReasonId"  =#{partyOutReason} </if>
+		      <if test="@Ognl@isNotEmpty(beginpartyOutDate)"> AND PARTY_OUT_DATE  >= #{beginpartyOutDate,jdbcType=DATE} </if>
+		      <if test="@Ognl@isNotEmpty(endpartyOutDate)"> AND  PARTY_OUT_DATE  <![CDATA[ <=#{endpartyOutDate,jdbcType=DATE}]]> </if>
+		      <if test="@Ognl@isNotEmpty(isflag)"> AND "isflag"  = #{isflag} </if>
+		      <if test="@Ognl@isNotEmpty(outCreaterName)"> AND OUT_CREATER_NAME  like #{outCreaterName} </if>
+		      <if test="@Ognl@isNotEmpty(begincreaterOutDate)"> AND "outCreaterDate"  >=#{begincreaterOutDate,jdbcType=DATE} </if>
+			  <if test="@Ognl@isNotEmpty(endcreaterOutDate)"> AND "outCreaterDate" <![CDATA[ <=#{endcreaterOutDate,jdbcType=DATE}]]> </if>
+		      <if test="@Ognl@isNotEmpty(outCreaterOrgName)"> AND  OUT_CREATER_ORG_NAME =#{outCreaterOrgName} </if>
+		  </where>
+	</sql>
+
+
+
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.party.model.PartyPay">
+		INSERT INTO RSDA_BS_PARTY_PAY
+		(ID,PARTY_ID,PARTY_BEGIN_DATE,PARTY_END_DATE,PARTY_PAY_MONEY,CREATER_ID,CREATER_NAME,CREATER_DATE,CREATER_ORG_ID,CREATER_ORG_NAME,PERSON_ID)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{partyId,jdbcType=NUMERIC}, #{partyBeginDate,jdbcType=DATE}, #{partyEndDate,jdbcType=DATE}, #{partyPayMoney,jdbcType=NUMERIC}, #{createrId,jdbcType=NUMERIC}, #{createrName,jdbcType=VARCHAR}, #{createrDate,jdbcType=DATE}, #{createrOrgId,jdbcType=NUMERIC}, #{createrOrgName,jdbcType=VARCHAR}, #{personId,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_PARTY_PAY 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<!-- 根据人员id删除信息 -->
+	<delete id="delByPersonId" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_PARTY_PAY 
+		WHERE
+		person_id=#{personId}
+	</delete>
+	
+		
+	<update id="update" parameterType="com.xunfeng.business.personagency.party.model.PartyPay">
+		UPDATE RSDA_BS_PARTY_PAY SET
+		PARTY_ID=#{partyId,jdbcType=NUMERIC},
+		PARTY_BEGIN_DATE=#{partyBeginDate,jdbcType=DATE},
+		PARTY_END_DATE=#{partyEndDate,jdbcType=DATE},
+		PARTY_PAY_MONEY=#{partyPayMoney,jdbcType=NUMERIC},
+		CREATER_ID=#{createrId,jdbcType=NUMERIC},
+		CREATER_NAME=#{createrName,jdbcType=VARCHAR},
+		CREATER_DATE=#{createrDate,jdbcType=DATE},
+		CREATER_ORG_ID=#{createrOrgId,jdbcType=NUMERIC},
+		CREATER_ORG_NAME=#{createrOrgName,jdbcType=VARCHAR},
+		PERSON_ID=#{personId,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="PartyPay">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PARTY_PAY
+		WHERE
+		ID=#{id}
+	</select>
+	
+	
+	<!-- 根据党员id查询缴费记录 -->
+	<select id="getByPartyId"   resultMap="PartyPay">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PARTY_PAY
+		WHERE 
+		PARTY_ID in #{partyId}
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+		
+	</select>
+		
+		<!-- 查询缴费人数 -->
+	<select  id="getPartyPayCount" resultType="java.util.Map">
+		select  count(*) as "sumCount"
+	from   
+		v_rsda_bs_party_pay_result
+	     <include refid="payResultWhere" />
+	</select>
+	
+	
+	
+	
+	
+	
+	<!-- 党员缴费记录查询 -->
+	<select id="getPartyPayList" resultType="java.util.Map" >
+	   select 
+       pay.id as "payId",
+       party.id as "partyId",
+       person.aac001 as "personId",
+       person.aac002 as "personCard",
+       person.aac003 as "personName",
+       decode(person.aac004 , 1, '男'，2,'女') as "personSex",
+       to_char(person.aac006,'yyyy-MM-dd') as "personCsrq",                         
+       to_char(pay.party_begin_date,'yyyy-MM-dd') as "partyBeginDate",
+       to_char(pay.party_end_date,'yyyy-MM-dd') as "partyEndDate",
+       pay.party_pay_money as "partyPayMoney",
+       pay.creater_name as "createrName",
+       to_char(pay.creater_date,'yyyy-MM-dd') as "createrDate",
+       pay.creater_org_name as "createrOrgName",
+       party.party_status as "partyStatus",
+       to_char(party.party_into_date,'yyyy-MM-dd') as "partyIntoDate",
+       to_char(party.party_date,'yyyy-MM-dd') as "partyDate",
+       to_char(party.party_positive_date,'yyyy-MM-dd') as "partyPositiveDate",
+       to_char(party.party_out_date,'yyyy-MM-dd') as "partyOutDate",
+       party.party_out_reason as "partyOutReason",
+       party.party_out_where as "partyOutWhere",
+       nation.name as "nationName",
+       whcd.name as "whcdName",
+       party.party_old_name as "partyOldName",
+       expand.EXP_ZHUANYE as "zhuanyeName",
+       party.party_school_name as "partySchoolName",
+       to_char(party.party_school_date,'yyyy-MM-dd') as "partySchoolDate",
+       party.party_phone as "partyPhone",
+       party.party_qq as "partyQq",
+       party.party_other_add as "partyOtherAdd",
+       expand.EXP_CARD_NUMBER as "expCardAdd"
+ from   rsda_bs_party_pay pay  
+       left join rsda_bs_party party on party.id = pay.party_id 
+       left join ac01 person  on  person.aac001 = party.party_person_id 
+       left join RSDA_BS_PERSON_EXPAND expand on expand.exp_person_id = person.aac001
+       left join RSDA_BS_CORP_PERSON corpPerson on person.aac001  = corpPerson.Person_Id
+       left JOIN TAB_NATION nation on nation.code = person.aac005
+       left join TAB_AFFIL affil on affil.code = person.aac024 
+       left join TAB_EDUCATION  whcd on whcd.code = person.AAC011
+      
+       <include refid="partyPayWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+			order by party.ID  desc
+		</if>
+	</select>
+	
+	<!-- 党费交纳统计 -->
+	<select id="getPartyPayResultList" resultType="java.util.Map">
+		select * from v_rsda_bs_party_pay_result  
+		 <include refid="payResultWhere" />
+		 order by "partyId" desc
+		
+	</select>
+	
+	
+	<!-- 党员缴费记录  -->
+	<select id="getPartyPayResult" resultType="java.util.Map">
+		 select sum("partyPayMoney") as "payMoney" from v_rsda_bs_party_pay_result 
+		<include refid="payResultWhere" />
+		 order by "partyId" desc
+		
+	</select>
+	
+	
+	<!-- 查询党组织关系是否缴费 -->
+	<select id="getPartyById" parameterType="java.lang.Long" resultType="java.lang.Long">
+		select count(*) from RSDA_BS_PARTY_PAY t 
+		where t.party_id = #{partyId}
+	</select>
+	
+	
+	
+	<!-- 根据 党员缴费id查询党员详情信息 -->
+	<select id="getPartyPayById"  parameterType="java.lang.Long" resultType="java.util.Map">
+		 select * from v_rsda_bs_party_pay_id t 
+		 where t."payId" = #{payId}
+	
+	</select>
+	
+	<!-- 根据人员id查询党费缴纳记录 用于综合查询 -->
+	<select id="getByvPersonId" resultType="java.util.Map">
+		select * from v_rsda_bs_party_pay t
+		where 1=1
+		<if test="@Ognl@isNotEmpty(personId)"> AND t.PERSON_ID   =#{personId} </if>
+		<if test="@Ognl@isNotEmpty(ids)"> AND t.ID  in (${ids}) </if>
+	</select>
+	
+	
+	<select id="getAll" resultMap="PartyPay">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PARTY_PAY   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+	
+	
+	
+</mapper>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.subsidy.model.SocialParams">
+	<resultMap id="SocialParams" type="com.xunfeng.business.personagency.subsidy.model.SocialParams">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="paramsCode" column="PARAMS_CODE" jdbcType="VARCHAR"/>
+		<result property="startDate" column="START_DATE" jdbcType="VARCHAR"/>
+		<result property="endDate" column="END_DATE" jdbcType="VARCHAR"/>
+		<result property="paramsValue" column="PARAMS_VALUE" jdbcType="VARCHAR"/>
+		<result property="description" column="DESCRIPTION" jdbcType="VARCHAR"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="DATE"/>
+	</resultMap>
+	<resultMap id="SocialParamsDto" type="com.xunfeng.business.personagency.subsidy.dto.SocialParamsDto">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="paramsCode" column="PARAMS_CODE" jdbcType="VARCHAR"/>
+		<result property="startDate" column="START_DATE" jdbcType="VARCHAR"/>
+		<result property="endDate" column="END_DATE" jdbcType="VARCHAR"/>
+		<result property="paramsValue" column="PARAMS_VALUE" jdbcType="VARCHAR"/>
+		<result property="description" column="DESCRIPTION" jdbcType="VARCHAR"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="DATE"/>
+		<result property="paramsName" column="paramsName" jdbcType="VARCHAR"/>
+		
+	</resultMap>
+	
+	<sql id="columns">
+		ID,PARAMS_CODE,START_DATE,END_DATE,PARAMS_VALUE,DESCRIPTION,CREATER_ID,CREATER_NAME,CREATER_ORG_ID,CREATER_ORG_NAME,CREATER_DATE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(ids)"> AND ID  in (${ids}) </if>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(paramsCode)"> AND PARAMS_CODE  = #{paramsCode}  </if>
+			<if test="@Ognl@isNotEmpty(startDate)"> AND START_DATE  = #{startDate}  </if>
+			<if test="@Ognl@isNotEmpty(endDate)"> AND END_DATE  LIKE #{endDate}  </if>
+			<if test="@Ognl@isNotEmpty(currentDate)"> AND START_DATE  <![CDATA[ <= #{currentDate} AND END_DATE  >= #{currentDate} ]]> </if>			
+			<if test="@Ognl@isNotEmpty(paramsValue)"> AND PARAMS_VALUE  LIKE #{paramsValue}  </if>
+			<if test="@Ognl@isNotEmpty(description)"> AND DESCRIPTION  LIKE #{description}  </if>
+			<if test="@Ognl@isNotEmpty(createrId)"> AND CREATER_ID  =#{createrId} </if>
+			<if test="@Ognl@isNotEmpty(createrName)"> AND CREATER_NAME  LIKE #{createrName}  </if>
+			<if test="@Ognl@isNotEmpty(createrOrgId)"> AND CREATER_ORG_ID  =#{createrOrgId} </if>
+			<if test="@Ognl@isNotEmpty(createrOrgName)"> AND CREATER_ORG_NAME  LIKE #{createrOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(createrDate)"> AND CREATER_DATE  =#{createrDate} </if>
+			<if test="@Ognl@isNotEmpty(begincreaterDate)"> AND CREATER_DATE  >=#{begincreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.subsidy.model.SocialParams">
+		INSERT INTO RSDA_BS_SOCIAL_PARAMS
+		(ID,PARAMS_CODE,START_DATE,END_DATE,PARAMS_VALUE,DESCRIPTION,CREATER_ID,CREATER_NAME,CREATER_ORG_ID,CREATER_ORG_NAME,CREATER_DATE)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{paramsCode,jdbcType=VARCHAR}, #{startDate,jdbcType=VARCHAR}, #{endDate,jdbcType=VARCHAR}, #{paramsValue,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{createrId,jdbcType=NUMERIC}, #{createrName,jdbcType=VARCHAR}, #{createrOrgId,jdbcType=NUMERIC}, #{createrOrgName,jdbcType=VARCHAR}, #{createrDate,jdbcType=DATE})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_SOCIAL_PARAMS 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.subsidy.model.SocialParams">
+		UPDATE RSDA_BS_SOCIAL_PARAMS SET
+		PARAMS_CODE=#{paramsCode,jdbcType=VARCHAR},
+		START_DATE=#{startDate,jdbcType=VARCHAR},
+		END_DATE=#{endDate,jdbcType=VARCHAR},
+		PARAMS_VALUE=#{paramsValue,jdbcType=VARCHAR},
+		DESCRIPTION=#{description,jdbcType=VARCHAR},
+		CREATER_ID=#{createrId,jdbcType=NUMERIC},
+		CREATER_NAME=#{createrName,jdbcType=VARCHAR},
+		CREATER_ORG_ID=#{createrOrgId,jdbcType=NUMERIC},
+		CREATER_ORG_NAME=#{createrOrgName,jdbcType=VARCHAR},
+		CREATER_DATE=#{createrDate,jdbcType=DATE}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SocialParams">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_SOCIAL_PARAMS
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SocialParamsDto">
+		SELECT a.*,b.name as "paramsName" 
+		FROM RSDA_BS_SOCIAL_PARAMS a  left join RSDA_TAB_SOCIAL_STANDARD b on  a.PARAMS_CODE=b.code  
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

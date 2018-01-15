@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.person.model.JobAuditionInvited">
+	<resultMap id="JobAuditionInvited" type="com.xunfeng.business.person.model.JobAuditionInvited">
+		<id property="ccps01" column="CCPS01" jdbcType="NUMERIC"/>
+		<result property="ccmc01" column="CCMC01" jdbcType="NUMERIC"/>
+		<result property="ccmp01" column="CCMP01" jdbcType="NUMERIC"/>
+		<result property="acb210" column="ACB210" jdbcType="NUMERIC"/>
+		<result property="ccps02" column="CCPS02" jdbcType="TIMESTAMP"/>
+		<result property="ccps03" column="CCPS03" jdbcType="VARCHAR"/>
+		<result property="ccps04" column="CCPS04" jdbcType="NUMERIC"/>
+		<result property="ccps06" column="CCPS06" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+		<result property="acb330" column="ACB330" jdbcType="NUMERIC"/>
+		<result property="isaccept" column="ISACCEPT" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		CCPS01,CCMC01,CCMP01,ACB210,CCPS02,CCPS03,CCPS04,CCPS06,CCPR08,ACB330,ISACCEPT
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(ccps01)"> AND CCPS01  =#{ccps01} </if>
+			<if test="@Ognl@isNotEmpty(ccmc01)"> AND CCMC01  =#{ccmc01} </if>
+			<if test="@Ognl@isNotEmpty(ccmp01)"> AND CCMP01  =#{ccmp01} </if>
+			<if test="@Ognl@isNotEmpty(acb210)"> AND ACB210  =#{acb210} </if>
+			<if test="@Ognl@isNotEmpty(ccps02)"> AND CCPS02  =#{ccps02} </if>
+			<if test="@Ognl@isNotEmpty(beginccps02)"> AND CCPS02  >=#{beginccps02,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endccps02)"> AND CCPS02 <![CDATA[ <=#{endccps02,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(ccps03)"> AND CCPS03  LIKE #{ccps03}  </if>
+			<if test="@Ognl@isNotEmpty(ccps04)"> AND CCPS04  =#{ccps04} </if>
+			<if test="@Ognl@isNotEmpty(ccps06)"> AND CCPS06  LIKE #{ccps06}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr08)"> AND CCPR08  LIKE #{ccpr08}  </if>
+			<if test="@Ognl@isNotEmpty(acb330)"> AND ACB330  =#{acb330} </if>
+			<if test="@Ognl@isNotEmpty(isaccept)"> AND ACB330  =#{isaccept} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.person.model.JobAuditionInvited">
+		INSERT INTO CCP03
+		(CCPS01,CCMC01,CCMP01,ACB210,CCPS02,CCPS03,CCPS04,CCPS06,CCPR08,ACB330,ISACCEPT)
+		VALUES
+		(#{ccps01,jdbcType=NUMERIC}, #{ccmc01,jdbcType=NUMERIC}, #{ccmp01,jdbcType=NUMERIC}, #{acb210,jdbcType=NUMERIC}, #{ccps02,jdbcType=TIMESTAMP}, #{ccps03,jdbcType=VARCHAR}, #{ccps04,jdbcType=NUMERIC}, 
+		#{ccps06,jdbcType=VARCHAR}, #{ccpr08,jdbcType=VARCHAR}, #{acb330,jdbcType=NUMERIC}, #{isaccept,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM CCP03 
+		WHERE
+		CCPS01=#{ccps01}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.person.model.JobAuditionInvited">
+		UPDATE CCP03 SET
+		CCMC01=#{ccmc01,jdbcType=NUMERIC},
+		CCMP01=#{ccmp01,jdbcType=NUMERIC},
+		ACB210=#{acb210,jdbcType=NUMERIC},
+		CCPS02=#{ccps02,jdbcType=TIMESTAMP},
+		CCPS03=#{ccps03,jdbcType=VARCHAR},
+		CCPS04=#{ccps04,jdbcType=NUMERIC},
+		CCPS06=#{ccps06,jdbcType=VARCHAR},
+		CCPR08=#{ccpr08,jdbcType=VARCHAR},
+		ACB330=#{acb330,jdbcType=NUMERIC},
+		ISACCEPT=#{isaccept,jdbcType=NUMERIC}
+		WHERE
+		CCPS01=#{ccps01}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="JobAuditionInvited">
+		SELECT <include refid="columns"/>
+		FROM CCP03
+		WHERE
+		CCPS01=#{ccps01}
+	</select>
+	
+	<select id="getAll" resultMap="JobAuditionInvited">
+		SELECT <include refid="columns"/>
+		FROM CCP03   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by CCPS01  desc
+		</if>
+	</select>
+
+
+	<!--企业发起的面试邀请-->
+	<resultMap id="CorpInviteDto" type="com.xunfeng.business.corp.dto.CorpInviteDto">
+		<result property="aac003" column="aac003" jdbcType="VARCHAR"/>
+		<result property="cca113" column="cca113" jdbcType="VARCHAR"/>
+		<result property="AAC004" column="AAC004" jdbcType="VARCHAR"/>
+		<result property="bac006" column="bac006" jdbcType="VARCHAR"/>
+		<result property="AAC011" column="AAC011" jdbcType="VARCHAR"/>
+		<result property="AAE036" column="AAE036" jdbcType="VARCHAR"/>
+		<result property="bcc229n" column="bcc229n" jdbcType="VARCHAR"/>
+		<result property="ecpr10" column="ecpr10" jdbcType="VARCHAR"/>
+		<result property="ecpr09" column="ecpr09" jdbcType="VARCHAR"/>
+		<result property="acc223" column="acc223" jdbcType="VARCHAR"/>
+		<result property="ECC223" column="ECC223" jdbcType="VARCHAR"/>
+		<result property="aac002" column="aac002" jdbcType="VARCHAR"/>
+		<result property="aab001" column="aab001" jdbcType="NUMERIC"/>
+	</resultMap>
+	<sql id="dynamicCorpInviteWhere">
+		<if test="@Ognl@isNotEmpty(aab001)"> AND aab001  =#{aab001} </if>
+		<if test="@Ognl@isNotEmpty(aac002)"> AND aac002  LIKE #{aac002} </if>
+		<if test="@Ognl@isNotEmpty(aac003)"> AND aac003  LIKE #{aac003} </if>
+		<if test="@Ognl@isNotEmpty(acc223)"> AND acc223  = #{acc223} </if>
+		<choose>
+			<when test="ccpr10 != null and ccpr10==0 ">
+				AND ccpr10  =#{ccpr10}
+			</when>
+			<when test="ccpr10 != null and ccpr10==1">
+				AND ccpr10 IS NULL
+			</when>
+		</choose>
+	</sql>
+	<!--  <select id="getAllCorpInviteDto" resultMap="CorpInviteDto">
+		SELECT a.* FROM V_CC22 a
+	    WHERE  (ccpr09 in ('6','13','14','15','16')  or (ccpr09 in ('5','12') and ccps01n=1)) AND CCPR08=0
+		<include refid="dynamicCorpInviteWhere" />
+	</select>-->
+	
+    <!-- 获得企业的面试邀请 2016-04-07 -->
+	<select id="getAllCorpInviteDto" resultType="java.util.HashMap"> 
+	<!--  select a.CCPS01,a.ISACCEPT,b.aab001,to_char(a.CCPS02,'yyyy-MM-dd') as CCPS02, b.name as acc034 , b.aab004,b.cca113 from CCP03 a inner join 
+	(select * from cb21 c left join TAB_SALARY d on c.acc034 = d.code)  b  on  a.acb210=b.acb210  
+     where   a.CCMP01=#{ccmc01} and a.CCPR08 =0 -->
+     select a.CCPS01,
+     a.ISACCEPT,
+     a.ACB210 ,
+     a.ccps03,
+     b.acb208,
+     b.aab001,
+     to_char(a.CCPS02,'yyyy-MM-dd') as CCPS02, 
+     b.name as acc034 , 
+     b.aab004,
+     b.cca113,
+     
+     nvl(b.imgcount,'0') as imgcount,
+     nvl(b.videCount,'0') as videCount, 
+     nvl(b.CABQ08,'0') as CABQ08 
+     from CCP03 a 
+     inner join 
+       (select c.aab001,c.acb210, c.acb208,c.abb773 ,d.name,c.aab004,c.cca113, g.CABQ08, g.imgcount, g.videCount  from cb21 c left join TAB_SALARY d on c.acc034 = d.code
+       left  join 
+        ( select d.aab001,d.CABQ08, imgcount, videCount from ab01 d,
+        (select count(*) as imgCount,aab001 from CAO04  where CAOA04=6 and caoa07=1 and ccpr08=0  and aab001 is not null  
+         group by aab001 ) e,
+         (select count(*) as videCount,aab001 from CAO04  where CAOA04=7 and caoa07=1 and ccpr08=0 and aab001 is not null  
+          group by aab001 )f 
+        where d.aab001=e.aab001(+) and  d.aab001=f.aab001(+)
+       )  g  
+     on c.aab001= g.aab001
+      )  b  on  a.acb210=b.acb210  
+     where  a.CCMP01=#{aac001} and  a.CCPR08 =0 and b.abb773=1
+      ORDER BY  CCPS02 DESC
+	</select>
+    <!--现场招聘会面试 获得用户面试记录 2016-04-08 -->
+	<select id="getInterviewsRecord" resultType="java.util.HashMap"> 
+	   SELECT v.AAB001,v.AAB004,v. AAEB36,v.CCB202,v.AAC001,
+	   nvl(g.imgcount,'0') as imgcount,nvl(g.videCount,'0') as videCount, nvl(g.CABQ08,'0') as CABQ08 ,g.ccmu15
+	   FROM V_CC22 v  	
+	   left join 
+        (select d.aab001,d.CABQ08, imgcount, videCount,z.ccmu15 from ab01 d,ccm01 z,
+           (select count(*) as imgCount,aab001 from CAO04  where CAOA04=6 and caoa07=1 and ccpr08=0 and aab001 is not null  
+            group by aab001 ) e,
+           (select count(*) as videCount,aab001 from CAO04  where CAOA04=7 and caoa07=1 and ccpr08=0 and aab001 is not null  
+            group by aab001 )f 
+   		    where d.ccmu01=z.ccmu01(+) and d.aab001=e.aab001(+) and  d.aab001=f.aab001(+)
+   		 )g  
+    	on g.aab001 =v.aab001
+	 	WHERE v.CCPR09 in(16,15) AND  v.CCPR08=0
+	 	and AAC001 = #{aac001}
+	  <if test="@Ognl@isNotEmpty(delayTime)"> 
+		   and  to_date(v.AAEB36,'yyyy-mm-dd')>=to_date(#{delayTime},'yyyy-mm-dd') 
+	  </if>
+	 ORDER BY to_date(v.AAEB36,'yyyy-mm-dd') desc
+	</select>
+    <!-- 接受或者是拒接面试 2016-04-07 -->
+	<update id="updateJobAuditionInvited" parameterType="java.util.HashMap">
+	  update CCP03 a set ISACCEPT=#{isAccept}  WHERE A.CCPS01=#{id} and CCMP01 = #{aac001}
+	</update>
+
+	<!--个人收到的面试邀请视图-->
+	<resultMap id="PersonInvitedDto" type="com.xunfeng.business.person.dto.PersonInvitedDto">
+		<result property="ccps01" column="ccps01" jdbcType="NUMERIC"/>
+		<result property="ccmc01" column="ccmc01" jdbcType="NUMERIC"/>
+		<result property="ccmp01" column="ccmp01" jdbcType="NUMERIC"/>
+		<result property="aac003" column="aac003" jdbcType="VARCHAR"/>
+		<result property="aac004" column="aac004" jdbcType="VARCHAR"/>
+		<result property="eac004" column="eac004" jdbcType="VARCHAR"/>
+		<result property="aac011" column="aac011" jdbcType="VARCHAR"/>
+		<result property="eac011" column="eac011" jdbcType="VARCHAR"/>
+		<result property="aab301" column="aab301" jdbcType="VARCHAR"/>
+		<result property="aca112" column="aca112" jdbcType="VARCHAR"/>
+		<result property="acaa12" column="acaa12" jdbcType="VARCHAR"/>
+		<result property="acab12" column="acab12" jdbcType="VARCHAR"/>
+		<result property="acb210" column="acb210" jdbcType="NUMERIC"/>
+		<result property="eca112" column="eca112" jdbcType="VARCHAR"/>
+		<result property="cca113" column="cca113" jdbcType="VARCHAR"/>
+		<result property="CCPS02" column="CCPS02" jdbcType="VARCHAR"/>
+		<result property="ccps03" column="ccps03" jdbcType="VARCHAR"/>
+		<result property="ccps04" column="ccps04" jdbcType="VARCHAR"/>
+		<result property="ECCPS04" column="ECCPS04" jdbcType="VARCHAR"/>
+		<result property="acb208" column="acb208" jdbcType="VARCHAR"/>
+		<result property="ecb208" column="ecb208" jdbcType="VARCHAR"/>
+		<result property="abb773" column="abb773" jdbcType="VARCHAR"/>
+		<result property="ebb773" column="ebb773" jdbcType="VARCHAR"/>
+		<result property="ccps06" column="ccps06" jdbcType="VARCHAR"/>
+		<result property="bca112" column="bca112" jdbcType="VARCHAR"/>
+		<result property="aae030" column="aae030" jdbcType="VARCHAR"/>
+		<result property="aae031" column="aae031" jdbcType="VARCHAR"/>
+		<result property="acc034" column="abb773" jdbcType="VARCHAR"/>
+		<result property="ecc034" column="ecc034" jdbcType="VARCHAR"/>
+		<result property="bcb202" column="bcb202" jdbcType="VARCHAR"/>
+		<result property="personAge" column="person_age" jdbcType="NUMERIC"/>
+
+	</resultMap>
+	<sql id="dynamicPersonInvitedWhere">
+		<!--企业的ID corp.aab001-->
+		<if test="@Ognl@isNotEmpty(CCMC01)"> AND CCMC01  =#{CCMC01} </if>
+		<if test="@Ognl@isNotEmpty(aac003)"> AND aac003  LIKE #{aac003} </if>
+
+	</sql>
+	<!--企业招聘会面试记录-->
+	<select id="getCorpInterviewLog" resultMap="PersonInvitedDto">
+		SELECT a.* FROM V_CCP03 a
+		WHERE    CCPR08='0'  AND  AAC003 is not null
+		<include refid="dynamicPersonInvitedWhere" />
+		ORDER BY CCPS02 DESC
+	</select>
+	
+	<!--获取企业发起的面试邀请总记录数 -->
+	<select id="getTotalInterviewsRecord" resultType="java.lang.Long"> 
+	 	select count(*) from  CCP03 where CCPR08=0 and CCMP01 = #{aac001}
+	</select>
+	<!--企业中心-》简历管理-（邀请面试记录 jx 2016.04.27） -->
+	<select id="getCorpInviteRecord" resultType="java.util.HashMap"> 
+		SELECT a.* FROM V_CC22 a
+	    WHERE (CCPR09 in('6','13','14') or (ccpr09 in ('5','12') and ccps01n=1)) AND CCPR08=0
+		<include refid="dynamicCorpInviteWhere" /> order by a.AAE036 desc
+	</select>
+	<!--企业中心-》简历管理-（招聘会面试记录 jx 2016.04.27） -->
+	<select id="getCorpFairRecord" resultType="java.util.HashMap"> 
+		SELECT a.* FROM V_CC22 a
+	    WHERE (CCPR09 in('13','15','16','17') and ccps01n=1)  AND CCPR08=0
+		<include refid="dynamicCorpInviteWhere" /> order by a.AAE036 desc
+</select>
+</mapper>

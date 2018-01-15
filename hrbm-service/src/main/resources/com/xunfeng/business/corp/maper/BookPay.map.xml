@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.corp.model.BookPay">
+	<resultMap id="BookPay" type="com.xunfeng.business.corp.model.BookPay">
+		<id property="cczz01" column="CCZZ01" jdbcType="NUMERIC"/>
+		<result property="cczy01" column="CCZY01" jdbcType="NUMERIC"/>
+		<result property="aab001" column="AAB001" jdbcType="NUMERIC"/>
+		<result property="cczl01" column="CCZL01" jdbcType="NUMERIC"/>
+		<result property="cczy03" column="CCZY03" jdbcType="NUMERIC"/>
+		<result property="aae013" column="AAE013" jdbcType="VARCHAR"/>
+		<result property="aae011" column="AAE011" jdbcType="VARCHAR"/>
+		<result property="aae019" column="AAE019" jdbcType="VARCHAR"/>
+		<result property="aae017" column="AAE017" jdbcType="VARCHAR"/>
+		<result property="aae020" column="AAE020" jdbcType="VARCHAR"/>
+		<result property="aae036" column="AAE036" jdbcType="TIMESTAMP"/>
+		<result property="cczz04" column="CCZZ04" jdbcType="VARCHAR"/>
+		<result property="cczz02" column="CCZZ02" jdbcType="TIMESTAMP"/>
+		<result property="aae022" column="AAE022" jdbcType="VARCHAR"/>
+		<result property="cczz03" column="CCZZ03" jdbcType="NUMERIC"/>
+		<result property="acb200" column="ACB200" jdbcType="NUMERIC"/>
+		<result property="aae031" column="AAE031" jdbcType="TIMESTAMP"/>
+		<result property="cczz05" column="CCZZ05" jdbcType="VARCHAR"/>
+		<result property="bae011" column="BAE011" jdbcType="VARCHAR"/>
+		<result property="bae019" column="BAE019" jdbcType="VARCHAR"/>
+		<result property="bae017" column="BAE017" jdbcType="VARCHAR"/>
+		<result property="bae020" column="BAE020" jdbcType="VARCHAR"/>
+		<result property="bae022" column="BAE022" jdbcType="VARCHAR"/>
+		<result property="catc01" column="CATC01" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		CCZZ01,CCZY01,AAB001,CCZL01,CCZY03,AAE013,AAE011,AAE019,AAE017,AAE020,AAE036,CCZZ04,CCZZ02,AAE022,CCZZ03,ACB200,AAE031,CCZZ05,BAE011,BAE019,BAE017,BAE020,BAE022,CATC01
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(cczz01)"> AND CCZZ01  =#{cczz01} </if>
+			<if test="@Ognl@isNotEmpty(cczy01)"> AND CCZY01  =#{cczy01} </if>
+			<if test="@Ognl@isNotEmpty(aab001)"> AND AAB001  =#{aab001} </if>
+			<if test="@Ognl@isNotEmpty(cczl01)"> AND CCZL01  =#{cczl01} </if>
+			<if test="@Ognl@isNotEmpty(cczy03)"> AND CCZY03  =#{cczy03} </if>
+			<if test="@Ognl@isNotEmpty(aae013)"> AND AAE013  LIKE #{aae013}  </if>
+			<if test="@Ognl@isNotEmpty(aae011)"> AND AAE011  LIKE #{aae011}  </if>
+			<if test="@Ognl@isNotEmpty(aae019)"> AND AAE019  LIKE #{aae019}  </if>
+			<if test="@Ognl@isNotEmpty(aae017)"> AND AAE017  LIKE #{aae017}  </if>
+			<if test="@Ognl@isNotEmpty(aae020)"> AND AAE020  LIKE #{aae020}  </if>
+			<if test="@Ognl@isNotEmpty(aae036)"> AND AAE036  =#{aae036} </if>
+			<if test="@Ognl@isNotEmpty(beginaae036)"> AND AAE036  >=#{beginaae036,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaae036)"> AND AAE036 <![CDATA[ <=#{endaae036,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(cczz04)"> AND CCZZ04  LIKE #{cczz04}  </if>
+			<if test="@Ognl@isNotEmpty(cczz02)"> AND CCZZ02  =#{cczz02} </if>
+			<if test="@Ognl@isNotEmpty(begincczz02)"> AND CCZZ02  >=#{begincczz02,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcczz02)"> AND CCZZ02 <![CDATA[ <=#{endcczz02,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aae022)"> AND AAE022  LIKE #{aae022}  </if>
+			<if test="@Ognl@isNotEmpty(cczz03)"> AND CCZZ03  =#{cczz03} </if>
+			<if test="@Ognl@isNotEmpty(acb200)"> AND ACB200  =#{acb200} </if>
+			<if test="@Ognl@isNotEmpty(aae031)"> AND AAE031  =#{aae031} </if>
+			<if test="@Ognl@isNotEmpty(beginaae031)"> AND AAE031  >=#{beginaae031,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaae031)"> AND AAE031 <![CDATA[ <=#{endaae031,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(cczz05)"> AND CCZZ05  LIKE #{cczz05}  </if>
+			<if test="@Ognl@isNotEmpty(bae011)"> AND BAE011  LIKE #{bae011}  </if>
+			<if test="@Ognl@isNotEmpty(bae019)"> AND BAE019  LIKE #{bae019}  </if>
+			<if test="@Ognl@isNotEmpty(bae017)"> AND BAE017  LIKE #{bae017}  </if>
+			<if test="@Ognl@isNotEmpty(bae020)"> AND BAE020  LIKE #{bae020}  </if>
+			<if test="@Ognl@isNotEmpty(bae022)"> AND BAE022  LIKE #{bae022}  </if>
+			<if test="@Ognl@isNotEmpty(catc01)"> AND CATC01  =#{catc01} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.corp.model.BookPay">
+		INSERT INTO CCZ05
+		(CCZZ01,CCZY01,AAB001,CCZL01,CCZY03,AAE013,AAE011,AAE019,AAE017,AAE020,AAE036,CCZZ04,CCZZ02,AAE022,CCZZ03,ACB200,AAE031,CCZZ05,BAE011,BAE019,BAE017,BAE020,BAE022,CATC01)
+		VALUES
+		(#{cczz01,jdbcType=NUMERIC}, #{cczy01,jdbcType=NUMERIC}, #{aab001,jdbcType=NUMERIC}, #{cczl01,jdbcType=NUMERIC}, #{cczy03,jdbcType=NUMERIC}, #{aae013,jdbcType=VARCHAR}, #{aae011,jdbcType=VARCHAR}, #{aae019,jdbcType=VARCHAR}, #{aae017,jdbcType=VARCHAR}, #{aae020,jdbcType=VARCHAR}, #{aae036,jdbcType=TIMESTAMP}, #{cczz04,jdbcType=VARCHAR}, #{cczz02,jdbcType=TIMESTAMP}, #{aae022,jdbcType=VARCHAR}, #{cczz03,jdbcType=NUMERIC}, #{acb200,jdbcType=NUMERIC}, #{aae031,jdbcType=TIMESTAMP}, #{cczz05,jdbcType=VARCHAR}, #{bae011,jdbcType=VARCHAR}, #{bae019,jdbcType=VARCHAR}, #{bae017,jdbcType=VARCHAR}, #{bae020,jdbcType=VARCHAR}, #{bae022,jdbcType=VARCHAR}, #{catc01,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM CCZ05 
+		WHERE
+		CCZZ01=#{cczz01}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.corp.model.BookPay">
+		UPDATE CCZ05 SET
+		CCZY01=#{cczy01,jdbcType=NUMERIC},
+		AAB001=#{aab001,jdbcType=NUMERIC},
+		CCZL01=#{cczl01,jdbcType=NUMERIC},
+		CCZY03=#{cczy03,jdbcType=NUMERIC},
+		AAE013=#{aae013,jdbcType=VARCHAR},
+		AAE011=#{aae011,jdbcType=VARCHAR},
+		AAE019=#{aae019,jdbcType=VARCHAR},
+		AAE017=#{aae017,jdbcType=VARCHAR},
+		AAE020=#{aae020,jdbcType=VARCHAR},
+		AAE036=#{aae036,jdbcType=TIMESTAMP},
+		CCZZ04=#{cczz04,jdbcType=VARCHAR},
+		CCZZ02=#{cczz02,jdbcType=TIMESTAMP},
+		AAE022=#{aae022,jdbcType=VARCHAR},
+		CCZZ03=#{cczz03,jdbcType=NUMERIC},
+		ACB200=#{acb200,jdbcType=NUMERIC},
+		AAE031=#{aae031,jdbcType=TIMESTAMP},
+		CCZZ05=#{cczz05,jdbcType=VARCHAR},
+		BAE011=#{bae011,jdbcType=VARCHAR},
+		BAE019=#{bae019,jdbcType=VARCHAR},
+		BAE017=#{bae017,jdbcType=VARCHAR},
+		BAE020=#{bae020,jdbcType=VARCHAR},
+		BAE022=#{bae022,jdbcType=VARCHAR},
+		CATC01=#{catc01,jdbcType=NUMERIC}
+		WHERE
+		CCZZ01=#{cczz01}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="BookPay">
+		SELECT <include refid="columns"/>
+		FROM CCZ05
+		WHERE
+		CCZZ01=#{cczz01}
+	</select>
+	
+	<select id="getAll" resultMap="BookPay">
+		SELECT <include refid="columns"/>
+		FROM CCZ05   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by CCZZ01  desc
+		</if>
+	</select>
+</mapper>

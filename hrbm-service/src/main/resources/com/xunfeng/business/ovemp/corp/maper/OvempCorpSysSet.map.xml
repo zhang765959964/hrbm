@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.ovemp.corp.model.OvempCorpSysSet">
+	<resultMap id="TrainSysSet" type="com.xunfeng.business.ovemp.corp.model.OvempCorpSysSet">
+		<id property="caos01" column="CAOS01" jdbcType="NUMERIC"/>
+		<result property="caos02" column="CAOS02" jdbcType="VARCHAR"/>
+		<result property="caos03" column="CAOS03" jdbcType="VARCHAR"/>
+		<result property="caos04" column="CAOS04" jdbcType="VARCHAR"/>
+		<result property="caos05" column="CAOS05" jdbcType="NUMERIC"/>
+		<result property="caos06" column="CAOS06" jdbcType="VARCHAR"/>
+		<result property="aae011" column="AAE011" jdbcType="VARCHAR"/>
+		<result property="aae017" column="AAE017" jdbcType="VARCHAR"/>
+		<result property="aae036" column="AAE036" jdbcType="TIMESTAMP"/>
+		<result property="aae019" column="AAE019" jdbcType="VARCHAR"/>
+		<result property="aae020" column="AAE020" jdbcType="VARCHAR"/>
+		<result property="cczy06" column="CCZY06" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		CAOS01,CAOS02,CAOS03,CAOS04,CAOS05,CAOS06,AAE011,AAE017,AAE036,AAE019,AAE020,CCZY06
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(caos01)"> AND CAOS01  =#{caos01} </if>
+			<if test="@Ognl@isNotEmpty(caos02)"> AND CAOS02  LIKE '%${caos02}%'  </if>
+			<if test="@Ognl@isNotEmpty(caos03)"> AND CAOS03  LIKE '%${caos03}%'  </if>
+			<if test="@Ognl@isNotEmpty(caos04)"> AND CAOS04  LIKE '%${caos04}%'  </if>
+			<if test="@Ognl@isNotEmpty(caos05)"> AND CAOS05  =#{caos05} </if>
+			<if test="@Ognl@isNotEmpty(caos06)"> AND CAOS06  LIKE #{caos06}  </if>
+			<if test="@Ognl@isNotEmpty(aae011)"> AND AAE011  LIKE #{aae011}  </if>
+			<if test="@Ognl@isNotEmpty(aae017)"> AND AAE017  LIKE #{aae017}  </if>
+			<if test="@Ognl@isNotEmpty(aae036)"> AND AAE036  =#{aae036} </if>
+			<if test="@Ognl@isNotEmpty(beginaae036)"> AND AAE036  >=#{beginaae036,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaae036)"> AND AAE036 <![CDATA[ <=#{endaae036,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aae019)"> AND AAE019  LIKE #{aae019}  </if>
+			<if test="@Ognl@isNotEmpty(aae020)"> AND AAE020  LIKE #{aae020}  </if>
+			<if test="@Ognl@isNotEmpty(cczy06)"> AND CCZY06  LIKE #{cczy06}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.ovemp.corp.model.OvempCorpSysSet">
+		INSERT INTO PX_SYS_SET
+		(CAOS01,CAOS02,CAOS03,CAOS04,CAOS05,CAOS06,AAE011,AAE017,AAE036,AAE019,AAE020,CCZY06)
+		VALUES
+		(#{caos01,jdbcType=NUMERIC}, #{caos02,jdbcType=VARCHAR}, #{caos03,jdbcType=VARCHAR}, #{caos04,jdbcType=VARCHAR}, #{caos05,jdbcType=NUMERIC}, #{caos06,jdbcType=VARCHAR}, #{aae011,jdbcType=VARCHAR}, #{aae017,jdbcType=VARCHAR}, #{aae036,jdbcType=TIMESTAMP}, #{aae019,jdbcType=VARCHAR}, #{aae020,jdbcType=VARCHAR}, #{cczy06,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM PX_SYS_SET 
+		WHERE
+		CAOS01=#{caos01}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.ovemp.corp.model.OvempCorpSysSet">
+		UPDATE PX_SYS_SET SET
+		CAOS02=#{caos02,jdbcType=VARCHAR},
+		CAOS03=#{caos03,jdbcType=VARCHAR},
+		CAOS04=#{caos04,jdbcType=VARCHAR},
+		CAOS05=#{caos05,jdbcType=NUMERIC},
+		CAOS06=#{caos06,jdbcType=VARCHAR},
+		AAE011=#{aae011,jdbcType=VARCHAR},
+		AAE017=#{aae017,jdbcType=VARCHAR},
+		AAE036=#{aae036,jdbcType=TIMESTAMP},
+		AAE019=#{aae019,jdbcType=VARCHAR},
+		AAE020=#{aae020,jdbcType=VARCHAR},
+		CCZY06=#{cczy06,jdbcType=VARCHAR}
+		WHERE
+		CAOS01=#{caos01}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="TrainSysSet">
+		SELECT <include refid="columns"/>
+		FROM PX_SYS_SET
+		WHERE
+		CAOS01=#{caos01}
+	</select>
+	
+	<select id="getAll" resultMap="TrainSysSet">
+		SELECT <include refid="columns"/>
+		FROM PX_SYS_SET   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by CAOS01  desc
+		</if>
+	</select>
+</mapper>

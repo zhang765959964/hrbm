@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.death.model.DeathDeclare">
+	<resultMap id="DeathDeclare" type="com.xunfeng.business.personagency.death.model.DeathDeclare">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="personId" column="PERSON_ID" jdbcType="NUMERIC"/>
+		<result property="deathNo" column="DEATH_NO" jdbcType="VARCHAR"/>
+		<result property="txTzId" column="TX_TZ_ID" jdbcType="NUMERIC"/>
+		<result property="retiredMonthMoney" column="RETIRED_MONTH_MONEY" jdbcType="NUMERIC"/>
+		<result property="deathDate" column="DEATH_DATE" jdbcType="DATE"/>
+		<result property="gsBsId" column="GS_BS_ID" jdbcType="NUMERIC"/>
+		<result property="hzTzId" column="HZ_TZ_ID" jdbcType="NUMERIC"/>
+		<result property="relatives" column="RELATIVES" jdbcType="VARCHAR"/>
+		<result property="relativesPhoneOne" column="RELATIVES_PHONE_ONE" jdbcType="VARCHAR"/>
+		<result property="relativesPhoneTwo" column="RELATIVES_PHONE_TWO" jdbcType="VARCHAR"/>
+		<result property="monthAgeMoney" column="MONTH_AGE_MONEY" jdbcType="NUMERIC"/>
+		<result property="deathNote" column="DEATH_NOTE" jdbcType="VARCHAR"/>
+		<result property="monthFjMoney" column="MONTH_FJ_MONEY" jdbcType="NUMERIC"/>
+		<result property="monthFlMoney" column="MONTH_FL_MONEY" jdbcType="NUMERIC"/>
+		<result property="monthSumMoney" column="MONTH_SUM_MONEY" jdbcType="NUMERIC"/>
+		<result property="oneMoney" column="ONE_MONEY" jdbcType="NUMERIC"/>
+		<result property="sfMoney" column="SF_MONEY" jdbcType="NUMERIC"/>
+		<result property="oneSumMoney" column="ONE_SUM_MONEY" jdbcType="NUMERIC"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="DATE"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		
+			
+		<result property="personCard" column="AAC002" jdbcType="VARCHAR"/>
+		<result property="personName" column="AAC003" jdbcType="VARCHAR"/>
+		<result property="archiveCode" column="ARCHIVE_CODE" jdbcType="VARCHAR"/>
+		<result property="pinyin" column="AAC022" jdbcType="VARCHAR"/>
+		
+		
+		
+		
+	</resultMap>
+
+	<sql id="columns">
+		ID,PERSON_ID,DEATH_NO,TX_TZ_ID,RETIRED_MONTH_MONEY,DEATH_DATE,GS_BS_ID,HZ_TZ_ID,RELATIVES,RELATIVES_PHONE_ONE,RELATIVES_PHONE_TWO,MONTH_AGE_MONEY,DEATH_NOTE,MONTH_FJ_MONEY,MONTH_FL_MONEY,MONTH_SUM_MONEY,ONE_MONEY,SF_MONEY,ONE_SUM_MONEY,CREATER_ID,CREATER_NAME,CREATER_DATE,CREATER_ORG_ID,CREATER_ORG_NAME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(ids)"> AND death.PERSON_ID  in  (${ids}) </if>
+			<if test="@Ognl@isNotEmpty(id)"> AND death.ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(personId)"> AND PERSON_ID  like #{personId} </if>
+			<if test="@Ognl@isNotEmpty(deathNo)"> AND DEATH_NO  like #{deathNo} </if>
+			<if test="@Ognl@isNotEmpty(txTzId)"> AND TX_TZ_ID  =#{txTzId} </if>
+			<if test="@Ognl@isNotEmpty(retiredMonthMoney)"> AND RETIRED_MONTH_MONEY  =#{retiredMonthMoney} </if>
+			<if test="@Ognl@isNotEmpty(deathDate)"> AND DEATH_DATE  =#{deathDate} </if>
+			<if test="@Ognl@isNotEmpty(begindeathDate)"> AND DEATH_DATE  >=#{begindeathDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(enddeathDate)"> AND DEATH_DATE <![CDATA[ <=#{enddeathDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(gsBsId)"> AND GS_BS_ID  =#{gsBsId} </if>
+			<if test="@Ognl@isNotEmpty(hzTzId)"> AND HZ_TZ_ID  =#{hzTzId} </if>
+			<if test="@Ognl@isNotEmpty(relatives)"> AND RELATIVES  LIKE #{relatives}  </if>
+			<if test="@Ognl@isNotEmpty(relativesPhoneOne)"> AND RELATIVES_PHONE_ONE  LIKE #{relativesPhoneOne}  </if>
+			<if test="@Ognl@isNotEmpty(relativesPhoneTwo)"> AND RELATIVES_PHONE_TWO  LIKE #{relativesPhoneTwo}  </if>
+			<if test="@Ognl@isNotEmpty(monthAgeMoney)"> AND MONTH_AGE_MONEY  =#{monthAgeMoney} </if>
+			<if test="@Ognl@isNotEmpty(deathNote)"> AND DEATH_NOTE  LIKE #{deathNote}  </if>
+			<if test="@Ognl@isNotEmpty(monthFjMoney)"> AND MONTH_FJ_MONEY  =#{monthFjMoney} </if>
+			<if test="@Ognl@isNotEmpty(monthFlMoney)"> AND MONTH_FL_MONEY  =#{monthFlMoney} </if>
+			<if test="@Ognl@isNotEmpty(monthSumMoney)"> AND MONTH_SUM_MONEY  =#{monthSumMoney} </if>
+			<if test="@Ognl@isNotEmpty(oneMoney)"> AND ONE_MONEY  =#{oneMoney} </if>
+			<if test="@Ognl@isNotEmpty(sfMoney)"> AND SF_MONEY  =#{sfMoney} </if>
+			<if test="@Ognl@isNotEmpty(oneSumMoney)"> AND ONE_SUM_MONEY  =#{oneSumMoney} </if>
+			<if test="@Ognl@isNotEmpty(createrId)"> AND death.CREATER_ID  =#{createrId} </if>
+			<if test="@Ognl@isNotEmpty(createrName)"> AND death.CREATER_NAME  LIKE #{createrName}  </if>
+			<if test="@Ognl@isNotEmpty(createrDate)"> AND CREATER_DATE  =#{createrDate} </if>
+			<if test="@Ognl@isNotEmpty(begincreaterDate)"> AND death.CREATER_DATE  >=#{begincreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND death.CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(createrOrgId)"> AND death.CREATER_ORG_ID  =#{createrOrgId} </if>
+			<if test="@Ognl@isNotEmpty(createrOrgName)"> AND death.CREATER_ORG_NAME  LIKE #{createrOrgName}  </if>
+			
+			<if test="@Ognl@isNotEmpty(personCard)"> AND  upper(AAC002) like upper(#{personCard}) </if>
+			<if test="@Ognl@isNotEmpty(personName)"> AND AAC003  like #{personName} </if>
+			<if test="@Ognl@isNotEmpty(archiveCode)"> AND upper(ARCHIVE_CODE) like upper(#{archiveCode}) </if>
+			<if test="@Ognl@isNotEmpty(pinyin)"> AND upper(AAC022)   like upper(#{pinyin}) </if>
+			
+			
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.death.model.DeathDeclare">
+		INSERT INTO RSDA_BS_DEATH_DECLARE
+		(ID,PERSON_ID,DEATH_NO,TX_TZ_ID,RETIRED_MONTH_MONEY,DEATH_DATE,GS_BS_ID,HZ_TZ_ID,RELATIVES,RELATIVES_PHONE_ONE,RELATIVES_PHONE_TWO,MONTH_AGE_MONEY,DEATH_NOTE,MONTH_FJ_MONEY,MONTH_FL_MONEY,MONTH_SUM_MONEY,ONE_MONEY,SF_MONEY,ONE_SUM_MONEY,CREATER_ID,CREATER_NAME,CREATER_DATE,CREATER_ORG_ID,CREATER_ORG_NAME)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{personId,jdbcType=NUMERIC}, #{deathNo,jdbcType=VARCHAR}, #{txTzId,jdbcType=NUMERIC}, #{retiredMonthMoney,jdbcType=NUMERIC}, #{deathDate,jdbcType=DATE}, #{gsBsId,jdbcType=NUMERIC}, #{hzTzId,jdbcType=NUMERIC}, #{relatives,jdbcType=VARCHAR}, #{relativesPhoneOne,jdbcType=VARCHAR}, #{relativesPhoneTwo,jdbcType=VARCHAR}, #{monthAgeMoney,jdbcType=NUMERIC}, #{deathNote,jdbcType=VARCHAR}, #{monthFjMoney,jdbcType=NUMERIC}, #{monthFlMoney,jdbcType=NUMERIC}, #{monthSumMoney,jdbcType=NUMERIC}, #{oneMoney,jdbcType=NUMERIC}, #{sfMoney,jdbcType=NUMERIC}, #{oneSumMoney,jdbcType=NUMERIC}, #{createrId,jdbcType=NUMERIC}, #{createrName,jdbcType=VARCHAR}, #{createrDate,jdbcType=DATE}, #{createrOrgId,jdbcType=NUMERIC}, #{createrOrgName,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_DEATH_DECLARE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	
+	<!-- 根据人员id删除死亡待遇申请  -->
+	<delete id="delByPersonId" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_DEATH_DECLARE 
+		WHERE
+		PERSON_ID=#{personId}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.death.model.DeathDeclare">
+		UPDATE RSDA_BS_DEATH_DECLARE SET
+		PERSON_ID=#{personId,jdbcType=NUMERIC},
+		DEATH_NO=#{deathNo,jdbcType=VARCHAR},
+		TX_TZ_ID=#{txTzId,jdbcType=NUMERIC},
+		RETIRED_MONTH_MONEY=#{retiredMonthMoney,jdbcType=NUMERIC},
+		DEATH_DATE=#{deathDate,jdbcType=DATE},
+		GS_BS_ID=#{gsBsId,jdbcType=NUMERIC},
+		HZ_TZ_ID=#{hzTzId,jdbcType=NUMERIC},
+		RELATIVES=#{relatives,jdbcType=VARCHAR},
+		RELATIVES_PHONE_ONE=#{relativesPhoneOne,jdbcType=VARCHAR},
+		RELATIVES_PHONE_TWO=#{relativesPhoneTwo,jdbcType=VARCHAR},
+		MONTH_AGE_MONEY=#{monthAgeMoney,jdbcType=NUMERIC},
+		DEATH_NOTE=#{deathNote,jdbcType=VARCHAR},
+		MONTH_FJ_MONEY=#{monthFjMoney,jdbcType=NUMERIC},
+		MONTH_FL_MONEY=#{monthFlMoney,jdbcType=NUMERIC},
+		MONTH_SUM_MONEY=#{monthSumMoney,jdbcType=NUMERIC},
+		ONE_MONEY=#{oneMoney,jdbcType=NUMERIC},
+		SF_MONEY=#{sfMoney,jdbcType=NUMERIC},
+		ONE_SUM_MONEY=#{oneSumMoney,jdbcType=NUMERIC},
+		CREATER_ID=#{createrId,jdbcType=NUMERIC},
+		CREATER_NAME=#{createrName,jdbcType=VARCHAR},
+		CREATER_DATE=#{createrDate,jdbcType=DATE},
+		CREATER_ORG_ID=#{createrOrgId,jdbcType=NUMERIC},
+		CREATER_ORG_NAME=#{createrOrgName,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="DeathDeclare">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_DEATH_DECLARE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getByDeathPersonId" parameterType="java.lang.Long" resultMap="DeathDeclare">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_DEATH_DECLARE
+		WHERE
+		PERSON_ID=#{personId}
+	</select>
+	
+	
+	<select id="getAll" resultMap="DeathDeclare">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_DEATH_DECLARE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<!-- 综合查询中死亡待遇信息详细查询 -->
+	<select id="getByvPersonId" resultType="java.util.Map">
+		select * from v_rsda_bs_death_declare t 
+		where 1=1
+		<if test="@Ognl@isNotEmpty(personId)"> AND t.PERSON_ID   =#{personId} </if>
+		<if test="@Ognl@isNotEmpty(ids)"> AND t.ID   in (${ids}) </if>
+	</select>
+	
+	<!-- 根据身份证号和档案编号查询死亡待遇信息 -->
+	<select id="getByPersonIdOraAchiveCode" resultType="java.util.HashMap">
+		select
+	 	  death.person_id as "id",
+	 	  death.id as "deathId",
+	      to_char(death.creater_date,'yyyy-MM-dd') as "createrDate",
+	      death.death_no as "deathNo",
+	      person.aac002 as "personCard",
+	      person.aac003 as "personName",
+	      decode(person.aac004 , 1, '男'，2,'女') as "personSex",
+	      to_char(death.death_date,'yyyy-MM-dd') as "deathDate",
+	      archive.ARCHIVE_CODE as "archiveCode",
+	      death.relatives as "relatives",
+	      death.Relatives_phone_one as "phoneOne",
+	      death.relatives_phone_two as "phoneTwo",
+	      death.death_note as "deathNote",
+	      tx.name as "txName",
+	      gb.name as "gbName",
+	      hz.name as "hzName",
+	      death.retired_month_money as "monthMoney",
+	      death.month_age_money as "monthAgeMoney",
+	      death.Month_Fj_Money as "monthFjMoney",
+	      death.Month_Fl_Money as "monthFlMoney",
+	      death.month_sum_money as "monthSumMoney",
+	      death.One_Money as "oneMoney",
+	      death.sf_money as "sfMoney",
+	      death.one_sum_money as "oneSumMoney",
+	      death.creater_name as "createrName",
+	      death.creater_org_name as "createrOrgName"
+	 from 
+	      rsda_bs_death_declare death 
+	      left join ac01 person  on person.aac001 = death.person_id
+	      left join  RSDA_BS_ARCHIVE_ARCHIVES archive on archive.person_id = person.aac001
+	      left join RSDA_BS_PERSON_EXPAND expand on expand.exp_person_id = person.aac001
+	      left join rsda_tab_tx_tz tx on tx.code = death.tx_tz_id
+	      left join rsda_tab_gs_bs gb on gb.code = death.gs_bs_id
+	      left join rsda_tab_hz_tz hz on hz.code = death.hz_tz_id
+	  	where 1=1
+	  	<if test="@Ognl@isNotEmpty(personCard)"> AND  upper(AAC002) like upper(#{personCard}) </if>
+		<if test="@Ognl@isNotEmpty(archiveCode)"> AND  upper(ARCHIVE_CODE) like upper(#{archiveCode}) </if>
+	  	
+	
+	</select>
+	
+	
+	
+	
+	<!-- 根据人员信息查询党员档案管理 -->
+	<select id="getByPersonId" resultType="java.util.Map">
+	  select * from  V_RSDA_BS_DEATH_PERSON_ID  t
+      where t."personId" = #{personId}
+	</select>
+	
+	
+	<!-- 打印死亡人员名册 -->
+	<select id="getPrintDeathList" resultType="java.util.Map">
+		select * from  v_rsda_bs_death_print t where t."id" in (#{personIds})
+	</select>
+	
+	
+	<!-- 死忙待遇申报查询 -->
+	<select id="deathDeclareList" resultType="java.util.HashMap">
+	 select
+	 	  death.person_id as "id",
+	 	  death.id as "deathId",
+	      to_char(death.creater_date,'yyyy-MM-dd') as "createrDate",
+	      death.death_no as "deathNo",
+	      person.aac002 as "personCard",
+	      person.aac003 as "personName",
+	      decode(person.aac004 , 1, '男'，2,'女') as "personSex",
+	      to_char(death.death_date,'yyyy-MM-dd') as "deathDate",
+	      archive.Archive_Code as "archiveCode",
+	      death.relatives as "relatives",
+	      death.Relatives_phone_one as "phoneOne",
+	      death.relatives_phone_two as "phoneTwo",
+	      death.death_note as "deathNote",
+	      tx.name as "txName",
+	      gb.name as "gbName",
+	      hz.name as "hzName",
+	      death.retired_month_money as "monthMoney",
+	      death.month_age_money as "monthAgeMoney",
+	      death.Month_Fj_Money as "monthFjMoney",
+	      death.Month_Fl_Money as "monthFlMoney",
+	      death.month_sum_money as "monthSumMoney",
+	      death.One_Money as "oneMoney",
+	      death.sf_money as "sfMoney",
+	      death.one_sum_money as "oneSumMoney",
+	      death.creater_name as "createrName",
+	      death.creater_org_name as "createrOrgName"
+	 from 
+	      rsda_bs_death_declare death 
+	      left join ac01 person  on person.aac001 = death.person_id
+	      left join  RSDA_BS_ARCHIVE_ARCHIVES archive on archive.person_id = person.aac001
+	      left join RSDA_BS_PERSON_EXPAND expand on expand.exp_person_id = person.aac001
+	      left join rsda_tab_tx_tz tx on tx.code = death.tx_tz_id
+	      left join rsda_tab_gs_bs gb on gb.code = death.gs_bs_id
+	      left join rsda_tab_hz_tz hz on hz.code = death.hz_tz_id
+	      
+	     <include refid="dynamicWhere" />
+	     <if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		 </if>
+		 <if test="@Ognl@isEmpty(orderField)">
+			order by death.ID  desc
+		 </if>
+	      
+	      
+	</select>
+	
+	
+		
+	
+</mapper>

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.storage.model.WageStandard">
+	<resultMap id="WageStandard" type="com.xunfeng.business.personagency.storage.model.WageStandard">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="archivesId" column="ARCHIVES_ID" jdbcType="NUMERIC"/>
+		<result property="personId" column="PERSON_ID" jdbcType="NUMERIC"/>
+		<result property="aac003" column="AAC003" jdbcType="VARCHAR"/>
+		<result property="aac004" column="AAC004" jdbcType="VARCHAR"/>
+		<result property="aac005" column="AAC005" jdbcType="VARCHAR"/>
+		<result property="aac006" column="AAC006" jdbcType="DATE"/>
+		<result property="expStartJobDate" column="EXP_START_JOB_DATE" jdbcType="DATE"/>
+		<result property="adjustDate" column="ADJUST_DATE" jdbcType="DATE"/>
+		<result property="positionType" column="POSITION_TYPE" jdbcType="VARCHAR"/>
+		<result property="ja01" column="JA01" jdbcType="VARCHAR"/>
+		<result property="jb01" column="JB01" jdbcType="VARCHAR"/>
+		<result property="ja02" column="JA02" jdbcType="VARCHAR"/>
+		<result property="jb02" column="JB02" jdbcType="VARCHAR"/>
+		<result property="ja03" column="JA03" jdbcType="VARCHAR"/>
+		<result property="jb03" column="JB03" jdbcType="VARCHAR"/>
+		<result property="ja04" column="JA04" jdbcType="VARCHAR"/>
+		<result property="jb04" column="JB04" jdbcType="VARCHAR"/>
+		<result property="ja05" column="JA05" jdbcType="VARCHAR"/>
+		<result property="jb05" column="JB05" jdbcType="VARCHAR"/>
+		<result property="ja06" column="JA06" jdbcType="VARCHAR"/>
+		<result property="jb06" column="JB06" jdbcType="VARCHAR"/>
+		<result property="ja07" column="JA07" jdbcType="VARCHAR"/>
+		<result property="jb07" column="JB07" jdbcType="VARCHAR"/>
+		<result property="ja08" column="JA08" jdbcType="VARCHAR"/>
+		<result property="jb08" column="JB08" jdbcType="VARCHAR"/>
+		<result property="ja09" column="JA09" jdbcType="VARCHAR"/>
+		<result property="jb09" column="JB09" jdbcType="VARCHAR"/>
+		<result property="ja10" column="JA10" jdbcType="VARCHAR"/>
+		<result property="jb10" column="JB10" jdbcType="VARCHAR"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="DATE"/>
+		<result property="aac011" column="AAC011" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<resultMap id="WageStandardDto" type="com.xunfeng.business.personagency.storage.dto.WageStandardDto">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="archivesId" column="ARCHIVES_ID" jdbcType="NUMERIC"/>
+		<result property="personId" column="PERSON_ID" jdbcType="NUMERIC"/>
+		<result property="aac003" column="AAC003" jdbcType="VARCHAR"/>
+		<result property="aac004" column="AAC004" jdbcType="VARCHAR"/>
+		<result property="aac005" column="AAC005" jdbcType="VARCHAR"/>
+		<result property="aac006" column="AAC006" jdbcType="DATE"/>
+		<result property="expStartJobDate" column="EXP_START_JOB_DATE" jdbcType="DATE"/>
+		<result property="adjustDate" column="ADJUST_DATE" jdbcType="DATE"/>
+		<result property="positionType" column="POSITION_TYPE" jdbcType="VARCHAR"/>
+		<result property="ja01" column="JA01" jdbcType="VARCHAR"/>
+		<result property="jb01" column="JB01" jdbcType="VARCHAR"/>
+		<result property="ja02" column="JA02" jdbcType="VARCHAR"/>
+		<result property="jb02" column="JB02" jdbcType="VARCHAR"/>
+		<result property="ja03" column="JA03" jdbcType="VARCHAR"/>
+		<result property="jb03" column="JB03" jdbcType="VARCHAR"/>
+		<result property="ja04" column="JA04" jdbcType="VARCHAR"/>
+		<result property="jb04" column="JB04" jdbcType="VARCHAR"/>
+		<result property="ja05" column="JA05" jdbcType="VARCHAR"/>
+		<result property="jb05" column="JB05" jdbcType="VARCHAR"/>
+		<result property="ja06" column="JA06" jdbcType="VARCHAR"/>
+		<result property="jb06" column="JB06" jdbcType="VARCHAR"/>
+		<result property="ja07" column="JA07" jdbcType="VARCHAR"/>
+		<result property="jb07" column="JB07" jdbcType="VARCHAR"/>
+		<result property="ja08" column="JA08" jdbcType="VARCHAR"/>
+		<result property="jb08" column="JB08" jdbcType="VARCHAR"/>
+		<result property="ja09" column="JA09" jdbcType="VARCHAR"/>
+		<result property="jb09" column="JB09" jdbcType="VARCHAR"/>
+		<result property="ja10" column="JA10" jdbcType="VARCHAR"/>
+		<result property="jb10" column="JB10" jdbcType="VARCHAR"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="DATE"/>
+		<result property="aac011" column="AAC011" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		a.ID,ARCHIVES_ID,a.PERSON_ID,a.AAC003,a.AAC004,a.AAC005,a.AAC006,EXP_START_JOB_DATE,ADJUST_DATE,POSITION_TYPE,JA01,JB01,JA02,JB02,JA03,JB03,JA04,JB04,JA05,JB05,JA06,JB06,JA07,JB07,JA08,JB08,JA09,JB09,JA10,JB10,CREATER_ID,CREATER_NAME,CREATER_ORG_ID,CREATER_ORG_NAME,CREATER_DATE,a.AAC011,a.CCPR08
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND a.ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(archivesId)"> AND ARCHIVES_ID  =#{archivesId} </if>
+			<if test="@Ognl@isNotEmpty(personId)"> AND a.PERSON_ID  =#{personId} </if>
+			<if test="@Ognl@isNotEmpty(aac003)"> AND a.AAC003  LIKE #{aac003}  </if>
+			<if test="@Ognl@isNotEmpty(aac004)"> AND a.AAC004  LIKE #{aac004}  </if>
+			<if test="@Ognl@isNotEmpty(aac005)"> AND a.AAC005  LIKE #{aac005}  </if>
+			<if test="@Ognl@isNotEmpty(aac006)"> AND a.AAC006  =#{aac006} </if>
+			<if test="@Ognl@isNotEmpty(beginaac006)"> AND a.AAC006  >=#{beginaac006,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaac006)"> AND a.AAC006 <![CDATA[ <=#{endaac006,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(expStartJobDate)"> AND EXP_START_JOB_DATE  =#{expStartJobDate} </if>
+			<if test="@Ognl@isNotEmpty(beginexpStartJobDate)"> AND EXP_START_JOB_DATE  >=#{beginexpStartJobDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endexpStartJobDate)"> AND EXP_START_JOB_DATE <![CDATA[ <=#{endexpStartJobDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(adjustDate)"> AND ADJUST_DATE  =#{adjustDate} </if>
+			<if test="@Ognl@isNotEmpty(beginadjustDate)"> AND ADJUST_DATE  >=#{beginadjustDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endadjustDate)"> AND ADJUST_DATE <![CDATA[ <=#{endadjustDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(positionType)"> AND POSITION_TYPE  LIKE #{positionType}  </if>
+			<if test="@Ognl@isNotEmpty(ja01)"> AND JA01  LIKE #{ja01}  </if>
+			<if test="@Ognl@isNotEmpty(jb01)"> AND JB01  LIKE #{jb01}  </if>
+			<if test="@Ognl@isNotEmpty(ja02)"> AND JA02  LIKE #{ja02}  </if>
+			<if test="@Ognl@isNotEmpty(jb02)"> AND JB02  LIKE #{jb02}  </if>
+			<if test="@Ognl@isNotEmpty(ja03)"> AND JA03  LIKE #{ja03}  </if>
+			<if test="@Ognl@isNotEmpty(jb03)"> AND JB03  LIKE #{jb03}  </if>
+			<if test="@Ognl@isNotEmpty(ja04)"> AND JA04  LIKE #{ja04}  </if>
+			<if test="@Ognl@isNotEmpty(jb04)"> AND JB04  LIKE #{jb04}  </if>
+			<if test="@Ognl@isNotEmpty(ja05)"> AND JA05  LIKE #{ja05}  </if>
+			<if test="@Ognl@isNotEmpty(jb05)"> AND JB05  LIKE #{jb05}  </if>
+			<if test="@Ognl@isNotEmpty(ja06)"> AND JA06  LIKE #{ja06}  </if>
+			<if test="@Ognl@isNotEmpty(jb06)"> AND JB06  LIKE #{jb06}  </if>
+			<if test="@Ognl@isNotEmpty(ja07)"> AND JA07  LIKE #{ja07}  </if>
+			<if test="@Ognl@isNotEmpty(jb07)"> AND JB07  LIKE #{jb07}  </if>
+			<if test="@Ognl@isNotEmpty(ja08)"> AND JA08  LIKE #{ja08}  </if>
+			<if test="@Ognl@isNotEmpty(jb08)"> AND JB08  LIKE #{jb08}  </if>
+			<if test="@Ognl@isNotEmpty(ja09)"> AND JA09  LIKE #{ja09}  </if>
+			<if test="@Ognl@isNotEmpty(jb09)"> AND JB09  LIKE #{jb09}  </if>
+			<if test="@Ognl@isNotEmpty(ja10)"> AND JA10  LIKE #{ja10}  </if>
+			<if test="@Ognl@isNotEmpty(jb10)"> AND JB10  LIKE #{jb10}  </if>
+			<if test="@Ognl@isNotEmpty(createrId)"> AND CREATER_ID  =#{createrId} </if>
+			<if test="@Ognl@isNotEmpty(createrName)"> AND CREATER_NAME  LIKE #{createrName}  </if>
+			<if test="@Ognl@isNotEmpty(createrOrgId)"> AND CREATER_ORG_ID  =#{createrOrgId} </if>
+			<if test="@Ognl@isNotEmpty(createrOrgName)"> AND CREATER_ORG_NAME  LIKE #{createrOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(createrDate)"> AND CREATER_DATE  =#{createrDate} </if>
+			<if test="@Ognl@isNotEmpty(begincreaterDate)"> AND CREATER_DATE  >=#{begincreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aac011)"> AND a.AAC011  LIKE #{aac011}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr08)"> AND a.CCPR08  LIKE #{ccpr08}  </if>
+			
+			<if test="@Ognl@isNotEmpty(archiveCode)"> AND upper(b.ARCHIVE_CODE) LIKE upper(#{archiveCode}) </if>
+			<if test="@Ognl@isNotEmpty(aac002)"> AND upper(p.AAC002) LIKE upper(#{aac002})  </if>
+			<if test="@Ognl@isNotEmpty(ids)"> AND a.ID in (${ids})</if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.storage.model.WageStandard">
+		INSERT INTO RSDA_BS_WAGE_STANDARD
+		(ID,ARCHIVES_ID,PERSON_ID,AAC003,AAC004,AAC005,AAC006,EXP_START_JOB_DATE,ADJUST_DATE,POSITION_TYPE,JA01,JB01,JA02,JB02,JA03,JB03,JA04,JB04,JA05,JB05,JA06,JB06,JA07,JB07,JA08,JB08,JA09,JB09,JA10,JB10,CREATER_ID,CREATER_NAME,CREATER_ORG_ID,CREATER_ORG_NAME,CREATER_DATE,AAC011,CCPR08)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{archivesId,jdbcType=NUMERIC}, #{personId,jdbcType=NUMERIC}, #{aac003,jdbcType=VARCHAR}, #{aac004,jdbcType=VARCHAR}, #{aac005,jdbcType=VARCHAR}, #{aac006,jdbcType=DATE}, #{expStartJobDate,jdbcType=DATE}, #{adjustDate,jdbcType=DATE}, #{positionType,jdbcType=VARCHAR}, #{ja01,jdbcType=VARCHAR}, #{jb01,jdbcType=VARCHAR}, #{ja02,jdbcType=VARCHAR}, #{jb02,jdbcType=VARCHAR}, #{ja03,jdbcType=VARCHAR}, #{jb03,jdbcType=VARCHAR}, #{ja04,jdbcType=VARCHAR}, #{jb04,jdbcType=VARCHAR}, #{ja05,jdbcType=VARCHAR}, #{jb05,jdbcType=VARCHAR}, #{ja06,jdbcType=VARCHAR}, #{jb06,jdbcType=VARCHAR}, #{ja07,jdbcType=VARCHAR}, #{jb07,jdbcType=VARCHAR}, #{ja08,jdbcType=VARCHAR}, #{jb08,jdbcType=VARCHAR}, #{ja09,jdbcType=VARCHAR}, #{jb09,jdbcType=VARCHAR}, #{ja10,jdbcType=VARCHAR}, #{jb10,jdbcType=VARCHAR}, #{createrId,jdbcType=NUMERIC}, #{createrName,jdbcType=VARCHAR}, #{createrOrgId,jdbcType=NUMERIC}, #{createrOrgName,jdbcType=VARCHAR}, #{createrDate,jdbcType=DATE}, #{aac011,jdbcType=VARCHAR}, #{ccpr08,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_WAGE_STANDARD 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.storage.model.WageStandard">
+		UPDATE RSDA_BS_WAGE_STANDARD SET
+		ARCHIVES_ID=#{archivesId,jdbcType=NUMERIC},
+		PERSON_ID=#{personId,jdbcType=NUMERIC},
+		AAC003=#{aac003,jdbcType=VARCHAR},
+		AAC004=#{aac004,jdbcType=VARCHAR},
+		AAC005=#{aac005,jdbcType=VARCHAR},
+		AAC006=#{aac006,jdbcType=DATE},
+		EXP_START_JOB_DATE=#{expStartJobDate,jdbcType=DATE},
+		ADJUST_DATE=#{adjustDate,jdbcType=DATE},
+		POSITION_TYPE=#{positionType,jdbcType=VARCHAR},
+		JA01=#{ja01,jdbcType=VARCHAR},
+		JB01=#{jb01,jdbcType=VARCHAR},
+		JA02=#{ja02,jdbcType=VARCHAR},
+		JB02=#{jb02,jdbcType=VARCHAR},
+		JA03=#{ja03,jdbcType=VARCHAR},
+		JB03=#{jb03,jdbcType=VARCHAR},
+		JA04=#{ja04,jdbcType=VARCHAR},
+		JB04=#{jb04,jdbcType=VARCHAR},
+		JA05=#{ja05,jdbcType=VARCHAR},
+		JB05=#{jb05,jdbcType=VARCHAR},
+		JA06=#{ja06,jdbcType=VARCHAR},
+		JB06=#{jb06,jdbcType=VARCHAR},
+		JA07=#{ja07,jdbcType=VARCHAR},
+		JB07=#{jb07,jdbcType=VARCHAR},
+		JA08=#{ja08,jdbcType=VARCHAR},
+		JB08=#{jb08,jdbcType=VARCHAR},
+		JA09=#{ja09,jdbcType=VARCHAR},
+		JB09=#{jb09,jdbcType=VARCHAR},
+		JA10=#{ja10,jdbcType=VARCHAR},
+		JB10=#{jb10,jdbcType=VARCHAR},
+		CREATER_ID=#{createrId,jdbcType=NUMERIC},
+		CREATER_NAME=#{createrName,jdbcType=VARCHAR},
+		CREATER_ORG_ID=#{createrOrgId,jdbcType=NUMERIC},
+		CREATER_ORG_NAME=#{createrOrgName,jdbcType=VARCHAR},
+		CREATER_DATE=#{createrDate,jdbcType=DATE},
+		AAC011=#{aac011,jdbcType=VARCHAR},
+		CCPR08=#{ccpr08,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="WageStandard">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_WAGE_STANDARD a
+		WHERE
+		a.ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="WageStandardDto">
+		SELECT 	<include refid="columns"/>
+				,e.name as "genderName"
+				,f.name as "nationName"
+				,d.name as "aac011Name"
+				,p.AAC002 as "aac002"
+				,b.ARCHIVE_CODE as "archiveCode"
+		
+		FROM RSDA_BS_WAGE_STANDARD a
+		left join ac01 p on p.AAC001=a.PERSON_ID
+		left join RSDA_BS_ARCHIVE_ARCHIVES b on b.ID = a.ARCHIVES_ID
+		left join TAB_SEX e on e.code=a.AAC004
+        left join TAB_NATION f on f.code=a.AAC005
+		left join TAB_EDUCATION d on d.code=a.AAC011  
+		
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by a.CREATER_DATE  desc,a.ID desc
+		</if>
+	</select>
+	
+	<select id="getWageStandardById" resultType="java.util.HashMap">
+		SELECT 	a.ID as "id"
+				,a.AAC003 as "aac003",a.AAC004 as "aac004",a.AAC005 as "aac005"
+				,to_char(a.AAC006,'yyyy-mm-dd') as "aac006"
+				,to_char(a.EXP_START_JOB_DATE,'yyyy-mm-dd') as "expStartJobDate"
+				,to_char(a.ADJUST_DATE,'yyyy-mm-dd') as "adjustDate"
+				,a.POSITION_TYPE as "positionType"
+				,JA01 as "ja01",JB01 as "jb01"
+				,JA02 as "ja02",JB02 as "jb02"
+				,JA03 as "ja03",JB03 as "jb03"
+				,JA04 as "ja04",JB04 as "jb04"
+				,JA05 as "ja05",JB05 as "jb05"
+				,JA06 as "ja06",JB06 as "jb06"
+				,JA07 as "ja07",JB07 as "jb07"
+				,JA08 as "ja08",JB08 as "jb08"
+				,JA09 as "ja09",JB09 as "jb09"
+				,JA10 as "ja10",JB10 as "jb10"
+				,a.AAC011 as "aac011"
+				,e.name as "genderName"
+				,f.name as "nationName"
+				,d.name as "aac011Name"
+				,p.AAC002 as "aac002"
+				,b.ARCHIVE_CODE as "archiveCode"
+		
+		FROM RSDA_BS_WAGE_STANDARD a
+		left join ac01 p on p.AAC001=a.PERSON_ID
+		left join RSDA_BS_ARCHIVE_ARCHIVES b on b.ID = a.ARCHIVES_ID
+		left join TAB_SEX e on e.code=a.AAC004
+        left join TAB_NATION f on f.code=a.AAC005
+		left join TAB_EDUCATION d on d.code=a.AAC011  
+		
+		where a.id =#{id}
+	</select>
+	
+</mapper>

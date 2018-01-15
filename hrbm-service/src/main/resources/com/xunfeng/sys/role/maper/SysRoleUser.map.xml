@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.sys.role.model.SysRoleUser">
+	<resultMap id="SysRoleUser" type="com.xunfeng.sys.role.model.SysRoleUser">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="roleId" column="ROLE_ID" jdbcType="NUMERIC"/>
+		<result property="userId" column="USER_ID" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,ROLE_ID,USER_ID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(roleId)"> AND ROLE_ID  =#{roleId} </if>
+			<if test="@Ognl@isNotEmpty(userId)"> AND USER_ID  =#{userId} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.sys.role.model.SysRoleUser">
+		INSERT INTO WS_M_SYS_ROLE_USER
+		(ID,ROLE_ID,USER_ID)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{roleId,jdbcType=NUMERIC}, #{userId,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM WS_M_SYS_ROLE_USER 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<delete id="delRoleUser" parameterType="java.lang.Long">
+		DELETE FROM WS_M_SYS_ROLE_USER 
+		WHERE
+		role_id=#{roleId} and user_Id=#{userId}
+	</delete>
+	<update id="update" parameterType="com.xunfeng.sys.role.model.SysRoleUser">
+		UPDATE WS_M_SYS_ROLE_USER SET
+		ROLE_ID=#{roleId,jdbcType=NUMERIC},
+		USER_ID=#{userId,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysRoleUser">
+		SELECT <include refid="columns"/>
+		FROM WS_M_SYS_ROLE_USER
+		WHERE
+		ID=#{id}
+	</select>
+		<select id="getRoleUsers" resultMap="SysRoleUser">
+		SELECT <include refid="columns"/>
+		FROM WS_M_SYS_ROLE_USER   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	<select id="getAll" resultMap="SysRoleUser">
+		SELECT <include refid="columns"/>
+		FROM WS_M_SYS_ROLE_USER   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

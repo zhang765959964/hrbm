@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.subsidy.model.ArchivesMakeup">
+	<resultMap id="ArchivesMakeup" type="com.xunfeng.business.personagency.subsidy.model.ArchivesMakeup">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="archiveCode" column="ARCHIVE_CODE" jdbcType="VARCHAR"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="DATE"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="personId" column="PERSON_ID" jdbcType="NUMERIC"/>
+		<result property="archiveId" column="ARCHIVE_ID" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,ARCHIVE_CODE,CREATER_ID,CREATER_NAME,CREATER_DATE,CREATER_ORG_NAME,CREATER_ORG_ID,PERSON_ID,ARCHIVE_ID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(archiveCode)"> AND ARCHIVE_CODE  LIKE #{archiveCode}  </if>
+			<if test="@Ognl@isNotEmpty(createrId)"> AND CREATER_ID  =#{createrId} </if>
+			<if test="@Ognl@isNotEmpty(createrName)"> AND CREATER_NAME  LIKE #{createrName}  </if>
+			<if test="@Ognl@isNotEmpty(createrDate)"> AND CREATER_DATE  =#{createrDate} </if>
+			<if test="@Ognl@isNotEmpty(begincreaterDate)"> AND CREATER_DATE  >=#{begincreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(createrOrgName)"> AND CREATER_ORG_NAME  LIKE #{createrOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(createrOrgId)"> AND CREATER_ORG_ID  =#{createrOrgId} </if>
+			<if test="@Ognl@isNotEmpty(personId)"> AND PERSON_ID  =#{personId} </if>
+			<if test="@Ognl@isNotEmpty(archiveId)"> AND ARCHIVE_ID  =#{archiveId} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.subsidy.model.ArchivesMakeup">
+		INSERT INTO RSDA_BS_SOCIAL_ARCHIVES_MAKEUP
+		(ID,ARCHIVE_CODE,CREATER_ID,CREATER_NAME,CREATER_DATE,CREATER_ORG_NAME,CREATER_ORG_ID,PERSON_ID,ARCHIVE_ID)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{archiveCode,jdbcType=VARCHAR}, #{createrId,jdbcType=NUMERIC}, #{createrName,jdbcType=VARCHAR}, #{createrDate,jdbcType=DATE}, #{createrOrgName,jdbcType=VARCHAR}, #{createrOrgId,jdbcType=NUMERIC}, #{personId,jdbcType=NUMERIC}, #{archiveId,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_SOCIAL_ARCHIVES_MAKEUP 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.subsidy.model.ArchivesMakeup">
+		UPDATE RSDA_BS_SOCIAL_ARCHIVES_MAKEUP SET
+		ARCHIVE_CODE=#{archiveCode,jdbcType=VARCHAR},
+		CREATER_ID=#{createrId,jdbcType=NUMERIC},
+		CREATER_NAME=#{createrName,jdbcType=VARCHAR},
+		CREATER_DATE=#{createrDate,jdbcType=DATE},
+		CREATER_ORG_NAME=#{createrOrgName,jdbcType=VARCHAR},
+		CREATER_ORG_ID=#{createrOrgId,jdbcType=NUMERIC},
+		PERSON_ID=#{personId,jdbcType=NUMERIC},
+		ARCHIVE_ID=#{archiveId,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="ArchivesMakeup">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_SOCIAL_ARCHIVES_MAKEUP
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="ArchivesMakeup">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_SOCIAL_ARCHIVES_MAKEUP   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+		<!-- 档案信息查询 包括社保补贴档案补录数据-->
+	<select id="getAllArchivesMakeupPersonList" resultType="java.util.HashMap">
+    select
+        a.ID as id,
+        a.PERSON_ID as "aac001",
+        p.AAC003 as "aac003",
+        p.AAC002 as "aac002",
+        p.AAE005 as "aae005",
+        e.name as "aac004",
+        a.archive_status as "archiveStatus",
+        a.archive_flow_status as "archiveFlowStatus",
+        a.ARCHIVE_RECEIVE_STATUS as "archiveReceiveStatus",
+        case
+        when m.id is null then 0
+        else 1
+        end as "makeup" ,
+        a.archive_code as "archiveCode"
+      from RSDA_BS_ARCHIVE_ARCHIVES a
+        left join ac01 p on p.aac001=a.person_id
+        left join TAB_SEX e on e.code=p.AAC004
+        left join RSDA_BS_SOCIAL_ARCHIVES_MAKEUP m on m.person_id=a.person_id 
+	    where p.AAC002  LIKE #{searchValue}   or p.AAC003  LIKE #{searchValue} or a.archive_code  LIKE #{searchValue} 
+	</select>
+</mapper>

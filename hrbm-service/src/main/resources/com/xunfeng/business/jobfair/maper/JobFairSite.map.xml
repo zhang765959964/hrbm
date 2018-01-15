@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.jobfair.model.JobFairSite">
+	<resultMap id="JobFairSite" type="com.xunfeng.business.jobfair.model.JobFairSite">
+		<id property="acd250" column="ACD250" jdbcType="NUMERIC"/>
+		<result property="acd200" column="ACD200" jdbcType="NUMERIC"/>
+		<result property="acd251" column="ACD251" jdbcType="VARCHAR"/>
+		<result property="acd252" column="ACD252" jdbcType="VARCHAR"/>
+		<result property="acd253" column="ACD253" jdbcType="VARCHAR"/>
+		<result property="acd257" column="ACD257" jdbcType="NUMERIC"/>
+		<result property="aae013" column="AAE013" jdbcType="VARCHAR"/>
+		<result property="aae011" column="AAE011" jdbcType="VARCHAR"/>
+		<result property="aae019" column="AAE019" jdbcType="VARCHAR"/>
+		<result property="aae020" column="AAE020" jdbcType="VARCHAR"/>
+		<result property="aae017" column="AAE017" jdbcType="VARCHAR"/>
+		<result property="aae022" column="AAE022" jdbcType="VARCHAR"/>
+		<result property="aae036" column="AAE036" jdbcType="TIMESTAMP"/>
+		<result property="cczc001" column="CCZC001" jdbcType="NUMERIC"/>
+		<result property="cczc002" column="CCZC002" jdbcType="VARCHAR"/>
+		<result property="cczc003" column="CCZC003" jdbcType="NUMERIC"/>
+		<result property="cczc004" column="CCZC004" jdbcType="VARCHAR"/>
+		<result property="cczc005" column="CCZC005" jdbcType="VARCHAR"/>
+		<result property="cczc006" column="CCZC006" jdbcType="VARCHAR"/>
+		<result property="cczc007" column="CCZC007" jdbcType="VARCHAR"/>
+		<result property="ccpr05" column="CCPR05" jdbcType="TIMESTAMP"/>
+		<result property="ccpr06" column="CCPR06" jdbcType="VARCHAR"/>
+		<result property="ccpr07" column="CCPR07" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ACD250,ACD200,ACD251,ACD252,ACD253,ACD257,AAE013,AAE011,AAE019,AAE020,AAE017,AAE022,AAE036,CCZC001,CCZC002,CCZC003,CCZC004,CCZC005,CCZC006,CCZC007,CCPR05,CCPR06,CCPR07,CCPR08
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(acd250)"> AND ACD250  =#{acd250} </if>
+			<if test="@Ognl@isNotEmpty(acd200)"> AND ACD200  =#{acd200} </if>
+			<if test="@Ognl@isNotEmpty(acd251)"> AND ACD251  LIKE #{acd251}  </if>
+			<if test="@Ognl@isNotEmpty(acd252)"> AND ACD252  LIKE #{acd252}  </if>
+			<if test="@Ognl@isNotEmpty(acd253)"> AND ACD253  LIKE #{acd253}  </if>
+			<if test="@Ognl@isNotEmpty(acd257)"> AND ACD257  =#{acd257} </if>
+			<if test="@Ognl@isNotEmpty(aae013)"> AND AAE013  LIKE #{aae013}  </if>
+			<if test="@Ognl@isNotEmpty(aae011)"> AND AAE011  LIKE #{aae011}  </if>
+			<if test="@Ognl@isNotEmpty(aae019)"> AND AAE019  LIKE #{aae019}  </if>
+			<if test="@Ognl@isNotEmpty(aae020)"> AND AAE020  LIKE #{aae020}  </if>
+			<if test="@Ognl@isNotEmpty(aae017)"> AND AAE017  LIKE #{aae017}  </if>
+			<if test="@Ognl@isNotEmpty(aae022)"> AND AAE022  LIKE #{aae022}  </if>
+			<if test="@Ognl@isNotEmpty(aae036)"> AND AAE036  =#{aae036} </if>
+			<if test="@Ognl@isNotEmpty(beginaae036)"> AND AAE036  >=#{beginaae036,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaae036)"> AND AAE036 <![CDATA[ <=#{endaae036,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(cczc001)"> AND CCZC001  =#{cczc001} </if>
+			<if test="@Ognl@isNotEmpty(cczc002)"> AND CCZC002  LIKE #{cczc002}  </if>
+			<if test="@Ognl@isNotEmpty(cczc003)"> AND CCZC003  =#{cczc003} </if>
+			<if test="@Ognl@isNotEmpty(cczc004)"> AND CCZC004  LIKE #{cczc004}  </if>
+			<if test="@Ognl@isNotEmpty(cczc005)"> AND CCZC005  LIKE #{cczc005}  </if>
+			<if test="@Ognl@isNotEmpty(cczc006)"> AND CCZC006  LIKE #{cczc006}  </if>
+			<if test="@Ognl@isNotEmpty(cczc007)"> AND CCZC007  LIKE #{cczc007}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr05)"> AND CCPR05  =#{ccpr05} </if>
+			<if test="@Ognl@isNotEmpty(beginccpr05)"> AND CCPR05  >=#{beginccpr05,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endccpr05)"> AND CCPR05 <![CDATA[ <=#{endccpr05,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(ccpr06)"> AND CCPR06  LIKE #{ccpr06}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr07)"> AND CCPR07  LIKE #{ccpr07}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr08)"> AND CCPR08  LIKE #{ccpr08}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.jobfair.model.JobFairSite">
+		INSERT INTO CD25
+		(ACD250,ACD200,ACD251,ACD252,ACD253,ACD257,AAE013,AAE011,AAE019,AAE020,AAE017,AAE022,AAE036,CCZC001,CCZC002,CCZC003,CCZC004,CCZC005,CCZC006,CCZC007,CCPR05,CCPR06,CCPR07,CCPR08)
+		VALUES
+		(#{acd250,jdbcType=NUMERIC}, #{acd200,jdbcType=NUMERIC}, #{acd251,jdbcType=VARCHAR}, #{acd252,jdbcType=VARCHAR}, #{acd253,jdbcType=VARCHAR}, #{acd257,jdbcType=NUMERIC}, #{aae013,jdbcType=VARCHAR}, #{aae011,jdbcType=VARCHAR}, #{aae019,jdbcType=VARCHAR}, #{aae020,jdbcType=VARCHAR}, #{aae017,jdbcType=VARCHAR}, #{aae022,jdbcType=VARCHAR}, #{aae036,jdbcType=TIMESTAMP}, #{cczc001,jdbcType=NUMERIC}, #{cczc002,jdbcType=VARCHAR}, #{cczc003,jdbcType=NUMERIC}, #{cczc004,jdbcType=VARCHAR}, #{cczc005,jdbcType=VARCHAR}, #{cczc006,jdbcType=VARCHAR}, #{cczc007,jdbcType=VARCHAR}, #{ccpr05,jdbcType=TIMESTAMP}, #{ccpr06,jdbcType=VARCHAR}, #{ccpr07,jdbcType=VARCHAR}, #{ccpr08,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM CD25 
+		WHERE
+		ACD250=#{acd250}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.jobfair.model.JobFairSite">
+		UPDATE CD25 SET
+		ACD200=#{acd200,jdbcType=NUMERIC},
+		ACD251=#{acd251,jdbcType=VARCHAR},
+		ACD252=#{acd252,jdbcType=VARCHAR},
+		ACD253=#{acd253,jdbcType=VARCHAR},
+		ACD257=#{acd257,jdbcType=NUMERIC},
+		AAE013=#{aae013,jdbcType=VARCHAR},
+		AAE011=#{aae011,jdbcType=VARCHAR},
+		AAE019=#{aae019,jdbcType=VARCHAR},
+		AAE020=#{aae020,jdbcType=VARCHAR},
+		AAE017=#{aae017,jdbcType=VARCHAR},
+		AAE022=#{aae022,jdbcType=VARCHAR},
+		AAE036=#{aae036,jdbcType=TIMESTAMP},
+		CCZC001=#{cczc001,jdbcType=NUMERIC},
+		CCZC002=#{cczc002,jdbcType=VARCHAR},
+		CCZC003=#{cczc003,jdbcType=NUMERIC},
+		CCZC004=#{cczc004,jdbcType=VARCHAR},
+		CCZC005=#{cczc005,jdbcType=VARCHAR},
+		CCZC006=#{cczc006,jdbcType=VARCHAR},
+		CCZC007=#{cczc007,jdbcType=VARCHAR},
+		CCPR05=#{ccpr05,jdbcType=TIMESTAMP},
+		CCPR06=#{ccpr06,jdbcType=VARCHAR},
+		CCPR07=#{ccpr07,jdbcType=VARCHAR},
+		CCPR08=#{ccpr08,jdbcType=VARCHAR}
+		WHERE
+		ACD250=#{acd250}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="JobFairSite">
+		SELECT <include refid="columns"/>
+		FROM CD25
+		WHERE
+		ACD250=#{acd250}
+	</select>
+	<select id="getByFairId" parameterType="java.lang.Long" resultMap="JobFairSite">
+		SELECT a.* FROM CD25 a,CCZ06 b
+    WHERE a.acd250=b.acd250
+    and b.acb330=#{acb330}
+	</select>
+	<select id="getAll" resultMap="JobFairSite">
+		SELECT <include refid="columns"/>
+		FROM CD25   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ACD250  desc
+		</if>
+	</select>
+</mapper>

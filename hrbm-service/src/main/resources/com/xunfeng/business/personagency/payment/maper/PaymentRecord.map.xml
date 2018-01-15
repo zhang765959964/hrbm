@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.payment.model.PaymentRecord">
+	<resultMap id="PaymentRecord" type="com.xunfeng.business.personagency.payment.model.PaymentRecord">
+		<id property="pkId" column="PK_ID" jdbcType="NUMERIC"/>
+		<result property="fkPersonId" column="FK_PERSON_ID" jdbcType="NUMERIC"/>
+		<result property="fkCreaterId" column="FK_CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="fdCreaterName" column="FD_CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="fdCreaterDate" column="FD_CREATER_DATE" jdbcType="DATE"/>
+		<result property="fdCreaterOrgName" column="FD_CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="fkCreaterOrgId" column="FK_CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="fdStartDate" column="FD_START_DATE" jdbcType="VARCHAR"/>
+		<result property="fdEndDate" column="FD_END_DATE" jdbcType="VARCHAR"/>
+		<result property="fdPaymentAmount" column="FD_PAYMENT_AMOUNT" jdbcType="NUMERIC"/>
+		<result property="fdPaymentMonths" column="FD_PAYMENT_MONTHS" jdbcType="NUMERIC"/>
+		<result property="fdPaymentType" column="FD_PAYMENT_TYPE" jdbcType="VARCHAR" typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler"/>
+		<result property="fdPaymentStatus" column="FD_PAYMENT_STATUS" jdbcType="VARCHAR" typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler"/>
+		<result property="fdPaymentStandard" column="FD_PAYMENT_STANDARD" jdbcType="NUMERIC"/>
+		<result property="fdPaymentDate" column="FD_PAYMENT_DATE" jdbcType="DATE"/>
+		<result property="fkConfirmsId" column="FK_CONFIRMS_ID" jdbcType="NUMERIC"/>
+		<result property="fdConfirmsName" column="FD_CONFIRMS_NAME" jdbcType="VARCHAR"/>
+		<result property="fdConfirmsDate" column="FD_CONFIRMS_DATE" jdbcType="DATE"/>
+		<result property="fkConfirmsOrgId" column="FK_CONFIRMS_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="fdConfirmsOrgName" column="FD_CONFIRMS_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="fkCorpRecordId" column="FK_CORP_RECORD_ID" jdbcType="NUMERIC"/>
+		<result property="fdDesc" column="FD_DESC" jdbcType="VARCHAR"/>
+		<result property="fdDerateStatus" column="FD_DERATE_STATUS" jdbcType="VARCHAR" typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler"/>
+	</resultMap>
+	<resultMap id="PaymentRecordDto" type="com.xunfeng.business.personagency.payment.dto.PaymentRecordPersonDto">
+		<id property="pkId" column="PK_ID" jdbcType="NUMERIC"/>
+		<result property="fkPersonId" column="FK_PERSON_ID" jdbcType="NUMERIC"/>
+		<result property="fkCreaterId" column="FK_CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="fdCreaterName" column="FD_CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="fdCreaterDate" column="FD_CREATER_DATE" jdbcType="DATE"/>
+		<result property="fdCreaterOrgName" column="FD_CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="fkCreaterOrgId" column="FK_CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="fdStartDate" column="FD_START_DATE" jdbcType="VARCHAR"/>
+		<result property="fdEndDate" column="FD_END_DATE" jdbcType="VARCHAR"/>
+		<result property="fdPaymentAmount" column="FD_PAYMENT_AMOUNT" jdbcType="NUMERIC"/>
+		<result property="fdPaymentMonths" column="FD_PAYMENT_MONTHS" jdbcType="NUMERIC"/>
+		<result property="fdPaymentType" column="FD_PAYMENT_TYPE" jdbcType="VARCHAR" typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler"/>
+		<result property="fdPaymentStatus" column="FD_PAYMENT_STATUS" jdbcType="VARCHAR" typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler"/>
+		<result property="fdPaymentStandard" column="FD_PAYMENT_STANDARD" jdbcType="NUMERIC"/>
+		<result property="fdPaymentDate" column="FD_PAYMENT_DATE" jdbcType="DATE"/>
+		<result property="fkConfirmsId" column="FK_CONFIRMS_ID" jdbcType="NUMERIC"/>
+		<result property="fdConfirmsName" column="FD_CONFIRMS_NAME" jdbcType="VARCHAR"/>
+		<result property="fdConfirmsDate" column="FD_CONFIRMS_DATE" jdbcType="DATE"/>
+		<result property="fkConfirmsOrgId" column="FK_CONFIRMS_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="fdConfirmsOrgName" column="FD_CONFIRMS_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="fkCorpRecordId" column="FK_CORP_RECORD_ID" jdbcType="NUMERIC"/>
+		<result property="fdDerateStatus" column="FD_DERATE_STATUS" jdbcType="VARCHAR" typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler"/>		
+		<result property="fdDesc" column="FD_DESC" jdbcType="VARCHAR"/>
+		<result property="fdEndPaymentDate" column="Fd_End_Payment_Date" jdbcType="VARCHAR"/>
+		<result property="archiveCode" column="archive_code" jdbcType="VARCHAR"/>
+		<result property="aac002" column="aac002" jdbcType="VARCHAR"/>
+		<result property="aac003" column="aac003" jdbcType="VARCHAR"/>
+<!-- 		<result property="genderName" column="genderName" jdbcType="VARCHAR"/> -->
+<!-- 		<result property="nationName" column="nationName" jdbcType="VARCHAR"/> -->
+<!-- 		<result property="aac006" column="aac006" jdbcType="VARCHAR"/> -->
+<!-- 		<result property="expEntrustCompany" column="expEntrustCompany" jdbcType="VARCHAR"/> -->
+<!-- 		<result property="expOldCompany" column="expOldCompany" jdbcType="VARCHAR"/> -->
+	</resultMap>
+	<sql id="columns">
+		PK_ID,FK_PERSON_ID,FK_CREATER_ID,FD_CREATER_NAME,FD_CREATER_DATE,FD_CREATER_ORG_NAME,FK_CREATER_ORG_ID,FD_START_DATE,FD_END_DATE,FD_PAYMENT_AMOUNT,FD_PAYMENT_MONTHS,FD_PAYMENT_TYPE,FD_PAYMENT_STATUS,FD_PAYMENT_STANDARD,FD_PAYMENT_DATE,FK_CONFIRMS_ID,FD_CONFIRMS_NAME,FD_CONFIRMS_DATE,FK_CONFIRMS_ORG_ID,FD_CONFIRMS_ORG_NAME,FK_CORP_RECORD_ID,FD_DERATE_STATUS,FD_DESC
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(ids)"> AND PK_ID in (${ids}) </if>
+			<if test="@Ognl@isNotEmpty(pkId)"> AND PK_ID  =#{pkId} </if>
+			<if test="@Ognl@isNotEmpty(fkPersonId)"> AND FK_PERSON_ID  =#{fkPersonId} </if>
+			<if test="@Ognl@isNotEmpty(fkCreaterId)"> AND FK_CREATER_ID  =#{fkCreaterId} </if>
+			<if test="@Ognl@isNotEmpty(fdCreaterName)"> AND FD_CREATER_NAME  LIKE #{fdCreaterName}  </if>
+			<if test="@Ognl@isNotEmpty(fdCreaterDate)"> AND FD_CREATER_DATE  =#{fdCreaterDate} </if>
+			<if test="@Ognl@isNotEmpty(currentDate)"> AND to_char(t.FD_CREATER_DATE,'yyyy-mm-dd')  =#{currentDate} </if>
+			<if test="@Ognl@isNotEmpty(currenConfirmtDate)"> AND to_char(t.FD_CONFIRMS_DATE,'yyyy-mm-dd')  =#{currenConfirmtDate} </if>
+			<if test="@Ognl@isNotEmpty(beginfdCreaterDate)"> AND FD_CREATER_DATE  >=#{beginfdCreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endfdCreaterDate)"> AND FD_CREATER_DATE <![CDATA[ <=#{endfdCreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(fdCreaterOrgName)"> AND FD_CREATER_ORG_NAME  LIKE #{fdCreaterOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(fkCreaterOrgId)"> AND FK_CREATER_ORG_ID  =#{fkCreaterOrgId} </if>
+			<if test="@Ognl@isNotEmpty(fdStartDate)"> AND FD_START_DATE  LIKE #{fdStartDate}  </if>
+			<if test="@Ognl@isNotEmpty(fdEndDate)"> AND FD_END_DATE  LIKE #{fdEndDate}  </if>
+			<if test="@Ognl@isNotEmpty(fdPaymentAmount)"> AND FD_PAYMENT_AMOUNT  LIKE #{fdPaymentAmount}  </if>
+			<if test="@Ognl@isNotEmpty(fdPaymentMonths)"> AND FD_PAYMENT_MONTHS  =#{fdPaymentMonths} </if>
+			<if test="@Ognl@isNotEmpty(fdPaymentType)"> AND FD_PAYMENT_TYPE  = #{fdPaymentType}  </if>
+			<if test="@Ognl@isNotEmpty(fdPaymentStatus)"> AND FD_PAYMENT_STATUS  = #{fdPaymentStatus}  </if>
+			<if test="@Ognl@isNotEmpty(fdPaymentStandard)"> AND FD_PAYMENT_STANDARD  = #{fdPaymentStandard}  </if>
+			<if test="@Ognl@isNotEmpty(fdPaymentDate)"> AND FD_PAYMENT_DATE  =#{fdPaymentDate} </if>
+			<if test="@Ognl@isNotEmpty(beginfdPaymentDate)"> AND FD_PAYMENT_DATE  >=#{beginfdPaymentDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endfdPaymentDate)"> AND FD_PAYMENT_DATE <![CDATA[ <=#{endfdPaymentDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(fkConfirmsId)"> AND FK_CONFIRMS_ID  =#{fkConfirmsId} </if>
+			<if test="@Ognl@isNotEmpty(fdConfirmsName)"> AND FD_CONFIRMS_NAME  LIKE #{fdConfirmsName}  </if>
+			<if test="@Ognl@isNotEmpty(fdConfirmsDate)"> AND FD_CONFIRMS_DATE  =#{fdConfirmsDate} </if>
+			<if test="@Ognl@isNotEmpty(beginfdConfirmsDate)"> AND FD_CONFIRMS_DATE  >=#{beginfdConfirmsDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endfdConfirmsDate)"> AND FD_CONFIRMS_DATE <![CDATA[ <=#{endfdConfirmsDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(fkConfirmsOrgId)"> AND FK_CONFIRMS_ORG_ID  =#{fkConfirmsOrgId} </if>
+			<if test="@Ognl@isNotEmpty(fdConfirmsOrgName)"> AND FD_CONFIRMS_ORG_NAME  LIKE #{fdConfirmsOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(fkCorpRecordId)"> AND FK_CORP_RECORD_ID  =#{fkCorpRecordId} </if>
+			<if test="@Ognl@isNotEmpty(fdDerateStatus)"> AND FD_DERATE_STATUS  = #{fdDerateStatus}  </if>
+			<if test="@Ognl@isNotEmpty(archiveCode)"> AND archive_Code  LIKE #{archiveCode}  </if>
+			<if test="@Ognl@isNotEmpty(aac002)"> AND aac002  LIKE #{aac002}  </if>
+			<if test="@Ognl@isNotEmpty(aac003)"> AND aac003  LIKE #{aac003}  </if>
+			<if test="@Ognl@isNotEmpty(aac004)"> AND aac004  = #{aac004}  </if>
+			<if test="@Ognl@isNotEmpty(aab004)"> AND aab004  like #{aab004}  </if>
+			<if test="@Ognl@isNotEmpty(archiveType)"> AND archiveType  = #{archiveType}  </if>			
+			<if test="@Ognl@isNotEmpty(contractCode)"> AND contractCode  LIKE #{contractCode}  </if>
+			<if test="@Ognl@isNotEmpty(archiveStatusValue)"> AND archiveStatus in (${archiveStatusValue}) </if>
+			<if test="@Ognl@isNotEmpty(archiveFlowStatusValue)"> AND archiveFlowStatus in (${archiveFlowStatusValue}) </if>
+			<if test="@Ognl@isNotEmpty(archiveReceiveStatus)"> AND archiveReceiveStatus  =#{archiveReceiveStatus} </if>		
+			<if test="@Ognl@isNotEmpty(beginArchiveCode)"> AND archive_Code  >=#{beginArchiveCode} </if>
+			<if test="@Ognl@isNotEmpty(endArchiveCode)"> AND archive_Code  <![CDATA[ <=#{endArchiveCode}]]>  </if>
+			<if test="@Ognl@isNotEmpty(archiveType)"> AND archiveType  =#{archiveType} </if>
+			<if test="@Ognl@isNotEmpty(beginarchiveBirthDate)"> AND archiveBirthDate  >=#{beginarchiveBirthDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endarchiveBirthDate)"> AND archiveBirthDate <![CDATA[ <=#{endarchiveBirthDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(archiveStatus)"> AND archiveStatus  =#{archiveStatus} </if>
+			<if test="@Ognl@isNotEmpty(beginreceiveDate)"> AND to_date(receiveDate,'yyyy-MM-dd')  >=#{beginreceiveDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endreceiveDate)"> AND to_date(receiveDate,'yyyy-MM-dd') <![CDATA[ <=#{endreceiveDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(beginarchiveReceiveDate)"> AND archiveReceiveDate  >=#{beginarchiveReceiveDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endarchiveReceiveDate)"> AND archiveReceiveDate <![CDATA[ <=#{endarchiveReceiveDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(archiveReceiveOrgName)"> AND archiveReceiveOrgName  LIKE #{archiveReceiveOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(archiveReceiveName)"> AND archiveReceiveName  LIKE #{archiveReceiveName}  </if>			
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.payment.model.PaymentRecord">
+		INSERT INTO RSDA_BS_PAYMENT_RECORD
+		(PK_ID,FK_PERSON_ID,FK_CREATER_ID,FD_CREATER_NAME,FD_CREATER_DATE,FD_CREATER_ORG_NAME,FK_CREATER_ORG_ID,FD_START_DATE,FD_END_DATE,FD_PAYMENT_AMOUNT,FD_PAYMENT_MONTHS,FD_PAYMENT_TYPE,FD_PAYMENT_STATUS,FD_PAYMENT_STANDARD,FD_PAYMENT_DATE,FK_CONFIRMS_ID,FD_CONFIRMS_NAME,FD_CONFIRMS_DATE,FK_CONFIRMS_ORG_ID,FD_CONFIRMS_ORG_NAME,FK_CORP_RECORD_ID,FD_DERATE_STATUS,FD_DESC)
+		VALUES
+		(#{pkId,jdbcType=NUMERIC}, #{fkPersonId,jdbcType=NUMERIC}, #{fkCreaterId,jdbcType=NUMERIC}, #{fdCreaterName,jdbcType=VARCHAR}, #{fdCreaterDate,jdbcType=DATE}, #{fdCreaterOrgName,jdbcType=VARCHAR}, #{fkCreaterOrgId,jdbcType=NUMERIC}, #{fdStartDate,jdbcType=VARCHAR}, #{fdEndDate,jdbcType=VARCHAR}, #{fdPaymentAmount,jdbcType=NUMERIC}, #{fdPaymentMonths,jdbcType=NUMERIC}, #{fdPaymentType,jdbcType=VARCHAR,typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler}, #{fdPaymentStatus,typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler}, #{fdPaymentStandard,jdbcType=NUMERIC}, #{fdPaymentDate,jdbcType=DATE}, #{fkConfirmsId,jdbcType=NUMERIC}, #{fdConfirmsName,jdbcType=VARCHAR}, #{fdConfirmsDate,jdbcType=DATE}, #{fkConfirmsOrgId,jdbcType=NUMERIC}, #{fdConfirmsOrgName,jdbcType=VARCHAR}, #{fkCorpRecordId,jdbcType=NUMERIC}, #{fdDerateStatus,jdbcType=VARCHAR,typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler}, #{fdDesc,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_PAYMENT_RECORD 
+		WHERE
+		PK_ID=#{pkId}
+	</delete>
+	<delete id="delByCorpRecordId" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_PAYMENT_RECORD 
+		WHERE
+		FK_CORP_RECORD_ID=#{corpRecordId}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.payment.model.PaymentRecord">
+		UPDATE RSDA_BS_PAYMENT_RECORD SET
+		FK_PERSON_ID=#{fkPersonId,jdbcType=NUMERIC},
+		FK_CREATER_ID=#{fkCreaterId,jdbcType=NUMERIC},
+		FD_CREATER_NAME=#{fdCreaterName,jdbcType=VARCHAR},
+		FD_CREATER_DATE=#{fdCreaterDate,jdbcType=DATE},
+		FD_CREATER_ORG_NAME=#{fdCreaterOrgName,jdbcType=VARCHAR},
+		FK_CREATER_ORG_ID=#{fkCreaterOrgId,jdbcType=NUMERIC},
+		FD_START_DATE=#{fdStartDate,jdbcType=VARCHAR},
+		FD_END_DATE=#{fdEndDate,jdbcType=VARCHAR},
+		FD_PAYMENT_AMOUNT=#{fdPaymentAmount,jdbcType=NUMERIC},
+		FD_PAYMENT_MONTHS=#{fdPaymentMonths,jdbcType=NUMERIC},
+		FD_PAYMENT_TYPE=#{fdPaymentType,jdbcType=VARCHAR,typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler},
+		FD_PAYMENT_STATUS=#{fdPaymentStatus,jdbcType=VARCHAR,typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler},
+		FD_PAYMENT_STANDARD=#{fdPaymentStandard,jdbcType=NUMERIC},
+		FD_PAYMENT_DATE=#{fdPaymentDate,jdbcType=DATE},
+		FK_CONFIRMS_ID=#{fkConfirmsId,jdbcType=NUMERIC},
+		FD_CONFIRMS_NAME=#{fdConfirmsName,jdbcType=VARCHAR},
+		FD_CONFIRMS_DATE=#{fdConfirmsDate,jdbcType=DATE},
+		FK_CONFIRMS_ORG_ID=#{fkConfirmsOrgId,jdbcType=NUMERIC},
+		FD_CONFIRMS_ORG_NAME=#{fdConfirmsOrgName,jdbcType=VARCHAR},
+		FK_CORP_RECORD_ID=#{fkCorpRecordId,jdbcType=NUMERIC},
+		FD_DERATE_STATUS=#{fdDerateStatus,jdbcType=VARCHAR,typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler},
+         	FD_DESC=#{fdDesc,jdbcType=VARCHAR}
+		WHERE
+		PK_ID=#{pkId}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="PaymentRecord">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PAYMENT_RECORD
+		WHERE
+		PK_ID=#{pkId}
+	</select>
+	
+	<select id="getCount" parameterType="java.lang.Long" resultType="java.lang.Long">
+		SELECT count(*) from RSDA_BS_PAYMENT_RECORD
+		<include refid="dynamicWhere" />
+	</select>
+	
+	<select id="getAll" resultMap="PaymentRecord">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PAYMENT_RECORD   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by PK_ID  desc
+		</if>
+	</select>
+	
+	<select id="getPayDetailList" resultMap="PaymentRecordDto">
+		SELECT t.* 
+		FROM v_rsda_paymentrecord_detail t    
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by PK_ID  desc
+		</if>
+	</select>
+	
+	<select id="getReceiveGroupPayList" resultMap="PaymentRecordDto">
+		SELECT t.*  FROM V_RSDA_PAYMENTRECORD t 
+		<include refid="dynamicWhere" />
+	</select>
+	<select id="getPersonPayment" resultMap="PaymentRecordDto">
+		select a.*
+		  from V_RSDA_PERSON_PAYMENT_MAIN a 
+          <include refid="dynamicPersonPayWhere" />
+	</select>
+	<sql id="dynamicPersonPayWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(ids)"> AND a.id in (${ids})  </if>
+			<if test="@Ognl@isNotEmpty(aac002)"> AND aac002  LIKE #{aac002}  </if>
+			<if test="@Ognl@isNotEmpty(aac003)"> AND aac003  LIKE #{aac003}  </if>
+			<if test="@Ognl@isNotEmpty(aac004)"> AND aac004  = #{aac004}  </if>
+		    <if test="@Ognl@isNotEmpty(endPaymentDate)"> and a.fd_end_payment_date <![CDATA[ < #{endPaymentDate}]]></if>
+			<if test="@Ognl@isNotEmpty(archiveType)"> AND archiveType  = #{archiveType}  </if>			
+			<if test="@Ognl@isNotEmpty(contractCode)"> AND contractCode  LIKE #{contractCode}  </if>
+			<if test="@Ognl@isNotEmpty(archiveStatusValue)"> AND archiveStatus in (${archiveStatusValue}) </if>
+			<if test="@Ognl@isNotEmpty(archiveFlowStatusValue)"> AND archiveFlowStatus in (${archiveFlowStatusValue}) </if>
+			<if test="@Ognl@isNotEmpty(archiveReceiveStatus)"> AND archiveReceiveStatus  =#{archiveReceiveStatus} </if>		
+			<if test="@Ognl@isNotEmpty(beginArchiveCode)"> AND archive_Code  >=#{beginArchiveCode} </if>
+			<if test="@Ognl@isNotEmpty(endArchiveCode)"> AND archive_Code  <![CDATA[ <=#{endArchiveCode}]]>  </if>
+			<if test="@Ognl@isNotEmpty(archiveCode)"> AND archive_Code like #{archiveCode}  </if>
+			<if test="@Ognl@isNotEmpty(archiveType)"> AND archiveType  =#{archiveType} </if>
+			<if test="@Ognl@isNotEmpty(beginarchiveBirthDate)"> AND archiveBirthDate  >=#{beginarchiveBirthDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endarchiveBirthDate)"> AND archiveBirthDate <![CDATA[ <=#{endarchiveBirthDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(archiveStatus)"> AND archiveStatus  =#{archiveStatus} </if>
+			<if test="@Ognl@isNotEmpty(beginreceiveDate)"> AND to_date(receiveDate,'yyyy-MM-dd')  >=#{beginreceiveDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endreceiveDate)"> AND to_date(receiveDate,'yyyy-MM-dd')  <![CDATA[ <=#{endreceiveDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(beginarchiveReceiveDate)"> AND archiveReceiveDate  >=#{beginarchiveReceiveDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endarchiveReceiveDate)"> AND archiveReceiveDate <![CDATA[ <=#{endarchiveReceiveDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(archiveReceiveOrgName)"> AND archiveReceiveOrgName  LIKE #{archiveReceiveOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(archiveReceiveName)"> AND archiveReceiveName  LIKE #{archiveReceiveName}  </if>	
+		</where>
+	</sql>
+</mapper>

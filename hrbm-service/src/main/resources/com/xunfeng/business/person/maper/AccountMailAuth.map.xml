@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.person.model.AccountMailAuth">
+	<resultMap id="AccountMailAuth" type="com.xunfeng.business.person.model.AccountMailAuth">
+		<id property="ccpe01" column="CCPE01" jdbcType="NUMERIC"/>
+		<result property="ccmu01" column="CCMU01" jdbcType="NUMERIC"/>
+		<result property="ccpe02" column="CCPE02" jdbcType="VARCHAR"/>
+		<result property="ccpe03" column="CCPE03" jdbcType="VARCHAR"/>
+		<result property="ccpe04" column="CCPE04" jdbcType="TIMESTAMP"/>
+		<result property="ccpe05" column="CCPE05" jdbcType="TIMESTAMP"/>
+		<result property="ccpe06" column="CCPE06" jdbcType="TIMESTAMP"/>
+		<result property="ccpe07" column="CCPE07" jdbcType="NUMERIC"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		CCPE01,CCMU01,CCPE02,CCPE03,CCPE04,CCPE05,CCPE06,CCPE07,CCPR08
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(ccpe01)"> AND CCPE01  =#{ccpe01} </if>
+			<if test="@Ognl@isNotEmpty(ccmu01)"> AND CCMU01  =#{ccmu01} </if>
+			<if test="@Ognl@isNotEmpty(ccpe02)"> AND CCPE02  LIKE #{ccpe02}  </if>
+			<if test="@Ognl@isNotEmpty(ccpe03)"> AND CCPE03  LIKE #{ccpe03}  </if>
+			<if test="@Ognl@isNotEmpty(ccpe04)"> AND CCPE04  =#{ccpe04} </if>
+			<if test="@Ognl@isNotEmpty(beginccpe04)"> AND CCPE04  >=#{beginccpe04,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endccpe04)"> AND CCPE04 <![CDATA[ <=#{endccpe04,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(ccpe05)"> AND CCPE05  =#{ccpe05} </if>
+			<if test="@Ognl@isNotEmpty(beginccpe05)"> AND CCPE05  >=#{beginccpe05,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endccpe05)"> AND CCPE05 <![CDATA[ <=#{endccpe05,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(ccpe06)"> AND CCPE06  =#{ccpe06} </if>
+			<if test="@Ognl@isNotEmpty(beginccpe06)"> AND CCPE06  >=#{beginccpe06,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endccpe06)"> AND CCPE06 <![CDATA[ <=#{endccpe06,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(ccpe07)"> AND CCPE07  =#{ccpe07} </if>
+			<if test="@Ognl@isNotEmpty(ccpr08)"> AND CCPR08  LIKE #{ccpr08}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.person.model.AccountMailAuth">
+		INSERT INTO CCP05
+		(CCPE01,CCMU01,CCPE02,CCPE03,CCPE04,CCPE05,CCPE06,CCPE07,CCPR08)
+		VALUES
+		(#{ccpe01,jdbcType=NUMERIC}, #{ccmu01,jdbcType=NUMERIC}, #{ccpe02,jdbcType=VARCHAR}, #{ccpe03,jdbcType=VARCHAR}, #{ccpe04,jdbcType=TIMESTAMP}, #{ccpe05,jdbcType=TIMESTAMP}, #{ccpe06,jdbcType=TIMESTAMP}, #{ccpe07,jdbcType=NUMERIC}, #{ccpr08,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM CCP05 
+		WHERE
+		CCPE01=#{ccpe01}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.person.model.AccountMailAuth">
+		UPDATE CCP05 SET
+		CCMU01=#{ccmu01,jdbcType=NUMERIC},
+		CCPE02=#{ccpe02,jdbcType=VARCHAR},
+		CCPE03=#{ccpe03,jdbcType=VARCHAR},
+		CCPE04=#{ccpe04,jdbcType=TIMESTAMP},
+		CCPE05=#{ccpe05,jdbcType=TIMESTAMP},
+		CCPE06=#{ccpe06,jdbcType=TIMESTAMP},
+		CCPE07=#{ccpe07,jdbcType=NUMERIC},
+		CCPR08=#{ccpr08,jdbcType=VARCHAR}
+		WHERE
+		CCPE01=#{ccpe01}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="AccountMailAuth">
+		SELECT <include refid="columns"/>
+		FROM CCP05
+		WHERE
+		CCPE01=#{ccpe01}
+	</select>
+	
+	<select id="getAll" resultMap="AccountMailAuth">
+		SELECT <include refid="columns"/>
+		FROM CCP05   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by CCPE01  desc
+		</if>
+	</select>
+</mapper>

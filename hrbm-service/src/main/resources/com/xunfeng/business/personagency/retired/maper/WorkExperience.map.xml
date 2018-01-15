@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.retired.model.WorkExperience">
+	<resultMap id="WorkExperience" type="com.xunfeng.business.personagency.retired.model.WorkExperience">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="createTime" column="CREATE_TIME" jdbcType="DATE"/>
+		<result property="endTime" column="END_TIME" jdbcType="DATE"/>
+		<result property="workUnit" column="WORK_UNIT" jdbcType="VARCHAR"/>
+		<result property="gzId" column="GZ_ID" jdbcType="NUMERIC"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="DATE"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="retiredDeclareId" column="RETIRED_DECLARE_ID" jdbcType="NUMERIC"/>
+		<result property="personId" column="PERSON_ID" jdbcType="NUMERIC"/>
+		
+	</resultMap>
+
+	<sql id="columns">
+		ID,CREATE_TIME,END_TIME,WORK_UNIT,GZ_ID,CREATER_ID,CREATER_NAME,CREATER_DATE,CREATER_ORG_ID,CREATER_ORG_NAME,RETIRED_DECLARE_ID,PERSON_ID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(createTime)"> AND CREATE_TIME  =#{createTime} </if>
+			<if test="@Ognl@isNotEmpty(begincreateTime)"> AND CREATE_TIME  >=#{begincreateTime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreateTime)"> AND CREATE_TIME <![CDATA[ <=#{endcreateTime,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(endTime)"> AND END_TIME  =#{endTime} </if>
+			<if test="@Ognl@isNotEmpty(beginendTime)"> AND END_TIME  >=#{beginendTime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endendTime)"> AND END_TIME <![CDATA[ <=#{endendTime,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(workUnit)"> AND WORK_UNIT  LIKE #{workUnit}  </if>
+			<if test="@Ognl@isNotEmpty(gzId)"> AND GZ_ID  =#{gzId} </if>
+			<if test="@Ognl@isNotEmpty(createrId)"> AND CREATER_ID  =#{createrId} </if>
+			<if test="@Ognl@isNotEmpty(createrName)"> AND CREATER_NAME  LIKE #{createrName}  </if>
+			<if test="@Ognl@isNotEmpty(createrDate)"> AND CREATER_DATE  =#{createrDate} </if>
+			<if test="@Ognl@isNotEmpty(begincreaterDate)"> AND CREATER_DATE  >=#{begincreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(createrOrgId)"> AND CREATER_ORG_ID  =#{createrOrgId} </if>
+			<if test="@Ognl@isNotEmpty(createrOrgName)"> AND CREATER_ORG_NAME  LIKE #{createrOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(retiredDeclareId)"> AND RETIRED_DECLARE_ID  =#{retiredDeclareId} </if>
+			<if test="@Ognl@isNotEmpty(personId)"> AND PERSON_ID  =#{personId} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.retired.model.WorkExperience">
+		INSERT INTO RSDA_BS_WORK_EXPERIENCE
+		(ID,CREATE_TIME,END_TIME,WORK_UNIT,GZ_ID,CREATER_ID,CREATER_NAME,CREATER_DATE,CREATER_ORG_ID,CREATER_ORG_NAME,RETIRED_DECLARE_ID,PERSON_ID)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{createTime,jdbcType=DATE}, #{endTime,jdbcType=DATE}, #{workUnit,jdbcType=VARCHAR}, #{gzId,jdbcType=NUMERIC}, #{createrId,jdbcType=NUMERIC}, #{createrName,jdbcType=VARCHAR}, #{createrDate,jdbcType=DATE}, #{createrOrgId,jdbcType=NUMERIC}, #{createrOrgName,jdbcType=VARCHAR}, #{retiredDeclareId,jdbcType=NUMERIC},#{personId,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_WORK_EXPERIENCE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<delete id="delByPersonId" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_WORK_EXPERIENCE 
+		WHERE
+		PERSON_ID = #{personId}
+	</delete>
+	
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.retired.model.WorkExperience">
+		UPDATE RSDA_BS_WORK_EXPERIENCE SET
+		CREATE_TIME=#{createTime,jdbcType=DATE},
+		END_TIME=#{endTime,jdbcType=DATE},
+		WORK_UNIT=#{workUnit,jdbcType=VARCHAR},
+		GZ_ID=#{gzId,jdbcType=NUMERIC},
+		CREATER_ID=#{createrId,jdbcType=NUMERIC},
+		CREATER_NAME=#{createrName,jdbcType=VARCHAR},
+		CREATER_DATE=#{createrDate,jdbcType=DATE},
+		CREATER_ORG_ID=#{createrOrgId,jdbcType=NUMERIC},
+		CREATER_ORG_NAME=#{createrOrgName,jdbcType=VARCHAR},
+		RETIRED_DECLARE_ID=#{retiredDeclareId,jdbcType=NUMERIC},
+		PERSON_ID=#{personId,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="WorkExperience">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_WORK_EXPERIENCE
+		WHERE 
+		ID=#{id}
+	</select>
+	
+	
+	<!-- 根据人员id查询工作简历 -->
+	<select id="getByPersonId" parameterType="java.lang.Long" resultMap="WorkExperience">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_WORK_EXPERIENCE
+		WHERE 
+		PERSON_ID = #{personId}
+	</select>
+	
+	<!-- 根据退休id查询工作经历维护情况 -->
+	<select id="getRetiredById" resultType="java.util.Map">
+			select * from rsda_bs_work_experience  t 
+			where t.retired_declare_id in (select retired.id  from rsda_bs_retired_declare retired) and
+			t.retired_declare_id = #{retiredId}
+	</select>
+	
+	
+	<!-- 根据退休申诉id获得 工作经历信息 -->
+	<select id="getWorkExperienceByRetiredId" resultMap="WorkExperience">
+		select * from rsda_bs_work_experience  t  where t.retired_declare_id = #{retiredId}
+	</select>
+	
+	
+	<!-- 查询工作经历维护情况 -->
+	<select id="getWorkWh" resultType="java.util.Map">
+		 select * from v_retired_work_wh t
+	 	 where t."personId" = #{personId}
+	 	
+	</select>
+	
+	<select id="getAll" resultMap="WorkExperience">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_WORK_EXPERIENCE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

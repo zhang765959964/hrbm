@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.params.model.ParamsInsuredFile">
+	<resultMap id="ParamsInsuredFile" type="com.xunfeng.business.personagency.params.model.ParamsInsuredFile">
+		<id property="pkId" column="PK_ID" jdbcType="NUMERIC"/>
+		<result property="fdFileName" column="FD_FILE_NAME" jdbcType="VARCHAR"/>
+		<result property="fdFileNumber" column="FD_FILE_NUMBER" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		PK_ID,FD_FILE_NAME,FD_FILE_NUMBER
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(pkId)"> AND PK_ID  =#{pkId} </if>
+			<if test="@Ognl@isNotEmpty(fdFileName)"> AND FD_FILE_NAME  LIKE #{fdFileName}  </if>
+			<if test="@Ognl@isNotEmpty(fdFileNumber)"> AND FD_FILE_NUMBER  LIKE #{fdFileNumber}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.params.model.ParamsInsuredFile">
+		INSERT INTO RSDA_BS_PARAMS_INSURED_FILE
+		(PK_ID,FD_FILE_NAME,FD_FILE_NUMBER)
+		VALUES
+		(#{pkId,jdbcType=NUMERIC}, #{fdFileName,jdbcType=VARCHAR}, #{fdFileNumber,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_PARAMS_INSURED_FILE 
+		WHERE
+		PK_ID=#{pkId}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.params.model.ParamsInsuredFile">
+		UPDATE RSDA_BS_PARAMS_INSURED_FILE SET
+		FD_FILE_NAME=#{fdFileName,jdbcType=VARCHAR},
+		FD_FILE_NUMBER=#{fdFileNumber,jdbcType=VARCHAR}
+		WHERE
+		PK_ID=#{pkId}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="ParamsInsuredFile">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PARAMS_INSURED_FILE
+		WHERE
+		PK_ID=#{pkId}
+	</select>
+	
+	<select id="getAll" resultMap="ParamsInsuredFile">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PARAMS_INSURED_FILE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by PK_ID  desc
+		</if>
+	</select>
+</mapper>

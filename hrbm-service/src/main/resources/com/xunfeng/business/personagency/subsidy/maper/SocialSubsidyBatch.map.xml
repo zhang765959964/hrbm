@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.subsidy.model.SocialSubsidyBatch">
+	<resultMap id="SocialSubsidyBatch" type="com.xunfeng.business.personagency.subsidy.model.SocialSubsidyBatch">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="subsidyId" column="SUBSIDY_ID" jdbcType="NUMERIC"/>
+		<result property="batchId" column="BATCH_ID" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,SUBSIDY_ID,BATCH_ID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(subsidyId)"> AND SUBSIDY_ID  =#{subsidyId} </if>
+			<if test="@Ognl@isNotEmpty(batchId)"> AND BATCH_ID  =#{batchId} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.subsidy.model.SocialSubsidyBatch">
+		INSERT INTO RSDA_BS_SOCIAL_SUBSIDY_BATCH
+		(ID,SUBSIDY_ID,BATCH_ID)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{subsidyId,jdbcType=NUMERIC}, #{batchId,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_SOCIAL_SUBSIDY_BATCH 
+		WHERE
+		ID=#{id}
+	</delete>
+	<delete id="delByBatchId" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_SOCIAL_SUBSIDY_BATCH 
+		WHERE
+		BATCH_ID=#{batchId}
+	</delete>
+	<delete id="delByBatchSubsidyId">
+		DELETE FROM RSDA_BS_SOCIAL_SUBSIDY_BATCH 
+		WHERE
+		BATCH_ID=#{batchId} and SUBSIDY_ID=#{subsidyId}
+	</delete>
+	<update id="update" parameterType="com.xunfeng.business.personagency.subsidy.model.SocialSubsidyBatch">
+		UPDATE RSDA_BS_SOCIAL_SUBSIDY_BATCH SET
+		SUBSIDY_ID=#{subsidyId,jdbcType=NUMERIC},
+		BATCH_ID=#{batchId,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SocialSubsidyBatch">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_SOCIAL_SUBSIDY_BATCH
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SocialSubsidyBatch">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_SOCIAL_SUBSIDY_BATCH   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	<insert id="batchAdd_oracle" parameterType="java.util.List">
+        INSERT INTO RSDA_BS_SOCIAL_SUBSIDY_BATCH
+		(ID,SUBSIDY_ID,BATCH_ID)
+		        <foreach collection="list"  item="item" separator="union all">
+                        (SELECT #{item.id,jdbcType=NUMERIC}, #{item.subsidyId,jdbcType=NUMERIC}, #{item.batchId,jdbcType=NUMERIC} FROM DUAL)
+                </foreach>
+    </insert>
+    <insert id="batchAdd_mysql" parameterType="java.util.List">
+         INSERT INTO RSDA_BS_SOCIAL_SUBSIDY_BATCH
+		(ID,SUBSIDY_ID,BATCH_ID)     
+          <foreach collection="list"  item="item" separator=",">
+                (#{item.id,jdbcType=NUMERIC}, #{item.subsidyId,jdbcType=NUMERIC}, #{item.batchId,jdbcType=NUMERIC})
+          </foreach>
+    </insert>
+</mapper>

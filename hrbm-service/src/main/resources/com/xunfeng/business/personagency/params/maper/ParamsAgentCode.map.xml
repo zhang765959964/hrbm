@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.params.model.ParamsAgentCode">
+	<resultMap id="ParamsAgentCode" type="com.xunfeng.business.personagency.params.model.ParamsAgentCode">
+		<id property="pkId" column="PK_ID" jdbcType="NUMERIC"/>
+		<result property="fdTypeCode" column="FD_TYPE_CODE" jdbcType="VARCHAR"/>
+		<result property="fdTypeName" column="FD_TYPE_NAME" jdbcType="VARCHAR"/>
+		<result property="fdCodeName" column="FD_CODE_NAME" jdbcType="VARCHAR"/>
+		<result property="fdCodeValue" column="FD_CODE_VALUE" jdbcType="VARCHAR"/>
+		<result property="fdPinyinCode" column="FD_PINYIN_CODE" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		PK_ID,FD_TYPE_CODE,FD_TYPE_NAME,FD_CODE_NAME,FD_CODE_VALUE,FD_PINYIN_CODE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(pkId)"> AND PK_ID  =#{pkId} </if>
+			<if test="@Ognl@isNotEmpty(fdTypeCode)"> AND FD_TYPE_CODE  LIKE #{fdTypeCode}  </if>
+			<if test="@Ognl@isNotEmpty(fdTypeName)"> AND FD_TYPE_NAME  LIKE #{fdTypeName}  </if>
+			<if test="@Ognl@isNotEmpty(fdCodeName)"> AND FD_CODE_NAME  LIKE #{fdCodeName}  </if>
+			<if test="@Ognl@isNotEmpty(fdCodeValue)"> AND FD_CODE_VALUE  LIKE #{fdCodeValue}  </if>
+			<if test="@Ognl@isNotEmpty(fdPinyinCode)"> AND FD_PINYIN_CODE  LIKE #{fdPinyinCode}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.params.model.ParamsAgentCode">
+		INSERT INTO RSDA_BS_PARAMS_AGENT_CODE
+		(PK_ID,FD_TYPE_CODE,FD_TYPE_NAME,FD_CODE_NAME,FD_CODE_VALUE,FD_PINYIN_CODE)
+		VALUES
+		(#{pkId,jdbcType=NUMERIC}, #{fdTypeCode,jdbcType=VARCHAR}, #{fdTypeName,jdbcType=VARCHAR}, #{fdCodeName,jdbcType=VARCHAR}, #{fdCodeValue,jdbcType=VARCHAR}, #{fdPinyinCode,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_PARAMS_AGENT_CODE 
+		WHERE
+		PK_ID=#{pkId}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.params.model.ParamsAgentCode">
+		UPDATE RSDA_BS_PARAMS_AGENT_CODE SET
+		FD_TYPE_CODE=#{fdTypeCode,jdbcType=VARCHAR},
+		FD_TYPE_NAME=#{fdTypeName,jdbcType=VARCHAR},
+		FD_CODE_NAME=#{fdCodeName,jdbcType=VARCHAR},
+		FD_CODE_VALUE=#{fdCodeValue,jdbcType=VARCHAR},
+		FD_PINYIN_CODE=#{fdPinyinCode,jdbcType=VARCHAR}
+		WHERE
+		PK_ID=#{pkId}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="ParamsAgentCode">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PARAMS_AGENT_CODE
+		WHERE
+		PK_ID=#{pkId}
+	</select>
+	
+	<select id="getAll" resultMap="ParamsAgentCode">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PARAMS_AGENT_CODE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by PK_ID  desc
+		</if>
+	</select>
+</mapper>

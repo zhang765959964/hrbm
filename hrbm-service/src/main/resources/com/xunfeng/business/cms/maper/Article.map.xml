@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.cms.model.Article">
+	<resultMap id="Article" type="com.xunfeng.business.cms.model.Article">
+		<id property="cand01" column="CAND01" jdbcType="NUMERIC"/>
+		<result property="canc01" column="CANC01" jdbcType="NUMERIC"/>
+		<result property="cand03" column="CAND03" jdbcType="VARCHAR"/>
+		<result property="cand04" column="CAND04" jdbcType="CLOB"/>
+		<result property="cand05" column="CAND05" jdbcType="NUMERIC"/>
+		<result property="cand06" column="CAND06" jdbcType="VARCHAR"/>
+		<result property="cand07" column="CAND07" jdbcType="TIMESTAMP"/>
+		<result property="ccmu01" column="CCMU01" jdbcType="NUMERIC"/>
+		<result property="cand09" column="CAND09" jdbcType="NUMERIC"/>
+		<result property="cand10" column="CAND10" jdbcType="NUMERIC"/>
+		<result property="cand11" column="CAND11" jdbcType="VARCHAR"/>
+		<result property="cand12" column="CAND12" jdbcType="NUMERIC"/>
+		<result property="cand13" column="CAND13" jdbcType="NUMERIC"/>
+		<result property="cand14" column="CAND14" jdbcType="VARCHAR"/>
+		<result property="cand15" column="CAND15" jdbcType="VARCHAR"/>
+		<result property="cand16" column="CAND16" jdbcType="NUMERIC"/>
+		<result property="cand17" column="CAND17" jdbcType="NUMERIC"/>
+		<result property="cand18" column="CAND18" jdbcType="NUMERIC"/>
+		<result property="cand19" column="CAND19" jdbcType="VARCHAR"/>
+		<result property="cand20" column="CAND20" jdbcType="VARCHAR"/>
+		<result property="cand21" column="CAND21" jdbcType="VARCHAR"/>
+	</resultMap>
+   <resultMap id="ArticleDto" type="com.xunfeng.business.cms.dto.ArticleDto">
+		<id property="cand01" column="CAND01" jdbcType="NUMERIC"/>
+		<result property="canc01" column="CANC01" jdbcType="NUMERIC"/>
+		<result property="cand03" column="CAND03" jdbcType="VARCHAR"/>
+		<result property="eand05" column="eand05" jdbcType="VARCHAR"/>
+		<result property="ccmu01n" column="ccmu01n" jdbcType="VARCHAR"/>
+		<result property="eand09" column="eand09" jdbcType="VARCHAR"/>
+		<result property="cand07" column="CAND07" jdbcType="TIMESTAMP"/>
+		<result property="cand13" column="CAND13" jdbcType="NUMERIC"/>
+		<result property="cand16" column="CAND16" jdbcType="NUMERIC"/>
+		<result property="cand17" column="CAND17" jdbcType="NUMERIC"/>
+		<result property="cand18" column="CAND18" jdbcType="NUMERIC"/>
+	</resultMap>
+	<sql id="columns">
+		CAND01,CANC01,CAND03,CAND04,CAND05,CAND06,CAND07,CCMU01,CAND09,CAND10,CAND11,CAND12,nvl(cand13,0) as cand13,CAND14,CAND15,CAND16,CAND17,CAND18,CAND19,CAND20,CAND21
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(cand01)"> AND CAND01  =#{cand01} </if>
+			<if test="@Ognl@isNotEmpty(canc01)"> AND CANC01  =#{canc01} </if>
+			<if test="@Ognl@isNotEmpty(cand03)"> AND CAND03  LIKE #{cand03}  </if>
+			<if test="@Ognl@isNotEmpty(cand04)"> AND CAND04  LIKE #{cand04}  </if>
+			<if test="@Ognl@isNotEmpty(cand05)"> AND CAND05  =#{cand05} </if>
+			<if test="@Ognl@isNotEmpty(cand06)"> AND CAND06  LIKE #{cand06}  </if>
+			<if test="@Ognl@isNotEmpty(begincand07)"> AND to_date(CAND07, 'yyyy-mm-dd hh24:mi:ss') >=#{begincand07,jdbcType=DATE}</if>
+			<if test="@Ognl@isNotEmpty(endcand07)"> AND to_date(CAND07, 'yyyy-mm-dd hh24:mi:ss') <![CDATA[ <=#{endcand07,jdbcType=DATE}+1]]></if>
+			<if test="@Ognl@isNotEmpty(ccmu01)"> AND CCMU01  =#{ccmu01} </if>
+			<if test="@Ognl@isNotEmpty(cand09)"> AND CAND09  =#{cand09} </if>
+			<if test="@Ognl@isNotEmpty(cand10)"> AND CAND10  =#{cand10} </if>
+			<if test="@Ognl@isNotEmpty(cand11)"> AND CAND11  LIKE #{cand11}  </if>
+			<if test="@Ognl@isNotEmpty(canc11)"> AND canc11  =#{canc11} </if>
+			<if test="@Ognl@isNotEmpty(cand12)"> AND CAND12  =#{cand12} </if>
+			<if test="@Ognl@isNotEmpty(cand13)"> AND CAND13  =#{cand13} </if>
+			<if test="@Ognl@isNotEmpty(cand14)"> AND CAND14  LIKE #{cand14}  </if>
+			<if test="@Ognl@isNotEmpty(cand15)"> AND CAND15  LIKE #{cand15}  </if>
+			<if test="@Ognl@isNotEmpty(cand16)"> AND CAND16  =#{cand16} </if>
+			<if test="@Ognl@isNotEmpty(cand17)"> AND CAND17  =#{cand17} </if>
+			<if test="@Ognl@isNotEmpty(cand18)"> AND CAND18  =#{cand18} </if>
+			<if test="@Ognl@isNotEmpty(cand19)"> AND CAND19  LIKE #{cand19}  </if>
+			<if test="@Ognl@isNotEmpty(cand20)"> AND CAND20  LIKE #{cand20}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.cms.model.Article">
+		INSERT INTO CAN02
+		(CAND01,CANC01,CAND03,CAND04,CAND05,CAND06,CAND07,CCMU01,CAND09,CAND10,CAND11,CAND12,CAND13,CAND14,CAND15,CAND16,CAND17,CAND18,CAND19,CAND20,CAND21)
+		VALUES
+		(#{cand01,jdbcType=NUMERIC}, #{canc01,jdbcType=NUMERIC}, #{cand03,jdbcType=VARCHAR}, #{cand04,jdbcType=CLOB}, #{cand05,jdbcType=NUMERIC}, #{cand06,jdbcType=VARCHAR}, #{cand07,jdbcType=TIMESTAMP}, #{ccmu01,jdbcType=NUMERIC}, #{cand09,jdbcType=NUMERIC}, #{cand10,jdbcType=NUMERIC}, #{cand11,jdbcType=VARCHAR}, #{cand12,jdbcType=NUMERIC}, #{cand13,jdbcType=NUMERIC}, #{cand14,jdbcType=VARCHAR}, #{cand15,jdbcType=VARCHAR}, #{cand16,jdbcType=NUMERIC}, #{cand17,jdbcType=NUMERIC}, #{cand18,jdbcType=NUMERIC}, #{cand19,jdbcType=VARCHAR}, #{cand20,jdbcType=VARCHAR}, #{cand21,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM CAN02 
+		WHERE
+		CAND01=#{cand01}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.cms.model.Article">
+		UPDATE CAN02 SET
+		CANC01=#{canc01,jdbcType=NUMERIC},
+		CAND03=#{cand03,jdbcType=VARCHAR},
+		CAND04=#{cand04,jdbcType=CLOB},
+		CAND05=#{cand05,jdbcType=NUMERIC},
+		CAND06=#{cand06,jdbcType=VARCHAR},
+		CAND07=#{cand07,jdbcType=TIMESTAMP},
+		CCMU01=#{ccmu01,jdbcType=NUMERIC},
+		CAND09=#{cand09,jdbcType=NUMERIC},
+		CAND10=#{cand10,jdbcType=NUMERIC},
+		CAND11=#{cand11,jdbcType=VARCHAR},
+		CAND12=#{cand12,jdbcType=NUMERIC},
+		CAND13=#{cand13,jdbcType=NUMERIC},
+		CAND14=#{cand14,jdbcType=VARCHAR},
+		CAND15=#{cand15,jdbcType=VARCHAR},
+		CAND16=#{cand16,jdbcType=NUMERIC},
+		CAND17=#{cand17,jdbcType=NUMERIC},
+		CAND18=#{cand18,jdbcType=NUMERIC},
+		CAND19=#{cand19,jdbcType=VARCHAR},
+		CAND20=#{cand20,jdbcType=VARCHAR},
+		CAND21=#{cand21,jdbcType=VARCHAR}
+		WHERE
+		CAND01=#{cand01}
+	</update>
+		<update id="updateByMap" parameterType="java.util.Map">
+		UPDATE CAN02 SET
+		<if test="@Ognl@isNotEmpty(cand03)">CAND03=#{cand03,jdbcType=VARCHAR},</if>
+		<if test="@Ognl@isNotEmpty(cand04)">CAND04=#{cand04,jdbcType=CLOB},</if>
+		<if test="@Ognl@isNotEmpty(cand05)">CAND05=#{cand05,jdbcType=NUMERIC},</if>
+		<if test="@Ognl@isNotEmpty(cand06)">CAND06=#{cand06,jdbcType=VARCHAR},</if>
+		<if test="@Ognl@isNotEmpty(cand07)">CAND07=#{cand07,jdbcType=TIMESTAMP},</if>
+		<if test="@Ognl@isNotEmpty(cand09)">CAND09=#{cand09,jdbcType=NUMERIC},</if>
+		<if test="@Ognl@isNotEmpty(cand10)">CAND10=#{cand10,jdbcType=NUMERIC},</if>
+		<if test="@Ognl@isNotEmpty(cand11)">CAND11=#{cand11,jdbcType=VARCHAR},</if>
+		<if test="@Ognl@isNotEmpty(cand12)">CAND12=#{cand12,jdbcType=NUMERIC},</if>
+		<if test="@Ognl@isNotEmpty(cand13)">CAND13=#{cand13,jdbcType=NUMERIC},</if>
+		<if test="@Ognl@isNotEmpty(cand14)">CAND14=#{cand14,jdbcType=VARCHAR},</if>
+		<if test="@Ognl@isNotEmpty(cand15)">CAND15=#{cand15,jdbcType=VARCHAR},</if>
+		<if test="@Ognl@isNotEmpty(cand16)">CAND16=#{cand16,jdbcType=NUMERIC},</if>
+		<if test="@Ognl@isNotEmpty(cand17)">CAND17=#{cand17,jdbcType=NUMERIC},</if>
+		<if test="@Ognl@isNotEmpty(cand18)">CAND18=#{cand18,jdbcType=NUMERIC},</if>
+		<if test="@Ognl@isNotEmpty(cand19)">CAND19=#{cand19,jdbcType=VARCHAR},</if>
+		<if test="@Ognl@isNotEmpty(cand20)">CAND20=#{cand20,jdbcType=VARCHAR},</if>
+		<if test="@Ognl@isNotEmpty(cand21)">CAND21=#{cand21,jdbcType=VARCHAR},</if>
+		CAND01=CAND01
+		WHERE
+		CAND01=#{cand01}
+	</update>	
+	<update id="updateReadNum" parameterType="java.util.Map">
+		UPDATE CAN02 SET  CAND13=nvl(CAND13,0)+1
+		WHERE
+		CAND01=#{cand01}
+	</update>    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Article">
+		SELECT <include refid="columns"/>
+		FROM CAN02
+		WHERE
+		CAND01=#{cand01}
+	</select>
+	<select id="getListByIds" resultMap="Article">
+		SELECT <include refid="columns"/>
+		FROM CAN02
+		WHERE
+		CAND01 in (${cand01})
+	</select>
+	<select id="getAll" resultMap="Article">
+		SELECT <include refid="columns"/>
+		FROM CAN02   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by cand17,cand10
+		</if>
+	</select>
+	
+	<select id="getArticleList" resultMap="ArticleDto">
+		SELECT cand01,canc01,cand03,cand04,eand05,ccmu01n,eand09,nvl(cand13,0) as cand13,cand16,cand17,cand18,cand07,cand11,cand19,cand20
+		FROM v_CAN02   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(flag)">
+			<if test="@Ognl@isNotEmpty(colidId)">
+				 and canc01 not in(${colidId})   
+			</if>
+		</if>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by cand17 DESC ,cand10 desc,cand07 desc
+		</if>
+	</select>
+	<select id="getAllArticleList" resultMap="ArticleDto">
+		SELECT cand01,canc01,cand03,eand05,ccmu01n,eand09,nvl(cand13,0) as cand13,cand16,cand17,cand18,cand07,cand11,cand19,cand20
+		FROM v_CAN02
+		WHERE  1=1 
+		<if test="@Ognl@isNotEmpty(canc01)"> AND canc01 IN (${canc01}) </if>
+		<if test="@Ognl@isNotEmpty(cand12)"> AND CAND12  =#{cand12} </if>
+		<if test="@Ognl@isNotEmpty(canc11)"> AND canc11  =#{canc11} </if>
+		<if test="@Ognl@isNotEmpty(canc11)"> AND canc11  =#{canc11} </if>
+		<if test="@Ognl@isNotEmpty(cand09)"> AND CAND09  =#{cand09} </if>
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+			order by cand17,cand10
+		</if>
+	</select>
+	<!-- 移动端取得新闻最新新闻列表 -->
+	<select id ="getNewArticleList"  resultType="java.util.HashMap">
+	SELECT cand01, cand03,nvl(cand13,'0') cand13 ,nvl(cand14,'暂无新闻描述') cand14, to_char(cand07,'yyyy-mm-dd hh24:mi:ss') as cand07
+		FROM CAN02
+		where 1=1  
+		<if test="@Ognl@isNotEmpty(canc02)">
+			and canc01=#{canc02}
+		</if>
+		and (instr(','||cand22||',',',3,')>0 or instr(','||cand22||',',',0,')>0) 
+		order by cand07 desc
+	</select>
+	<!-- 移动端取得新闻详情 -->
+	<select id ="getArticleDetail" resultMap="Article">
+	SELECT cand01, cand03,cand04,nvl(cand13,'0') cand13,cand07
+		FROM v_CAN02
+		where cand01 = #{cand01}
+	</select>
+</mapper>

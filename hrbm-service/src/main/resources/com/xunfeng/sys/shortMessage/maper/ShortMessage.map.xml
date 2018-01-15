@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.sys.shortMessage.model.ShortMessage">
+	<resultMap id="ShortMessage" type="com.xunfeng.sys.shortMessage.model.ShortMessage">
+		<id property="comc01" column="COMC01" jdbcType="NUMERIC"/>
+		<result property="comc02" column="COMC02" jdbcType="VARCHAR"/>
+		<result property="comc03" column="COMC03" jdbcType="VARCHAR"/>
+		<result property="comc04" column="COMC04" jdbcType="NUMERIC"/>
+		<result property="comc05" column="COMC05" jdbcType="NUMERIC"/>
+		<result property="aae011" column="AAE011" jdbcType="VARCHAR"/>
+		<result property="aae017" column="AAE017" jdbcType="VARCHAR"/>
+		<result property="aae036" column="AAE036" jdbcType="TIMESTAMP"/>
+		<result property="comn01" column="COMN01" jdbcType="NUMERIC"/>
+		<result property="comc06" column="COMC06" jdbcType="NUMERIC"/>
+		<result property="comc07" column="COMC07" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		COMC01,COMC02,COMC03,COMC04,COMC05,AAE011,AAE017,AAE036,COMN01,COMC06,COMC07
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(comc01)"> AND COMC01  =#{comc01} </if>
+			<if test="@Ognl@isNotEmpty(comc02)"> AND COMC02  LIKE #{comc02}  </if>
+			<if test="@Ognl@isNotEmpty(comc03)"> AND COMC03  LIKE #{comc03}  </if>
+			<if test="@Ognl@isNotEmpty(comc04)"> AND COMC04  =#{comc04} </if>
+			<if test="@Ognl@isNotEmpty(comc05)"> AND COMC05  =#{comc05} </if>
+			<if test="@Ognl@isNotEmpty(aae011)"> AND AAE011  LIKE #{aae011}  </if>
+			<if test="@Ognl@isNotEmpty(aae017)"> AND AAE017  LIKE #{aae017}  </if>
+			<if test="@Ognl@isNotEmpty(aae036)"> AND AAE036  =#{aae036} </if>
+			<if test="@Ognl@isNotEmpty(beginaae036)"> AND AAE036  >=#{beginaae036,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaae036)"> AND AAE036 <![CDATA[ <=#{endaae036,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(comn01)"> AND COMN01  =#{comn01} </if>
+			<if test="@Ognl@isNotEmpty(comc06)"> AND COMC06  =#{comc06} </if>
+			<if test="@Ognl@isNotEmpty(comc07)"> AND COMC07  =#{comc07} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.sys.shortMessage.model.ShortMessage">
+		INSERT INTO COM05
+		(COMC01,COMC02,COMC03,COMC04,COMC05,AAE011,AAE017,AAE036,COMN01,COMC06,COMC07)
+		VALUES
+		(#{comc01,jdbcType=NUMERIC}, #{comc02,jdbcType=VARCHAR}, #{comc03,jdbcType=VARCHAR}, #{comc04,jdbcType=NUMERIC}, #{comc05,jdbcType=NUMERIC}, #{aae011,jdbcType=VARCHAR}, #{aae017,jdbcType=VARCHAR}, #{aae036,jdbcType=TIMESTAMP}, #{comn01,jdbcType=NUMERIC}, #{comc06,jdbcType=NUMERIC}, #{comc07,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM COM05 
+		WHERE
+		COMC01=#{comc01}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.sys.shortMessage.model.ShortMessage">
+		UPDATE COM05 SET
+		COMC02=#{comc02,jdbcType=VARCHAR},
+		COMC03=#{comc03,jdbcType=VARCHAR},
+		COMC04=#{comc04,jdbcType=NUMERIC},
+		COMC05=#{comc05,jdbcType=NUMERIC},
+		AAE011=#{aae011,jdbcType=VARCHAR},
+		AAE017=#{aae017,jdbcType=VARCHAR},
+		AAE036=#{aae036,jdbcType=TIMESTAMP},
+		COMN01=#{comn01,jdbcType=NUMERIC},
+		COMC06=#{comc06,jdbcType=NUMERIC},
+		COMC07=#{comc07,jdbcType=NUMERIC}
+		WHERE
+		COMC01=#{comc01}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="ShortMessage">
+		SELECT <include refid="columns"/>
+		FROM COM05
+		WHERE
+		COMC01=#{comc01}
+	</select>
+	
+	<select id="getAll" resultMap="ShortMessage">
+		SELECT <include refid="columns"/>
+		FROM COM05   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by COMC01  desc
+		</if>
+	</select>
+</mapper>

@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.person.model.PersonExpand">
+	<resultMap id="PersonExpand" type="com.xunfeng.business.person.model.PersonExpand">
+		<id property="expandId" column="EXPAND_ID" jdbcType="NUMERIC"/>
+		<result property="expPersonId" column="EXP_PERSON_ID" jdbcType="NUMERIC"/>
+		<result property="expStartJobDate" column="EXP_START_JOB_DATE" jdbcType="DATE"/>
+		<result property="expUserName" column="EXP_USER_NAME" jdbcType="VARCHAR"/>
+		<result property="expPersonNumber" column="EXP_PERSON_NUMBER" jdbcType="VARCHAR"/>
+		<result property="expArchivesNumber" column="EXP_ARCHIVES_NUMBER" jdbcType="VARCHAR"/>
+		<result property="expGengral1" column="EXP_GENGRAL1" jdbcType="VARCHAR"/>
+		<result property="expOldCompany" column="EXP_OLD_COMPANY" jdbcType="VARCHAR"/>
+		<result property="expSecStatus" column="EXP_SEC_STATUS" jdbcType="NUMERIC"/>
+		<result property="expRemarks" column="EXP_REMARKS" jdbcType="VARCHAR"/>
+		<result property="expOpeartorUserId" column="EXP_OPEARTOR_USER_ID" jdbcType="NUMERIC"/>
+		<result property="expOpeartorDate" column="EXP_OPEARTOR_DATE" jdbcType="DATE"/>
+		<result property="expEquate" column="EXP_EQUATE" jdbcType="VARCHAR"/>
+		<result property="expPersonStatus" column="EXP_PERSON_STATUS" jdbcType="VARCHAR"/>
+		<result property="expPersonPhone" column="EXP_PERSON_PHONE" jdbcType="VARCHAR"/>
+		<result property="expHourseDate" column="EXP_HOURSE_DATE" jdbcType="DATE"/>
+		<result property="expAddress" column="EXP_ADDRESS" jdbcType="VARCHAR"/>
+		<result property="expPost" column="EXP_POST" jdbcType="VARCHAR"/>
+		<result property="expLevel" column="EXP_LEVEL" jdbcType="VARCHAR"/>
+		<result property="expLevelDate" column="EXP_LEVEL_DATE" jdbcType="DATE"/>
+		<result property="expPositionCode" column="EXP_POSITION_CODE" jdbcType="VARCHAR"/>
+		<result property="expPositionName" column="EXP_POSITION_NAME" jdbcType="VARCHAR"/>
+		<result property="expTechnical" column="EXP_TECHNICAL" jdbcType="VARCHAR"/>
+		<result property="expTechnicalDate" column="EXP_TECHNICAL_DATE" jdbcType="DATE"/>
+		<result property="expIsFamily" column="EXP_IS_FAMILY" jdbcType="VARCHAR"/>
+		<result property="expIsDifficult" column="EXP_IS_DIFFICULT" jdbcType="VARCHAR"/>
+		<result property="expIsCadre" column="EXP_IS_CADRE" jdbcType="VARCHAR"/>
+		<result property="expIsDiscount" column="EXP_IS_DISCOUNT" jdbcType="VARCHAR"/>
+		<result property="expIsRegisgration" column="EXP_IS_REGISGRATION" jdbcType="VARCHAR"/>
+		<result property="expRegisgration" column="EXP_REGISGRATION" jdbcType="VARCHAR"/>
+		<result property="expCardNumber" column="EXP_CARD_NUMBER" jdbcType="VARCHAR"/>
+		<result property="expHardPerson" column="EXP_HARD_PERSON" jdbcType="VARCHAR"/>
+		<result property="expSoctalNumber" column="EXP_SOCTAL_NUMBER" jdbcType="VARCHAR"/>
+		<result property="expEntrustCompany" column="EXP_ENTRUST_COMPANY" jdbcType="VARCHAR"/>
+		<result property="expZhuanye" column="EXP_ZHUANYE" jdbcType="VARCHAR"/>
+		<result property="expArrears" column="EXP_ARREARS" jdbcType="VARCHAR"/>
+		<result property="expBorrowingStatus" column="EXP_BORROWING_STATUS" jdbcType="VARCHAR"/>
+		<result property="expRetire" column="EXP_RETIRE" jdbcType="VARCHAR"/>
+		<result property="expSocialization" column="EXP_SOCIALIZATION" jdbcType="VARCHAR"/>
+		<result property="expOrganize" column="EXP_ORGANIZE" jdbcType="VARCHAR"/>
+		<result property="expResidence" column="EXP_RESIDENCE" jdbcType="VARCHAR"/>
+		<result property="expPension" column="EXP_PENSION" jdbcType="VARCHAR"/>
+		<result property="expMedical" column="EXP_MEDICAL" jdbcType="VARCHAR"/>
+		<result property="expInjury" column="EXP_INJURY" jdbcType="VARCHAR"/>
+		<result property="expBirth" column="EXP_BIRTH" jdbcType="VARCHAR"/>
+		<result property="expSerious" column="EXP_SERIOUS" jdbcType="VARCHAR"/>
+		<result property="expUnemployment" column="EXP_UNEMPLOYMENT" jdbcType="VARCHAR"/>
+		<result property="expAccumulation" column="EXP_ACCUMULATION" jdbcType="VARCHAR"/>
+		<result property="expPensionDate" column="EXP_PENSION_DATE" jdbcType="DATE"/>
+		<result property="expMedicalDate" column="EXP_MEDICAL_DATE" jdbcType="DATE"/>
+		<result property="expInsurance" column="EXP_INSURANCE" jdbcType="VARCHAR"/>
+		<result property="expacc0m" column="EXP_ACC0M" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		EXPAND_ID,EXP_PERSON_ID,EXP_START_JOB_DATE,EXP_USER_NAME,EXP_PERSON_NUMBER,EXP_ARCHIVES_NUMBER,EXP_GENGRAL1,EXP_OLD_COMPANY,EXP_SEC_STATUS,EXP_REMARKS,EXP_OPEARTOR_USER_ID,EXP_OPEARTOR_DATE,EXP_EQUATE,EXP_PERSON_STATUS,EXP_PERSON_PHONE,EXP_HOURSE_DATE,EXP_ADDRESS,EXP_POST,EXP_LEVEL,EXP_LEVEL_DATE,EXP_POSITION_CODE,EXP_POSITION_NAME,EXP_TECHNICAL,EXP_TECHNICAL_DATE,EXP_IS_FAMILY,EXP_IS_DIFFICULT,EXP_IS_CADRE,EXP_IS_DISCOUNT,EXP_IS_REGISGRATION,EXP_REGISGRATION,EXP_CARD_NUMBER,EXP_HARD_PERSON,EXP_SOCTAL_NUMBER,EXP_ENTRUST_COMPANY,EXP_ZHUANYE,EXP_ARREARS,EXP_BORROWING_STATUS,EXP_RETIRE,EXP_SOCIALIZATION,EXP_ORGANIZE,EXP_RESIDENCE,EXP_PENSION,EXP_MEDICAL,EXP_INJURY,EXP_BIRTH,EXP_SERIOUS,EXP_UNEMPLOYMENT,EXP_ACCUMULATION,EXP_PENSION_DATE,EXP_MEDICAL_DATE,EXP_INSURANCE,EXP_ACC0M
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(expandId)"> AND EXPAND_ID  =#{expandId} </if>
+			<if test="@Ognl@isNotEmpty(expPersonId)"> AND EXP_PERSON_ID  =#{expPersonId} </if>
+			<if test="@Ognl@isNotEmpty(expStartJobDate)"> AND EXP_START_JOB_DATE  =#{expStartJobDate} </if>
+			<if test="@Ognl@isNotEmpty(beginexpStartJobDate)"> AND EXP_START_JOB_DATE  >=#{beginexpStartJobDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endexpStartJobDate)"> AND EXP_START_JOB_DATE <![CDATA[ <=#{endexpStartJobDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(expUserName)"> AND EXP_USER_NAME  LIKE #{expUserName}  </if>
+			<if test="@Ognl@isNotEmpty(expPersonNumber)"> AND EXP_PERSON_NUMBER  LIKE #{expPersonNumber}  </if>
+			<if test="@Ognl@isNotEmpty(expArchivesNumber)"> AND EXP_ARCHIVES_NUMBER  LIKE #{expArchivesNumber}  </if>
+			<if test="@Ognl@isNotEmpty(expGengral1)"> AND EXP_GENGRAL1  LIKE #{expGengral1}  </if>
+			<if test="@Ognl@isNotEmpty(expOldCompany)"> AND EXP_OLD_COMPANY  LIKE #{expOldCompany}  </if>
+			<if test="@Ognl@isNotEmpty(expSecStatus)"> AND EXP_SEC_STATUS  =#{expSecStatus} </if>
+			<if test="@Ognl@isNotEmpty(expRemarks)"> AND EXP_REMARKS  LIKE #{expRemarks}  </if>
+			<if test="@Ognl@isNotEmpty(expOpeartorUserId)"> AND EXP_OPEARTOR_USER_ID  =#{expOpeartorUserId} </if>
+			<if test="@Ognl@isNotEmpty(expOpeartorDate)"> AND EXP_OPEARTOR_DATE  =#{expOpeartorDate} </if>
+			<if test="@Ognl@isNotEmpty(beginexpOpeartorDate)"> AND EXP_OPEARTOR_DATE  >=#{beginexpOpeartorDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endexpOpeartorDate)"> AND EXP_OPEARTOR_DATE <![CDATA[ <=#{endexpOpeartorDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(expEquate)"> AND EXP_EQUATE  LIKE #{expEquate}  </if>
+			<if test="@Ognl@isNotEmpty(expPersonStatus)"> AND EXP_PERSON_STATUS  LIKE #{expPersonStatus}  </if>
+			<if test="@Ognl@isNotEmpty(expPersonPhone)"> AND EXP_PERSON_PHONE  LIKE #{expPersonPhone}  </if>
+			<if test="@Ognl@isNotEmpty(expHourseDate)"> AND EXP_HOURSE_DATE  =#{expHourseDate} </if>
+			<if test="@Ognl@isNotEmpty(beginexpHourseDate)"> AND EXP_HOURSE_DATE  >=#{beginexpHourseDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endexpHourseDate)"> AND EXP_HOURSE_DATE <![CDATA[ <=#{endexpHourseDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(expAddress)"> AND EXP_ADDRESS  LIKE #{expAddress}  </if>
+			<if test="@Ognl@isNotEmpty(expPost)"> AND EXP_POST  LIKE #{expPost}  </if>
+			<if test="@Ognl@isNotEmpty(expLevel)"> AND EXP_LEVEL  LIKE #{expLevel}  </if>
+			<if test="@Ognl@isNotEmpty(expLevelDate)"> AND EXP_LEVEL_DATE  =#{expLevelDate} </if>
+			<if test="@Ognl@isNotEmpty(beginexpLevelDate)"> AND EXP_LEVEL_DATE  >=#{beginexpLevelDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endexpLevelDate)"> AND EXP_LEVEL_DATE <![CDATA[ <=#{endexpLevelDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(expPositionCode)"> AND EXP_POSITION_CODE  LIKE #{expPositionCode}  </if>
+			<if test="@Ognl@isNotEmpty(expPositionName)"> AND EXP_POSITION_NAME  LIKE #{expPositionName}  </if>
+			<if test="@Ognl@isNotEmpty(expTechnical)"> AND EXP_TECHNICAL  LIKE #{expTechnical}  </if>
+			<if test="@Ognl@isNotEmpty(expTechnicalDate)"> AND EXP_TECHNICAL_DATE  =#{expTechnicalDate} </if>
+			<if test="@Ognl@isNotEmpty(beginexpTechnicalDate)"> AND EXP_TECHNICAL_DATE  >=#{beginexpTechnicalDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endexpTechnicalDate)"> AND EXP_TECHNICAL_DATE <![CDATA[ <=#{endexpTechnicalDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(expIsFamily)"> AND EXP_IS_FAMILY  LIKE #{expIsFamily}  </if>
+			<if test="@Ognl@isNotEmpty(expIsDifficult)"> AND EXP_IS_DIFFICULT  LIKE #{expIsDifficult}  </if>
+			<if test="@Ognl@isNotEmpty(expIsCadre)"> AND EXP_IS_CADRE  LIKE #{expIsCadre}  </if>
+			<if test="@Ognl@isNotEmpty(expIsDiscount)"> AND EXP_IS_DISCOUNT  LIKE #{expIsDiscount}  </if>
+			<if test="@Ognl@isNotEmpty(expIsRegisgration)"> AND EXP_IS_REGISGRATION  LIKE #{expIsRegisgration}  </if>
+			<if test="@Ognl@isNotEmpty(expRegisgration)"> AND EXP_REGISGRATION  LIKE #{expRegisgration}  </if>
+			<if test="@Ognl@isNotEmpty(expCardNumber)"> AND EXP_CARD_NUMBER  LIKE #{expCardNumber}  </if>
+			<if test="@Ognl@isNotEmpty(expHardPerson)"> AND EXP_HARD_PERSON  LIKE #{expHardPerson}  </if>
+			<if test="@Ognl@isNotEmpty(expSoctalNumber)"> AND EXP_SOCTAL_NUMBER  LIKE #{expSoctalNumber}  </if>
+			<if test="@Ognl@isNotEmpty(expEntrustCompany)"> AND EXP_ENTRUST_COMPANY  LIKE #{expEntrustCompany}  </if>
+			<if test="@Ognl@isNotEmpty(expZhuanye)"> AND EXP_ZHUANYE  LIKE #{expZhuanye}  </if>
+			<if test="@Ognl@isNotEmpty(expArrears)"> AND EXP_ARREARS  LIKE #{expArrears}  </if>
+			<if test="@Ognl@isNotEmpty(expBorrowingStatus)"> AND EXP_BORROWING_STATUS  LIKE #{expBorrowingStatus}  </if>
+			<if test="@Ognl@isNotEmpty(expRetire)"> AND EXP_RETIRE  LIKE #{expRetire}  </if>
+			<if test="@Ognl@isNotEmpty(expSocialization)"> AND EXP_SOCIALIZATION  LIKE #{expSocialization}  </if>
+			<if test="@Ognl@isNotEmpty(expOrganize)"> AND EXP_ORGANIZE  LIKE #{expOrganize}  </if>
+			<if test="@Ognl@isNotEmpty(expResidence)"> AND EXP_RESIDENCE  LIKE #{expResidence}  </if>
+			<if test="@Ognl@isNotEmpty(expPension)"> AND EXP_PENSION  LIKE #{expPension}  </if>
+			<if test="@Ognl@isNotEmpty(expMedical)"> AND EXP_MEDICAL  LIKE #{expMedical}  </if>
+			<if test="@Ognl@isNotEmpty(expInjury)"> AND EXP_INJURY  LIKE #{expInjury}  </if>
+			<if test="@Ognl@isNotEmpty(expBirth)"> AND EXP_BIRTH  LIKE #{expBirth}  </if>
+			<if test="@Ognl@isNotEmpty(expSerious)"> AND EXP_SERIOUS  LIKE #{expSerious}  </if>
+			<if test="@Ognl@isNotEmpty(expUnemployment)"> AND EXP_UNEMPLOYMENT  LIKE #{expUnemployment}  </if>
+			<if test="@Ognl@isNotEmpty(expAccumulation)"> AND EXP_ACCUMULATION  LIKE #{expAccumulation}  </if>
+			<if test="@Ognl@isNotEmpty(expPensionDate)"> AND EXP_PENSION_DATE  =#{expPensionDate} </if>
+			<if test="@Ognl@isNotEmpty(beginexpPensionDate)"> AND EXP_PENSION_DATE  >=#{beginexpPensionDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endexpPensionDate)"> AND EXP_PENSION_DATE <![CDATA[ <=#{endexpPensionDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(expMedicalDate)"> AND EXP_MEDICAL_DATE  =#{expMedicalDate} </if>
+			<if test="@Ognl@isNotEmpty(beginexpMedicalDate)"> AND EXP_MEDICAL_DATE  >=#{beginexpMedicalDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endexpMedicalDate)"> AND EXP_MEDICAL_DATE <![CDATA[ <=#{endexpMedicalDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(expInsurance)"> AND EXP_INSURANCE  LIKE #{expInsurance}  </if>
+			<if test="@Ognl@isNotEmpty(expacc0m)"> AND EXP_ACC0M  LIKE #{expacc0m}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.person.model.PersonExpand">
+		INSERT INTO RSDA_BS_PERSON_EXPAND
+		(EXPAND_ID,EXP_PERSON_ID,EXP_START_JOB_DATE,EXP_USER_NAME,EXP_PERSON_NUMBER,EXP_ARCHIVES_NUMBER,EXP_GENGRAL1,EXP_OLD_COMPANY,EXP_SEC_STATUS,EXP_REMARKS,EXP_OPEARTOR_USER_ID,EXP_OPEARTOR_DATE,EXP_EQUATE,EXP_PERSON_STATUS,EXP_PERSON_PHONE,EXP_HOURSE_DATE,EXP_ADDRESS,EXP_POST,EXP_LEVEL,EXP_LEVEL_DATE,EXP_POSITION_CODE,EXP_POSITION_NAME,EXP_TECHNICAL,EXP_TECHNICAL_DATE,EXP_IS_FAMILY,EXP_IS_DIFFICULT,EXP_IS_CADRE,EXP_IS_DISCOUNT,EXP_IS_REGISGRATION,EXP_REGISGRATION,EXP_CARD_NUMBER,EXP_HARD_PERSON,EXP_SOCTAL_NUMBER,EXP_ENTRUST_COMPANY,EXP_ZHUANYE,EXP_ARREARS,EXP_BORROWING_STATUS,EXP_RETIRE,EXP_SOCIALIZATION,EXP_ORGANIZE,EXP_RESIDENCE,EXP_PENSION,EXP_MEDICAL,EXP_INJURY,EXP_BIRTH,EXP_SERIOUS,EXP_UNEMPLOYMENT,EXP_ACCUMULATION,EXP_PENSION_DATE,EXP_MEDICAL_DATE,EXP_INSURANCE,EXP_ACC0M)
+		VALUES
+		(#{expandId,jdbcType=NUMERIC}, #{expPersonId,jdbcType=NUMERIC}, #{expStartJobDate,jdbcType=DATE}, #{expUserName,jdbcType=VARCHAR}, #{expPersonNumber,jdbcType=VARCHAR}, #{expArchivesNumber,jdbcType=VARCHAR}, #{expGengral1,jdbcType=VARCHAR}, #{expOldCompany,jdbcType=VARCHAR}, #{expSecStatus,jdbcType=NUMERIC}, #{expRemarks,jdbcType=VARCHAR}, #{expOpeartorUserId,jdbcType=NUMERIC}, #{expOpeartorDate,jdbcType=DATE}, #{expEquate,jdbcType=VARCHAR}, #{expPersonStatus,jdbcType=VARCHAR}, #{expPersonPhone,jdbcType=VARCHAR}, #{expHourseDate,jdbcType=DATE}, #{expAddress,jdbcType=VARCHAR}, #{expPost,jdbcType=VARCHAR}, #{expLevel,jdbcType=VARCHAR}, #{expLevelDate,jdbcType=DATE}, #{expPositionCode,jdbcType=VARCHAR}, #{expPositionName,jdbcType=VARCHAR}, #{expTechnical,jdbcType=VARCHAR}, #{expTechnicalDate,jdbcType=DATE}, #{expIsFamily,jdbcType=VARCHAR}, #{expIsDifficult,jdbcType=VARCHAR}, #{expIsCadre,jdbcType=VARCHAR}, #{expIsDiscount,jdbcType=VARCHAR}, #{expIsRegisgration,jdbcType=VARCHAR}, #{expRegisgration,jdbcType=VARCHAR}, #{expCardNumber,jdbcType=VARCHAR}, #{expHardPerson,jdbcType=VARCHAR}, #{expSoctalNumber,jdbcType=VARCHAR}, #{expEntrustCompany,jdbcType=VARCHAR}, #{expZhuanye,jdbcType=VARCHAR}, #{expArrears,jdbcType=VARCHAR}, #{expBorrowingStatus,jdbcType=VARCHAR}, #{expRetire,jdbcType=VARCHAR}, #{expSocialization,jdbcType=VARCHAR}, #{expOrganize,jdbcType=VARCHAR}, #{expResidence,jdbcType=VARCHAR}, #{expPension,jdbcType=VARCHAR}, #{expMedical,jdbcType=VARCHAR}, #{expInjury,jdbcType=VARCHAR}, #{expBirth,jdbcType=VARCHAR}, #{expSerious,jdbcType=VARCHAR}, #{expUnemployment,jdbcType=VARCHAR}, #{expAccumulation,jdbcType=VARCHAR}, #{expPensionDate,jdbcType=DATE}, #{expMedicalDate,jdbcType=DATE}, #{expInsurance,jdbcType=VARCHAR}, #{expacc0m,jdbcType=VARCHAR})
+		</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_PERSON_EXPAND 
+		WHERE
+		EXPAND_ID=#{expandId}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.person.model.PersonExpand">
+		UPDATE RSDA_BS_PERSON_EXPAND SET
+		EXP_PERSON_ID=#{expPersonId,jdbcType=NUMERIC},
+		EXP_START_JOB_DATE=#{expStartJobDate,jdbcType=DATE},
+		EXP_USER_NAME=#{expUserName,jdbcType=VARCHAR},
+		EXP_PERSON_NUMBER=#{expPersonNumber,jdbcType=VARCHAR},
+		EXP_ARCHIVES_NUMBER=#{expArchivesNumber,jdbcType=VARCHAR},
+		EXP_GENGRAL1=#{expGengral1,jdbcType=VARCHAR},
+		EXP_OLD_COMPANY=#{expOldCompany,jdbcType=VARCHAR},
+		EXP_SEC_STATUS=#{expSecStatus,jdbcType=NUMERIC},
+		EXP_REMARKS=#{expRemarks,jdbcType=VARCHAR},
+		EXP_OPEARTOR_USER_ID=#{expOpeartorUserId,jdbcType=NUMERIC},
+		EXP_OPEARTOR_DATE=#{expOpeartorDate,jdbcType=DATE},
+		EXP_EQUATE=#{expEquate,jdbcType=VARCHAR},
+		EXP_PERSON_STATUS=#{expPersonStatus,jdbcType=VARCHAR},
+		EXP_PERSON_PHONE=#{expPersonPhone,jdbcType=VARCHAR},
+		EXP_HOURSE_DATE=#{expHourseDate,jdbcType=DATE},
+		EXP_ADDRESS=#{expAddress,jdbcType=VARCHAR},
+		EXP_POST=#{expPost,jdbcType=VARCHAR},
+		EXP_LEVEL=#{expLevel,jdbcType=VARCHAR},
+		EXP_LEVEL_DATE=#{expLevelDate,jdbcType=DATE},
+		EXP_POSITION_CODE=#{expPositionCode,jdbcType=VARCHAR},
+		EXP_POSITION_NAME=#{expPositionName,jdbcType=VARCHAR},
+		EXP_TECHNICAL=#{expTechnical,jdbcType=VARCHAR},
+		EXP_TECHNICAL_DATE=#{expTechnicalDate,jdbcType=DATE},
+		EXP_IS_FAMILY=#{expIsFamily,jdbcType=VARCHAR},
+		EXP_IS_DIFFICULT=#{expIsDifficult,jdbcType=VARCHAR},
+		EXP_IS_CADRE=#{expIsCadre,jdbcType=VARCHAR},
+		EXP_IS_DISCOUNT=#{expIsDiscount,jdbcType=VARCHAR},
+		EXP_IS_REGISGRATION=#{expIsRegisgration,jdbcType=VARCHAR},
+		EXP_REGISGRATION=#{expRegisgration,jdbcType=VARCHAR},
+		EXP_CARD_NUMBER=#{expCardNumber,jdbcType=VARCHAR},
+		EXP_HARD_PERSON=#{expHardPerson,jdbcType=VARCHAR},
+		EXP_SOCTAL_NUMBER=#{expSoctalNumber,jdbcType=VARCHAR},
+		EXP_ENTRUST_COMPANY=#{expEntrustCompany,jdbcType=VARCHAR},
+		EXP_ZHUANYE=#{expZhuanye,jdbcType=VARCHAR},
+		EXP_ARREARS=#{expArrears,jdbcType=VARCHAR},
+		EXP_BORROWING_STATUS=#{expBorrowingStatus,jdbcType=VARCHAR},
+		EXP_RETIRE=#{expRetire,jdbcType=VARCHAR},
+		EXP_SOCIALIZATION=#{expSocialization,jdbcType=VARCHAR},
+		EXP_ORGANIZE=#{expOrganize,jdbcType=VARCHAR},
+		EXP_RESIDENCE=#{expResidence,jdbcType=VARCHAR},
+		EXP_PENSION=#{expPension,jdbcType=VARCHAR},
+		EXP_MEDICAL=#{expMedical,jdbcType=VARCHAR},
+		EXP_INJURY=#{expInjury,jdbcType=VARCHAR},
+		EXP_BIRTH=#{expBirth,jdbcType=VARCHAR},
+		EXP_SERIOUS=#{expSerious,jdbcType=VARCHAR},
+		EXP_UNEMPLOYMENT=#{expUnemployment,jdbcType=VARCHAR},
+		EXP_ACCUMULATION=#{expAccumulation,jdbcType=VARCHAR},
+		EXP_PENSION_DATE=#{expPensionDate,jdbcType=DATE},
+		EXP_MEDICAL_DATE=#{expMedicalDate,jdbcType=DATE},
+		EXP_INSURANCE=#{expInsurance,jdbcType=VARCHAR},
+		EXP_ACC0M=#{expacc0m,jdbcType=VARCHAR}
+		WHERE
+		EXPAND_ID=#{expandId}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="PersonExpand">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PERSON_EXPAND
+		WHERE
+		EXPAND_ID=#{expandId}
+	</select>
+	
+	<select id="getByExpPersonId" parameterType="java.lang.Long" resultMap="PersonExpand">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PERSON_EXPAND
+		WHERE
+		EXP_PERSON_ID=#{expPersonId}
+	</select>
+	<!-- 页面详情信息 -->
+	<select id="getByExpId" parameterType="java.lang.Long" resultMap="PersonExpand">
+		SELECT EXPAND_ID,EXP_PERSON_ID,EXP_START_JOB_DATE,EXP_USER_NAME,EXP_PERSON_NUMBER,EXP_ARCHIVES_NUMBER,EXP_GENGRAL1,EXP_OLD_COMPANY,EXP_SEC_STATUS,EXP_REMARKS,EXP_OPEARTOR_USER_ID,EXP_OPEARTOR_DATE,EXP_EQUATE,p.name as EXP_PERSON_STATUS,EXP_PERSON_PHONE,EXP_HOURSE_DATE,EXP_ADDRESS,EXP_POST,q.name as EXP_LEVEL,EXP_LEVEL_DATE,EXP_POSITION_CODE,f.name as EXP_POSITION_NAME,e.name  as EXP_TECHNICAL,EXP_TECHNICAL_DATE,EXP_IS_FAMILY,EXP_IS_DIFFICULT,EXP_IS_CADRE,EXP_IS_DISCOUNT,EXP_IS_REGISGRATION,EXP_REGISGRATION,EXP_CARD_NUMBER,d.name as EXP_HARD_PERSON,EXP_SOCTAL_NUMBER,EXP_ENTRUST_COMPANY,EXP_ZHUANYE,EXP_ARREARS,EXP_BORROWING_STATUS,EXP_RETIRE,EXP_SOCIALIZATION,EXP_ORGANIZE,EXP_RESIDENCE,EXP_PENSION,EXP_MEDICAL,EXP_INJURY,EXP_BIRTH,EXP_SERIOUS,EXP_UNEMPLOYMENT,EXP_ACCUMULATION,EXP_PENSION_DATE,EXP_MEDICAL_DATE,EXP_INSURANCE,EXP_ACC0M
+	    FROM RSDA_BS_PERSON_EXPAND   t
+	    LEFT JOIN TAB_PSTATUS p ON   t.exp_person_status = p.code
+	    LEFT JOIN TAB_COQ     q ON   t.exp_level  = q.code
+	    LEFT JOIN TAB_CRAFT   f ON   t.exp_position_name = f.code
+	    LEFT JOIN TAB_TITLE   e ON   t.exp_technical = e.code
+	    LEFT JOIN TAB_EDO     d ON   t.exp_hard_person = d.code
+		WHERE
+		EXP_PERSON_ID=#{expPersonId}
+	</select>
+	
+	<select id="getAll" resultMap="PersonExpand">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PERSON_EXPAND   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by EXPAND_ID  desc
+		</if>
+	</select>
+</mapper>

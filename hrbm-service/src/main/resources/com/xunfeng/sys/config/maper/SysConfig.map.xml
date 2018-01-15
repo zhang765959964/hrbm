@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.sys.config.model.SysConfig">
+	<resultMap id="SysConfig" type="com.xunfeng.sys.config.model.SysConfig">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="type" column="TYPE" jdbcType="VARCHAR"/>
+		<result property="formContent" column="FORM_CONTENT" jdbcType="VARCHAR"/>
+		<result property="orgId" column="ORG_ID" jdbcType="NUMERIC"/>
+		<result property="label" column="LABEL" jdbcType="VARCHAR"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="value" column="VALUE" jdbcType="VARCHAR"/>
+		<result property="sortField" column="SORT_FIELD" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,TYPE,FORM_CONTENT,ORG_ID,LABEL,NAME,VALUE,SORT_FIELD
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(type)"> AND TYPE  LIKE #{type}  </if>
+			<if test="@Ognl@isNotEmpty(formContent)"> AND FORM_CONTENT  LIKE #{formContent}  </if>
+			<if test="@Ognl@isNotEmpty(orgId)"> AND ORG_ID  =#{orgId} </if>
+			<if test="@Ognl@isNotEmpty(label)"> AND LABEL  LIKE #{label}  </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(value)"> AND VALUE  LIKE #{value}  </if>
+			<if test="@Ognl@isNotEmpty(sortField)"> AND SORT_FIELD  =#{sortField} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.sys.config.model.SysConfig">
+		INSERT INTO WS_M_SYS_CONFIG
+		(ID,TYPE,FORM_CONTENT,ORG_ID,LABEL,NAME,VALUE,SORT_FIELD)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{type,jdbcType=VARCHAR}, #{formContent,jdbcType=VARCHAR}, #{orgId,jdbcType=NUMERIC}, #{label,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, #{sortField,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM WS_M_SYS_CONFIG 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.sys.config.model.SysConfig">
+		UPDATE WS_M_SYS_CONFIG SET
+		TYPE=#{type,jdbcType=VARCHAR},
+		FORM_CONTENT=#{formContent,jdbcType=VARCHAR},
+		ORG_ID=#{orgId,jdbcType=NUMERIC},
+		LABEL=#{label,jdbcType=VARCHAR},
+		NAME=#{name,jdbcType=VARCHAR},
+		VALUE=#{value,jdbcType=VARCHAR},
+		SORT_FIELD=#{sortField,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysConfig">
+		SELECT <include refid="columns"/>
+		FROM WS_M_SYS_CONFIG
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SysConfig">
+		SELECT <include refid="columns"/>
+		FROM WS_M_SYS_CONFIG   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+		group by type
+	</select>
+	
+	
+	
+	
+	
+	<select id="getConfigByName" resultMap="SysConfig">
+		SELECT <include refid="columns"/>
+		FROM WS_M_SYS_CONFIG   
+		WHERE
+		NAME = #{name}
+	</select>
+	
+	<select id="getBaseConfigs" resultMap="SysConfig">
+	
+	SELECT <include refid="columns"/>
+	FROM WS_M_SYS_CONFIG
+	where type=#{type}
+	order by sort_field desc    
+	</select>
+	
+	
+	
+	
+	
+</mapper>

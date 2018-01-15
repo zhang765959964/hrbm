@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/hrbm.iml" filepath="$PROJECT_DIR$/hrbm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hrbm-commons-deps/hrbm-commons-deps.iml" filepath="$PROJECT_DIR$/hrbm-commons-deps/hrbm-commons-deps.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hrbm-framework/hrbm-framework.iml" filepath="$PROJECT_DIR$/hrbm-framework/hrbm-framework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hrbm-service/hrbm-service.iml" filepath="$PROJECT_DIR$/hrbm-service/hrbm-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hrbm-websitemanager/hrbm-websitemanager.iml" filepath="$PROJECT_DIR$/hrbm-websitemanager/hrbm-websitemanager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/servicemanager/servicemanager.iml" filepath="$PROJECT_DIR$/servicemanager/servicemanager.iml" />
+    </modules>
+  </component>
+</project>

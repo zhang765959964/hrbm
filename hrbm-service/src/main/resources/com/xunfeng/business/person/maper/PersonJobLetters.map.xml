@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.person.model.PersonJobLetters">
+	<resultMap id="PersonJobLetters" type="com.xunfeng.business.person.model.PersonJobLetters">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="ccmu01" column="CCMU01" jdbcType="NUMERIC"/>
+		<result property="lettersTitle" column="LETTERS_TITLE" jdbcType="VARCHAR"/>
+		<result property="lettersContent" column="LETTERS_CONTENT" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,CCMU01,LETTERS_TITLE,LETTERS_CONTENT
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(ccmu01)"> AND CCMU01  =#{ccmu01} </if>
+			<if test="@Ognl@isNotEmpty(lettersTitle)"> AND LETTERS_TITLE  LIKE #{lettersTitle}  </if>
+			<if test="@Ognl@isNotEmpty(lettersContent)"> AND LETTERS_CONTENT  LIKE #{lettersContent}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.person.model.PersonJobLetters">
+		INSERT INTO PERSON_JOB_LETTERS
+		(ID,CCMU01,LETTERS_TITLE,LETTERS_CONTENT)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{ccmu01,jdbcType=NUMERIC}, #{lettersTitle,jdbcType=VARCHAR}, #{lettersContent,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM PERSON_JOB_LETTERS 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.person.model.PersonJobLetters">
+		UPDATE PERSON_JOB_LETTERS SET
+		CCMU01=#{ccmu01,jdbcType=NUMERIC},
+		LETTERS_TITLE=#{lettersTitle,jdbcType=VARCHAR},
+		LETTERS_CONTENT=#{lettersContent,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="PersonJobLetters">
+		SELECT <include refid="columns"/>
+		FROM PERSON_JOB_LETTERS
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="PersonJobLetters">
+		SELECT <include refid="columns"/>
+		FROM PERSON_JOB_LETTERS   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

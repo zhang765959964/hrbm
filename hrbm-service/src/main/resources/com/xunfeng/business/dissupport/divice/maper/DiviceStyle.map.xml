@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.dissupport.divice.model.DiviceStyle">
+	<resultMap id="DiviceStyle" type="com.xunfeng.business.dissupport.divice.model.DiviceStyle">
+		<id property="sty001" column="STY001" jdbcType="NUMERIC"/>
+		<result property="sty002" column="STY002" jdbcType="VARCHAR"/>
+		<result property="sty003" column="STY003" jdbcType="VARCHAR"/>
+		<result property="aae013" column="AAE013" jdbcType="VARCHAR"/>
+		<result property="mod001" column="MOD001" jdbcType="NUMERIC"/>
+		<result property="sty004" column="STY004" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		STY001,STY002,STY003,AAE013,MOD001,STY004
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(sty001)"> AND STY001  =#{sty001} </if>
+			<if test="@Ognl@isNotEmpty(sty002)"> AND STY002  LIKE #{sty002}  </if>
+			<if test="@Ognl@isNotEmpty(sty003)"> AND STY003  LIKE #{sty003}  </if>
+			<if test="@Ognl@isNotEmpty(aae013)"> AND AAE013  LIKE #{aae013}  </if>
+			<if test="@Ognl@isNotEmpty(mod001)"> AND MOD001  =#{mod001} </if>
+			<if test="@Ognl@isNotEmpty(sty004)"> AND STY004  LIKE #{sty004}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.dissupport.divice.model.DiviceStyle">
+		INSERT INTO G_STYLE
+		(STY001,STY002,STY003,AAE013,MOD001,STY004)
+		VALUES
+		(#{sty001,jdbcType=NUMERIC}, #{sty002,jdbcType=VARCHAR}, #{sty003,jdbcType=VARCHAR}, #{aae013,jdbcType=VARCHAR}, #{mod001,jdbcType=NUMERIC}, #{sty004,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM G_STYLE 
+		WHERE
+		STY001=#{sty001}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.dissupport.divice.model.DiviceStyle">
+		UPDATE G_STYLE SET
+		STY002=#{sty002,jdbcType=VARCHAR},
+		STY003=#{sty003,jdbcType=VARCHAR},
+		AAE013=#{aae013,jdbcType=VARCHAR},
+		MOD001=#{mod001,jdbcType=NUMERIC},
+		STY004=#{sty004,jdbcType=VARCHAR}
+		WHERE
+		STY001=#{sty001}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="DiviceStyle">
+		SELECT <include refid="columns"/>
+		FROM G_STYLE
+		WHERE
+		STY001=#{sty001}
+	</select>
+	
+	<select id="getAll" resultMap="DiviceStyle">
+		SELECT <include refid="columns"/>
+		FROM G_STYLE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by STY001  desc
+		</if>
+	</select>
+</mapper>

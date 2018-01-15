@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.corp.model.CorpInterviewComment">
+	<resultMap id="CorpInterviewComment" type="com.xunfeng.business.corp.model.CorpInterviewComment">
+		<id property="acp001" column="ACP001" jdbcType="NUMERIC"/>
+		<result property="acp002" column="ACP002" jdbcType="VARCHAR"/>
+		<result property="aab001" column="AAB001" jdbcType="NUMERIC"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ACP001,ACP002,AAB001,CCPR08
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(acp001)"> AND ACP001  =#{acp001} </if>
+			<if test="@Ognl@isNotEmpty(acp002)"> AND ACP002  LIKE #{acp002}  </if>
+			<if test="@Ognl@isNotEmpty(defaultAab001)"> AND (AAB001  =#{defaultAab001} OR AAB001=0)</if>
+			<if test="@Ognl@isNotEmpty(aab001)"> AND AAB001  =#{aab001}</if>
+			<if test="@Ognl@isNotEmpty(ccpr08)"> AND CCPR08 =#{ccpr08}  </if>
+		</where>
+	</sql>
+
+
+	<insert id="add" parameterType="com.xunfeng.business.corp.model.CorpInterviewComment">
+		INSERT INTO CCP12
+		(ACP001,ACP002,AAB001,CCPR08)
+		VALUES
+		(#{acp001,jdbcType=NUMERIC}, #{acp002,jdbcType=VARCHAR}, #{aab001,jdbcType=NUMERIC}, #{ccpr08,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM CCP12 
+		WHERE
+		ACP001=#{acp001}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.corp.model.CorpInterviewComment">
+		UPDATE CCP12 SET
+		ACP002=#{acp002,jdbcType=VARCHAR},
+		AAB001=#{aab001,jdbcType=NUMERIC},
+		CCPR08=#{ccpr08,jdbcType=VARCHAR}
+		WHERE
+		ACP001=#{acp001}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="CorpInterviewComment">
+		SELECT <include refid="columns"/>
+		FROM CCP12
+		WHERE
+		ACP001=#{acp001}
+	</select>
+	
+	<select id="getAll" resultMap="CorpInterviewComment">
+		SELECT <include refid="columns"/>
+		FROM CCP12
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ACP001  desc
+		</if>
+	</select>
+
+	<!--修改评语删除状态-->
+	<update id="updateCommentStatus" parameterType="hashmap">
+		UPDATE CCP12 SET
+			CCPR08=#{ccpr08,jdbcType=VARCHAR}
+		WHERE
+			ACP001=#{acp001}
+	</update>
+</mapper>

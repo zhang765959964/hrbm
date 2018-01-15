@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.corp.model.CorpResumeDownLog">
+	<resultMap id="CorpResumeDownLog" type="com.xunfeng.business.corp.model.CorpResumeDownLog">
+		<id property="ccpd01" column="CCPD01" jdbcType="NUMERIC"/>
+		<result property="ccmc01" column="CCMC01" jdbcType="NUMERIC"/>
+		<result property="ccmp01" column="CCMP01" jdbcType="NUMERIC"/>
+		<result property="ccpd02" column="CCPD02" jdbcType="TIMESTAMP"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+		<result property="ccpr10" column="CCPR10" jdbcType="NUMERIC"/>
+		<result property="cczy06" column="CCZY06" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		CCPD01,CCMC01,CCMP01,CCPD02,CCPR08,CCPR10,CCZY06
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(ccpd01)"> AND CCPD01  =#{ccpd01} </if>
+			<if test="@Ognl@isNotEmpty(ccmc01)"> AND CCMC01  =#{ccmc01} </if>
+			<if test="@Ognl@isNotEmpty(ccmp01)"> AND CCMP01  =#{ccmp01} </if>
+			<if test="@Ognl@isNotEmpty(ccpd02)"> AND CCPD02  =#{ccpd02} </if>
+			<if test="@Ognl@isNotEmpty(beginccpd02)"> AND CCPD02  >=#{beginccpd02,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endccpd02)"> AND CCPD02 <![CDATA[ <=#{endccpd02,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(ccpr08)"> AND CCPR08  LIKE #{ccpr08}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr10)"> AND CCPR10  =#{ccpr10} </if>
+			<if test="@Ognl@isNotEmpty(cczy06)"> AND CCZY06  LIKE #{cczy06}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.corp.model.CorpResumeDownLog">
+		INSERT INTO CCP09
+		(CCPD01,CCMC01,CCMP01,CCPD02,CCPR08,CCPR10,CCZY06)
+		VALUES
+		(#{ccpd01,jdbcType=NUMERIC}, #{ccmc01,jdbcType=NUMERIC}, #{ccmp01,jdbcType=NUMERIC}, #{ccpd02,jdbcType=TIMESTAMP}, #{ccpr08,jdbcType=VARCHAR}, #{ccpr10,jdbcType=NUMERIC}, #{cczy06,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM CCP09 
+		WHERE
+		CCPD01=#{ccpd01}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.corp.model.CorpResumeDownLog">
+		UPDATE CCP09 SET
+		CCMC01=#{ccmc01,jdbcType=NUMERIC},
+		CCMP01=#{ccmp01,jdbcType=NUMERIC},
+		CCPD02=#{ccpd02,jdbcType=TIMESTAMP},
+		CCPR08=#{ccpr08,jdbcType=VARCHAR},
+		CCPR10=#{ccpr10,jdbcType=NUMERIC},
+		CCZY06=#{cczy06,jdbcType=VARCHAR}
+		WHERE
+		CCPD01=#{ccpd01}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="CorpResumeDownLog">
+		SELECT <include refid="columns"/>
+		FROM CCP09
+		WHERE
+		CCPD01=#{ccpd01}
+	</select>
+	
+	<select id="getAll" resultMap="CorpResumeDownLog">
+		SELECT <include refid="columns"/>
+		FROM CCP09   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by CCPD01  desc
+		</if>
+	</select>
+
+	<resultMap id="CorpResumeDownDto" type="com.xunfeng.business.corp.dto.CorpResumeDownDto">
+		<result property="ccpd01" column="ccpd01" jdbcType="NUMERIC"/>
+		<result property="ccmc01" column="ccmc01" jdbcType="NUMERIC"/>
+		<result property="ccmp01" column="ccmp01" jdbcType="NUMERIC"/>
+		<result property="aac002" column="aac002" jdbcType="VARCHAR"/>
+		<result property="aac003" column="aac003" jdbcType="VARCHAR"/>
+		<result property="aac004" column="aac004" jdbcType="VARCHAR"/>
+		<result property="eac004" column="eac004" jdbcType="VARCHAR"/>
+		<result property="aac011" column="aac011" jdbcType="VARCHAR"/>
+		<result property="eac011" column="eac011" jdbcType="VARCHAR"/>
+		<result property="aab301" column="aab301" jdbcType="VARCHAR"/>
+		<result property="aaa021" column="aaa021" jdbcType="VARCHAR"/>
+		<result property="aca112" column="aca112" jdbcType="VARCHAR"/>
+		<result property="acaa12" column="acaa12" jdbcType="VARCHAR"/>
+		<result property="acab12" column="acab12" jdbcType="VARCHAR"/>
+		<result property="CCPD02" column="CCPD02" jdbcType="VARCHAR"/>
+		<result property="aab004" column="aab004" jdbcType="VARCHAR"/>
+		<result property="aab019" column="aab019" jdbcType="VARCHAR"/>
+		<result property="ccpr10" column="ccpr10" jdbcType="VARCHAR"/>
+		<result property="eab019" column="eab019" jdbcType="VARCHAR"/>
+		<result property="aae004" column="aae004" jdbcType="VARCHAR"/>
+		<result property="aae005" column="aae005" jdbcType="VARCHAR"/>
+		<result property="bac006" column="bac006" jdbcType="NUMERIC"/>
+		<result property="ecpr10" column="ecpr10" jdbcType="VARCHAR"/>
+		<result property="ccps01" column="ccps01" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="ccpr08" jdbcType="VARCHAR"/>
+		<result property="aae006" column="aae006" jdbcType="VARCHAR"/>
+		<result property="ecpr10_code" column="ecpr10_code" jdbcType="VARCHAR"/>
+
+	</resultMap>
+	<sql id="dynamicCorpWhere">
+			<if test="@Ognl@isNotEmpty(ccmc01)"> AND ccmc01  =#{ccmc01} </if>
+			<if test="@Ognl@isNotEmpty(aac002)"> AND aac002  LIKE #{aac002} </if>
+			<if test="@Ognl@isNotEmpty(aac003)"> AND aac003  LIKE #{aac003} </if>
+			<if test="@Ognl@isNotEmpty(CCPD02)"> AND CCPD02  > #{CCPD02} </if>
+			<if test="@Ognl@isNotEmpty(ecpr10_code)"> AND ecpr10_code  = #{ecpr10_code} </if>
+	</sql>
+	<select id="getCorpResumeDownDto" resultMap="CorpResumeDownDto">
+		SELECT a.* FROM v_ccp09 a WHERE CCPR08=0
+		<include refid="dynamicCorpWhere" />
+		ORDER BY CCPD02 DESC
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

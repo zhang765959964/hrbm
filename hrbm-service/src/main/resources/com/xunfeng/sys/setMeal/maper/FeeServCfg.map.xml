@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.sys.setMeal.model.FeeServCfg">
+	<resultMap id="FeeServCfg" type="com.xunfeng.sys.setMeal.model.FeeServCfg">
+		<id property="servCode" column="SERV_CODE" jdbcType="VARCHAR"/>
+		<result property="servName" column="SERV_NAME" jdbcType="VARCHAR"/>
+		<result property="servFee" column="SERV_FEE" jdbcType="NUMERIC"/>
+		<result property="isValid" column="IS_VALID" jdbcType="VARCHAR"/>
+		<result property="validDates" column="VALID_DATES" jdbcType="NUMERIC"/>
+		<result property="isSingle" column="IS_SINGLE" jdbcType="VARCHAR"/>
+		<result property="aae011" column="AAE011" jdbcType="VARCHAR"/>
+		<result property="aae019" column="AAE019" jdbcType="VARCHAR"/>
+		<result property="aae036" column="AAE036" jdbcType="DATE"/>
+		<result property="aae017" column="AAE017" jdbcType="VARCHAR"/>
+		<result property="aae020" column="AAE020" jdbcType="VARCHAR"/>
+		<result property="remark" column="REMARK" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		SERV_CODE,SERV_NAME,SERV_FEE,IS_VALID,VALID_DATES,IS_SINGLE,AAE011,AAE019,AAE036,AAE017,AAE020,REMARK
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(servCode)"> AND SERV_CODE  LIKE #{servCode}  </if>
+			<if test="@Ognl@isNotEmpty(servName)"> AND SERV_NAME  LIKE #{servName}  </if>
+			<if test="@Ognl@isNotEmpty(servFee)"> AND SERV_FEE  =#{servFee} </if>
+			<if test="@Ognl@isNotEmpty(isValid)"> AND IS_VALID  LIKE #{isValid}  </if>
+			<if test="@Ognl@isNotEmpty(validDates)"> AND VALID_DATES  =#{validDates} </if>
+			<if test="@Ognl@isNotEmpty(isSingle)"> AND IS_SINGLE  LIKE #{isSingle}  </if>
+			<if test="@Ognl@isNotEmpty(aae011)"> AND AAE011  LIKE #{aae011}  </if>
+			<if test="@Ognl@isNotEmpty(aae019)"> AND AAE019  LIKE #{aae019}  </if>
+			<if test="@Ognl@isNotEmpty(aae036)"> AND AAE036  =#{aae036} </if>
+			<if test="@Ognl@isNotEmpty(beginaae036)"> AND AAE036  >=#{beginaae036,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaae036)"> AND AAE036 <![CDATA[ <=#{endaae036,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aae017)"> AND AAE017  LIKE #{aae017}  </if>
+			<if test="@Ognl@isNotEmpty(aae020)"> AND AAE020  LIKE #{aae020}  </if>
+			<if test="@Ognl@isNotEmpty(remark)"> AND REMARK  LIKE #{remark}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.sys.setMeal.model.FeeServCfg">
+		INSERT INTO FEE_SERV_CFG
+		(SERV_CODE,SERV_NAME,SERV_FEE,IS_VALID,VALID_DATES,IS_SINGLE,AAE011,AAE019,AAE036,AAE017,AAE020,REMARK)
+		VALUES
+		(#{servCode,jdbcType=VARCHAR}, #{servName,jdbcType=VARCHAR}, #{servFee,jdbcType=NUMERIC}, #{isValid,jdbcType=VARCHAR}, #{validDates,jdbcType=NUMERIC}, #{isSingle,jdbcType=VARCHAR}, #{aae011,jdbcType=VARCHAR}, #{aae019,jdbcType=VARCHAR}, #{aae036,jdbcType=DATE}, #{aae017,jdbcType=VARCHAR}, #{aae020,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM FEE_SERV_CFG 
+		WHERE
+		SERV_CODE=#{servCode}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.sys.setMeal.model.FeeServCfg">
+		UPDATE FEE_SERV_CFG SET
+		SERV_NAME=#{servName,jdbcType=VARCHAR},
+		SERV_FEE=#{servFee,jdbcType=NUMERIC},
+		IS_VALID=#{isValid,jdbcType=VARCHAR},
+		VALID_DATES=#{validDates,jdbcType=NUMERIC},
+		IS_SINGLE=#{isSingle,jdbcType=VARCHAR},
+		AAE011=#{aae011,jdbcType=VARCHAR},
+		AAE019=#{aae019,jdbcType=VARCHAR},
+		AAE036=#{aae036,jdbcType=DATE},
+		AAE017=#{aae017,jdbcType=VARCHAR},
+		AAE020=#{aae020,jdbcType=VARCHAR},
+		REMARK=#{remark,jdbcType=VARCHAR}
+		WHERE
+		SERV_CODE=#{servCode}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="FeeServCfg">
+		SELECT <include refid="columns"/>
+		FROM FEE_SERV_CFG
+		WHERE
+		SERV_CODE=#{servCode}
+	</select>
+	<select id="getByServCode"  resultMap="FeeServCfg">
+		SELECT <include refid="columns"/>
+		FROM FEE_SERV_CFG
+		WHERE
+		SERV_CODE=#{servCode} and IS_VALID =1 
+	</select>
+	
+	<select id="getAll" resultMap="FeeServCfg">
+		SELECT <include refid="columns"/>
+		FROM FEE_SERV_CFG   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by SERV_CODE  desc
+		</if>
+	</select>
+</mapper>

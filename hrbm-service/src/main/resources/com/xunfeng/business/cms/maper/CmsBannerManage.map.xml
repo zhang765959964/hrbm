@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.cms.model.CmsBannerManage">
+	<resultMap id="CmsBannerManage" type="com.xunfeng.business.cms.model.CmsBannerManage">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="cmsid" column="CMSID" jdbcType="NUMERIC"/>
+		<result property="ordernum" column="ORDERNUM" jdbcType="NUMERIC"/>
+		<result property="indent" column="INDENT" jdbcType="VARCHAR"/>
+		<result property="cmsname" column="CMSNAME" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,CMSID,ORDERNUM,INDENT,CMSNAME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(cmsid)"> AND CMSID  =#{cmsid} </if>
+			<if test="@Ognl@isNotEmpty(ordernum)"> AND ORDERNUM  =#{ordernum} </if>
+			<if test="@Ognl@isNotEmpty(indent)"> AND INDENT  LIKE #{indent}  </if>
+			<if test="@Ognl@isNotEmpty(cmsname)"> AND CMSNAME  LIKE #{cmsname}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.cms.model.CmsBannerManage">
+		INSERT INTO CMS_BANNER_MANAGE
+		(ID,CMSID,ORDERNUM,INDENT,CMSNAME)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{cmsid,jdbcType=NUMERIC}, #{ordernum,jdbcType=NUMERIC}, #{indent,jdbcType=VARCHAR}, #{cmsname,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM CMS_BANNER_MANAGE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.cms.model.CmsBannerManage">
+		UPDATE CMS_BANNER_MANAGE SET
+		CMSID=#{cmsid,jdbcType=NUMERIC},
+		ORDERNUM=#{ordernum,jdbcType=NUMERIC},
+		INDENT=#{indent,jdbcType=VARCHAR},
+		CMSNAME=#{cmsname,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	<update id="updateOrderNum" parameterType="com.xunfeng.business.cms.model.CmsBannerManage">
+		UPDATE CMS_BANNER_MANAGE SET
+		ORDERNUM=#{ordernum,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	 <select id="getByIndent" parameterType="java.lang.String" resultMap="CmsBannerManage">
+		SELECT <include refid="columns"/>
+		FROM CMS_BANNER_MANAGE
+		WHERE
+		INDENT=#{indent}
+		order by ORDERNUM ASC
+	</select>
+	
+</mapper>

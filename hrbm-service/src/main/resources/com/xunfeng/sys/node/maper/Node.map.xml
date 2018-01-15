@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.sys.node.model.Node">
+	<resultMap id="Node" type="com.xunfeng.sys.node.model.Node">
+		<id property="comn01" column="COMN01" jdbcType="NUMERIC"/>
+		<result property="comn02" column="COMN02" jdbcType="VARCHAR"/>
+		<result property="comn03" column="COMN03" jdbcType="VARCHAR"/>
+		<result property="comn04" column="COMN04" jdbcType="VARCHAR"/>
+		<result property="comn05" column="COMN05" jdbcType="VARCHAR"/>
+		<result property="comm01" column="COMM01" jdbcType="NUMERIC"/>
+		<result property="comn06" column="COMN06" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		COMN01,COMN02,COMN03,COMN04,COMN05,COMM01,COMN06
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(comn01)"> AND COMN01  =#{comn01} </if>
+			<if test="@Ognl@isNotEmpty(comn02)"> AND COMN02  LIKE #{comn02}  </if>
+			<if test="@Ognl@isNotEmpty(comn03)"> AND COMN03  LIKE #{comn03}  </if>
+			<if test="@Ognl@isNotEmpty(comn04)"> AND COMN04  LIKE #{comn04}  </if>
+			<if test="@Ognl@isNotEmpty(comn05)"> AND COMN05  LIKE #{comn05}  </if>
+			<if test="@Ognl@isNotEmpty(comm01)"> AND COMM01  =#{comm01} </if>
+			<if test="@Ognl@isNotEmpty(comn06)"> AND COMN06  LIKE #{comn06}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.sys.node.model.Node">
+		INSERT INTO COM02
+		(COMN01,COMN02,COMN03,COMN04,COMN05,COMM01,COMN06)
+		VALUES
+		(#{comn01,jdbcType=NUMERIC}, #{comn02,jdbcType=VARCHAR}, #{comn03,jdbcType=VARCHAR}, #{comn04,jdbcType=VARCHAR}, #{comn05,jdbcType=VARCHAR}, #{comm01,jdbcType=NUMERIC}, #{comn06,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM COM02 
+		WHERE
+		COMN01=#{comn01}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.sys.node.model.Node">
+		UPDATE COM02 SET
+		COMN02=#{comn02,jdbcType=VARCHAR},
+		COMN03=#{comn03,jdbcType=VARCHAR},
+		COMN04=#{comn04,jdbcType=VARCHAR},
+		COMN05=#{comn05,jdbcType=VARCHAR},
+		COMM01=#{comm01,jdbcType=NUMERIC},
+		COMN06=#{comn06,jdbcType=VARCHAR}
+		WHERE
+		COMN01=#{comn01}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Node">
+		SELECT <include refid="columns"/>
+		FROM COM02
+		WHERE
+		COMN01=#{comn01}
+	</select>
+	<select id="getByTemplates"  resultMap="Node">
+		SELECT <include refid="columns"/>
+		FROM COM02
+		WHERE
+		COMM01=#{comm01}
+	</select>
+	
+	<select id="getAll" resultMap="Node">
+		SELECT <include refid="columns"/>
+		FROM COM02   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by COMN01  desc
+		</if>
+	</select>
+</mapper>

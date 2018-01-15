@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.sys.component.model.Job">
+	<resultMap id="Job" type="com.xunfeng.sys.component.model.Job">
+		<id property="id" column="ID" jdbcType="VARCHAR"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="pid" column="PID" jdbcType="VARCHAR"/>
+		<result property="bt" column="BT" jdbcType="VARCHAR"/>
+		<result property="paix" column="PAIX" jdbcType="NUMERIC"/>
+		<result property="hot" column="HOT" jdbcType="NUMERIC"/>
+		<result property="status" column="STATUS" jdbcType="NUMERIC"/>
+		<result property="jp" column="JP" jdbcType="VARCHAR"/>
+		<result property="btName" column="btName" jdbcType="VARCHAR"/>
+
+	</resultMap>
+
+	<sql id="columns">
+		ID,NAME,PID,BT,PAIX,HOT,STATUS,JP
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  LIKE #{id}  </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(pid)"> AND PID  LIKE #{pid}  </if>
+			<if test="@Ognl@isNotEmpty(bt)"> AND BT  LIKE #{bt}  </if>
+			<if test="@Ognl@isNotEmpty(paix)"> AND PAIX  =#{paix} </if>
+			<if test="@Ognl@isNotEmpty(hot)"> AND HOT  =#{hot} </if>
+			<if test="@Ognl@isNotEmpty(status)"> AND STATUS  =#{status} </if>
+			<if test="@Ognl@isNotEmpty(jp)"> AND JP  LIKE #{jp}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.sys.component.model.Job">
+		INSERT INTO CRAFT_AS
+		(ID,NAME,PID,BT,PAIX,HOT,STATUS,JP)
+		VALUES
+		(#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, #{bt,jdbcType=VARCHAR}, #{paix,jdbcType=NUMERIC}, #{hot,jdbcType=NUMERIC}, #{status,jdbcType=NUMERIC}, #{jp,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM CRAFT_AS 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.sys.component.model.Job">
+		UPDATE CRAFT_AS SET
+		NAME=#{name,jdbcType=VARCHAR},
+		PID=#{pid,jdbcType=VARCHAR},
+		BT=#{bt,jdbcType=VARCHAR},
+		PAIX=#{paix,jdbcType=NUMERIC},
+		HOT=#{hot,jdbcType=NUMERIC},
+		STATUS=#{status,jdbcType=NUMERIC},
+		JP=#{jp,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Job">
+		SELECT <include refid="columns"/>
+		FROM CRAFT_AS
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Job">
+		select t.*, m.name as btName
+		from craft_as t
+		left join  tab_craft m on t.bt = m.code
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

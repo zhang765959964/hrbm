@@ -1,0 +1,22 @@
+@charset "utf-8";
+
+/* multiple select */
+.ms-parent{ padding: 0 !important; width:100% !important;}
+.ms-choice{ height: 23px; border: none; outline: none;}
+.ms-choice > span{line-height: 29px;}
+.ms-choice > span.placeholder{line-height: 32px; color: #555;}
+.ms-drop ul > li label{ float: none; text-align: left; cursor: pointer;}
+.ms-drop ul > li label:hover{background: #e4efc9;}
+.ms-drop input[type="checkbox"]{ margin: 0; }
+
+/* bootstrap-select */
+#selectDxdiv .btn-default{border-radius: 0 !important;}
+
+
+
+
+
+/* input select datepicker placeholder color */
+.ms-choice > span.placeholder,
+input[type="text"], input[type="password"], .ui-autocomplete-input, textarea, .uneditable-input{color: #555; }
+.ms-drop input[type=radio]{display: none;}

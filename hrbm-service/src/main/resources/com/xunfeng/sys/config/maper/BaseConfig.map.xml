@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.sys.config.model.BaseConfig">
+	<resultMap id="BaseConfig" type="com.xunfeng.sys.config.model.BaseConfig">
+		<id property="caos01" column="CAOS01" jdbcType="NUMERIC"/>
+		<result property="caos02" column="CAOS02" jdbcType="VARCHAR"/>
+		<result property="caos03" column="CAOS03" jdbcType="VARCHAR"/>
+		<result property="caos04" column="CAOS04" jdbcType="VARCHAR"/>
+		<result property="caos05" column="CAOS05" jdbcType="NUMERIC"/>
+		<result property="caos06" column="CAOS06" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		CAOS01,CAOS02,CAOS03,CAOS04,CAOS05,CAOS06
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(caos01)"> AND CAOS01  =#{caos01} </if>
+			<if test="@Ognl@isNotEmpty(caos02)"> AND CAOS02  LIKE #{caos02}  </if>
+			<if test="@Ognl@isNotEmpty(caos03)"> AND CAOS03  LIKE #{caos03}  </if>
+			<if test="@Ognl@isNotEmpty(caos04)"> AND CAOS04  LIKE #{caos04}  </if>
+			<if test="@Ognl@isNotEmpty(caos05)"> AND CAOS05  =#{caos05} </if>
+			<if test="@Ognl@isNotEmpty(caos06)"> AND CAOS06  LIKE #{caos06}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.sys.config.model.BaseConfig">
+		INSERT INTO CAO01
+		(CAOS01,CAOS02,CAOS03,CAOS04,CAOS05,CAOS06)
+		VALUES
+		(#{caos01,jdbcType=NUMERIC}, #{caos02,jdbcType=VARCHAR}, #{caos03,jdbcType=VARCHAR}, #{caos04,jdbcType=VARCHAR}, #{caos05,jdbcType=NUMERIC}, #{caos06,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM CAO01 
+		WHERE
+		CAOS01=#{caos01}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.sys.config.model.BaseConfig">
+		UPDATE CAO01 SET
+		CAOS02=#{caos02,jdbcType=VARCHAR},
+		CAOS03=#{caos03,jdbcType=VARCHAR},
+		CAOS04=#{caos04,jdbcType=VARCHAR},
+		CAOS05=#{caos05,jdbcType=NUMERIC},
+		CAOS06=#{caos06,jdbcType=VARCHAR}
+		WHERE
+		CAOS01=#{caos01}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="BaseConfig">
+		SELECT <include refid="columns"/>
+		FROM CAO01
+		WHERE
+		CAOS01=#{caos01}
+	</select>
+	
+	<select id="getAll" resultMap="BaseConfig">
+		SELECT <include refid="columns"/>
+		FROM CAO01   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by CAOS01  desc
+		</if>
+	</select>
+	<!--获取模块的配置信息-->
+	<select id="getModelConfig" parameterType="hashmap" resultMap="BaseConfig">
+		SELECT <include refid="columns"/>
+		FROM CAO01
+		WHERE
+		CAOS05=#{caos05}AND CAOS06=#{caos06}
+	</select>
+	<!--获取模块的配置信息-->
+	<select id="getConfigByName" parameterType="java.lang.String" resultMap="BaseConfig">
+		SELECT <include refid="columns"/>
+		FROM CAO01
+		WHERE
+		CAOS02=#{caos02}
+	</select>
+</mapper>

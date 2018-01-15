@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.social.model.ChangeReporting">
+	<resultMap id="ChangeReporting" type="com.xunfeng.business.personagency.social.model.ChangeReporting">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="archivesId" column="ARCHIVES_ID" jdbcType="NUMERIC"/>
+		<result property="archiveCode" column="ARCHIVE_CODE" jdbcType="VARCHAR"/>
+		<result property="aac002" column="AAC002" jdbcType="VARCHAR"/>
+		<result property="personId" column="PERSON_ID" jdbcType="NUMERIC"/>
+		<result property="aac004" column="AAC004" jdbcType="VARCHAR"/>
+		<result property="aac005" column="AAC005" jdbcType="VARCHAR"/>
+		<result property="aac003" column="AAC003" jdbcType="VARCHAR"/>
+		<result property="aac006" column="AAC006" jdbcType="DATE"/>
+		<result property="expPersonNumber" column="EXP_PERSON_NUMBER" jdbcType="VARCHAR"/>
+		<result property="expStartJobDate" column="EXP_START_JOB_DATE" jdbcType="DATE"/>
+		<result property="expPensionDate" column="EXP_PENSION_DATE" jdbcType="DATE"/>
+		<result property="expMedicalDate" column="EXP_MEDICAL_DATE" jdbcType="DATE"/>
+		<result property="employmentForm" column="EMPLOYMENT_FORM" jdbcType="VARCHAR"/>
+		<result property="aae005" column="AAE005" jdbcType="VARCHAR"/>
+		<result property="expPersonPhone" column="EXP_PERSON_PHONE" jdbcType="VARCHAR"/>
+		<result property="aab301" column="AAB301" jdbcType="VARCHAR"/>
+		<result property="aae007" column="AAE007" jdbcType="VARCHAR"/>
+		<result property="changeContent" column="CHANGE_CONTENT" jdbcType="VARCHAR"/>
+		<result property="paymentStartDate" column="PAYMENT_START_DATE" jdbcType="DATE"/>
+		<result property="paymentEndDate" column="PAYMENT_END_DATE" jdbcType="DATE"/>
+		<result property="reasonsForStopping" column="REASONS_FOR_STOPPING" jdbcType="VARCHAR"/>
+		<result property="addIsInsurance" column="ADD_IS_INSURANCE" jdbcType="VARCHAR"/>
+		<result property="pensionBase" column="PENSION_BASE" jdbcType="VARCHAR"/>
+		<result property="medicalBase" column="MEDICAL_BASE" jdbcType="VARCHAR"/>
+		<result property="checkoutSocialOrgName" column="CHECKOUT_SOCIAL_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="fieldStartDate" column="FIELD_START_DATE" jdbcType="DATE"/>
+		<result property="fieldEndDate" column="FIELD_END_DATE" jdbcType="DATE"/>
+		<result property="stopSocialDate" column="STOP_SOCIAL_DATE" jdbcType="DATE"/>
+		<result property="description" column="DESCRIPTION" jdbcType="VARCHAR"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="DATE"/>
+		<result property="isEffective" column="IS_EFFECTIVE" jdbcType="VARCHAR"/>
+		<result property="socialSecId" column="SOCIAL_SEC_ID" jdbcType="NUMERIC"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<resultMap id="ChangeReportingDto" type="com.xunfeng.business.personagency.social.dto.ChangeReportingDto">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="archivesId" column="ARCHIVES_ID" jdbcType="NUMERIC"/>
+		<result property="archiveCode" column="ARCHIVE_CODE" jdbcType="VARCHAR"/>
+		<result property="aac002" column="AAC002" jdbcType="VARCHAR"/>
+		<result property="personId" column="PERSON_ID" jdbcType="NUMERIC"/>
+		<result property="aac004" column="AAC004" jdbcType="VARCHAR"/>
+		<result property="aac005" column="AAC005" jdbcType="VARCHAR"/>
+		<result property="aac003" column="AAC003" jdbcType="VARCHAR"/>
+		<result property="aac006" column="AAC006" jdbcType="DATE"/>
+		<result property="expPersonNumber" column="EXP_PERSON_NUMBER" jdbcType="VARCHAR"/>
+		<result property="expStartJobDate" column="EXP_START_JOB_DATE" jdbcType="DATE"/>
+		<result property="expPensionDate" column="EXP_PENSION_DATE" jdbcType="DATE"/>
+		<result property="expMedicalDate" column="EXP_MEDICAL_DATE" jdbcType="DATE"/>
+		<result property="employmentForm" column="EMPLOYMENT_FORM" jdbcType="VARCHAR"/>
+		<result property="aae005" column="AAE005" jdbcType="VARCHAR"/>
+		<result property="expPersonPhone" column="EXP_PERSON_PHONE" jdbcType="VARCHAR"/>
+		<result property="aab301" column="AAB301" jdbcType="VARCHAR"/>
+		<result property="aae007" column="AAE007" jdbcType="VARCHAR"/>
+		<result property="changeContent" column="CHANGE_CONTENT" jdbcType="VARCHAR"/>
+		<result property="paymentStartDate" column="PAYMENT_START_DATE" jdbcType="DATE"/>
+		<result property="paymentEndDate" column="PAYMENT_END_DATE" jdbcType="DATE"/>
+		<result property="reasonsForStopping" column="REASONS_FOR_STOPPING" jdbcType="VARCHAR"/>
+		<result property="addIsInsurance" column="ADD_IS_INSURANCE" jdbcType="VARCHAR"/>
+		<result property="pensionBase" column="PENSION_BASE" jdbcType="VARCHAR"/>
+		<result property="medicalBase" column="MEDICAL_BASE" jdbcType="VARCHAR"/>
+		<result property="checkoutSocialOrgName" column="CHECKOUT_SOCIAL_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="fieldStartDate" column="FIELD_START_DATE" jdbcType="DATE"/>
+		<result property="fieldEndDate" column="FIELD_END_DATE" jdbcType="DATE"/>
+		<result property="stopSocialDate" column="STOP_SOCIAL_DATE" jdbcType="DATE"/>
+		<result property="description" column="DESCRIPTION" jdbcType="VARCHAR"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="DATE"/>
+		<result property="isEffective" column="IS_EFFECTIVE" jdbcType="VARCHAR"/>
+		<result property="socialSecId" column="SOCIAL_SEC_ID" jdbcType="NUMERIC"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+		
+		<result property="genderName" column="genderName" jdbcType="VARCHAR"/>
+		<result property="nationName" column="nationName" jdbcType="VARCHAR"/>
+		<result property="employmentFormName" column="employmentFormName" jdbcType="VARCHAR"/>
+		<result property="changeContentName" column="changeContentName" jdbcType="VARCHAR"/>
+		<result property="reasonsForStoppingName" column="reasonsForStoppingName" jdbcType="VARCHAR"/>
+		<result property="addIsInsuranceName" column="addIsInsuranceName" jdbcType="VARCHAR"/>
+		<result property="pensionBaseName" column="pensionBaseName" jdbcType="VARCHAR"/>
+		<result property="medicalBaseName" column="medicalBaseName" jdbcType="VARCHAR"/>
+		<result property="isEffectiveName" column="isEffectiveName" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		a.ID,ARCHIVES_ID,ARCHIVE_CODE,AAC002,PERSON_ID,AAC004,AAC005,AAC003,AAC006,EXP_PERSON_NUMBER,EXP_START_JOB_DATE,EXP_PENSION_DATE,EXP_MEDICAL_DATE,EMPLOYMENT_FORM,AAE005,EXP_PERSON_PHONE,AAB301,AAE007,CHANGE_CONTENT,PAYMENT_START_DATE,PAYMENT_END_DATE,REASONS_FOR_STOPPING,ADD_IS_INSURANCE,PENSION_BASE,MEDICAL_BASE,CHECKOUT_SOCIAL_ORG_NAME,FIELD_START_DATE,FIELD_END_DATE,STOP_SOCIAL_DATE,DESCRIPTION,CREATER_ID,CREATER_NAME,CREATER_ORG_ID,CREATER_ORG_NAME,CREATER_DATE,IS_EFFECTIVE,SOCIAL_SEC_ID,CCPR08
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(archivesId)"> AND ARCHIVES_ID  =#{archivesId} </if>
+			<if test="@Ognl@isNotEmpty(archiveCode)"> AND upper(ARCHIVE_CODE) LIKE upper(#{archiveCode}) </if>
+			<if test="@Ognl@isNotEmpty(aac002)"> AND upper(AAC002) LIKE upper(#{aac002})  </if>
+			<if test="@Ognl@isNotEmpty(personId)"> AND PERSON_ID  =#{personId} </if>
+			<if test="@Ognl@isNotEmpty(aac004)"> AND AAC004  LIKE #{aac004}  </if>
+			<if test="@Ognl@isNotEmpty(aac005)"> AND AAC005  LIKE #{aac005}  </if>
+			<if test="@Ognl@isNotEmpty(aac003)"> AND AAC003  LIKE #{aac003}  </if>
+			<if test="@Ognl@isNotEmpty(aac006)"> AND AAC006  =#{aac006} </if>
+			<if test="@Ognl@isNotEmpty(beginaac006)"> AND AAC006  >=#{beginaac006,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaac006)"> AND AAC006 <![CDATA[ <=#{endaac006,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(expPersonNumber)"> AND EXP_PERSON_NUMBER  LIKE #{expPersonNumber}  </if>
+			<if test="@Ognl@isNotEmpty(expStartJobDate)"> AND EXP_START_JOB_DATE  =#{expStartJobDate} </if>
+			<if test="@Ognl@isNotEmpty(beginexpStartJobDate)"> AND EXP_START_JOB_DATE  >=#{beginexpStartJobDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endexpStartJobDate)"> AND EXP_START_JOB_DATE <![CDATA[ <=#{endexpStartJobDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(expPensionDate)"> AND EXP_PENSION_DATE  =#{expPensionDate} </if>
+			<if test="@Ognl@isNotEmpty(beginexpPensionDate)"> AND EXP_PENSION_DATE  >=#{beginexpPensionDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endexpPensionDate)"> AND EXP_PENSION_DATE <![CDATA[ <=#{endexpPensionDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(expMedicalDate)"> AND EXP_MEDICAL_DATE  =#{expMedicalDate} </if>
+			<if test="@Ognl@isNotEmpty(beginexpMedicalDate)"> AND EXP_MEDICAL_DATE  >=#{beginexpMedicalDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endexpMedicalDate)"> AND EXP_MEDICAL_DATE <![CDATA[ <=#{endexpMedicalDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(employmentForm)"> AND EMPLOYMENT_FORM  LIKE #{employmentForm}  </if>
+			<if test="@Ognl@isNotEmpty(aae005)"> AND AAE005  LIKE #{aae005}  </if>
+			<if test="@Ognl@isNotEmpty(expPersonPhone)"> AND EXP_PERSON_PHONE  LIKE #{expPersonPhone}  </if>
+			<if test="@Ognl@isNotEmpty(aab301)"> AND AAB301  LIKE #{aab301}  </if>
+			<if test="@Ognl@isNotEmpty(aae007)"> AND AAE007  LIKE #{aae007}  </if>
+			<if test="@Ognl@isNotEmpty(changeContent)"> AND CHANGE_CONTENT  LIKE #{changeContent}  </if>
+			<if test="@Ognl@isNotEmpty(paymentStartDate)"> AND PAYMENT_START_DATE  =#{paymentStartDate} </if>
+			<if test="@Ognl@isNotEmpty(beginpaymentStartDate)"> AND PAYMENT_START_DATE  >=#{beginpaymentStartDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endpaymentStartDate)"> AND PAYMENT_START_DATE <![CDATA[ <=#{endpaymentStartDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(paymentEndDate)"> AND PAYMENT_END_DATE  =#{paymentEndDate} </if>
+			<if test="@Ognl@isNotEmpty(beginpaymentEndDate)"> AND PAYMENT_END_DATE  >=#{beginpaymentEndDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endpaymentEndDate)"> AND PAYMENT_END_DATE <![CDATA[ <=#{endpaymentEndDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(reasonsForStopping)"> AND REASONS_FOR_STOPPING  LIKE #{reasonsForStopping}  </if>
+			<if test="@Ognl@isNotEmpty(addIsInsurance)"> AND ADD_IS_INSURANCE  LIKE #{addIsInsurance}  </if>
+			<if test="@Ognl@isNotEmpty(pensionBase)"> AND PENSION_BASE  LIKE #{pensionBase}  </if>
+			<if test="@Ognl@isNotEmpty(medicalBase)"> AND MEDICAL_BASE  LIKE #{medicalBase}  </if>
+			<if test="@Ognl@isNotEmpty(checkoutSocialOrgName)"> AND CHECKOUT_SOCIAL_ORG_NAME  LIKE #{checkoutSocialOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(fieldStartDate)"> AND FIELD_START_DATE  =#{fieldStartDate} </if>
+			<if test="@Ognl@isNotEmpty(beginfieldStartDate)"> AND FIELD_START_DATE  >=#{beginfieldStartDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endfieldStartDate)"> AND FIELD_START_DATE <![CDATA[ <=#{endfieldStartDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(fieldEndDate)"> AND FIELD_END_DATE  =#{fieldEndDate} </if>
+			<if test="@Ognl@isNotEmpty(beginfieldEndDate)"> AND FIELD_END_DATE  >=#{beginfieldEndDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endfieldEndDate)"> AND FIELD_END_DATE <![CDATA[ <=#{endfieldEndDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(stopSocialDate)"> AND STOP_SOCIAL_DATE  =#{stopSocialDate} </if>
+			<if test="@Ognl@isNotEmpty(beginstopSocialDate)"> AND STOP_SOCIAL_DATE  >=#{beginstopSocialDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endstopSocialDate)"> AND STOP_SOCIAL_DATE <![CDATA[ <=#{endstopSocialDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(description)"> AND DESCRIPTION  LIKE #{description}  </if>
+			<if test="@Ognl@isNotEmpty(createrId)"> AND CREATER_ID  =#{createrId} </if>
+			<if test="@Ognl@isNotEmpty(createrName)"> AND CREATER_NAME  LIKE #{createrName}  </if>
+			<if test="@Ognl@isNotEmpty(createrOrgId)"> AND CREATER_ORG_ID  =#{createrOrgId} </if>
+			<if test="@Ognl@isNotEmpty(createrOrgName)"> AND CREATER_ORG_NAME  LIKE #{createrOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(createrDate)"> AND CREATER_DATE  =#{createrDate} </if>
+			<if test="@Ognl@isNotEmpty(begincreaterDate)"> AND CREATER_DATE  >=#{begincreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(isEffective)"> AND IS_EFFECTIVE  LIKE #{isEffective}  </if>
+			<if test="@Ognl@isNotEmpty(socialSecId)"> AND SOCIAL_SEC_ID  =#{socialSecId} </if>
+			<if test="@Ognl@isNotEmpty(ccpr08)"> AND a.CCPR08  LIKE #{ccpr08}  </if>
+			<if test="@Ognl@isNotEmpty(ids)"> AND a.ID in (${ids}) </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.social.model.ChangeReporting">
+		INSERT INTO RSDA_BS_SOCIALSEC_PERSON_LOG
+		(ID,ARCHIVES_ID,ARCHIVE_CODE,AAC002,PERSON_ID,AAC004,AAC005,AAC003,AAC006,EXP_PERSON_NUMBER,EXP_START_JOB_DATE,EXP_PENSION_DATE,EXP_MEDICAL_DATE,EMPLOYMENT_FORM,AAE005,EXP_PERSON_PHONE,AAB301,AAE007,CHANGE_CONTENT,PAYMENT_START_DATE,PAYMENT_END_DATE,REASONS_FOR_STOPPING,ADD_IS_INSURANCE,PENSION_BASE,MEDICAL_BASE,CHECKOUT_SOCIAL_ORG_NAME,FIELD_START_DATE,FIELD_END_DATE,STOP_SOCIAL_DATE,DESCRIPTION,CREATER_ID,CREATER_NAME,CREATER_ORG_ID,CREATER_ORG_NAME,CREATER_DATE,IS_EFFECTIVE,SOCIAL_SEC_ID,CCPR08)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{archivesId,jdbcType=NUMERIC}, #{archiveCode,jdbcType=VARCHAR}, #{aac002,jdbcType=VARCHAR}, #{personId,jdbcType=NUMERIC}, #{aac004,jdbcType=VARCHAR}, #{aac005,jdbcType=VARCHAR}, #{aac003,jdbcType=VARCHAR}, #{aac006,jdbcType=DATE}, #{expPersonNumber,jdbcType=VARCHAR}, #{expStartJobDate,jdbcType=DATE}, #{expPensionDate,jdbcType=DATE}, #{expMedicalDate,jdbcType=DATE}, #{employmentForm,jdbcType=VARCHAR}, #{aae005,jdbcType=VARCHAR}, #{expPersonPhone,jdbcType=VARCHAR}, #{aab301,jdbcType=VARCHAR}, #{aae007,jdbcType=VARCHAR}, #{changeContent,jdbcType=VARCHAR}, #{paymentStartDate,jdbcType=DATE}, #{paymentEndDate,jdbcType=DATE}, #{reasonsForStopping,jdbcType=VARCHAR}, #{addIsInsurance,jdbcType=VARCHAR}, #{pensionBase,jdbcType=VARCHAR}, #{medicalBase,jdbcType=VARCHAR}, #{checkoutSocialOrgName,jdbcType=VARCHAR}, #{fieldStartDate,jdbcType=DATE}, #{fieldEndDate,jdbcType=DATE}, #{stopSocialDate,jdbcType=DATE}, #{description,jdbcType=VARCHAR}, #{createrId,jdbcType=NUMERIC}, #{createrName,jdbcType=VARCHAR}, #{createrOrgId,jdbcType=NUMERIC}, #{createrOrgName,jdbcType=VARCHAR}, #{createrDate,jdbcType=DATE}, #{isEffective,jdbcType=VARCHAR}, #{socialSecId,jdbcType=NUMERIC}, #{ccpr08,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_SOCIALSEC_PERSON_LOG 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.social.model.ChangeReporting">
+		UPDATE RSDA_BS_SOCIALSEC_PERSON_LOG SET
+		ARCHIVES_ID=#{archivesId,jdbcType=NUMERIC},
+		ARCHIVE_CODE=#{archiveCode,jdbcType=VARCHAR},
+		AAC002=#{aac002,jdbcType=VARCHAR},
+		PERSON_ID=#{personId,jdbcType=NUMERIC},
+		AAC004=#{aac004,jdbcType=VARCHAR},
+		AAC005=#{aac005,jdbcType=VARCHAR},
+		AAC003=#{aac003,jdbcType=VARCHAR},
+		AAC006=#{aac006,jdbcType=DATE},
+		EXP_PERSON_NUMBER=#{expPersonNumber,jdbcType=VARCHAR},
+		EXP_START_JOB_DATE=#{expStartJobDate,jdbcType=DATE},
+		EXP_PENSION_DATE=#{expPensionDate,jdbcType=DATE},
+		EXP_MEDICAL_DATE=#{expMedicalDate,jdbcType=DATE},
+		EMPLOYMENT_FORM=#{employmentForm,jdbcType=VARCHAR},
+		AAE005=#{aae005,jdbcType=VARCHAR},
+		EXP_PERSON_PHONE=#{expPersonPhone,jdbcType=VARCHAR},
+		AAB301=#{aab301,jdbcType=VARCHAR},
+		AAE007=#{aae007,jdbcType=VARCHAR},
+		CHANGE_CONTENT=#{changeContent,jdbcType=VARCHAR},
+		PAYMENT_START_DATE=#{paymentStartDate,jdbcType=DATE},
+		PAYMENT_END_DATE=#{paymentEndDate,jdbcType=DATE},
+		REASONS_FOR_STOPPING=#{reasonsForStopping,jdbcType=VARCHAR},
+		ADD_IS_INSURANCE=#{addIsInsurance,jdbcType=VARCHAR},
+		PENSION_BASE=#{pensionBase,jdbcType=VARCHAR},
+		MEDICAL_BASE=#{medicalBase,jdbcType=VARCHAR},
+		CHECKOUT_SOCIAL_ORG_NAME=#{checkoutSocialOrgName,jdbcType=VARCHAR},
+		FIELD_START_DATE=#{fieldStartDate,jdbcType=DATE},
+		FIELD_END_DATE=#{fieldEndDate,jdbcType=DATE},
+		STOP_SOCIAL_DATE=#{stopSocialDate,jdbcType=DATE},
+		DESCRIPTION=#{description,jdbcType=VARCHAR},
+		CREATER_ID=#{createrId,jdbcType=NUMERIC},
+		CREATER_NAME=#{createrName,jdbcType=VARCHAR},
+		CREATER_ORG_ID=#{createrOrgId,jdbcType=NUMERIC},
+		CREATER_ORG_NAME=#{createrOrgName,jdbcType=VARCHAR},
+		CREATER_DATE=#{createrDate,jdbcType=DATE},
+		IS_EFFECTIVE=#{isEffective,jdbcType=VARCHAR},
+		SOCIAL_SEC_ID=#{socialSecId,jdbcType=NUMERIC},
+		CCPR08=#{ccpr08,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="ChangeReporting">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_SOCIALSEC_PERSON_LOG a
+		WHERE
+		a.ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="ChangeReportingDto">
+		SELECT <include refid="columns"/>
+				,e.name as "genderName"
+				,f.name as "nationName"
+				,b.name as "employmentFormName"
+				,c.name as "changeContentName" 
+				,d.name as "reasonsForStoppingName"
+				,decode(a.ADD_IS_INSURANCE , 0, '否', 1, '是') as "addIsInsuranceName"
+				,g.name as "pensionBaseName"
+				,h.name as "medicalBaseName" 
+				,decode(a.IS_EFFECTIVE , 0, '有效', 1, '无效') as "isEffectiveName"
+				
+		FROM RSDA_BS_SOCIALSEC_PERSON_LOG a
+		left join TAB_SEX e on e.code=a.AAC004
+		left join TAB_NATION f on f.code=a.AAC005
+		left join RSDA_TAB_EMPLOYMENT_FORM b on b.code=a.EMPLOYMENT_FORM
+		left join RSDA_TAB_CHANGE_CONTENT c on c.code=a.CHANGE_CONTENT
+		left join RSDA_tab_STOPSOCIAL_REASON d on d.code=a.REASONS_FOR_STOPPING
+		left join RSDA_TAB_PENSIONBASE g on g.code=a.PENSION_BASE
+		left join RSDA_TAB_MEDICALBASE h on h.code=a.MEDICAL_BASE
+		  
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by a.ID  desc
+		</if>
+	</select>
+	
+	<select id="getByArchiveId" resultMap="ChangeReporting">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_SOCIALSEC_PERSON_LOG a
+		WHERE
+		a.ARCHIVES_ID=#{archivesId}
+	</select>
+	<!--  -->
+	<select id="getChangeReportingById" resultType="java.util.HashMap">
+		SELECT 	a.ID as "id",a.AAC002 as "aac002",a.AAC003 as "aac003"
+				,to_char(a.AAC006,'yyyymm') as "aac006",a.EXP_PERSON_NUMBER as "expPersonNumber"
+				,f.name as "nationName",e.name as "genderName",to_char(a.EXP_START_JOB_DATE,'yyyymm') as "expStartJobDate"
+				,d.name as "employmentFormName",a.AAE005 as "aae005",a.AAB301 as "aab301",a.AAE007 as "aae007"
+				,a.CHANGE_CONTENT as "changeContent",a.ADD_IS_INSURANCE as "addIsInsurance",a.CHECKOUT_SOCIAL_ORG_NAME as "checkoutSocialOrgName"
+				,to_char(a.FIELD_START_DATE,'yyyy') as "startYear",to_char(a.FIELD_START_DATE,'mm') as "startMonth"
+				,to_char(a.FIELD_END_DATE,'yyyy') as "endYear",to_char(a.FIELD_END_DATE,'mm') as "endMonth"
+				,to_char(a.EXP_PENSION_DATE,'yyyy') as "personYear",to_char(a.EXP_PENSION_DATE,'mm') as "personMonth"
+				,to_char(a.EXP_MEDICAL_DATE,'yyyy') as "medicalYear",to_char(a.EXP_MEDICAL_DATE,'mm') as "medicalMonth"
+				,to_char(a.STOP_SOCIAL_DATE,'yyyy') as "stopYear",to_char(a.STOP_SOCIAL_DATE,'mm') as "stopMonth"
+				,h.name as "personBaseName",a.MEDICAL_BASE as "medicalBase",a.CREATER_NAME as "createrName"
+				,to_char(a.CREATER_DATE,'yyyy') as "creatYear",to_char(a.CREATER_DATE,'mm') as "creatMonth",to_char(a.CREATER_DATE,'dd') as "creatDay"
+		
+		FROM RSDA_BS_SOCIALSEC_PERSON_LOG a
+		left join ac01 p on p.AAC001=a.PERSON_ID
+		left join TAB_SEX e on e.code=a.AAC004
+        left join TAB_NATION f on f.code=a.AAC005
+        left join RSDA_TAB_EMPLOYMENT_FORM d on d.code=a.EMPLOYMENT_FORM
+        left join RSDA_TAB_PENSIONBASE h on h.code=a.PENSION_BASE
+        
+		where a.ccpr08=0 and a.id =#{id}
+	</select>
+	
+</mapper>

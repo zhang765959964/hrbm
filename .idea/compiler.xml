@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="hrbm-commons-deps" />
+        <module name="hrbm-framework" />
+        <module name="hrbm-service" />
+        <module name="hrbm-websitemanager" />
+        <module name="servicemanager" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="hrbm" target="1.5" />
+      <module name="hrbm-commons-deps" target="1.7" />
+      <module name="hrbm-framework" target="1.5" />
+      <module name="hrbm-service" target="1.5" />
+      <module name="hrbm-websitemanager" target="1.7" />
+      <module name="servicemanager" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

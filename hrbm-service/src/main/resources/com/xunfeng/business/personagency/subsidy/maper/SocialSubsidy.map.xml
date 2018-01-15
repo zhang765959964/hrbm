@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.subsidy.model.SocialSubsidy">
+	<resultMap id="SocialSubsidy" type="com.xunfeng.business.personagency.subsidy.model.SocialSubsidy">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="subsidyNum" column="SUBSIDY_NUM" jdbcType="VARCHAR"/>
+		<result property="oldSubsidyNum" column="OLD_SUBSIDY_NUM" jdbcType="VARCHAR"/>
+		<result property="pensionMonths" column="PENSION_MONTHS" jdbcType="VARCHAR"/>
+		<result property="pensionStartDate" column="PENSION_START_DATE" jdbcType="VARCHAR"/>
+		<result property="pensionEndDate" column="PENSION_END_DATE" jdbcType="VARCHAR"/>
+		<result property="medicalMonths" column="MEDICAL_MONTHS" jdbcType="VARCHAR"/>
+		<result property="medicalStartDate" column="MEDICAL_START_DATE" jdbcType="VARCHAR"/>
+		<result property="medicalEndDate" column="MEDICAL_END_DATE" jdbcType="VARCHAR"/>
+		<result property="contractSignDate" column="CONTRACT_SIGN_DATE" jdbcType="DATE"/>
+		<result property="contractEndDate" column="CONTRACT_END_DATE" jdbcType="DATE"/>
+		<result property="contractDestoryDate" column="CONTRACT_DESTORY_DATE" jdbcType="DATE"/>
+		<result property="isPassed" column="IS_PASSED" jdbcType="VARCHAR"/>
+		<result property="checkState" column="CHECK_STATE" jdbcType="VARCHAR"/>
+		<result property="bankName" column="BANK_NAME" jdbcType="VARCHAR"/>
+		<result property="bankCardNo" column="BANK_CARD_NO" jdbcType="VARCHAR"/>
+		<result property="isHasBusLic" column="IS_HAS_BUS_LIC" jdbcType="VARCHAR"/>
+		<result property="busLicNum" column="BUS_LIC_NUM" jdbcType="VARCHAR"/>
+		<result property="outerSubsidyMonths" column="OUTER_SUBSIDY_MONTHS" jdbcType="VARCHAR"/>
+		<result property="createrNum" column="CREATER_NUM" jdbcType="VARCHAR"/>
+		<result property="oldWorkCorp" column="OLD_WORK_CORP" jdbcType="VARCHAR"/>
+		<result property="description" column="DESCRIPTION" jdbcType="VARCHAR"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="DATE"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="pensionStandard" column="PENSION_STANDARD" jdbcType="VARCHAR"/>
+		<result property="pensionAmount" column="PENSION_AMOUNT" jdbcType="VARCHAR"/>
+		<result property="medicalStandard" column="MEDICAL_STANDARD" jdbcType="VARCHAR"/>
+		<result property="medicalAmount" column="MEDICAL_AMOUNT" jdbcType="VARCHAR"/>
+		<result property="personId" column="PERSON_ID" jdbcType="NUMERIC"/>
+		<result property="pensionTotalMonths" column="PENSION_TOTAL_MONTHS" jdbcType="VARCHAR"/>
+		<result property="medicalTotalMonths" column="MEDICAL_TOTAL_MONTHS" jdbcType="VARCHAR"/>
+	</resultMap>
+	<resultMap id="BatchSocialSubsidy" type="com.xunfeng.business.personagency.subsidy.dto.BatchSocialSubsidyDto">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="subsidyNum" column="SUBSIDY_NUM" jdbcType="VARCHAR"/>
+		<result property="oldSubsidyNum" column="OLD_SUBSIDY_NUM" jdbcType="VARCHAR"/>
+		<result property="pensionMonths" column="PENSION_MONTHS" jdbcType="VARCHAR"/>
+		<result property="pensionStartDate" column="PENSION_START_DATE" jdbcType="VARCHAR"/>
+		<result property="pensionEndDate" column="PENSION_END_DATE" jdbcType="VARCHAR"/>
+		<result property="medicalMonths" column="MEDICAL_MONTHS" jdbcType="VARCHAR"/>
+		<result property="medicalStartDate" column="MEDICAL_START_DATE" jdbcType="VARCHAR"/>
+		<result property="medicalEndDate" column="MEDICAL_END_DATE" jdbcType="VARCHAR"/>
+		<result property="contractSignDate" column="CONTRACT_SIGN_DATE" jdbcType="DATE"/>
+		<result property="contractEndDate" column="CONTRACT_END_DATE" jdbcType="DATE"/>
+		<result property="contractDestoryDate" column="CONTRACT_DESTORY_DATE" jdbcType="DATE"/>
+		<result property="isPassed" column="IS_PASSED" jdbcType="VARCHAR"/>
+		<result property="checkState" column="CHECK_STATE" jdbcType="VARCHAR"/>
+		<result property="bankName" column="BANK_NAME" jdbcType="VARCHAR"/>
+		<result property="bankCardNo" column="BANK_CARD_NO" jdbcType="VARCHAR"/>
+		<result property="isHasBusLic" column="IS_HAS_BUS_LIC" jdbcType="VARCHAR"/>
+		<result property="busLicNum" column="BUS_LIC_NUM" jdbcType="VARCHAR"/>
+		<result property="outerSubsidyMonths" column="OUTER_SUBSIDY_MONTHS" jdbcType="VARCHAR"/>
+		<result property="createrNum" column="CREATER_NUM" jdbcType="VARCHAR"/>
+		<result property="oldWorkCorp" column="OLD_WORK_CORP" jdbcType="VARCHAR"/>
+		<result property="description" column="DESCRIPTION" jdbcType="VARCHAR"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="DATE"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="pensionStandard" column="PENSION_STANDARD" jdbcType="VARCHAR"/>
+		<result property="pensionAmount" column="PENSION_AMOUNT" jdbcType="VARCHAR"/>
+		<result property="medicalStandard" column="MEDICAL_STANDARD" jdbcType="VARCHAR"/>
+		<result property="medicalAmount" column="MEDICAL_AMOUNT" jdbcType="VARCHAR"/>
+		<result property="personId" column="PERSON_ID" jdbcType="NUMERIC"/>
+		<result property="pensionTotalMonths" column="PENSION_TOTAL_MONTHS" jdbcType="VARCHAR"/>
+		<result property="medicalTotalMonths" column="MEDICAL_TOTAL_MONTHS" jdbcType="VARCHAR"/>
+		<result property="aac002" column="AAC002" jdbcType="VARCHAR"/>
+		<result property="aac003" column="AAC003" jdbcType="VARCHAR"/>
+		<result property="batchName" column="BATCH_NAME" jdbcType="VARCHAR"/>
+		<result property="archiveCode" column="ARCHIVE_CODE" jdbcType="VARCHAR"/>
+	</resultMap>
+		<resultMap id="socialSubsidyPersonDto" type="com.xunfeng.business.personagency.subsidy.dto.SocialSubsidyDto">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="subsidyNum" column="SUBSIDY_NUM" jdbcType="VARCHAR"/>
+		<result property="oldSubsidyNum" column="OLD_SUBSIDY_NUM" jdbcType="VARCHAR"/>
+		<result property="pensionMonths" column="PENSION_MONTHS" jdbcType="VARCHAR"/>
+		<result property="pensionStartDate" column="PENSION_START_DATE" jdbcType="VARCHAR"/>
+		<result property="pensionEndDate" column="PENSION_END_DATE" jdbcType="VARCHAR"/>
+		<result property="medicalMonths" column="MEDICAL_MONTHS" jdbcType="VARCHAR"/>
+		<result property="medicalStartDate" column="MEDICAL_START_DATE" jdbcType="VARCHAR"/>
+		<result property="medicalEndDate" column="MEDICAL_END_DATE" jdbcType="VARCHAR"/>
+		<result property="contractSignDate" column="CONTRACT_SIGN_DATE" jdbcType="DATE"/>
+		<result property="contractEndDate" column="CONTRACT_END_DATE" jdbcType="DATE"/>
+		<result property="contractDestoryDate" column="CONTRACT_DESTORY_DATE" jdbcType="DATE"/>
+		<result property="isPassed" column="IS_PASSED" jdbcType="VARCHAR"/>
+		<result property="checkState" column="CHECK_STATE" jdbcType="VARCHAR"/>
+		<result property="bankName" column="BANK_NAME" jdbcType="VARCHAR"/>
+		<result property="bankCardNo" column="BANK_CARD_NO" jdbcType="VARCHAR"/>
+		<result property="isHasBusLic" column="IS_HAS_BUS_LIC" jdbcType="VARCHAR"/>
+		<result property="busLicNum" column="BUS_LIC_NUM" jdbcType="VARCHAR"/>
+		<result property="outerSubsidyMonths" column="OUTER_SUBSIDY_MONTHS" jdbcType="VARCHAR"/>
+		<result property="createrNum" column="CREATER_NUM" jdbcType="VARCHAR"/>
+<!-- 		<result property="oldWorkCorp" column="OLD_WORK_CORP" jdbcType="VARCHAR"/> -->
+		<result property="description" column="DESCRIPTION" jdbcType="VARCHAR"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="DATE"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="pensionStandard" column="PENSION_STANDARD" jdbcType="VARCHAR"/>
+		<result property="pensionAmount" column="PENSION_AMOUNT" jdbcType="VARCHAR"/>
+		<result property="medicalStandard" column="MEDICAL_STANDARD" jdbcType="VARCHAR"/>
+		<result property="medicalAmount" column="MEDICAL_AMOUNT" jdbcType="VARCHAR"/>
+		<result property="pensionTotalMonths" column="PENSION_TOTAL_MONTHS" jdbcType="VARCHAR"/>
+		<result property="medicalTotalMonths" column="MEDICAL_TOTAL_MONTHS" jdbcType="VARCHAR"/>
+		<result property="aac002" column="AAC002" jdbcType="VARCHAR"/>
+		<result property="aac003" column="AAC003" jdbcType="VARCHAR"/>
+		<result property="expOldCompany" column="expOldCompany" jdbcType="VARCHAR"/>
+		<result property="archiveCode" column="ARCHIVE_CODE" jdbcType="VARCHAR"/>
+		<result property="batchName" column="BATCH_NAME" jdbcType="VARCHAR"/>
+	</resultMap>
+	<sql id="columns">
+		ID,SUBSIDY_NUM,OLD_SUBSIDY_NUM,PENSION_MONTHS,PENSION_START_DATE,PENSION_END_DATE,MEDICAL_MONTHS,MEDICAL_START_DATE,MEDICAL_END_DATE,CONTRACT_SIGN_DATE,CONTRACT_END_DATE,CONTRACT_DESTORY_DATE,IS_PASSED,CHECK_STATE,BANK_NAME,BANK_CARD_NO,IS_HAS_BUS_LIC,BUS_LIC_NUM,OUTER_SUBSIDY_MONTHS,CREATER_NUM,OLD_WORK_CORP,DESCRIPTION,CREATER_ID,CREATER_NAME,CREATER_DATE,CREATER_ORG_NAME,CREATER_ORG_ID,PENSION_STANDARD,PENSION_AMOUNT,MEDICAL_STANDARD,MEDICAL_AMOUNT,PERSON_ID,PENSION_TOTAL_MONTHS,MEDICAL_TOTAL_MONTHS
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>			
+			<if test="@Ognl@isNotEmpty(noid)"> AND ID  !=#{noid} </if>
+			<if test="@Ognl@isNotEmpty(subsidyNum)"> AND SUBSIDY_NUM  LIKE #{subsidyNum}  </if>
+			<if test="@Ognl@isNotEmpty(exactsubsidyNum)"> AND SUBSIDY_NUM  = #{exactsubsidyNum}  </if>			
+			<if test="@Ognl@isNotEmpty(oldSubsidyNum)"> AND OLD_SUBSIDY_NUM  LIKE #{oldSubsidyNum}  </if>
+			<if test="@Ognl@isNotEmpty(pensionMonths)"> AND PENSION_MONTHS  LIKE #{pensionMonths}  </if>
+			<if test="@Ognl@isNotEmpty(pensionStartDate)"> AND PENSION_START_DATE  LIKE #{pensionStartDate}  </if>
+			<if test="@Ognl@isNotEmpty(pensionEndDate)"> AND PENSION_END_DATE  LIKE #{pensionEndDate}  </if>
+			<if test="@Ognl@isNotEmpty(medicalMonths)"> AND MEDICAL_MONTHS  LIKE #{medicalMonths}  </if>
+			<if test="@Ognl@isNotEmpty(medicalStartDate)"> AND MEDICAL_START_DATE  LIKE #{medicalStartDate}  </if>
+			<if test="@Ognl@isNotEmpty(medicalEndDate)"> AND MEDICAL_END_DATE  LIKE #{medicalEndDate}  </if>
+			<if test="@Ognl@isNotEmpty(contractSignDate)"> AND CONTRACT_SIGN_DATE  =#{contractSignDate} </if>
+			<if test="@Ognl@isNotEmpty(begincontractSignDate)"> AND CONTRACT_SIGN_DATE  >=#{begincontractSignDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcontractSignDate)"> AND CONTRACT_SIGN_DATE <![CDATA[ <=#{endcontractSignDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(contractEndDate)"> AND CONTRACT_END_DATE  =#{contractEndDate} </if>
+			<if test="@Ognl@isNotEmpty(begincontractEndDate)"> AND CONTRACT_END_DATE  >=#{begincontractEndDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcontractEndDate)"> AND CONTRACT_END_DATE <![CDATA[ <=#{endcontractEndDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(contractDestoryDate)"> AND CONTRACT_DESTORY_DATE  =#{contractDestoryDate} </if>
+			<if test="@Ognl@isNotEmpty(begincontractDestoryDate)"> AND CONTRACT_DESTORY_DATE  >=#{begincontractDestoryDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcontractDestoryDate)"> AND CONTRACT_DESTORY_DATE <![CDATA[ <=#{endcontractDestoryDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(isPassed)"> AND IS_PASSED  LIKE #{isPassed}  </if>
+			<if test="@Ognl@isNotEmpty(checkState)"> AND CHECK_STATE  LIKE #{checkState}  </if>
+			<if test="@Ognl@isNotEmpty(bankName)"> AND BANK_NAME  LIKE #{bankName}  </if>
+			<if test="@Ognl@isNotEmpty(bankCardNo)"> AND BANK_CARD_NO  LIKE #{bankCardNo}  </if>
+			<if test="@Ognl@isNotEmpty(isHasBusLic)"> AND IS_HAS_BUS_LIC  LIKE #{isHasBusLic}  </if>
+			<if test="@Ognl@isNotEmpty(busLicNum)"> AND BUS_LIC_NUM  LIKE #{busLicNum}  </if>
+			<if test="@Ognl@isNotEmpty(outerSubsidyMonths)"> AND OUTER_SUBSIDY_MONTHS  LIKE #{outerSubsidyMonths}  </if>
+			<if test="@Ognl@isNotEmpty(createrNum)"> AND CREATER_NUM  LIKE #{createrNum}  </if>
+			<if test="@Ognl@isNotEmpty(oldWorkCorp)"> AND OLD_WORK_CORP  LIKE #{oldWorkCorp}  </if>
+			<if test="@Ognl@isNotEmpty(description)"> AND DESCRIPTION  LIKE #{description}  </if>
+			<if test="@Ognl@isNotEmpty(createrId)"> AND CREATER_ID  =#{createrId} </if>
+			<if test="@Ognl@isNotEmpty(createrName)"> AND CREATER_NAME  LIKE #{createrName}  </if>
+			<if test="@Ognl@isNotEmpty(createrDate)"> AND CREATER_DATE  =#{createrDate} </if>
+			<if test="@Ognl@isNotEmpty(begincreaterDate)"> AND CREATER_DATE  >=#{begincreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(batchId)"> AND BATCH_ID  =#{batchId} </if>
+			<if test="@Ognl@isNotEmpty(batchName)"> AND BATCH_NAME  LIKE #{batchName}  </if>
+			<if test="@Ognl@isNotEmpty(createrOrgName)"> AND CREATER_ORG_NAME  LIKE #{createrOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(createrOrgId)"> AND CREATER_ORG_ID  =#{createrOrgId} </if>
+			<if test="@Ognl@isNotEmpty(pensionStandard)"> AND PENSION_STANDARD  LIKE #{pensionStandard}  </if>
+			<if test="@Ognl@isNotEmpty(pensionAmount)"> AND PENSION_AMOUNT  LIKE #{pensionAmount}  </if>
+			<if test="@Ognl@isNotEmpty(medicalStandard)"> AND MEDICAL_STANDARD  LIKE #{medicalStandard}  </if>
+			<if test="@Ognl@isNotEmpty(medicalAmount)"> AND MEDICAL_AMOUNT  LIKE #{medicalAmount}  </if>
+			<if test="@Ognl@isNotEmpty(personId)"> AND PERSON_ID  =#{personId} </if>
+			<if test="@Ognl@isNotEmpty(pensionTotalMonths)"> AND PENSION_TOTAL_MONTHS  LIKE #{pensionTotalMonths}  </if>
+			<if test="@Ognl@isNotEmpty(medicalTotalMonths)"> AND MEDICAL_TOTAL_MONTHS  LIKE #{medicalTotalMonths}  </if>
+		</where>
+	</sql>
+	<sql id="dynamicCondi">
+			<if test="@Ognl@isNotEmpty(ids)"> AND ID in  (${ids}) </if>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(subsidyNum)"> AND SUBSIDY_NUM  LIKE #{subsidyNum}  </if>
+			<if test="@Ognl@isNotEmpty(oldSubsidyNum)"> AND OLD_SUBSIDY_NUM  LIKE #{oldSubsidyNum}  </if>
+			<if test="@Ognl@isNotEmpty(pensionMonths)"> AND PENSION_MONTHS  LIKE #{pensionMonths}  </if>
+			<if test="@Ognl@isNotEmpty(pensionStartDate)"> AND PENSION_START_DATE  LIKE #{pensionStartDate}  </if>
+			<if test="@Ognl@isNotEmpty(pensionEndDate)"> AND PENSION_END_DATE  LIKE #{pensionEndDate}  </if>
+			<if test="@Ognl@isNotEmpty(medicalMonths)"> AND MEDICAL_MONTHS  LIKE #{medicalMonths}  </if>
+			<if test="@Ognl@isNotEmpty(medicalStartDate)"> AND MEDICAL_START_DATE  LIKE #{medicalStartDate}  </if>
+			<if test="@Ognl@isNotEmpty(medicalEndDate)"> AND MEDICAL_END_DATE  LIKE #{medicalEndDate}  </if>
+			<if test="@Ognl@isNotEmpty(contractSignDate)"> AND CONTRACT_SIGN_DATE  =#{contractSignDate} </if>
+			<if test="@Ognl@isNotEmpty(begincontractSignDate)"> AND CONTRACT_SIGN_DATE  >=#{begincontractSignDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcontractSignDate)"> AND CONTRACT_SIGN_DATE <![CDATA[ <=#{endcontractSignDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(contractEndDate)"> AND CONTRACT_END_DATE  =#{contractEndDate} </if>
+			<if test="@Ognl@isNotEmpty(begincontractEndDate)"> AND CONTRACT_END_DATE  >=#{begincontractEndDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcontractEndDate)"> AND CONTRACT_END_DATE <![CDATA[ <=#{endcontractEndDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(contractDestoryDate)"> AND CONTRACT_DESTORY_DATE  =#{contractDestoryDate} </if>
+			<if test="@Ognl@isNotEmpty(begincontractDestoryDate)"> AND CONTRACT_DESTORY_DATE  >=#{begincontractDestoryDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcontractDestoryDate)"> AND CONTRACT_DESTORY_DATE <![CDATA[ <=#{endcontractDestoryDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(isPassed)"> AND IS_PASSED_N  LIKE #{isPassed}  </if>
+			<if test="@Ognl@isNotEmpty(checkState)"> AND CHECK_STATE_N  = #{checkState}  </if>
+			<if test="@Ognl@isNotEmpty(bankName)"> AND BANK_NAME  LIKE #{bankName}  </if>
+			<if test="@Ognl@isNotEmpty(bankCardNo)"> AND BANK_CARD_NO  LIKE #{bankCardNo}  </if>
+			<if test="@Ognl@isNotEmpty(isHasBusLic)"> AND IS_HAS_BUS_LIC_N  LIKE #{isHasBusLic}  </if>
+			<if test="@Ognl@isNotEmpty(busLicNum)"> AND BUS_LIC_NUM  LIKE #{busLicNum}  </if>
+			<if test="@Ognl@isNotEmpty(outerSubsidyMonths)"> AND OUTER_SUBSIDY_MONTHS  LIKE #{outerSubsidyMonths}  </if>
+			<if test="@Ognl@isNotEmpty(createrNum)"> AND CREATER_NUM  LIKE #{createrNum}  </if>
+			<if test="@Ognl@isNotEmpty(oldWorkCorp)"> AND OLD_WORK_CORP  LIKE #{oldWorkCorp}  </if>
+			<if test="@Ognl@isNotEmpty(description)"> AND DESCRIPTION  LIKE #{description}  </if>
+			<if test="@Ognl@isNotEmpty(createrId)"> AND CREATER_ID  =#{createrId} </if>
+			<if test="@Ognl@isNotEmpty(createrName)"> AND CREATER_NAME  LIKE #{createrName}  </if>
+			<if test="@Ognl@isNotEmpty(createrDate)"> AND CREATER_DATE  =#{createrDate} </if>
+			<if test="@Ognl@isNotEmpty(begincreaterDate)"> AND CREATER_DATE  >=#{begincreaterDate} </if>
+			<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND CREATER_DATE <![CDATA[ <=#{endcreaterDate}]]> </if>
+			<if test="@Ognl@isNotEmpty(batchId)"> AND BATCH_ID  =#{batchId} </if>
+			<if test="@Ognl@isNotEmpty(batchName)"> AND BATCH_NAME  LIKE #{batchName}  </if>
+			<if test="@Ognl@isNotEmpty(createrOrgName)"> AND CREATER_ORG_NAME  LIKE #{createrOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(createrOrgId)"> AND CREATER_ORG_ID  =#{createrOrgId} </if>
+			<if test="@Ognl@isNotEmpty(pensionStandard)"> AND PENSION_STANDARD  LIKE #{pensionStandard}  </if>
+			<if test="@Ognl@isNotEmpty(pensionAmount)"> AND PENSION_AMOUNT  LIKE #{pensionAmount}  </if>
+			<if test="@Ognl@isNotEmpty(medicalStandard)"> AND MEDICAL_STANDARD  LIKE #{medicalStandard}  </if>
+			<if test="@Ognl@isNotEmpty(medicalAmount)"> AND MEDICAL_AMOUNT  LIKE #{medicalAmount}  </if>
+			<if test="@Ognl@isNotEmpty(personId)"> AND PERSON_ID  =#{personId} </if>
+			<if test="@Ognl@isNotEmpty(pensionTotalMonths)"> AND PENSION_TOTAL_MONTHS  LIKE #{pensionTotalMonths}  </if>
+			<if test="@Ognl@isNotEmpty(medicalTotalMonths)"> AND MEDICAL_TOTAL_MONTHS  LIKE #{medicalTotalMonths}  </if>
+			<if test="@Ognl@isNotEmpty(expRegisgration)"> AND expRegisgration  LIKE #{expRegisgration}  </if>
+			<if test="@Ognl@isNotEmpty(acc0m1)"> AND acc0m1  LIKE #{acc0m1}  </if>
+			<if test="@Ognl@isNotEmpty(archiveCode)"> AND archive_code  LIKE #{archiveCode}  </if>
+			<if test="@Ognl@isNotEmpty(begincreaterNum)"> AND CREATER_NUM  >= #{begincreaterNum}  </if>
+			<if test="@Ognl@isNotEmpty(endcreaterNum)"> AND CREATER_NUM  <![CDATA[ <= #{endcreaterNum} ]]>  </if>
+			<if test="@Ognl@isNotEmpty(expOldCompany)"> AND expOldCompany  LIKE #{expOldCompany}  </if>
+			
+			
+			
+			
+	</sql>
+	<insert id="add" parameterType="com.xunfeng.business.personagency.subsidy.model.SocialSubsidy">
+		INSERT INTO RSDA_BS_SOCIAL_SUBSIDY
+		(ID,SUBSIDY_NUM,OLD_SUBSIDY_NUM,PENSION_MONTHS,PENSION_START_DATE,PENSION_END_DATE,MEDICAL_MONTHS,MEDICAL_START_DATE,MEDICAL_END_DATE,CONTRACT_SIGN_DATE,CONTRACT_END_DATE,CONTRACT_DESTORY_DATE,IS_PASSED,CHECK_STATE,BANK_NAME,BANK_CARD_NO,IS_HAS_BUS_LIC,BUS_LIC_NUM,OUTER_SUBSIDY_MONTHS,CREATER_NUM,OLD_WORK_CORP,DESCRIPTION,CREATER_ID,CREATER_NAME,CREATER_DATE,CREATER_ORG_NAME,CREATER_ORG_ID,PENSION_STANDARD,PENSION_AMOUNT,MEDICAL_STANDARD,MEDICAL_AMOUNT,PERSON_ID,PENSION_TOTAL_MONTHS,MEDICAL_TOTAL_MONTHS)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{subsidyNum,jdbcType=VARCHAR}, #{oldSubsidyNum,jdbcType=VARCHAR}, #{pensionMonths,jdbcType=VARCHAR}, #{pensionStartDate,jdbcType=VARCHAR}, #{pensionEndDate,jdbcType=VARCHAR}, #{medicalMonths,jdbcType=VARCHAR}, #{medicalStartDate,jdbcType=VARCHAR}, #{medicalEndDate,jdbcType=VARCHAR}, #{contractSignDate,jdbcType=DATE}, #{contractEndDate,jdbcType=DATE}, #{contractDestoryDate,jdbcType=DATE}, #{isPassed,jdbcType=VARCHAR}, #{checkState,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR}, #{bankCardNo,jdbcType=VARCHAR}, #{isHasBusLic,jdbcType=VARCHAR}, #{busLicNum,jdbcType=VARCHAR}, #{outerSubsidyMonths,jdbcType=VARCHAR}, #{createrNum,jdbcType=VARCHAR}, #{oldWorkCorp,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{createrId,jdbcType=NUMERIC}, #{createrName,jdbcType=VARCHAR}, #{createrDate,jdbcType=DATE}, #{createrOrgName,jdbcType=VARCHAR}, #{createrOrgId,jdbcType=NUMERIC}, #{pensionStandard,jdbcType=VARCHAR}, #{pensionAmount,jdbcType=VARCHAR}, #{medicalStandard,jdbcType=VARCHAR}, #{medicalAmount,jdbcType=VARCHAR}, #{personId,jdbcType=NUMERIC}, #{pensionTotalMonths,jdbcType=VARCHAR}, #{medicalTotalMonths,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_SOCIAL_SUBSIDY 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="updateForReview" parameterType="java.util.HashMap">
+		UPDATE RSDA_BS_SOCIAL_SUBSIDY SET ID=#{id}
+		
+		<if test="@Ognl@isNotEmpty(checkState)"> ,CHECK_STATE=#{checkState,jdbcType=VARCHAR} </if>
+		<if test="@Ognl@isNotEmpty(subsidyNum)"> ,SUBSIDY_NUM=#{subsidyNum,jdbcType=VARCHAR} </if>
+		<if test="@Ognl@isNotEmpty(createrNum)"> ,CREATER_NUM=#{createrNum,jdbcType=VARCHAR} </if>
+		WHERE
+		ID=#{id}
+	</update>
+    <update id="batchUpdate_oracle" parameterType="java.util.List">
+		<foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+		   update RSDA_BS_SOCIAL_SUBSIDY  
+		   set 
+		   		PENSION_STANDARD=#{item.pensionStandard,jdbcType=VARCHAR},
+				PENSION_AMOUNT=#{item.pensionAmount,jdbcType=VARCHAR},
+				MEDICAL_STANDARD=#{item.medicalStandard,jdbcType=VARCHAR},
+				MEDICAL_AMOUNT=#{item.medicalAmount,jdbcType=VARCHAR}
+		   where id = #{item.id,jdbcType=NUMERIC}
+		   </foreach>
+	</update>
+	<update id="update" parameterType="com.xunfeng.business.personagency.subsidy.model.SocialSubsidy">
+		UPDATE RSDA_BS_SOCIAL_SUBSIDY SET
+		SUBSIDY_NUM=#{subsidyNum,jdbcType=VARCHAR},
+		OLD_SUBSIDY_NUM=#{oldSubsidyNum,jdbcType=VARCHAR},
+		PENSION_MONTHS=#{pensionMonths,jdbcType=VARCHAR},
+		PENSION_START_DATE=#{pensionStartDate,jdbcType=VARCHAR},
+		PENSION_END_DATE=#{pensionEndDate,jdbcType=VARCHAR},
+		MEDICAL_MONTHS=#{medicalMonths,jdbcType=VARCHAR},
+		MEDICAL_START_DATE=#{medicalStartDate,jdbcType=VARCHAR},
+		MEDICAL_END_DATE=#{medicalEndDate,jdbcType=VARCHAR},
+		CONTRACT_SIGN_DATE=#{contractSignDate,jdbcType=DATE},
+		CONTRACT_END_DATE=#{contractEndDate,jdbcType=DATE},
+		CONTRACT_DESTORY_DATE=#{contractDestoryDate,jdbcType=DATE},
+		IS_PASSED=#{isPassed,jdbcType=VARCHAR},
+		CHECK_STATE=#{checkState,jdbcType=VARCHAR},
+		BANK_NAME=#{bankName,jdbcType=VARCHAR},
+		BANK_CARD_NO=#{bankCardNo,jdbcType=VARCHAR},
+		IS_HAS_BUS_LIC=#{isHasBusLic,jdbcType=VARCHAR},
+		BUS_LIC_NUM=#{busLicNum,jdbcType=VARCHAR},
+		OUTER_SUBSIDY_MONTHS=#{outerSubsidyMonths,jdbcType=VARCHAR},
+		CREATER_NUM=#{createrNum,jdbcType=VARCHAR},
+		OLD_WORK_CORP=#{oldWorkCorp,jdbcType=VARCHAR},
+		DESCRIPTION=#{description,jdbcType=VARCHAR},
+		CREATER_ID=#{createrId,jdbcType=NUMERIC},
+		CREATER_NAME=#{createrName,jdbcType=VARCHAR},
+		CREATER_DATE=#{createrDate,jdbcType=DATE},
+		CREATER_ORG_NAME=#{createrOrgName,jdbcType=VARCHAR},
+		CREATER_ORG_ID=#{createrOrgId,jdbcType=NUMERIC},
+		PENSION_STANDARD=#{pensionStandard,jdbcType=VARCHAR},
+		PENSION_AMOUNT=#{pensionAmount,jdbcType=VARCHAR},
+		MEDICAL_STANDARD=#{medicalStandard,jdbcType=VARCHAR},
+		MEDICAL_AMOUNT=#{medicalAmount,jdbcType=VARCHAR},
+		PERSON_ID=#{personId,jdbcType=NUMERIC},
+		PENSION_TOTAL_MONTHS=#{pensionTotalMonths,jdbcType=VARCHAR},
+		MEDICAL_TOTAL_MONTHS=#{medicalTotalMonths,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SocialSubsidy">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_SOCIAL_SUBSIDY
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getListByBatchId"  resultMap="SocialSubsidy">
+		SELECT a.* 
+	    FROM RSDA_BS_SOCIAL_SUBSIDY a,RSDA_BS_SOCIAL_BATCH b,RSDA_BS_SOCIAL_SUBSIDY_BATCH c
+	    WHERE a.id=c.subsidy_id and b.id=c.batch_id and b.id=#{id}
+	</select>
+	
+	<select id="getBatchSocialListByBatchId"  resultMap="BatchSocialSubsidy">
+		SELECT a.*
+	    FROM v_RSDA_BS_SOCIAL_SUBSIDY a,RSDA_BS_SOCIAL_BATCH b,RSDA_BS_SOCIAL_SUBSIDY_BATCH c,AC01 d
+	    WHERE a.id=c.subsidy_id and b.id=c.batch_id and d.aac001=a.PERSON_ID and b.id=#{batchId}
+	    <if test="@Ognl@isNotEmpty(aac001)"> AND d.aac001  = #{aac001}  </if>
+	    <if test="@Ognl@isNotEmpty(searchValue)"> AND( a.aac002  like #{searchValue} or a.aac003  like #{searchValue} )</if>
+	    <if test="@Ognl@isNotEmpty(aac002)"> AND a.aac002  LIKE #{aac002}  </if>
+		<if test="@Ognl@isNotEmpty(aac003)"> AND a.aac003  LIKE #{aac003}  </if>
+		<if test="@Ognl@isNotEmpty(aac004)"> AND a.aac004  = #{aac004}  </if>
+		<if test="@Ognl@isNotEmpty(expRegisgration)"> AND a.expRegisgration  LIKE #{expRegisgration}  </if>
+		<if test="@Ognl@isNotEmpty(acc0m1)"> AND a.acc0m1  LIKE #{acc0m1}  </if>
+		<if test="@Ognl@isNotEmpty(checkState)"> AND a.CHECK_STATE  LIKE #{checkState}  </if>
+	    
+	</select>
+	
+	<select id="getAll" resultMap="SocialSubsidy">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_SOCIAL_SUBSIDY   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+		<select id="getByArchiveCode" resultMap="SocialSubsidy">
+		SELECT a.*
+    	FROM RSDA_BS_SOCIAL_SUBSIDY a,RSDA_BS_ARCHIVE_ARCHIVES b  where b.person_id=a.person_id and b.archive_code=#{archiveCode} 
+	</select>
+	<select id="getAllSubsidyPerson" resultMap="socialSubsidyPersonDto">
+		SELECT *
+		FROM V_RSDA_BS_SOCIAL_SUBSIDY   where 1=1 
+		<include refid="dynamicCondi" />
+		<if test="@Ognl@isNotEmpty(aac002)"> AND aac002  LIKE #{aac002}  </if>
+		<if test="@Ognl@isNotEmpty(aac003)"> AND aac003  LIKE #{aac003}  </if>
+		<if test="@Ognl@isNotEmpty(aac004)"> AND aac004n  = #{aac004}  </if>
+		<if test="@Ognl@isNotEmpty(notBatchId)"> and id not in (select c.subsidy_id from rsda_bs_social_subsidy_batch c where c.batch_id=#{notBatchId} )  </if>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>	
+</mapper>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.params.model.ParamsDiffCorp">
+	<resultMap id="ParamsDiffCorp" type="com.xunfeng.business.personagency.params.model.ParamsDiffCorp">
+		<id property="pkId" column="PK_ID" jdbcType="NUMERIC"/>
+		<result property="fdCorpName" column="FD_CORP_NAME" jdbcType="VARCHAR"/>
+		<result property="fdCorpCode" column="FD_CORP_CODE" jdbcType="VARCHAR"/>
+		<result property="fdCorpAddre" column="FD_CORP_ADDRE" jdbcType="VARCHAR"/>
+		<result property="fdCorpDetail" column="FD_CORP_DETAIL" jdbcType="VARCHAR"/>
+		<result property="fdCorpNote" column="FD_CORP_NOTE" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		PK_ID,FD_CORP_NAME,FD_CORP_CODE,FD_CORP_ADDRE,FD_CORP_DETAIL,FD_CORP_NOTE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(pkId)"> AND PK_ID  =#{pkId} </if>
+			<if test="@Ognl@isNotEmpty(fdCorpName)"> AND FD_CORP_NAME  LIKE #{fdCorpName}  </if>
+			<if test="@Ognl@isNotEmpty(fdCorpCode)"> AND FD_CORP_CODE  LIKE #{fdCorpCode}  </if>
+			<if test="@Ognl@isNotEmpty(fdCorpAddre)"> AND FD_CORP_ADDRE  LIKE #{fdCorpAddre}  </if>
+			<if test="@Ognl@isNotEmpty(fdCorpDetail)"> AND FD_CORP_DETAIL  LIKE #{fdCorpDetail}  </if>
+			<if test="@Ognl@isNotEmpty(fdCorpNote)"> AND FD_CORP_NOTE  LIKE #{fdCorpNote}  </if>
+			<if test="@Ognl@isNotEmpty(searchValue)"> AND (FD_CORP_NAME  LIKE #{searchValue} or FD_CORP_DETAIL  LIKE #{searchValue} or FD_CORP_NOTE  LIKE #{searchValue} )  </if>
+			
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.params.model.ParamsDiffCorp">
+		INSERT INTO RSDA_BS_PARAMS_DIFF_CORP
+		(PK_ID,FD_CORP_NAME,FD_CORP_CODE,FD_CORP_ADDRE,FD_CORP_DETAIL,FD_CORP_NOTE)
+		VALUES
+		(#{pkId,jdbcType=NUMERIC}, #{fdCorpName,jdbcType=VARCHAR}, #{fdCorpCode,jdbcType=VARCHAR}, #{fdCorpAddre,jdbcType=VARCHAR}, #{fdCorpDetail,jdbcType=VARCHAR}, #{fdCorpNote,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_PARAMS_DIFF_CORP 
+		WHERE
+		PK_ID=#{pkId}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.params.model.ParamsDiffCorp">
+		UPDATE RSDA_BS_PARAMS_DIFF_CORP SET
+		FD_CORP_NAME=#{fdCorpName,jdbcType=VARCHAR},
+		FD_CORP_CODE=#{fdCorpCode,jdbcType=VARCHAR},
+		FD_CORP_ADDRE=#{fdCorpAddre,jdbcType=VARCHAR},
+		FD_CORP_DETAIL=#{fdCorpDetail,jdbcType=VARCHAR},
+		FD_CORP_NOTE=#{fdCorpNote,jdbcType=VARCHAR}
+		WHERE
+		PK_ID=#{pkId}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="ParamsDiffCorp">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PARAMS_DIFF_CORP
+		WHERE
+		PK_ID=#{pkId}
+	</select>
+	
+	<select id="getAll" resultMap="ParamsDiffCorp">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PARAMS_DIFF_CORP   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by PK_ID  desc
+		</if>
+	</select>
+</mapper>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.sys.setMeal.model.FeeOrderMain">
+	<resultMap id="FeeOrderMain" type="com.xunfeng.sys.setMeal.model.FeeOrderMain">
+		<id property="orderSn" column="ORDER_SN" jdbcType="NUMERIC"/>
+		<result property="aab001" column="AAB001" jdbcType="NUMERIC"/>
+		<result property="aab004" column="AAB004" jdbcType="VARCHAR"/>
+		<result property="pkgCode" column="PKG_CODE" jdbcType="VARCHAR"/>
+		<result property="pkgFee" column="PKG_FEE" jdbcType="NUMERIC"/>
+		<result property="discountFee" column="DISCOUNT_FEE" jdbcType="NUMERIC"/>
+		<result property="beginDate" column="BEGIN_DATE" jdbcType="DATE"/>
+		<result property="overDate" column="OVER_DATE" jdbcType="DATE"/>
+		<result property="isValid" column="IS_VALID" jdbcType="VARCHAR"/>
+		<result property="cczy06" column="CCZY06" jdbcType="VARCHAR"/>
+		<result property="aae011" column="AAE011" jdbcType="VARCHAR"/>
+		<result property="aae019" column="AAE019" jdbcType="VARCHAR"/>
+		<result property="aae036" column="AAE036" jdbcType="DATE"/>
+		<result property="aae017" column="AAE017" jdbcType="VARCHAR"/>
+		<result property="aae020" column="AAE020" jdbcType="VARCHAR"/>
+		<result property="remark" column="REMARK" jdbcType="VARCHAR"/>
+		<result property="validDates" column="VALID_DATES" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ORDER_SN,AAB001,AAB004,PKG_CODE,PKG_FEE,DISCOUNT_FEE,BEGIN_DATE,OVER_DATE,IS_VALID,CCZY06,AAE011,AAE019,AAE036,AAE017,AAE020,REMARK,VALID_DATES
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(orderSn)"> AND ORDER_SN  =#{orderSn} </if>
+			<if test="@Ognl@isNotEmpty(aab001)"> AND AAB001  =#{aab001} </if>
+			<if test="@Ognl@isNotEmpty(aab004)"> AND AAB004  LIKE #{aab004}  </if>
+			<if test="@Ognl@isNotEmpty(pkgCode)"> AND PKG_CODE  LIKE #{pkgCode}  </if>
+			<if test="@Ognl@isNotEmpty(pkgFee)"> AND PKG_FEE  =#{pkgFee} </if>
+			<if test="@Ognl@isNotEmpty(discountFee)"> AND DISCOUNT_FEE  =#{discountFee} </if>
+			<if test="@Ognl@isNotEmpty(beginDate)"> AND BEGIN_DATE  =#{beginDate} </if>
+			<if test="@Ognl@isNotEmpty(beginbeginDate)"> AND BEGIN_DATE  >=#{beginbeginDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endbeginDate)"> AND BEGIN_DATE <![CDATA[ <=#{endbeginDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(overDate)"> AND OVER_DATE  =#{overDate} </if>
+			<if test="@Ognl@isNotEmpty(beginoverDate)"> AND OVER_DATE  >=#{beginoverDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endoverDate)"> AND OVER_DATE <![CDATA[ <=#{endoverDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(isValid)"> AND IS_VALID  LIKE #{isValid}  </if>
+			<if test="@Ognl@isNotEmpty(cczy06)"> AND CCZY06  LIKE #{cczy06}  </if>
+			<if test="@Ognl@isNotEmpty(aae011)"> AND AAE011  LIKE #{aae011}  </if>
+			<if test="@Ognl@isNotEmpty(aae019)"> AND AAE019  LIKE #{aae019}  </if>
+			<if test="@Ognl@isNotEmpty(aae036)"> AND AAE036  =#{aae036} </if>
+			<if test="@Ognl@isNotEmpty(beginaae036)"> AND AAE036  >=#{beginaae036,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaae036)"> AND AAE036 <![CDATA[ <=#{endaae036,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aae017)"> AND AAE017  LIKE #{aae017}  </if>
+			<if test="@Ognl@isNotEmpty(aae020)"> AND AAE020  LIKE #{aae020}  </if>
+			<if test="@Ognl@isNotEmpty(remark)"> AND REMARK  LIKE #{remark}  </if>
+			<if test="@Ognl@isNotEmpty(validDates)"> AND VALID_DATES  =#{validDates} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.sys.setMeal.model.FeeOrderMain">
+		INSERT INTO FEE_PKG_ORDER_MAIN
+		(ORDER_SN,AAB001,AAB004,PKG_CODE,PKG_FEE,DISCOUNT_FEE,BEGIN_DATE,OVER_DATE,IS_VALID,CCZY06,AAE011,AAE019,AAE036,AAE017,AAE020,REMARK,VALID_DATES)
+		VALUES
+		(#{orderSn,jdbcType=NUMERIC}, #{aab001,jdbcType=NUMERIC}, #{aab004,jdbcType=VARCHAR}, #{pkgCode,jdbcType=VARCHAR}, #{pkgFee,jdbcType=NUMERIC}, #{discountFee,jdbcType=NUMERIC}, #{beginDate,jdbcType=DATE}, #{overDate,jdbcType=DATE}, #{isValid,jdbcType=VARCHAR}, #{cczy06,jdbcType=VARCHAR}, #{aae011,jdbcType=VARCHAR}, #{aae019,jdbcType=VARCHAR}, #{aae036,jdbcType=DATE}, #{aae017,jdbcType=VARCHAR}, #{aae020,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{validDates,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM FEE_PKG_ORDER_MAIN 
+		WHERE
+		ORDER_SN=#{orderSn}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.sys.setMeal.model.FeeOrderMain">
+		UPDATE FEE_PKG_ORDER_MAIN SET
+		AAB001=#{aab001,jdbcType=NUMERIC},
+		AAB004=#{aab004,jdbcType=VARCHAR},
+		PKG_CODE=#{pkgCode,jdbcType=VARCHAR},
+		PKG_FEE=#{pkgFee,jdbcType=NUMERIC},
+		DISCOUNT_FEE=#{discountFee,jdbcType=NUMERIC},
+		BEGIN_DATE=#{beginDate,jdbcType=DATE},
+		OVER_DATE=#{overDate,jdbcType=DATE},
+		IS_VALID=#{isValid,jdbcType=VARCHAR},
+		CCZY06=#{cczy06,jdbcType=VARCHAR},
+		AAE011=#{aae011,jdbcType=VARCHAR},
+		AAE019=#{aae019,jdbcType=VARCHAR},
+		AAE036=#{aae036,jdbcType=DATE},
+		AAE017=#{aae017,jdbcType=VARCHAR},
+		AAE020=#{aae020,jdbcType=VARCHAR},
+		REMARK=#{remark,jdbcType=VARCHAR},
+		VALID_DATES=#{validDates,jdbcType=NUMERIC}
+		WHERE
+		ORDER_SN=#{orderSn}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="FeeOrderMain">
+		SELECT <include refid="columns"/>
+		FROM FEE_PKG_ORDER_MAIN
+		WHERE
+		ORDER_SN=#{orderSn}
+	</select>
+	
+	<select id="getAll" resultMap="FeeOrderMain">
+		SELECT <include refid="columns"/>
+		FROM FEE_PKG_ORDER_MAIN   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ORDER_SN  desc
+		</if>
+	</select>
+</mapper>

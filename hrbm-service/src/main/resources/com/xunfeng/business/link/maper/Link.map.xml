@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.link.model.Link">
+	<resultMap id="Link" type="com.xunfeng.business.link.model.Link">
+		<id property="ccmw01" column="CCMW01" jdbcType="NUMERIC"/>
+		<result property="ccmw02" column="CCMW02" jdbcType="VARCHAR"/>
+		<result property="ccmw03" column="CCMW03" jdbcType="VARCHAR"/>
+		<result property="ccmw04" column="CCMW04" jdbcType="TIMESTAMP"/>
+		<result property="ccmw05" column="CCMW05" jdbcType="NUMERIC"/>
+		<result property="ccmw06" column="CCMW06" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		CCMW01,CCMW02,CCMW03,CCMW04,CCMW05,CCMW06
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(ccmw01)"> AND CCMW01  =#{ccmw01} </if>
+			<if test="@Ognl@isNotEmpty(ccmw02)"> AND CCMW02  LIKE #{ccmw02}  </if>
+			<if test="@Ognl@isNotEmpty(ccmw03)"> AND CCMW03  LIKE #{ccmw03}  </if>
+			<if test="@Ognl@isNotEmpty(ccmw04)"> AND CCMW04  =#{ccmw04} </if>
+			<if test="@Ognl@isNotEmpty(beginccmw04)"> AND CCMW04  >=#{beginccmw04,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endccmw04)"> AND CCMW04 <![CDATA[ <=#{endccmw04,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(ccmw05)"> AND CCMW05  =#{ccmw05} </if>
+			<if test="@Ognl@isNotEmpty(ccmw06)"> AND CCMW06  =#{ccmw06} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.link.model.Link">
+		INSERT INTO CCM08
+		(CCMW01,CCMW02,CCMW03,CCMW04,CCMW05,CCMW06)
+		VALUES
+		(#{ccmw01,jdbcType=NUMERIC}, #{ccmw02,jdbcType=VARCHAR}, #{ccmw03,jdbcType=VARCHAR}, #{ccmw04,jdbcType=TIMESTAMP}, #{ccmw05,jdbcType=NUMERIC}, #{ccmw06,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM CCM08 
+		WHERE
+		CCMW01=#{ccmw01}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.link.model.Link">
+		UPDATE CCM08 SET
+		CCMW02=#{ccmw02,jdbcType=VARCHAR},
+		CCMW03=#{ccmw03,jdbcType=VARCHAR},
+		CCMW04=#{ccmw04,jdbcType=TIMESTAMP},
+		CCMW05=#{ccmw05,jdbcType=NUMERIC},
+		CCMW06=#{ccmw06,jdbcType=NUMERIC}
+		WHERE
+		CCMW01=#{ccmw01}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Link">
+		SELECT <include refid="columns"/>
+		FROM CCM08
+		WHERE
+		CCMW01=#{ccmw01}
+	</select>
+	
+	<select id="getAll" resultMap="Link">
+		SELECT <include refid="columns"/>
+		FROM CCM08   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by CCMW01  desc
+		</if>
+	</select>
+</mapper>

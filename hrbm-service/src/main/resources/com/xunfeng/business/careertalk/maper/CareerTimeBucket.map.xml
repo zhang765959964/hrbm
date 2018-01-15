@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.careertalk.model.CareerTimeBucket">
+	<resultMap id="CareerTimeBucket" type="com.xunfeng.business.careertalk.model.CareerTimeBucket">
+		<id property="ctbId" column="CTB_ID" jdbcType="NUMERIC"/>
+		<result property="crId" column="CR_ID" jdbcType="NUMERIC"/>
+		<result property="ctbStarttime" column="CTB_STARTTIME" jdbcType="VARCHAR"/>
+		<result property="ctbEndtime" column="CTB_ENDTIME" jdbcType="VARCHAR"/>
+		<result property="ctbWeekday" column="CTB_WEEKDAY" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		CTB_ID,CR_ID,CTB_STARTTIME,CTB_ENDTIME,CTB_WEEKDAY
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(ctbId)"> AND CTB_ID  LIKE CONCAT(CONCAT('%',#{ctbId}),'%') </if>
+			<if test="@Ognl@isNotEmpty(crId)"> AND CR_ID  LIKE CONCAT(CONCAT('%',#{crId}),'%') </if>
+			<if test="@Ognl@isNotEmpty(ctbStarttime)"> AND CTB_STARTTIME LIKE CONCAT(CONCAT('%',#{ctbStarttime}),'%') </if>
+			<if test="@Ognl@isNotEmpty(ctbEndtime)"> AND CTB_ENDTIME  LIKE CONCAT(CONCAT('%',#{ctbEndtime}),'%')</if>
+			<if test="@Ognl@isNotEmpty(ctbWeekday)"> AND CTB_WEEKDAY LIKE CONCAT(CONCAT('%',#{ctbWeekday}),'%') </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.careertalk.model.CareerTimeBucket">
+		INSERT INTO CAREER_TIME_BUCKET
+		(CTB_ID,CR_ID,CTB_STARTTIME,CTB_ENDTIME,CTB_WEEKDAY)
+		VALUES
+		(#{ctbId,jdbcType=NUMERIC}, #{crId,jdbcType=NUMERIC}, #{ctbStarttime,jdbcType=VARCHAR}, #{ctbEndtime,jdbcType=VARCHAR},#{ctbWeekday,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM CAREER_TIME_BUCKET 
+		WHERE
+		CTB_ID=#{ctbId}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.careertalk.model.CareerTimeBucket">
+		UPDATE CAREER_TIME_BUCKET SET
+		CR_ID=#{crId,jdbcType=NUMERIC},
+		CTB_STARTTIME=#{ctbStarttime,jdbcType=VARCHAR},
+		CTB_ENDTIME=#{ctbEndtime,jdbcType=VARCHAR},
+		CTB_WEEKDAY=#{ctbWeekday,jdbcType=VARCHAR}
+		WHERE
+		CTB_ID=#{ctbId}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="CareerTimeBucket">
+		SELECT <include refid="columns"/>
+		FROM CAREER_TIME_BUCKET
+		WHERE
+		CTB_ID=#{ctbId}
+	</select>
+	
+	<select id="getAll" resultMap="CareerTimeBucket">
+		SELECT <include refid="columns"/>
+		FROM CAREER_TIME_BUCKET   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by CTB_ID  desc
+		</if>
+	</select>
+	<select id="addList" parameterType="com.xunfeng.business.careertalk.model.CareerTimeBucket">
+			INSERT INTO CAREER_TIME_BUCKET
+		(CTB_ID,CR_ID,CTB_STARTTIME,CTB_ENDTIME,CTB_WEEKDAY)
+		VALUES
+		(#{ctbId,jdbcType=NUMERIC}, #{crId,jdbcType=NUMERIC}, #{ctbStarttime,jdbcType=VARCHAR}, #{ctbEndtime,jdbcType=VARCHAR},#{ctbWeekday,jdbcType=VARCHAR})
+	</select>
+	
+	<select id="delByCrId" parameterType="java.lang.Long">
+		delete FROM CAREER_TIME_BUCKET WHERE CR_ID=#{crId,jdbcType=NUMERIC}
+	</select>
+</mapper>

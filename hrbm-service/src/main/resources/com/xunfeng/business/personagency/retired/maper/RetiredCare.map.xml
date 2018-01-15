@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.retired.model.RetiredCare">
+	<resultMap id="RetiredCare" type="com.xunfeng.business.personagency.retired.model.RetiredCare">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="isCareDeclare" column="IS_CARE_DECLARE" jdbcType="NUMERIC"/>
+		<result property="firstFillDate" column="FIRST_FILL_DATE" jdbcType="DATE"/>
+		<result property="fillDate" column="FILL_DATE" jdbcType="DATE"/>
+		<result property="isDeclare" column="IS_DECLARE" jdbcType="NUMERIC"/>
+		<result property="isFlag" column="IS_FLAG" jdbcType="NUMERIC"/>
+		<result property="addre" column="ADDRE" jdbcType="VARCHAR"/>
+		<result property="reason" column="REASON" jdbcType="VARCHAR"/>
+		<result property="note" column="NOTE" jdbcType="VARCHAR"/>
+		<result property="personId" column="PERSON_ID" jdbcType="NUMERIC"/>
+		<result property="retiredId" column="RETIRED_ID" jdbcType="NUMERIC"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="DATE"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,IS_CARE_DECLARE,FIRST_FILL_DATE,FILL_DATE,IS_DECLARE,IS_FLAG,ADDRE,REASON,NOTE,PERSON_ID,RETIRED_ID,CREATER_ID,CREATER_NAME,CREATER_DATE,CREATER_ORG_ID,CREATER_ORG_NAME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(isCareDeclare)"> AND IS_CARE_DECLARE  =#{isCareDeclare} </if>
+			<if test="@Ognl@isNotEmpty(firstFillDate)"> AND FIRST_FILL_DATE  =#{firstFillDate} </if>
+			<if test="@Ognl@isNotEmpty(beginfirstFillDate)"> AND FIRST_FILL_DATE  >=#{beginfirstFillDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endfirstFillDate)"> AND FIRST_FILL_DATE <![CDATA[ <=#{endfirstFillDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(fillDate)"> AND FILL_DATE  =#{fillDate} </if>
+			<if test="@Ognl@isNotEmpty(beginfillDate)"> AND FILL_DATE  >=#{beginfillDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endfillDate)"> AND FILL_DATE <![CDATA[ <=#{endfillDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(isDeclare)"> AND IS_DECLARE  =#{isDeclare} </if>
+			<if test="@Ognl@isNotEmpty(isFlag)"> AND IS_FLAG  =#{isFlag} </if>
+			<if test="@Ognl@isNotEmpty(addre)"> AND ADDRE  LIKE #{addre}  </if>
+			<if test="@Ognl@isNotEmpty(reason)"> AND REASON  LIKE #{reason}  </if>
+			<if test="@Ognl@isNotEmpty(note)"> AND NOTE  LIKE #{note}  </if>
+			<if test="@Ognl@isNotEmpty(personId)"> AND PERSON_ID  =#{personId} </if>
+			<if test="@Ognl@isNotEmpty(retiredId)"> AND RETIRED_ID  =#{retiredId} </if>
+			<if test="@Ognl@isNotEmpty(createrId)"> AND CREATER_ID  =#{createrId} </if>
+			<if test="@Ognl@isNotEmpty(createrName)"> AND CREATER_NAME  LIKE #{createrName}  </if>
+			<if test="@Ognl@isNotEmpty(createrDate)"> AND CREATER_DATE  =#{createrDate} </if>
+			<if test="@Ognl@isNotEmpty(begincreaterDate)"> AND CREATER_DATE  >=#{begincreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(createrOrgId)"> AND CREATER_ORG_ID  =#{createrOrgId} </if>
+			<if test="@Ognl@isNotEmpty(createrOrgName)"> AND CREATER_ORG_NAME  LIKE #{createrOrgName}  </if>
+		</where>
+	</sql>
+	
+	
+	<sql id="vdynamicWhere">
+		<where>
+		 	 t."retiredStatus" = 1 and t."archiveFlowStatus"   != 6
+		 	<if test="@Ognl@isNotEmpty(ids)"> AND t."id"  in (${ids}) </if>
+			<if test="@Ognl@isNotEmpty(retiredStatus)"> AND t."retiredStatus"  =#{retiredStatus} </if>
+			<if test="@Ognl@isNotEmpty(beginretiredDate)"> AND t."retiredDate"  >=#{beginretiredDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endretiredDate)"> AND t."retiredDate" <![CDATA[ <=#{endretiredDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(retiredTypeId)"> AND t."retiredTypeId"  =#{retiredTypeId} </if>
+			<if test="@Ognl@isNotEmpty(retiredPeopleBmStart)"> AND  t."retiredPeopleBm"  >=#{retiredPeopleBmStart,jdbcType=VARCHAR}  </if>
+			<if test="@Ognl@isNotEmpty(retiredPeopleBmEnd)"> AND t."retiredPeopleBm" <![CDATA[ <=#{retiredPeopleBmEnd,jdbcType=VARCHAR}]]>  </if>
+			<if test="@Ognl@isNotEmpty(isDeclare)"> AND t.is_declare  =#{isDeclare} </if>	
+			<if test="@Ognl@isNotEmpty(isCareDeclare)"> AND t.IS_CARE_DECLARE  =#{isCareDeclare} </if>	
+			<if test="@Ognl@isNotEmpty(isFlag)"> AND t.IS_FLAG  =#{isFlag} </if>	
+			<if test="@Ognl@isNotEmpty(addre)"> AND t.addre  like #{addre} </if>	
+			<if test="@Ognl@isNotEmpty(personCard)"> AND t.AAC002  like #{personCard} </if>	
+			<if test="@Ognl@isNotEmpty(archiveCode)"> AND t."archiveCode"  like #{archiveCode} </if>
+			<if test="@Ognl@isNotEmpty(searchValue)"> AND (t."archiveCode"  like #{searchValue} or t.AAC002 like #{searchValue} ) </if>	
+		</where>
+	</sql>
+	
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.retired.model.RetiredCare">
+		INSERT INTO RSDA_BS_RETIRED_CARE
+		(ID,IS_CARE_DECLARE,FIRST_FILL_DATE,FILL_DATE,IS_DECLARE,IS_FLAG,ADDRE,REASON,NOTE,PERSON_ID,RETIRED_ID,CREATER_ID,CREATER_NAME,CREATER_DATE,CREATER_ORG_ID,CREATER_ORG_NAME)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{isCareDeclare,jdbcType=NUMERIC}, #{firstFillDate,jdbcType=DATE}, #{fillDate,jdbcType=DATE}, #{isDeclare,jdbcType=NUMERIC}, #{isFlag,jdbcType=NUMERIC}, #{addre,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{personId,jdbcType=NUMERIC}, #{retiredId,jdbcType=NUMERIC}, #{createrId,jdbcType=NUMERIC}, #{createrName,jdbcType=VARCHAR}, #{createrDate,jdbcType=DATE}, #{createrOrgId,jdbcType=NUMERIC}, #{createrOrgName,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_RETIRED_CARE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.retired.model.RetiredCare">
+		UPDATE RSDA_BS_RETIRED_CARE SET
+		IS_CARE_DECLARE=#{isCareDeclare,jdbcType=NUMERIC},
+		FIRST_FILL_DATE=#{firstFillDate,jdbcType=DATE},
+		FILL_DATE=#{fillDate,jdbcType=DATE},
+		IS_DECLARE=#{isDeclare,jdbcType=NUMERIC},
+		IS_FLAG=#{isFlag,jdbcType=NUMERIC},
+		ADDRE=#{addre,jdbcType=VARCHAR},
+		REASON=#{reason,jdbcType=VARCHAR},
+		NOTE=#{note,jdbcType=VARCHAR},
+		PERSON_ID=#{personId,jdbcType=NUMERIC},
+		RETIRED_ID=#{retiredId,jdbcType=NUMERIC},
+		CREATER_ID=#{createrId,jdbcType=NUMERIC},
+		CREATER_NAME=#{createrName,jdbcType=VARCHAR},
+		CREATER_DATE=#{createrDate,jdbcType=DATE},
+		CREATER_ORG_ID=#{createrOrgId,jdbcType=NUMERIC},
+		CREATER_ORG_NAME=#{createrOrgName,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="RetiredCare">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_RETIRED_CARE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<!-- 根据人员id查询养老待遇信息 -->
+	<select id="getCareByPersonId" parameterType="java.lang.Long" resultMap="RetiredCare">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_RETIRED_CARE
+		WHERE
+		PERSON_ID=#{personId}
+		
+	</select>
+	
+	
+	<!-- 退休人员大病医保  -->	
+	<select id="getRetiredCareList"  resultType="java.util.Map">
+		select * from v_rsda_bs_retired_care t
+		<include refid="vdynamicWhere" />
+		
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by t."id"  desc
+		</if>
+			
+	</select>
+	
+	
+	<!--  -->
+	<select id="getCareGroupByPersonId" resultType="java.util.Map">
+		select * from v_rsda_bs_retired_care_count t 
+		<include refid="vdynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by t."id"  desc
+		</if>
+	</select>
+	
+	
+	<!-- 获得退休人员大病医保信息 -->
+	<select id="getByPersonId" resultType="java.util.Map">
+		select * from v_rsda_bs_retired_care_detail  t
+		where t."personId" = #{personId}
+		order by t."id"  desc
+	</select>
+	
+	
+
+	
+	
+	
+	<select id="getAll" resultMap="RetiredCare">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_RETIRED_CARE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+	default-autowire="byName" default-lazy-init="false">
+	<!-- 人事档案 -->
+	<bean id="archives"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/archives</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.archive.interf.ArchivesServiceInterf</value>
+		</property>
+	</bean>
+	<bean id="receiveArchives"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/receiveArchives</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.receive.interf.ReceiveArchivesServiceInterf</value>
+		</property>
+	</bean>
+	<bean id="proxyManual"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/proxyManual</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.receive.interf.ProxyManualServiceInterf</value>
+		</property>
+	</bean>
+	<bean id="archiveCheckout"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/archiveCheckout</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.archive.interf.ArchiveCheckoutServiceInterf</value>
+		</property>
+	</bean>
+	<bean id="archiveLend"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/archiveLend</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.archive.interf.ArchiveLendServiceInterf</value>
+		</property>
+	</bean>
+	<bean id="archiveLendExp"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/archiveLendExp</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.archive.interf.ArchiveLendExpServiceInterf</value>
+		</property>
+	</bean>
+	<bean id="personExpand"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/personExpand</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.person.interf.PersonExpandServiceInterf</value>
+		</property>
+	</bean>
+	<bean id="specialArchives"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/specialArchives</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.storage.interf.SpecialArchivesServiceInterf</value>
+		</property>
+	</bean>
+	<bean id="changeReporting"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/changeReporting</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.social.interf.ChangeReportingServiceInterf</value>
+		</property>
+	</bean>
+	<bean id="commissionChange"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/commissionChange</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.entrust.interf.CommissionChangeServiceInterf</value>
+		</property>
+	</bean>
+	<bean id="wageStandard"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/wageStandard</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.storage.interf.WageStandardServiceInterf</value>
+		</property>
+	</bean>
+	<bean id="socialsecTransfer"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/socialsecTransfer</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.social.interf.SocialsecTransferServiceInterf</value>
+		</property>
+	</bean>
+	<bean id="personLetter"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/personLetter</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.affair.interf.PersonLetterServiceInterf</value>
+		</property>
+	</bean>
+	<bean id="titleDeclaration"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/titleDeclaration</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.affair.interf.TitleDeclarationServiceInterf</value>
+		</property>
+	</bean>
+	<bean id="examinationRegister"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/examinationRegister</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.affair.interf.ExaminationRegisterServiceInterf</value>
+		</property>
+	</bean>
+	<bean id="residence"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/residence</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.residence.interf.ResidenceServiceInterf</value>
+		</property>
+	</bean>
+	<bean id="residenceMoveOut"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/residenceMoveOut</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.residence.interf.ResidenceMoveOutServiceInterf</value>
+		</property>
+	</bean>
+	<bean id="residenceReturn"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/residenceReturn</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.residence.interf.ResidenceReturnServiceInterf</value>
+		</property>
+	</bean>
+	<bean id="socialSubsidy"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/socialSubsidy</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.subsidy.interf.SocialSubsidyServiceInterf</value>
+		</property>
+	</bean>
+	<bean id="socialBatch"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/socialBatch</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.subsidy.interf.SocialBatchServiceInterf</value>
+		</property>
+	</bean> 
+	<bean id="socialParams"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/socialParams</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.subsidy.interf.SocialParamsServiceInterf</value>
+		</property>
+	</bean>
+	<bean id="socialCorpDeclare"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/socialCorpDeclare</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.subsidy.interf.SocialCorpDeclareServiceInterf</value>
+		</property>
+	</bean>    
+	<bean id="archivesMakeup"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/archivesMakeup</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.subsidy.interf.ArchivesMakeupServiceInterf</value>
+		</property>
+	</bean> 
+	
+	<!-- 退休申报表 -->
+	<bean id="retiredDeclare"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/retiredDeclare</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.retired.interf.RetiredDeclareServiceInterf</value>
+		</property>
+	</bean>
+	
+	<!-- 单位信息协议表  -->
+	<bean id="unitAgreement"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/unitAgreement</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.unitagreement.interf.UnitAgreementServiceInterf</value>
+		</property>
+	</bean> 
+	
+	<!-- 主要工作经历维护 -->
+	<bean id="workExperience"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/workExperience</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.retired.interf.WorkExperienceServiceInterf</value>
+		</property>
+	</bean> 
+	
+	<!-- 主要工作扣减情况维护 -->
+	<bean id="workKj"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/workKj</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.retired.interf.WorkKjServiceInterf</value>
+		</property>
+	</bean>  
+	
+	<!-- 养老待遇申请 -->
+	<bean id="yangLao"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/yangLao</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.retired.interf.YangLaoServiceInterf</value>
+		</property>
+	</bean> 
+	
+	<!-- 退休人员登记 -->
+	<bean id="retiredPerson"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/retiredPerson</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.retired.interf.RetiredPersonServiceInterf</value>
+		</property>
+	</bean>
+
+
+	<!-- 领取退休证 -->
+	<bean id="retiredCard"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/retiredCard</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.retired.interf.RetiredCardServiceInterf</value>
+		</property>
+	</bean> 
+	
+	<!-- 大病医保 -->
+	<bean id="retiredCare"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/retiredCare</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.retired.interf.RetiredCareServiceInterf</value>
+		</property>
+	</bean> 
+	
+	
+	<!--  退休人员转社会化   -->
+	<bean id="retiredSocial"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/retiredSocial</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.retired.interf.RetiredSocialServiceInterf</value>
+		</property>
+	</bean> 
+	
+	<!-- 退休序号 -->
+	<bean id="retiredXh"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/retiredXh</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.retired.interf.RetiredXhServiceInterf</value>
+		</property>
+	</bean> 
+
+
+	<!-- 党组织关系 -->
+	<bean id="party"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/party</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.party.interf.PartyServiceInterf</value>
+		</property>
+	</bean> 
+	
+	<!-- 党费缴纳 -->
+	<bean id="partyPay"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/partyPay</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.party.interf.PartyPayServiceInterf</value>
+		</property>
+	</bean> 
+
+	
+	<bean id="deathDeclare"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/deathDeclare</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.death.interf.DeathDeclareServiceInterf</value>
+		</property>
+	</bean> 
+	
+	
+	
+	<bean id="deathPerson"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/deathPerson</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.death.interf.DeathPersonServiceInterf</value>
+		</property>
+	</bean> 
+
+
+	<!-- demo -->
+	
+	<bean id="demotest"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/demotest</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.demo.interf.DemotestServiceInterf</value>
+		</property>
+	</bean> 
+	
+		<!-- 电子档案 -->
+	<bean id="erecordCatalog"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/erecordCatalog</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.erecord.interf.ErecordCatalogServiceInterf</value>
+		</property>
+	</bean> 
+	<bean id="eArchives"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/eArchives</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.erecord.interf.EArchivesServiceInterf</value>
+		</property>
+	</bean>
+	<!-- 缴费-->
+	<bean id="paymentMain"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/paymentMain</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.payment.interf.PaymentMainServiceInterf</value>
+		</property>
+	</bean> 
+	<bean id="paymentRecord"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/paymentRecord</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.payment.interf.PaymentRecordServiceInterf</value>
+		</property>
+	</bean> 
+	<bean id="paymentRefund"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/paymentRefund</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.payment.interf.PaymentRefundServiceInterf</value>
+		</property>
+	</bean>
+	<bean id="paymentCorpRecord"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/paymentCorpRecord</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.payment.interf.PaymentCorpRecordServiceInterf</value>
+		</property>
+	</bean> 
+	<bean id="paymentDerate"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/paymentDerate</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.payment.interf.PaymentDerateServiceInterf</value>
+		</property>
+	</bean>
+	<bean id="paymentCorpDerate"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/paymentCorpDerate</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.payment.interf.PaymentCorpDerateServiceInterf</value>
+		</property>
+	</bean>
+	<bean id="paymentYearDetail"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/paymentYearDetail</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.payment.interf.PaymentYearDetailServiceInterf</value>
+		</property>
+	</bean> 
+	<!-- 参数管理-->   
+	<bean id="paramsPayment"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/paramsPayment</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.params.interf.ParamsPaymentServiceInterf</value>
+		</property>
+	</bean>
+	<bean id="paramsMonthBase"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/paramsMonthBase</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.params.interf.ParamsMonthBaseServiceInterf</value>
+		</property>
+	</bean>
+	<bean id="paramsAgentCode"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/paramsAgentCode</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.params.interf.ParamsAgentCodeServiceInterf</value>
+		</property>
+	</bean> 
+	<bean id="paramsDiffCorp"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/paramsDiffCorp</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.params.interf.ParamsDiffCorpServiceInterf</value>
+		</property>
+	</bean> 
+	<bean id="paramsInsuredFile"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/paramsInsuredFile</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.params.interf.ParamsInsuredFileServiceInterf</value>
+		</property>
+	</bean> 
+	<bean id="paramsAccountsCorp"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/paramsAccountsCorp</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.params.interf.ParamsAccountsCorpServiceInterf</value>
+		</property>
+	</bean> 
+	<!-- 打印模版-->  
+	<bean id="printTemplate"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/printTemplate</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.print.interf.PrintTemplateServiceInterf</value>
+		</property>
+	</bean>
+	<!-- 人士档案个人基本信息管理-->  
+	<bean id="agencyPersonExpand"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/agencyPersonExpand</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.person.interf.AgencyPersonExpandServiceInterf</value>
+		</property>
+	</bean> 
+	<!-- 企业和个人关系表 -->
+	<bean id="corpPerson"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/corpPerson</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.business.personagency.receive.interf.CorpPersonServiceInterf</value>
+		</property>
+	</bean>
+	<bean id="appVersion"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="overloadEnabled" value="true" />
+		<property name="serviceUrl">
+			<value>${servicemanager.url}/remote/appVersion</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.xunfeng.sys.appVersion.interf.AppVersionServiceInterf</value>
+		</property>
+	</bean>  
+	
+</beans>

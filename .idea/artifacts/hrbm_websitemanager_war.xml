@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="hrbm-websitemanager:war">
+    <output-path>$PROJECT_DIR$/hrbm-websitemanager/target</output-path>
+    <root id="archive" name="websitem.war">
+      <element id="artifact" artifact-name="hrbm-websitemanager:war exploded" />
+    </root>
+  </artifact>
+</component>

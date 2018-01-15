@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.jobfair.model.JobFairInfoSite">
+	<resultMap id="JobFairInfoSite" type="com.xunfeng.business.jobfair.model.JobFairInfoSite">
+		<id property="cccd01" column="CCCD01" jdbcType="NUMERIC"/>
+		<result property="acb330" column="ACB330" jdbcType="NUMERIC"/>
+		<result property="acd250" column="ACD250" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		CCCD01,ACB330,ACD250
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(cccd01)"> AND CCCD01  =#{cccd01} </if>
+			<if test="@Ognl@isNotEmpty(acb330)"> AND ACB330  =#{acb330} </if>
+			<if test="@Ognl@isNotEmpty(acd250)"> AND ACD250  =#{acd250} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.jobfair.model.JobFairInfoSite">
+		INSERT INTO CCZ06
+		(CCCD01,ACB330,ACD250)
+		VALUES
+		(#{cccd01,jdbcType=NUMERIC}, #{acb330,jdbcType=NUMERIC}, #{acd250,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM CCZ06 
+		WHERE
+		CCCD01=#{cccd01}
+	</delete>
+	<delete id="dateleByJobFairInfoId" parameterType="java.lang.Long">
+		DELETE FROM CCZ06
+		WHERE
+		acb330=#{acb330}
+	</delete>
+	<update id="update" parameterType="com.xunfeng.business.jobfair.model.JobFairInfoSite">
+		UPDATE CCZ06 SET
+		ACB330=#{acb330,jdbcType=NUMERIC},
+		ACD250=#{acd250,jdbcType=NUMERIC}
+		WHERE
+		CCCD01=#{cccd01}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="JobFairInfoSite">
+		SELECT <include refid="columns"/>
+		FROM CCZ06
+		WHERE
+		CCCD01=#{cccd01}
+	</select>
+	
+	<select id="getAll" resultMap="JobFairInfoSite">
+		SELECT <include refid="columns"/>
+		FROM CCZ06   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by CCCD01  desc
+		</if>
+	</select>
+</mapper>

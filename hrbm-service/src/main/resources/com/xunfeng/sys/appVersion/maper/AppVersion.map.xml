@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.sys.appVersion.model.AppVersion">
+	<resultMap id="AppVersion" type="com.xunfeng.sys.appVersion.model.AppVersion">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="versionNumber" column="VERSION_NUMBER" jdbcType="VARCHAR"/>
+		<result property="versionDescription" column="VERSION_DESCRIPTION" jdbcType="VARCHAR"/>
+		<result property="versionDownAddress" column="VERSION_DOWN_ADDRESS" jdbcType="VARCHAR"/>
+		<result property="aae011" column="AAE011" jdbcType="VARCHAR"/>
+		<result property="aae019" column="AAE019" jdbcType="VARCHAR"/>
+		<result property="aae020" column="AAE020" jdbcType="VARCHAR"/>
+		<result property="aae036" column="AAE036" jdbcType="DATE"/>
+		<result property="aae017" column="AAE017" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+		<result property="versionUpDate" column="VERSION_UP_DATE" jdbcType="DATE"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,VERSION_NUMBER,VERSION_DESCRIPTION,VERSION_DOWN_ADDRESS,AAE011,AAE019,AAE020,AAE036,AAE017,CCPR08,VERSION_UP_DATE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(versionNumber)"> AND VERSION_NUMBER  LIKE #{versionNumber}  </if>
+			<if test="@Ognl@isNotEmpty(versionDescription)"> AND VERSION_DESCRIPTION  LIKE #{versionDescription}  </if>
+			<if test="@Ognl@isNotEmpty(versionDownAddress)"> AND VERSION_DOWN_ADDRESS  LIKE #{versionDownAddress}  </if>
+			<if test="@Ognl@isNotEmpty(aae011)"> AND AAE011  LIKE #{aae011}  </if>
+			<if test="@Ognl@isNotEmpty(aae019)"> AND AAE019  LIKE #{aae019}  </if>
+			<if test="@Ognl@isNotEmpty(aae020)"> AND AAE020  LIKE #{aae020}  </if>
+			<if test="@Ognl@isNotEmpty(aae036)"> AND AAE036  =#{aae036} </if>
+			<if test="@Ognl@isNotEmpty(beginaae036)"> AND AAE036  >=#{beginaae036,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaae036)"> AND AAE036 <![CDATA[ <=#{endaae036,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aae017)"> AND AAE017  LIKE #{aae017}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr08)"> AND CCPR08  LIKE #{ccpr08}  </if>
+			<if test="@Ognl@isNotEmpty(versionUpDate)"> AND VERSION_UP_DATE  =#{versionUpDate} </if>
+			<if test="@Ognl@isNotEmpty(beginversionUpDate)"> AND VERSION_UP_DATE  >=#{beginversionUpDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endversionUpDate)"> AND VERSION_UP_DATE <![CDATA[ <=#{endversionUpDate,jdbcType=DATE}]]> </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.sys.appVersion.model.AppVersion">
+		INSERT INTO SYS_APP_VERSION
+		(ID,VERSION_NUMBER,VERSION_DESCRIPTION,VERSION_DOWN_ADDRESS,AAE011,AAE019,AAE020,AAE036,AAE017,CCPR08,VERSION_UP_DATE)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{versionNumber,jdbcType=VARCHAR}, #{versionDescription,jdbcType=VARCHAR}, #{versionDownAddress,jdbcType=VARCHAR}, #{aae011,jdbcType=VARCHAR}, #{aae019,jdbcType=VARCHAR}, #{aae020,jdbcType=VARCHAR}, #{aae036,jdbcType=DATE}, #{aae017,jdbcType=VARCHAR}, #{ccpr08,jdbcType=VARCHAR}, #{versionUpDate,jdbcType=DATE})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_APP_VERSION 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.sys.appVersion.model.AppVersion">
+		UPDATE SYS_APP_VERSION SET
+		VERSION_NUMBER=#{versionNumber,jdbcType=VARCHAR},
+		VERSION_DESCRIPTION=#{versionDescription,jdbcType=VARCHAR},
+		VERSION_DOWN_ADDRESS=#{versionDownAddress,jdbcType=VARCHAR},
+		AAE011=#{aae011,jdbcType=VARCHAR},
+		AAE019=#{aae019,jdbcType=VARCHAR},
+		AAE020=#{aae020,jdbcType=VARCHAR},
+		AAE036=#{aae036,jdbcType=DATE},
+		AAE017=#{aae017,jdbcType=VARCHAR},
+		CCPR08=#{ccpr08,jdbcType=VARCHAR},
+		VERSION_UP_DATE=#{versionUpDate,jdbcType=DATE}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="AppVersion">
+		SELECT <include refid="columns"/>
+		FROM SYS_APP_VERSION
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="AppVersion">
+		SELECT <include refid="columns"/>
+		FROM SYS_APP_VERSION   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	<!-- 获取升级的版本数据 -->
+	<select id="getAppVersionBy" resultMap="AppVersion">
+		SELECT <include refid="columns"/>
+		FROM SYS_APP_VERSION a
+		<choose>
+			<when test="@Ognl@isNotEmpty(versionNumber)">
+				WHERE a.VERSION_NUMBER  LIKE #{versionNumber} and a.ccpr08 = 0
+			</when>
+			<otherwise>
+				WHERE a.id = (select max(id) from SYS_APP_VERSION b where b.ccpr08 = 0)
+			</otherwise>
+	  	</choose>
+	</select>
+</mapper>

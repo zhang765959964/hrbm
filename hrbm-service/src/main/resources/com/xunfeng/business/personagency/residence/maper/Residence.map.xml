@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.residence.model.Residence">
+	<resultMap id="Residence" type="com.xunfeng.business.personagency.residence.model.Residence">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="archivesId" column="ARCHIVES_ID" jdbcType="NUMERIC"/>
+		<result property="personId" column="PERSON_ID" jdbcType="NUMERIC"/>
+		<result property="applicationDate" column="APPLICATION_DATE" jdbcType="DATE"/>
+		<result property="materialCategory" column="MATERIAL_CATEGORY" jdbcType="VARCHAR"/>
+		<result property="materialName" column="MATERIAL_NAME" jdbcType="VARCHAR"/>
+		<result property="aae005" column="AAE005" jdbcType="VARCHAR"/>
+		<result property="isBack" column="IS_BACK" jdbcType="VARCHAR"/>
+		<result property="backReason" column="BACK_REASON" jdbcType="VARCHAR"/>
+		<result property="applicationOneselfDate" column="APPLICATION_ONESELF_DATE" jdbcType="DATE"/>
+		<result property="isNotice" column="IS_NOTICE" jdbcType="VARCHAR"/>
+		<result property="noticeDate" column="NOTICE_DATE" jdbcType="DATE"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="DATE"/>
+		<result property="cczy06" column="CCZY06" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,ARCHIVES_ID,PERSON_ID,APPLICATION_DATE,MATERIAL_CATEGORY,MATERIAL_NAME,AAE005,IS_BACK,BACK_REASON,APPLICATION_ONESELF_DATE,IS_NOTICE,NOTICE_DATE,CREATER_ID,CREATER_NAME,CREATER_ORG_ID,CREATER_ORG_NAME,CREATER_DATE,CCZY06,CCPR08
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(archivesId)"> AND ARCHIVES_ID  =#{archivesId} </if>
+			<if test="@Ognl@isNotEmpty(personId)"> AND m.PERSON_ID  =#{personId} </if>
+			<if test="@Ognl@isNotEmpty(applicationDate)"> AND APPLICATION_DATE  =#{applicationDate} </if>
+			<if test="@Ognl@isNotEmpty(beginapplicationDate)"> AND m.APPLICATION_DATE  >=#{beginapplicationDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endapplicationDate)"> AND m.APPLICATION_DATE <![CDATA[ <=#{endapplicationDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(materialCategory)"> AND m.MATERIAL_CATEGORY  LIKE #{materialCategory}  </if>
+			<if test="@Ognl@isNotEmpty(materialName)"> AND MATERIAL_NAME  LIKE #{materialName}  </if>
+			<if test="@Ognl@isNotEmpty(aae005)"> AND AAE005  LIKE #{aae005}  </if>
+			<if test="@Ognl@isNotEmpty(isBack)"> AND IS_BACK  LIKE #{isBack}  </if>
+			<if test="@Ognl@isNotEmpty(backReason)"> AND BACK_REASON  LIKE #{backReason}  </if>
+			<if test="@Ognl@isNotEmpty(applicationOneselfDate)"> AND APPLICATION_ONESELF_DATE  =#{applicationOneselfDate} </if>
+			<if test="@Ognl@isNotEmpty(beginapplicationOneselfDate)"> AND APPLICATION_ONESELF_DATE  >=#{beginapplicationOneselfDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endapplicationOneselfDate)"> AND APPLICATION_ONESELF_DATE <![CDATA[ <=#{endapplicationOneselfDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(isNotice)"> AND m.IS_NOTICE  LIKE #{isNotice}  </if>
+			<if test="@Ognl@isNotEmpty(noticeDate)"> AND NOTICE_DATE  =#{noticeDate} </if>
+			<if test="@Ognl@isNotEmpty(beginnoticeDate)"> AND NOTICE_DATE  >=#{beginnoticeDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endnoticeDate)"> AND NOTICE_DATE <![CDATA[ <=#{endnoticeDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(createrId)"> AND CREATER_ID  =#{createrId} </if>
+			<if test="@Ognl@isNotEmpty(createrName)"> AND m.CREATER_NAME  LIKE #{createrName}  </if>
+			<if test="@Ognl@isNotEmpty(createrOrgId)"> AND CREATER_ORG_ID  =#{createrOrgId} </if>
+			<if test="@Ognl@isNotEmpty(createrOrgName)"> AND m.CREATER_ORG_NAME  LIKE #{createrOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(createrDate)"> AND CREATER_DATE  =#{createrDate} </if>
+			<if test="@Ognl@isNotEmpty(begincreaterDate)"> AND m.CREATER_DATE  >=#{begincreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND m.CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(cczy06)"> AND CCZY06  LIKE #{cczy06}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr08)"> AND m.CCPR08  LIKE #{ccpr08}  </if>
+			
+			<if test="@Ognl@isNotEmpty(archiveCode)"> AND upper(a.ARCHIVE_CODE) LIKE upper(#{archiveCode}) </if>
+			<if test="@Ognl@isNotEmpty(aac002)"> AND upper(p.AAC002) LIKE upper(#{aac002})  </if>
+			<if test="@Ognl@isNotEmpty(aac003)"> AND p.AAC003  LIKE #{aac003}  </if>
+			<if test="@Ognl@isNotEmpty(aac004)"> AND p.AAC004  LIKE #{aac004}  </if>
+			<if test="@Ognl@isNotEmpty(aac022)"> AND upper(p.AAC022) LIKE upper(#{aac022})  </if>
+			<if test="@Ognl@isNotEmpty(archiveType)"> AND a.ARCHIVE_TYPE  =#{archiveType} </if>
+			<if test="@Ognl@isNotEmpty(ids)"> AND m.ID in (${ids})</if>
+			
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.residence.model.Residence">
+		INSERT INTO RSDA_BS_RESIDENCE
+		(ID,ARCHIVES_ID,PERSON_ID,APPLICATION_DATE,MATERIAL_CATEGORY,MATERIAL_NAME,AAE005,IS_BACK,BACK_REASON,APPLICATION_ONESELF_DATE,IS_NOTICE,NOTICE_DATE,CREATER_ID,CREATER_NAME,CREATER_ORG_ID,CREATER_ORG_NAME,CREATER_DATE,CCZY06,CCPR08)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{archivesId,jdbcType=NUMERIC}, #{personId,jdbcType=NUMERIC}, #{applicationDate,jdbcType=DATE}, #{materialCategory,jdbcType=VARCHAR}, #{materialName,jdbcType=VARCHAR}, #{aae005,jdbcType=VARCHAR}, #{isBack,jdbcType=VARCHAR}, #{backReason,jdbcType=VARCHAR}, #{applicationOneselfDate,jdbcType=DATE}, #{isNotice,jdbcType=VARCHAR}, #{noticeDate,jdbcType=DATE}, #{createrId,jdbcType=NUMERIC}, #{createrName,jdbcType=VARCHAR}, #{createrOrgId,jdbcType=NUMERIC}, #{createrOrgName,jdbcType=VARCHAR}, #{createrDate,jdbcType=DATE}, #{cczy06,jdbcType=VARCHAR}, #{ccpr08,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_RESIDENCE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.residence.model.Residence">
+		UPDATE RSDA_BS_RESIDENCE SET
+		ARCHIVES_ID=#{archivesId,jdbcType=NUMERIC},
+		PERSON_ID=#{personId,jdbcType=NUMERIC},
+		APPLICATION_DATE=#{applicationDate,jdbcType=DATE},
+		MATERIAL_CATEGORY=#{materialCategory,jdbcType=VARCHAR},
+		MATERIAL_NAME=#{materialName,jdbcType=VARCHAR},
+		AAE005=#{aae005,jdbcType=VARCHAR},
+		IS_BACK=#{isBack,jdbcType=VARCHAR},
+		BACK_REASON=#{backReason,jdbcType=VARCHAR},
+		APPLICATION_ONESELF_DATE=#{applicationOneselfDate,jdbcType=DATE},
+		IS_NOTICE=#{isNotice,jdbcType=VARCHAR},
+		NOTICE_DATE=#{noticeDate,jdbcType=DATE},
+		CREATER_ID=#{createrId,jdbcType=NUMERIC},
+		CREATER_NAME=#{createrName,jdbcType=VARCHAR},
+		CREATER_ORG_ID=#{createrOrgId,jdbcType=NUMERIC},
+		CREATER_ORG_NAME=#{createrOrgName,jdbcType=VARCHAR},
+		CREATER_DATE=#{createrDate,jdbcType=DATE},
+		CCZY06=#{cczy06,jdbcType=VARCHAR},
+		CCPR08=#{ccpr08,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Residence">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_RESIDENCE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Residence">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_RESIDENCE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<!-- 查询所有户口材料数据 -->
+	<select id="getAllResidence" resultType="java.util.HashMap">
+		SELECT  m.ID as "id"
+				,p.AAC003 as "aac003",p.AAC002 as "aac002",e.name as "genderName",to_char(p.AAC006,'yyyy-mm-dd') as "aac006"
+				,a.ARCHIVE_CODE as "archiveCode",a.ARCHIVE_NAME as "archiveName"
+				,to_char(a.ARCHIVE_BIRTH_DATE,'yyyy-mm-dd') as "archiveBirthDate"
+				,to_char(a.RECEIVE_DATE,'yyyy-mm-dd') as "receiveDate"
+				,s.name as "archiveStatusName"
+				,h.name as "archiveTypeName"
+				,i.EXP_PERSON_PHONE as "expPersonPhone"
+				,d.name as "educationName"
+				,to_char(m.APPLICATION_DATE,'yyyy-mm-dd') as "applicationDate" 
+				,b.name as "materialCategoryName"
+				,m.MATERIAL_NAME as "materialName"
+				,m.AAE005 as "aae005"
+				,decode(m.IS_BACK , 0, '否', 1, '是') as "isBackName"
+				,m.BACK_REASON as "backReason" 
+				,to_char(m.APPLICATION_ONESELF_DATE,'yyyy-mm-dd') as "applicationOneselfDate"
+				,decode(m.IS_NOTICE , 0, '否', 1, '是') as "isNoticeName"
+				,to_char(m.NOTICE_DATE,'yyyy-mm-dd') as "noticeDate"
+				,to_char(m.CREATER_DATE,'yyyy-mm-dd') as "createrDate"
+				,m.CREATER_NAME as "createrName"
+				,m.CREATER_ORG_NAME as "createrOrgName"
+				
+		FROM RSDA_BS_RESIDENCE m 
+		left join RSDA_BS_ARCHIVE_ARCHIVES a on a.ID=m.ARCHIVES_ID
+		left join ac01 p on p.AAC001=a.PERSON_ID
+		left join RSDA_BS_PERSON_EXPAND i on i.EXP_PERSON_ID=a.PERSON_ID
+        left join RSDA_TAB_ARCHIVETYPE h on h.code=a.ARCHIVE_TYPE
+        left join RSDA_TAB_ARCHIVESTATUS s on s.code=a.ARCHIVE_STATUS
+		left join TAB_EDUCATION d on d.code=p.aac011 
+        left join TAB_SEX e on e.code=p.AAC004
+     	left join RSDA_TAB_MATERIAL_CATEGORY b on b.code=m.MATERIAL_CATEGORY
+        
+        <include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+			order by m.CREATER_DATE  desc,m.ID desc
+		</if>
+	</select>
+	
+</mapper>

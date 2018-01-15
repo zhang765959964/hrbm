@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.dissupport.divice.model.DiviceModel">
+	<resultMap id="DiviceModel" type="com.xunfeng.business.dissupport.divice.model.DiviceModel">
+		<id property="mod001" column="MOD001" jdbcType="NUMERIC"/>
+		<result property="mod002" column="MOD002" jdbcType="VARCHAR"/>
+		<result property="acd200" column="ACD200" jdbcType="NUMERIC"/>
+		<result property="mod003" column="MOD003" jdbcType="VARCHAR"/>
+		<result property="mod004" column="MOD004" jdbcType="VARCHAR"/>
+		<result property="aae013" column="AAE013" jdbcType="VARCHAR"/>
+		<result property="aae011" column="AAE011" jdbcType="VARCHAR"/>
+		<result property="aae017" column="AAE017" jdbcType="VARCHAR"/>
+		<result property="aae036" column="AAE036" jdbcType="TIMESTAMP"/>
+		<result property="aae019" column="AAE019" jdbcType="VARCHAR"/>
+		<result property="aae020" column="AAE020" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		MOD001,MOD002,ACD200,MOD003,MOD004,AAE013,AAE011,AAE017,AAE036,AAE019,AAE020
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(mod001)"> AND MOD001  =#{mod001} </if>
+			<if test="@Ognl@isNotEmpty(mod002)"> AND MOD002  LIKE #{mod002}  </if>
+			<if test="@Ognl@isNotEmpty(acd200)"> AND ACD200  =#{acd200} </if>
+			<if test="@Ognl@isNotEmpty(mod003)"> AND MOD003  LIKE #{mod003}  </if>
+			<if test="@Ognl@isNotEmpty(mod004)"> AND MOD004  LIKE #{mod004}  </if>
+			<if test="@Ognl@isNotEmpty(aae013)"> AND AAE013  LIKE #{aae013}  </if>
+			<if test="@Ognl@isNotEmpty(aae011)"> AND AAE011  LIKE #{aae011}  </if>
+			<if test="@Ognl@isNotEmpty(aae017)"> AND AAE017  LIKE #{aae017}  </if>
+			<if test="@Ognl@isNotEmpty(aae036)"> AND AAE036  =#{aae036} </if>
+			<if test="@Ognl@isNotEmpty(beginaae036)"> AND AAE036  >=#{beginaae036,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaae036)"> AND AAE036 <![CDATA[ <=#{endaae036,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aae019)"> AND AAE019  LIKE #{aae019}  </if>
+			<if test="@Ognl@isNotEmpty(aae020)"> AND AAE020  LIKE #{aae020}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.dissupport.divice.model.DiviceModel">
+		INSERT INTO G_MODEL
+		(MOD001,MOD002,ACD200,MOD003,MOD004,AAE013,AAE011,AAE017,AAE036,AAE019,AAE020)
+		VALUES
+		(#{mod001,jdbcType=NUMERIC}, #{mod002,jdbcType=VARCHAR}, #{acd200,jdbcType=NUMERIC}, #{mod003,jdbcType=VARCHAR}, #{mod004,jdbcType=VARCHAR}, #{aae013,jdbcType=VARCHAR}, #{aae011,jdbcType=VARCHAR}, #{aae017,jdbcType=VARCHAR}, #{aae036,jdbcType=TIMESTAMP}, #{aae019,jdbcType=VARCHAR}, #{aae020,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM G_MODEL 
+		WHERE
+		MOD001=#{mod001}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.dissupport.divice.model.DiviceModel">
+		UPDATE G_MODEL SET
+		MOD002=#{mod002,jdbcType=VARCHAR},
+		ACD200=#{acd200,jdbcType=NUMERIC},
+		MOD003=#{mod003,jdbcType=VARCHAR},
+		MOD004=#{mod004,jdbcType=VARCHAR},
+		AAE013=#{aae013,jdbcType=VARCHAR},
+		AAE011=#{aae011,jdbcType=VARCHAR},
+		AAE017=#{aae017,jdbcType=VARCHAR},
+		AAE036=#{aae036,jdbcType=TIMESTAMP},
+		AAE019=#{aae019,jdbcType=VARCHAR},
+		AAE020=#{aae020,jdbcType=VARCHAR}
+		WHERE
+		MOD001=#{mod001}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="DiviceModel">
+		SELECT <include refid="columns"/>
+		FROM G_MODEL
+		WHERE
+		MOD001=#{mod001}
+	</select>
+	
+	<select id="getAll" resultMap="DiviceModel">
+		SELECT <include refid="columns"/>
+		FROM G_MODEL   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by MOD001  desc
+		</if>
+	</select>
+</mapper>

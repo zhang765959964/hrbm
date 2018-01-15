@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.machine.model.Machine">
+	<resultMap id="Machine" type="com.xunfeng.business.machine.model.Machine">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="machineName" column="MACHINE_NAME" jdbcType="VARCHAR"/>
+		<result property="machineAddress" column="MACHINE_ADDRESS" jdbcType="VARCHAR"/>
+		<result property="machineIp" column="MACHINE_IP" jdbcType="VARCHAR"/>
+		<result property="machineCode" column="MACHINE_CODE" jdbcType="VARCHAR"/>
+		<result property="gprsX" column="GPRS_X" jdbcType="NUMERIC"/>
+		<result property="gprsY" column="GPRS_Y" jdbcType="NUMERIC"/>
+		<result property="zoom" column="ZOOM" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,MACHINE_NAME,MACHINE_ADDRESS,MACHINE_IP,MACHINE_CODE,GPRS_X,GPRS_Y,ZOOM
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(machineName)"> AND MACHINE_NAME  LIKE #{machineName}  </if>
+			<if test="@Ognl@isNotEmpty(machineAddress)"> AND MACHINE_ADDRESS  LIKE #{machineAddress}  </if>
+			<if test="@Ognl@isNotEmpty(machineIp)"> AND MACHINE_IP  LIKE #{machineIp}  </if>
+			<if test="@Ognl@isNotEmpty(machineCode)"> AND MACHINE_CODE  LIKE #{machineCode}  </if>
+			<if test="@Ognl@isNotEmpty(gprsX)"> AND GPRS_X  =#{gprsX} </if>
+			<if test="@Ognl@isNotEmpty(gprsY)"> AND GPRS_Y  =#{gprsY} </if>
+			<if test="@Ognl@isNotEmpty(zoom)"> AND ZOOM  =#{zoom} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.machine.model.Machine">
+		INSERT INTO MACHINE
+		(ID,MACHINE_NAME,MACHINE_ADDRESS,MACHINE_IP,MACHINE_CODE,GPRS_X,GPRS_Y,ZOOM)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{machineName,jdbcType=VARCHAR}, #{machineAddress,jdbcType=VARCHAR}, #{machineIp,jdbcType=VARCHAR}, #{machineCode,jdbcType=VARCHAR}, #{gprsX,jdbcType=NUMERIC}, #{gprsY,jdbcType=NUMERIC}, #{zoom,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM MACHINE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.machine.model.Machine">
+		UPDATE MACHINE SET
+		MACHINE_NAME=#{machineName,jdbcType=VARCHAR},
+		MACHINE_ADDRESS=#{machineAddress,jdbcType=VARCHAR},
+		MACHINE_IP=#{machineIp,jdbcType=VARCHAR},
+		MACHINE_CODE=#{machineCode,jdbcType=VARCHAR},
+		GPRS_X=#{gprsX,jdbcType=NUMERIC},
+		GPRS_Y=#{gprsY,jdbcType=NUMERIC},
+		ZOOM=#{zoom,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Machine">
+		SELECT <include refid="columns"/>
+		FROM MACHINE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Machine">
+		SELECT <include refid="columns"/>
+		FROM MACHINE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

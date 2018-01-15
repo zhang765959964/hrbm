@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.hrtool.model.HRToolModel">
+	<resultMap id="HRToolModel" type="com.xunfeng.business.hrtool.model.HRToolModel">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="code" column="CODE" jdbcType="VARCHAR"/>
+		<result property="colId" column="COL_ID" jdbcType="NUMERIC"/>
+		<result property="sortNum" column="SORT_NUM" jdbcType="NUMERIC"/>
+		<result property="description" column="DESCRIPTION" jdbcType="VARCHAR"/>
+		<result property="createDate" column="CREATE_DATE" jdbcType="TIMESTAMP"/>
+		<result property="createUserId" column="CREATE_USER_ID" jdbcType="NUMERIC"/>
+		<result property="updateDate" column="UPDATE_DATE" jdbcType="TIMESTAMP"/>
+		<result property="updateUserId" column="UPDATE_USER_ID" jdbcType="NUMERIC"/>
+		<result property="filePath" column="FILE_PATH" jdbcType="VARCHAR"/>
+		<result property="downNum" column="DOWN_NUM" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,NAME,CODE,COL_ID,SORT_NUM,DESCRIPTION,CREATE_DATE,CREATE_USER_ID,UPDATE_DATE,UPDATE_USER_ID,FILE_PATH,DOWN_NUM
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(code)"> AND CODE  LIKE #{code}  </if>
+			<if test="@Ognl@isNotEmpty(colId)"> AND COL_ID  =#{colId} </if>
+			<if test="@Ognl@isNotEmpty(sortNum)"> AND SORT_NUM  =#{sortNum} </if>
+			<if test="@Ognl@isNotEmpty(description)"> AND DESCRIPTION  LIKE #{description}  </if>
+			<if test="@Ognl@isNotEmpty(createDate)"> AND CREATE_DATE  =#{createDate} </if>
+			<if test="@Ognl@isNotEmpty(begincreateDate)"> AND CREATE_DATE  >=#{begincreateDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreateDate)"> AND CREATE_DATE <![CDATA[ <=#{endcreateDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(createUserId)"> AND CREATE_USER_ID  =#{createUserId} </if>
+			<if test="@Ognl@isNotEmpty(updateDate)"> AND UPDATE_DATE  =#{updateDate} </if>
+			<if test="@Ognl@isNotEmpty(beginupdateDate)"> AND UPDATE_DATE  >=#{beginupdateDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endupdateDate)"> AND UPDATE_DATE <![CDATA[ <=#{endupdateDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(updateUserId)"> AND UPDATE_USER_ID  =#{updateUserId} </if>
+			<if test="@Ognl@isNotEmpty(filePath)"> AND FILE_PATH  LIKE #{filePath}  </if>
+			<if test="@Ognl@isNotEmpty(downNum)"> AND DOWN_NUM  =#{downNum} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.hrtool.model.HRToolModel">
+		INSERT INTO HR_TOOL_MODEL
+		(ID,NAME,CODE,COL_ID,SORT_NUM,DESCRIPTION,CREATE_DATE,CREATE_USER_ID,UPDATE_DATE,UPDATE_USER_ID,FILE_PATH,DOWN_NUM)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{colId,jdbcType=NUMERIC}, #{sortNum,jdbcType=NUMERIC}, #{description,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=NUMERIC}, #{updateDate,jdbcType=TIMESTAMP}, #{updateUserId,jdbcType=NUMERIC}, #{filePath,jdbcType=VARCHAR}, #{downNum,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM HR_TOOL_MODEL 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.hrtool.model.HRToolModel">
+		UPDATE HR_TOOL_MODEL SET
+		NAME=#{name,jdbcType=VARCHAR},
+		CODE=#{code,jdbcType=VARCHAR},
+		COL_ID=#{colId,jdbcType=NUMERIC},
+		SORT_NUM=#{sortNum,jdbcType=NUMERIC},
+		DESCRIPTION=#{description,jdbcType=VARCHAR},
+		CREATE_DATE=#{createDate,jdbcType=TIMESTAMP},
+		CREATE_USER_ID=#{createUserId,jdbcType=NUMERIC},
+		UPDATE_DATE=#{updateDate,jdbcType=TIMESTAMP},
+		UPDATE_USER_ID=#{updateUserId,jdbcType=NUMERIC},
+		FILE_PATH=#{filePath,jdbcType=VARCHAR},
+		DOWN_NUM=#{downNum,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+	<update id="updateDownNum" parameterType="java.util.Map">
+		UPDATE HR_TOOL_MODEL SET  DOWN_NUM=DOWN_NUM+1
+		WHERE
+		id=#{id}
+	</update> 	    
+	<select id="getById" parameterType="java.lang.Long" resultMap="HRToolModel">
+		SELECT <include refid="columns"/>
+		FROM HR_TOOL_MODEL
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getHotList"  resultMap="HRToolModel">
+		SELECT <include refid="columns"/>
+		FROM HR_TOOL_MODEL t  order by t.down_num desc
+	</select>
+	
+	<select id="getAll" resultMap="HRToolModel">
+		SELECT <include refid="columns"/>
+		FROM HR_TOOL_MODEL   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  asc 
+		</if>
+	</select>
+</mapper>

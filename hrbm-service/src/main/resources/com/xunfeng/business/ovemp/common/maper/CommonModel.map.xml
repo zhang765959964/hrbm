@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.ovemp.common.model.CommonModel">
+	 <select id="getCoopOrgViewList" resultType="map">
+	  SELECT ACD202,ACD200,AAB301,AAB301N,JCO005,JCO006,AAB034,AAB034N,JCO008,JCO008N,ACD20A,AAE006,AAE015,AAE004,AAE005,ACD205,AAE016,AAE014,AAE007,JCO019,AAE011,AAE017,to_char(AAE036,'yyyy-mm-dd') AAE036,AAE019,AAE020,CCPR08,CCZY06,CCZY06N,ACB208,ACB208N,JCO020,CABQ01,CABQ01N,CABQ02,CABQ03,CABQ04
+	  FROM V_JW_COOP_ORG
+	 </select>
+</mapper>

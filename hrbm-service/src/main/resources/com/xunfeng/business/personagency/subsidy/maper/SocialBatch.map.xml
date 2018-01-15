@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.subsidy.model.SocialBatch">
+	<resultMap id="SocialBatch" type="com.xunfeng.business.personagency.subsidy.model.SocialBatch">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="batchName" column="BATCH_NAME" jdbcType="VARCHAR"/>
+		<result property="batchStartdate" column="BATCH_STARTDATE" jdbcType="DATE"/>
+		<result property="batchEnddate" column="BATCH_ENDDATE" jdbcType="DATE"/>
+		<result property="description" column="DESCRIPTION" jdbcType="VARCHAR"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="TIMESTAMP"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+	</resultMap>
+	<resultMap id="socialBatchSumDto" type="com.xunfeng.business.personagency.subsidy.dto.SocialBatchSumDto">
+	    <result property="pensionSubsidyNum" column="PENSION_SUBSIDY_NUM" jdbcType="NUMERIC"/>
+		<result property="pensionSubsidyAmount" column="PENSION_SUBSIDY_AMOUNT" jdbcType="NUMERIC"/>
+		<result property="medicalSubsidyNum" column="MEDICAL_SUBSIDY_NUM" jdbcType="NUMERIC"/>
+		<result property="medicalSubsidyAmount" column="MEDICAL_SUBSIDY_AMOUNT" jdbcType="NUMERIC"/>
+		<result property="totalSubsidyNum" column="TOTAL_SUBSIDY_NUM" jdbcType="NUMERIC"/>
+		<result property="totalSubsidyAmount" column="TOTAL_SUBSIDY_AMOUNT" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,BATCH_NAME,BATCH_STARTDATE,BATCH_ENDDATE,DESCRIPTION,CREATER_ID,CREATER_NAME,CREATER_DATE,CREATER_ORG_ID,CREATER_ORG_NAME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(ids)"> AND ID  in (${ids}) </if>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(batchName)"> AND BATCH_NAME  LIKE #{batchName}  </if>
+			<if test="@Ognl@isNotEmpty(batchName_s)"> AND BATCH_NAME  = #{batchName_s}  </if>
+			<if test="@Ognl@isNotEmpty(noId)"> AND ID  !=#{noId} </if>
+			<if test="@Ognl@isNotEmpty(batchStartdate)"> AND BATCH_STARTDATE  =#{batchStartdate} </if>
+			<if test="@Ognl@isNotEmpty(beginbatchStartdate)"> AND BATCH_STARTDATE  >=#{beginbatchStartdate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endbatchStartdate)"> AND BATCH_STARTDATE <![CDATA[ <=#{endbatchStartdate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(batchEnddate)"> AND BATCH_ENDDATE  =#{batchEnddate} </if>
+			<if test="@Ognl@isNotEmpty(beginbatchEnddate)"> AND BATCH_ENDDATE  >=#{beginbatchEnddate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endbatchEnddate)"> AND BATCH_ENDDATE <![CDATA[ <=#{endbatchEnddate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(description)"> AND DESCRIPTION  LIKE #{description}  </if>
+			<if test="@Ognl@isNotEmpty(createrId)"> AND CREATER_ID  =#{createrId} </if>
+			<if test="@Ognl@isNotEmpty(createrName)"> AND CREATER_NAME  LIKE #{createrName}  </if>
+			<if test="@Ognl@isNotEmpty(createrDate)"> AND CREATER_DATE  =#{createrDate} </if>
+			<if test="@Ognl@isNotEmpty(begincreaterDate)"> AND CREATER_DATE  >=#{begincreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(createrOrgId)"> AND CREATER_ORG_ID  =#{createrOrgId} </if>
+			<if test="@Ognl@isNotEmpty(createrOrgName)"> AND CREATER_ORG_NAME  LIKE #{createrOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(sectionDate)">  AND BATCH_STARTDATE <![CDATA[ <=#{sectionDate,jdbcType=DATE}]]>  AND BATCH_ENDDATE  >=#{sectionDate,jdbcType=DATE} </if>			
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.subsidy.model.SocialBatch">
+		INSERT INTO RSDA_BS_SOCIAL_BATCH
+		(ID,BATCH_NAME,BATCH_STARTDATE,BATCH_ENDDATE,DESCRIPTION,CREATER_ID,CREATER_NAME,CREATER_DATE,CREATER_ORG_ID,CREATER_ORG_NAME)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{batchName,jdbcType=VARCHAR}, #{batchStartdate,jdbcType=DATE}, #{batchEnddate,jdbcType=DATE}, #{description,jdbcType=VARCHAR}, #{createrId,jdbcType=NUMERIC}, #{createrName,jdbcType=VARCHAR}, #{createrDate,jdbcType=TIMESTAMP}, #{createrOrgId,jdbcType=NUMERIC}, #{createrOrgName,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_SOCIAL_BATCH 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.subsidy.model.SocialBatch">
+		UPDATE RSDA_BS_SOCIAL_BATCH SET
+		BATCH_NAME=#{batchName,jdbcType=VARCHAR},
+		BATCH_STARTDATE=#{batchStartdate,jdbcType=DATE},
+		BATCH_ENDDATE=#{batchEnddate,jdbcType=DATE},
+		DESCRIPTION=#{description,jdbcType=VARCHAR},
+		CREATER_ID=#{createrId,jdbcType=NUMERIC},
+		CREATER_NAME=#{createrName,jdbcType=VARCHAR},
+		CREATER_DATE=#{createrDate,jdbcType=TIMESTAMP},
+		CREATER_ORG_ID=#{createrOrgId,jdbcType=NUMERIC},
+		CREATER_ORG_NAME=#{createrOrgName,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SocialBatch">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_SOCIAL_BATCH
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getSocialBatchSum" parameterType="java.lang.Long" resultMap="socialBatchSumDto">
+		SELECT *
+		FROM V_RSDA_BS_SOCIAL_CORP_DECLARE
+		WHERE
+		batch_id=#{batchId}
+	</select>
+	
+	<select id="getAll" resultMap="SocialBatch">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_SOCIAL_BATCH   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

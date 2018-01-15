@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.receive.model.ProxyManual">
+	<resultMap id="ProxyManual" type="com.xunfeng.business.personagency.receive.model.ProxyManual">
+		<id property="pmId" column="PM_ID" jdbcType="NUMERIC"/>
+		<result property="personId" column="PERSON_ID" jdbcType="NUMERIC"/>
+		<result property="agentofId" column="AGENTOF_ID" jdbcType="NUMERIC"/>
+		<result property="agentofName" column="AGENTOF_NAME" jdbcType="VARCHAR"/>
+		<result property="agentofCard" column="AGENTOF_CARD" jdbcType="VARCHAR"/>
+		<result property="agentofPhone" column="AGENTOF_PHONE" jdbcType="VARCHAR"/>
+		<result property="lssuingUnit" column="LSSUING_UNIT" jdbcType="VARCHAR"/>
+		<result property="lssuingDate" column="LSSUING_DATE" jdbcType="DATE"/>
+		<result property="proxyType" column="PROXY_TYPE" jdbcType="NUMERIC"/>
+		<result property="proxyReaseon" column="PROXY_REASEON" jdbcType="VARCHAR"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="TIMESTAMP"/>
+		<result property="description" column="DESCRIPTION" jdbcType="VARCHAR"/>
+		<result property="proxyDelete" column="PROXY_DELETE" jdbcType="NUMERIC"/>
+		<result property="effectiveMark" column="EFFECTIVE_MARK" jdbcType="VARCHAR"/>
+		<result property="proxyIssuer" column="PROXY_ISSUER" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		PM_ID,PERSON_ID,AGENTOF_ID,AGENTOF_NAME,AGENTOF_CARD,AGENTOF_PHONE,LSSUING_UNIT,LSSUING_DATE,PROXY_TYPE,PROXY_REASEON,CREATER_ID,CREATER_NAME,CREATER_ORG_ID,CREATER_ORG_NAME,CREATER_DATE,DESCRIPTION,PROXY_DELETE,EFFECTIVE_MARK,PROXY_ISSUER
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(pmId)"> AND PM_ID  =#{pmId} </if>
+			<if test="@Ognl@isNotEmpty(personId)"> AND a.PERSON_ID  =#{personId} </if>
+			<if test="@Ognl@isNotEmpty(agentofId)"> AND AGENTOF_ID  =#{agentofId} </if>
+			<if test="@Ognl@isNotEmpty(agentofName)"> AND AGENTOF_NAME  LIKE #{agentofName}  </if>
+			<if test="@Ognl@isNotEmpty(agentofCard)"> AND AGENTOF_CARD  LIKE #{agentofCard}  </if>
+			<if test="@Ognl@isNotEmpty(agentofPhone)"> AND AGENTOF_PHONE  LIKE #{agentofPhone}  </if>
+			<if test="@Ognl@isNotEmpty(lssuingUnit)"> AND LSSUING_UNIT  LIKE #{lssuingUnit}  </if>
+			<if test="@Ognl@isNotEmpty(lssuingDate)"> AND LSSUING_DATE  =#{lssuingDate} </if>
+			<if test="@Ognl@isNotEmpty(beginlssuingDate)"> AND LSSUING_DATE  >=#{beginlssuingDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endlssuingDate)"> AND LSSUING_DATE <![CDATA[ <=#{endlssuingDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(proxyType)"> AND PROXY_TYPE  =#{proxyType} </if>
+			<if test="@Ognl@isNotEmpty(proxyReaseon)"> AND PROXY_REASEON  LIKE #{proxyReaseon}  </if>
+			<if test="@Ognl@isNotEmpty(createrId)"> AND CREATER_ID  =#{createrId} </if>
+			<if test="@Ognl@isNotEmpty(createrName)"> AND CREATER_NAME  LIKE #{createrName}  </if>
+			<if test="@Ognl@isNotEmpty(createrOrgId)"> AND CREATER_ORG_ID  =#{createrOrgId} </if>
+			<if test="@Ognl@isNotEmpty(createrOrgName)"> AND CREATER_ORG_NAME  LIKE #{createrOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(createrDate)"> AND CREATER_DATE  =#{createrDate} </if>
+			<if test="@Ognl@isNotEmpty(begincreaterDate)"> AND CREATER_DATE  >=#{begincreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(description)"> AND DESCRIPTION  LIKE #{description}  </if>
+			<if test="@Ognl@isNotEmpty(proxyDelete)"> AND PROXY_DELETE  =#{proxyDelete} </if>
+			<if test="@Ognl@isNotEmpty(effectiveMark)"> AND EFFECTIVE_MARK  LIKE #{effectiveMark}  </if>
+			<if test="@Ognl@isNotEmpty(proxyIssuer)"> AND PROXY_ISSUER  LIKE #{proxyIssuer}  </if>
+		</where>
+	</sql>
+	
+	<sql id="dynamicNoWhere">
+			<if test="@Ognl@isNotEmpty(pmId)"> AND a.PM_ID  =#{pmId} </if>
+			<if test="@Ognl@isNotEmpty(personId)"> AND a.PERSON_ID  =#{personId} </if>
+			<if test="@Ognl@isNotEmpty(effectiveMark)"> AND a.EFFECTIVE_MARK  LIKE #{effectiveMark}  </if>
+			<if test="@Ognl@isNotEmpty(proxyIssuer)"> AND a.PROXY_ISSUER  LIKE #{proxyIssuer}  </if>
+			<!-- 代理手册查询 -->
+			<if test="@Ognl@isNotEmpty(aac002)"> AND upper(b.AAC002) LIKE upper(#{aac002})  </if>
+			<if test="@Ognl@isNotEmpty(aac003)"> AND b.AAC003  LIKE #{aac003}  </if>
+			<if test="@Ognl@isNotEmpty(aac004)"> AND b.AAC004  = #{aac004}  </if>
+			<if test="@Ognl@isNotEmpty(archiveCode)"> AND upper(d.ARCHIVE_CODE) LIKE upper(#{archiveCode}) </if>
+			<if test="@Ognl@isNotEmpty(beginreceiveDate)"> AND d.RECEIVE_DATE  >=#{beginreceiveDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endreceiveDate)"> AND d.RECEIVE_DATE <![CDATA[ <=#{endreceiveDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(createrName)"> AND a.CREATER_NAME  LIKE #{createrName}  </if>
+			<if test="@Ognl@isNotEmpty(beginlssuingDate)"> AND a.LSSUING_DATE  >=#{beginlssuingDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endlssuingDate)"> AND a.LSSUING_DATE <![CDATA[ <=#{endlssuingDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(archiveStatus)"> AND d.ARCHIVE_STATUS  =#{archiveStatus} </if>
+			<if test="@Ognl@isNotEmpty(archiveType)"> AND d.ARCHIVE_TYPE  =#{archiveType} </if>
+			<if test="@Ognl@isNotEmpty(begincreaterDate)"> AND a.CREATER_DATE  >=#{begincreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND a.CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(createrOrgName)"> AND a.CREATER_ORG_NAME  LIKE #{createrOrgName}  </if>
+			
+			<if test="@Ognl@isNotEmpty(pmIds)"> AND a.PM_ID in (${pmIds})</if>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.receive.model.ProxyManual">
+		INSERT INTO RSDA_BS_PROXY_MANUAL
+		(PM_ID,PERSON_ID,AGENTOF_ID,AGENTOF_NAME,AGENTOF_CARD,AGENTOF_PHONE,LSSUING_UNIT,LSSUING_DATE,PROXY_TYPE,PROXY_REASEON,CREATER_ID,CREATER_NAME,CREATER_ORG_ID,CREATER_ORG_NAME,CREATER_DATE,DESCRIPTION,PROXY_DELETE,EFFECTIVE_MARK,PROXY_ISSUER)
+		VALUES
+		(#{pmId,jdbcType=NUMERIC}, #{personId,jdbcType=NUMERIC}, #{agentofId,jdbcType=NUMERIC}, #{agentofName,jdbcType=VARCHAR}, #{agentofCard,jdbcType=VARCHAR}, #{agentofPhone,jdbcType=VARCHAR}, #{lssuingUnit,jdbcType=VARCHAR}, #{lssuingDate,jdbcType=DATE}, #{proxyType,jdbcType=NUMERIC}, #{proxyReaseon,jdbcType=VARCHAR}, #{createrId,jdbcType=NUMERIC}, #{createrName,jdbcType=VARCHAR}, #{createrOrgId,jdbcType=NUMERIC}, #{createrOrgName,jdbcType=VARCHAR}, #{createrDate,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR}, #{proxyDelete,jdbcType=NUMERIC}, #{effectiveMark,jdbcType=VARCHAR}, #{proxyIssuer,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_PROXY_MANUAL 
+		WHERE
+		PM_ID=#{pmId}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.receive.model.ProxyManual">
+		UPDATE RSDA_BS_PROXY_MANUAL SET
+		PERSON_ID=#{personId,jdbcType=NUMERIC},
+		AGENTOF_ID=#{agentofId,jdbcType=NUMERIC},
+		AGENTOF_NAME=#{agentofName,jdbcType=VARCHAR},
+		AGENTOF_CARD=#{agentofCard,jdbcType=VARCHAR},
+		AGENTOF_PHONE=#{agentofPhone,jdbcType=VARCHAR},
+		LSSUING_UNIT=#{lssuingUnit,jdbcType=VARCHAR},
+		LSSUING_DATE=#{lssuingDate,jdbcType=DATE},
+		PROXY_TYPE=#{proxyType,jdbcType=NUMERIC},
+		PROXY_REASEON=#{proxyReaseon,jdbcType=VARCHAR},
+		CREATER_ID=#{createrId,jdbcType=NUMERIC},
+		CREATER_NAME=#{createrName,jdbcType=VARCHAR},
+		CREATER_ORG_ID=#{createrOrgId,jdbcType=NUMERIC},
+		CREATER_ORG_NAME=#{createrOrgName,jdbcType=VARCHAR},
+		CREATER_DATE=#{createrDate,jdbcType=TIMESTAMP},
+		DESCRIPTION=#{description,jdbcType=VARCHAR},
+		PROXY_DELETE=#{proxyDelete,jdbcType=NUMERIC},
+		EFFECTIVE_MARK=#{effectiveMark,jdbcType=VARCHAR},
+		PROXY_ISSUER=#{proxyIssuer,jdbcType=VARCHAR}
+		WHERE
+		PM_ID=#{pmId}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="ProxyManual">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PROXY_MANUAL
+		WHERE
+		PM_ID=#{pmId}
+	</select>
+	
+	<select id="getAll" resultMap="ProxyManual">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PROXY_MANUAL   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by PM_ID  desc
+		</if>
+	</select>
+	<!-- 代理手册查询 -->
+	<select id="getAllProxyManual" resultType="java.util.HashMap">
+		select  a.PM_ID as PMID,a.PROXY_ISSUER as PROXYISSUER
+				,decode(a.EFFECTIVE_MARK , 0, '无效', 1, '有效') as EFFECTIVEMARK
+				,to_char(a.CREATER_DATE,'yyyy-mm-dd') as createrDate
+				,a.CREATER_NAME as createrName
+				,a.CREATER_ORG_NAME as createrOrgName
+				,to_char(a.LSSUING_DATE,'yyyy-mm-dd') as LSSUINGDATE
+				,a.PROXY_REASEON as PROXYREASEON,a.DESCRIPTION as DESCRIPTION
+				,b.AAC002 as AAC002,b.AAC003 as AAC003
+				,e.name as genderName
+				,to_char(b.AAC006,'yyyy-mm-dd') as AAC006
+				,d.ARCHIVE_CODE as ARCHIVECODE
+				,f.name as archiveStatusName
+				,to_char(d.RECEIVE_DATE,'yyyy-mm-dd') as receiveDate
+				,g.name as archiveTypeName
+				,b.AAE005 as AAE005
+				,c.EXP_PERSON_PHONE as EXPPERSONPHONE
+				,d.ARCHIVE_NAME as archiveName
+				,to_char(d.ARCHIVE_BIRTH_DATE,'yyyy-mm-dd') as archiveBirthDate
+				,d.ARCHIVE_SOURCE as archiveSource
+				,h.name as PROXYTYPENAME
+				
+						
+		from RSDA_BS_PROXY_MANUAL a
+		left join ac01 b on b.AAC001=a.PERSON_ID 
+        left join RSDA_BS_PERSON_EXPAND c on c.EXP_PERSON_ID=b.AAC001
+		left join RSDA_BS_ARCHIVE_ARCHIVES d on d.PERSON_ID=b.AAC001
+        left join TAB_SEX e on e.code=b.AAC004
+        left join RSDA_TAB_ARCHIVESTATUS f on f.code=d.ARCHIVE_STATUS
+		left join RSDA_TAB_ARCHIVETYPE g on g.code=d.ARCHIVE_TYPE
+		left join Rsda_Tab_Proxy_Type h on h.code=a.PROXY_TYPE
+        
+       	where a.PROXY_DELETE = 0
+        <include refid="dynamicNoWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+			order by a.CREATER_DATE  desc,a.PM_ID  desc
+		</if>
+	</select>
+	
+</mapper>

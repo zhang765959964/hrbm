@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.person.model.PersonFamily">
+	<resultMap id="PersonFamily" type="com.xunfeng.business.person.model.PersonFamily">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="faName" column="FA_NAME" jdbcType="VARCHAR"/>
+		<result property="faMarriage" column="FA_MARRIAGE" jdbcType="VARCHAR"/>
+		<result property="faMarriageDate" column="FA_MARRIAGE_DATE" jdbcType="DATE"/>
+		<result property="faSpouseCard" column="FA_SPOUSE_CARD" jdbcType="VARCHAR"/>
+		<result property="faPersonId" column="FA_PERSON_ID" jdbcType="NUMERIC"/>
+		<result property="faSpouseBirth" column="FA_SPOUSE_BIRTH" jdbcType="DATE"/>
+		<result property="faSpouseNational" column="FA_SPOUSE_NATIONAL" jdbcType="VARCHAR"/>
+		<result property="faSpouseCompany" column="FA_SPOUSE_COMPANY" jdbcType="VARCHAR"/>
+		<result property="faSpousePhone" column="FA_SPOUSE_PHONE" jdbcType="VARCHAR"/>
+		<result property="faBirthCondition" column="FA_BIRTH_CONDITION" jdbcType="VARCHAR"/>
+		<result property="faBirthControl" column="FA_BIRTH_CONTROL" jdbcType="VARCHAR"/>
+		<result property="faFamilyBark" column="FA_FAMILY_BARK" jdbcType="VARCHAR"/>
+		<result property="cczy06" column="CCZY06" jdbcType="VARCHAR"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,FA_NAME,FA_MARRIAGE,FA_MARRIAGE_DATE,FA_SPOUSE_CARD,FA_PERSON_ID,FA_SPOUSE_BIRTH,FA_SPOUSE_NATIONAL,FA_SPOUSE_COMPANY,FA_SPOUSE_PHONE,FA_BIRTH_CONDITION,FA_BIRTH_CONTROL,FA_FAMILY_BARK,CCZY06,CREATER_ID,CREATER_NAME,CREATER_ORG_ID,CREATER_ORG_NAME,CREATER_DATE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(faName)"> AND FA_NAME  LIKE #{faName}  </if>
+			<if test="@Ognl@isNotEmpty(faMarriage)"> AND FA_MARRIAGE  LIKE #{faMarriage}  </if>
+			<if test="@Ognl@isNotEmpty(faMarriageDate)"> AND FA_MARRIAGE_DATE  =#{faMarriageDate} </if>
+			<if test="@Ognl@isNotEmpty(beginfaMarriageDate)"> AND FA_MARRIAGE_DATE  >=#{beginfaMarriageDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endfaMarriageDate)"> AND FA_MARRIAGE_DATE <![CDATA[ <=#{endfaMarriageDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(faSpouseCard)"> AND FA_SPOUSE_CARD  LIKE #{faSpouseCard}  </if>
+			<if test="@Ognl@isNotEmpty(idexists)"> AND ID  !=#{idexists} </if>
+			<if test="@Ognl@isNotEmpty(faSpouseCardexists)"> AND FA_SPOUSE_CARD  =#{faSpouseCardexists}  </if>
+			<if test="@Ognl@isNotEmpty(faPersonId)"> AND FA_PERSON_ID  =#{faPersonId} </if>
+			<if test="@Ognl@isNotEmpty(faSpouseBirth)"> AND FA_SPOUSE_BIRTH  =#{faSpouseBirth} </if>
+			<if test="@Ognl@isNotEmpty(beginfaSpouseBirth)"> AND FA_SPOUSE_BIRTH  >=#{beginfaSpouseBirth,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endfaSpouseBirth)"> AND FA_SPOUSE_BIRTH <![CDATA[ <=#{endfaSpouseBirth,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(faSpouseNational)"> AND FA_SPOUSE_NATIONAL  LIKE #{faSpouseNational}  </if>
+			<if test="@Ognl@isNotEmpty(faSpouseCompany)"> AND FA_SPOUSE_COMPANY  LIKE #{faSpouseCompany}  </if>
+			<if test="@Ognl@isNotEmpty(faSpousePhone)"> AND FA_SPOUSE_PHONE  LIKE #{faSpousePhone}  </if>
+			<if test="@Ognl@isNotEmpty(faBirthCondition)"> AND FA_BIRTH_CONDITION  LIKE #{faBirthCondition}  </if>
+			<if test="@Ognl@isNotEmpty(faBirthControl)"> AND FA_BIRTH_CONTROL  LIKE #{faBirthControl}  </if>
+			<if test="@Ognl@isNotEmpty(faFamilyBark)"> AND FA_FAMILY_BARK  LIKE #{faFamilyBark}  </if>
+			<if test="@Ognl@isNotEmpty(cczy06)"> AND CCZY06  LIKE #{cczy06}  </if>
+			<if test="@Ognl@isNotEmpty(createrId)"> AND CREATER_ID  =#{createrId} </if>
+			<if test="@Ognl@isNotEmpty(createrName)"> AND CREATER_NAME  LIKE #{createrName}  </if>
+			<if test="@Ognl@isNotEmpty(createrOrgId)"> AND CREATER_ORG_ID  =#{createrOrgId} </if>
+			<if test="@Ognl@isNotEmpty(createrOrgName)"> AND CREATER_ORG_NAME  LIKE #{createrOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(createrDate)"> AND CREATER_DATE  =#{createrDate} </if>
+			<if test="@Ognl@isNotEmpty(begincreaterDate)"> AND CREATER_DATE  >=#{begincreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.person.model.PersonFamily">
+		INSERT INTO RSDA_BS_PERSON_FAMILY
+		(ID,FA_NAME,FA_MARRIAGE,FA_MARRIAGE_DATE,FA_SPOUSE_CARD,FA_PERSON_ID,FA_SPOUSE_BIRTH,FA_SPOUSE_NATIONAL,FA_SPOUSE_COMPANY,FA_SPOUSE_PHONE,FA_BIRTH_CONDITION,FA_BIRTH_CONTROL,FA_FAMILY_BARK,CCZY06,CREATER_ID,CREATER_NAME,CREATER_ORG_ID,CREATER_ORG_NAME,CREATER_DATE)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{faName,jdbcType=VARCHAR}, #{faMarriage,jdbcType=VARCHAR}, #{faMarriageDate,jdbcType=DATE}, #{faSpouseCard,jdbcType=VARCHAR}, #{faPersonId,jdbcType=NUMERIC}, #{faSpouseBirth,jdbcType=DATE}, #{faSpouseNational,jdbcType=VARCHAR}, #{faSpouseCompany,jdbcType=VARCHAR}, #{faSpousePhone,jdbcType=VARCHAR}, #{faBirthCondition,jdbcType=VARCHAR}, #{faBirthControl,jdbcType=VARCHAR}, #{faFamilyBark,jdbcType=VARCHAR}, #{cczy06,jdbcType=VARCHAR}, #{createrId,jdbcType=NUMERIC}, #{createrName,jdbcType=VARCHAR}, #{createrOrgId,jdbcType=NUMERIC}, #{createrOrgName,jdbcType=VARCHAR}, #{createrDate,jdbcType=TIMESTAMP})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_PERSON_FAMILY 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.person.model.PersonFamily">
+		UPDATE RSDA_BS_PERSON_FAMILY SET
+		FA_NAME=#{faName,jdbcType=VARCHAR},
+		FA_MARRIAGE=#{faMarriage,jdbcType=VARCHAR},
+		FA_MARRIAGE_DATE=#{faMarriageDate,jdbcType=DATE},
+		FA_SPOUSE_CARD=#{faSpouseCard,jdbcType=VARCHAR},
+		FA_PERSON_ID=#{faPersonId,jdbcType=NUMERIC},
+		FA_SPOUSE_BIRTH=#{faSpouseBirth,jdbcType=DATE},
+		FA_SPOUSE_NATIONAL=#{faSpouseNational,jdbcType=VARCHAR},
+		FA_SPOUSE_COMPANY=#{faSpouseCompany,jdbcType=VARCHAR},
+		FA_SPOUSE_PHONE=#{faSpousePhone,jdbcType=VARCHAR},
+		FA_BIRTH_CONDITION=#{faBirthCondition,jdbcType=VARCHAR},
+		FA_BIRTH_CONTROL=#{faBirthControl,jdbcType=VARCHAR},
+		FA_FAMILY_BARK=#{faFamilyBark,jdbcType=VARCHAR},
+		CCZY06=#{cczy06,jdbcType=VARCHAR},
+		CREATER_ID=#{createrId,jdbcType=NUMERIC},
+		CREATER_NAME=#{createrName,jdbcType=VARCHAR},
+		CREATER_ORG_ID=#{createrOrgId,jdbcType=NUMERIC},
+		CREATER_ORG_NAME=#{createrOrgName,jdbcType=VARCHAR},
+		CREATER_DATE=#{createrDate,jdbcType=TIMESTAMP}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="PersonFamily">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PERSON_FAMILY
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getByFaPersonId" parameterType="java.lang.Long" resultMap="PersonFamily">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PERSON_FAMILY
+		WHERE
+		FA_PERSON_ID=#{faPersonId}
+	</select>
+	<!-- 查看详情 -->
+	<select id="getByPersonId" parameterType="java.lang.Long" resultMap="PersonFamily">
+		SELECT ID,FA_NAME,a.name  as  FA_MARRIAGE,FA_MARRIAGE_DATE,FA_SPOUSE_CARD,FA_PERSON_ID,FA_SPOUSE_BIRTH,n.name as FA_SPOUSE_NATIONAL,FA_SPOUSE_COMPANY,FA_SPOUSE_PHONE,c.name as FA_BIRTH_CONDITION,b.name  as FA_BIRTH_CONTROL,FA_FAMILY_BARK,CCZY06,CREATER_ID,CREATER_NAME,CREATER_ORG_ID,CREATER_ORG_NAME,CREATER_DATE
+	    FROM RSDA_BS_PERSON_FAMILY   t
+	    LEFT JOIN  TAB_MARRIAGE a ON  t.fa_marriage = a.code  
+	    LEFT JOIN  TAB_NATION   n ON  t.fa_spouse_national = n.code
+	    LEFT JOIN  TAB_CONDITION c ON t.fa_birth_condition = c.code
+	    LEFT JOIN  TAB_BIRTHCONTROL b ON 	t.fa_birth_control = b.code
+		WHERE
+		FA_PERSON_ID=#{faPersonId}
+	</select>
+	
+	<select id="getAll" resultMap="PersonFamily">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PERSON_FAMILY
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	<!-- 查询档案接收信息 -->
+	<select id="getPersonFamilyPersonId" resultType="java.util.HashMap">
+		SELECT  a.ID as "id",a.FA_MARRIAGE as "faMarriage",a.FA_MARRIAGE_DATE as "faMarriageDate"
+				,a.FA_NAME as "faName",a.FA_SPOUSE_CARD as "faSpouseCard",a.FA_SPOUSE_BIRTH as "faSpouseBirth"
+				,a.FA_SPOUSE_NATIONAL as "faSpouseNational",a.FA_SPOUSE_COMPANY as "faSpouseCompany"
+				,a.FA_SPOUSE_PHONE as "faSpousePhone",a.FA_BIRTH_CONDITION as "faBirthCondition"
+				,a.FA_BIRTH_CONTROL as "faBirthControl",a.FA_FAMILY_BARK as "faFamilyBark"
+				
+		FROM RSDA_BS_PERSON_FAMILY a  
+		
+        where a.FA_PERSON_ID=#{faPersonId}
+	</select>
+</mapper>

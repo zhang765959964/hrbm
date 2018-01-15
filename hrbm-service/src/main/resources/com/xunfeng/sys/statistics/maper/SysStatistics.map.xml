@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xunfeng.sys.statistics.model.SysStatistics">
+	<resultMap type="java.util.HashMap" id="personStatisticsMap">
+		<result column="DATA_DATE" property="DATA_DATE" />
+		<result column="AAE017" property="AAE017" />
+		<result column="AAE017N" property="AAE017N" />
+		<result column="AAD004" property="AAD004" />
+		<result column="AAD004N" property="AAD004N" />
+		<result column="ACC01G" property="ACC01G" />
+		<result column="ACC01GN" property="ACC01GN" />
+		<result column="AAC011" property="AAC011" />
+		<result column="AAC011N" property="AAC011N" />
+		<result column="AAC009" property="AAC009" />
+		<result column="ACA111" property="ACA111" />
+		<result column="ACB223N" property="ACB223N" />
+		<result column="AAC009N" property="AAC009N" />
+		<!-- 统计人数： 本期新增人数 -->
+		<!-- 统计人数占总数比： 本期新增人数 /本期新增总人数 -->
+		<!-- 上期统计人数： 上期新增人数 -->
+		<!-- 本期减上期人数： 本期新增人数 减 上期新增人数 -->
+		<!-- 新增环比： （本期新增人数 减 上期新增人数）/上期新增人数 -->
+		<!-- 同期统计人数： 同期新增人数 -->
+		<!-- 本期减同期人数： 本期新增人数 减 同期新增人数 -->
+		<!-- 新增同比： （本期新增人数 减 同期新增人数）/同期新增人数 -->
+		<result column="BQ_GRQZS" property="BQ_GRQZS" />
+		<result column="BQ_RATE" property="BQ_RATE" />
+		<result column="SQ_GRQZS" property="SQ_GRQZS" />
+		<result column="BQ_SQ_GRQZS" property="BQ_SQ_GRQZS" />
+		<result column="HB_RATE" property="HB_RATE" />
+		<result column="TQ_GRQZS" property="TQ_GRQZS" />
+		<result column="BQ_TQ_GRQZS" property="BQ_TQ_GRQZS" />
+		<result column="TB_RATE" property="TB_RATE" />
+	</resultMap>
+	<!-- 获得个人信息统计列表 -->
+	<select id="getPersonBaseInfoStatistics" parameterType="map"
+		statementType="CALLABLE">
+		{
+		CALL PKG_REPORT_INIT.PROC_PERS_INFO_REPORT(
+		#{STARTDATE,jdbcType=VARCHAR, mode=IN},
+		#{ENDDATE,jdbcType=VARCHAR,
+		mode=IN},
+		#{IS_AAE017, jdbcType=VARCHAR, mode=IN},#{AAE017,
+		jdbcType=VARCHAR, mode=IN},
+		#{IS_AAD004, jdbcType=VARCHAR,
+		mode=IN},#{AAD004, jdbcType=VARCHAR, mode=IN},
+		#{IS_ACC01G,
+		jdbcType=VARCHAR, mode=IN},#{ACC01G, jdbcType=VARCHAR, mode=IN},
+		#{IS_AAC011, jdbcType=VARCHAR, mode=IN},#{AAC011, jdbcType=VARCHAR,
+		mode=IN},
+		#{IS_ACB223, jdbcType=VARCHAR, mode=IN},#{ACB223,
+		jdbcType=VARCHAR, mode=IN},
+		#{IS_AAC009, jdbcType=VARCHAR,
+		mode=IN},#{AAC009, jdbcType=VARCHAR, mode=IN},
+		#{IS_BCB209,
+		jdbcType=VARCHAR, mode=IN},#{BCB209, jdbcType=VARCHAR, mode=IN},
+		#{V_CURSOR, mode=OUT, jdbcType=CURSOR, resultMap=personStatisticsMap}
+		)}
+	</select>
+
+	<resultMap type="java.util.HashMap" id="corpStatisticsMap">
+		<result column="DATA_DATE" property="DATA_DATE" />
+		<result column="AAE017" property="AAE017" />
+		<result column="AAE017N" property="AAE017N" />
+		<result column="AAB054" property="AAB054" />
+		<result column="AAB054N" property="AAB054N" />
+		<result column="AAB019" property="AAB019" />
+		<result column="AAB019N" property="AAB019N" />
+		<result column="AAB020" property="AAB020" />
+		<result column="AAB020N" property="AAB020N" />
+		<result column="CCPR10" property="CCPR10" />
+		<result column="CCPR10N" property="CCPR10N" />
+		<result column="AAB022" property="AAB022" />
+		<result column="AAB022N" property="AAB022N" />
+		<result column="RECRUIT" property="RECRUIT" />
+		<result column="RECRUITN" property="RECRUITN" />
+		<result column="CCZY06" property="CCZY06" />
+		<result column="CCZY06N" property="CCZY06N" />
+		<result column="PKG_CODE" property="PKG_CODE" />
+		<result column="PKG_NAME" property="PKG_NAME" />
+		<result column="MEM" property="MEM" />
+		<result column="MEMN" property="MEMN" />
+		<!-- 获得个人信息统计列表 -->
+		<!-- 单位数：单位家数 -->
+		<!-- 新增单位家数：本期新增的单位家数 -->
+		<!-- 新增单位家数占总数比率：新增单位家数 除以 单位数 -->
+		<!-- 上期新增单位家数：上期新增的单位家数 -->
+		<!-- 本期减上期家数：本期的新增单位家数 减 上期新增的单位家数 -->
+		<!-- 新增单位家数环比：（本期的新增单位家数 减 上期新增的单位家数）/上期新增的单位家数 -->
+		<!-- 同期新增单位家数：同期新增的单位家数 -->
+		<!-- 本期减同期家数：本期的新增单位家数 减 同期新增的单位家数 -->
+		<!-- 新增单位家数同比：（本期的新增单位家数 减 同期新增的单位家数）/同期新增的单位家数 -->
+		<result column="DWS" property="DWS" />
+		<result column="BQ_NEW_DWS" property="BQ_NEW_DWS" />
+		<result column="BQ_NEW_RATE" property="BQ_NEW_RATE" />
+		<result column="SQ_NEW_DWS" property="SQ_NEW_DWS" />
+		<result column="BQ_SQ_NEW_DWS" property="BQ_SQ_NEW_DWS" />
+		<result column="HB_NEW_RATE" property="HB_NEW_RATE" />
+		<result column="TQ_NEW_DWS" property="TQ_NEW_DWS" />
+		<result column="BQ_TQ_NEW_DWS" property="BQ_TQ_NEW_DWS" />
+		<result column="TB_NEW_RATE" property="TB_NEW_RATE" />
+
+	</resultMap>
+	<select id="getCorpStatistics" parameterType="map"
+		statementType="CALLABLE">
+		{
+		CALL PKG_REPORT_INIT.PROC_COMP_INFO_REPORT(
+		#{STARTDATE,jdbcType=VARCHAR, mode=IN},
+		#{ENDDATE,jdbcType=VARCHAR,
+		mode=IN},
+		#{IS_AAE017, jdbcType=VARCHAR, mode=IN},#{AAE017,
+		jdbcType=VARCHAR, mode=IN},
+		#{IS_AAB054, jdbcType=VARCHAR,
+		mode=IN},#{AAB054, jdbcType=VARCHAR, mode=IN},
+		#{IS_AAB019,
+		jdbcType=VARCHAR, mode=IN},#{AAB019, jdbcType=VARCHAR, mode=IN},
+		#{IS_AAB020, jdbcType=VARCHAR, mode=IN},#{AAB020, jdbcType=VARCHAR,
+		mode=IN},
+		#{IS_CCPR10, jdbcType=VARCHAR, mode=IN},#{CCPR10,
+		jdbcType=VARCHAR, mode=IN},
+		#{IS_AAB022, jdbcType=VARCHAR,
+		mode=IN},#{AAB022, jdbcType=VARCHAR, mode=IN},
+		#{IS_AAB056,
+		jdbcType=VARCHAR, mode=IN},#{AAB056, jdbcType=VARCHAR, mode=IN},
+		#{IS_RECRUIT, jdbcType=VARCHAR, mode=IN},#{RECRUIT, jdbcType=VARCHAR,
+		mode=IN},
+		#{IS_CCZY06, jdbcType=VARCHAR, mode=IN},#{CCZY06,
+		jdbcType=VARCHAR, mode=IN},
+		#{IS_PKG_CODE, jdbcType=VARCHAR,
+		mode=IN},#{PKG_CODE, jdbcType=VARCHAR, mode=IN},
+		#{IS_MEM,
+		jdbcType=VARCHAR, mode=IN},#{MEM, jdbcType=VARCHAR, mode=IN},
+		#{V_CURSOR, mode=OUT, jdbcType=CURSOR, resultMap=corpStatisticsMap}
+		)}
+	</select>
+	<resultMap type="java.util.HashMap" id="personRegistStatisticsMap">
+		<result column="AAE017" property="AAE017" />
+		<result column="AAE017N" property="AAE017N" />
+		<result column="AAD004" property="AAD004" />
+		<result column="AAD004N" property="AAD004N" />
+		<result column="ACC01G" property="ACC01G" />
+		<result column="ACC01GN" property="ACC01GN" />
+		<result column="AAC011" property="AAC011" />
+		<result column="AAC011N" property="AAC011N" />
+		<result column="ACC217" property="ACC217" />
+		<result column="ACC217N" property="ACC217N" />
+		<result column="ACB223" property="ACB223" />
+		<result column="ACB223N" property="ACB223N" />
+		<result column="AAC009" property="AAC009" />
+		<result column="AAC009N" property="AAC009N" />
+		<result column="ACC20G" property="ACC20G" />
+		<result column="ACC20GN" property="ACC20GN" />
+		<result column="AAB019" property="AAB019" />
+		<result column="AAB019N" property="AAB019N" />
+		<result column="ACC034" property="ACC034" />
+		<result column="ACC034N" property="ACC034N" />
+		<result column="BCB209" property="BCB209" />
+		<result column="BCB209N" property="BCB209N" />
+		<result column="ACC201" property="ACC201" />
+		<result column="ACC201N" property="ACC201N" />
+		<result column="ACC20T" property="ACC20T" />
+		<result column="ACC20TN" property="ACC20TN" />
+		<result column="BCA111" property="BCA111" />
+		<result column="BCA111N" property="BCA111N" />
+		<result column="ACA111" property="ACA111" />
+		<result column="ACA111N" property="ACA111N" />
+		<result column="ACC214" property="ACC214" />
+		<result column="ACC214N" property="ACC214N" />
+		<result column="IS_NEW" property="IS_NEW" />
+		<result column="IS_NEWN" property="IS_NEWN" />
+		<result column="ACB208" property="ACB208" />
+		<result column="ACB208N" property="ACB208N" />
+		<!-- 个人求职数: 本期个人求职数 -->
+		<!-- 个人求职数占总数比 ：本期个人求职数/本期个人求职总数 -->
+		<!-- 上期求职数 ：上期个人求职数 -->
+		<!-- 本期减上期人数： 本期个人求职数 减 上期个人求职数 -->
+		<!-- 个人求职环比： （本期个人求职数 减 上期个人求职数）/上期个人求职数 -->
+		<!-- 同期求职数： 同期个人求职数 -->
+		<!-- 本期减同期人数： 本期个人求职数 减 同期个人求职数 -->
+		<!-- 个人求职同比： （本期个人求职数 减 同期个人求职数）/同期个人求职数 -->
+		<result column="DATA_DATE" property="DATA_DATE" />
+		<result column="BQ_GRQZS" property="BQ_GRQZS" />
+		<result column="BQ_RATE" property="BQ_RATE" />
+		<result column="SQ_GRQZS" property="SQ_GRQZS" />
+		<result column="BQ_SQ_GRQZS" property="BQ_SQ_GRQZS" />
+		<result column="HB_RATE" property="HB_RATE" />
+		<result column="TQ_GRQZS" property="TQ_GRQZS" />
+		<result column="BQ_TQ_GRQZS" property="BQ_TQ_GRQZS" />
+		<result column="TB_RATE" property="TB_RATE" />
+	</resultMap>
+	<select id="getPersonRegistStatistics" parameterType="map"
+		statementType="CALLABLE">
+		{
+		CALL PKG_REPORT_INIT.PROC_PERS_JOB_REPORT(
+		#{STARTDATE,jdbcType=VARCHAR, mode=IN},
+		#{ENDDATE,jdbcType=VARCHAR,
+		mode=IN},
+		#{IS_AAE017, jdbcType=VARCHAR, mode=IN},#{AAE017,
+		jdbcType=VARCHAR, mode=IN},
+		#{IS_AAD004, jdbcType=VARCHAR,
+		mode=IN},#{AAD004, jdbcType=VARCHAR, mode=IN},
+		#{IS_ACC01G,
+		jdbcType=VARCHAR, mode=IN},#{ACC01G, jdbcType=VARCHAR, mode=IN},
+		#{IS_AAC011, jdbcType=VARCHAR, mode=IN},#{AAC011, jdbcType=VARCHAR,
+		mode=IN},
+		#{IS_ACC217, jdbcType=VARCHAR, mode=IN},#{ACC217,
+		jdbcType=VARCHAR, mode=IN},
+		#{IS_ACB223, jdbcType=VARCHAR,
+		mode=IN},#{ACB223, jdbcType=VARCHAR, mode=IN},
+		#{IS_AAC009,
+		jdbcType=VARCHAR, mode=IN},#{AAC009, jdbcType=VARCHAR, mode=IN},
+		#{IS_ACC20G, jdbcType=VARCHAR, mode=IN},#{ACC20G, jdbcType=VARCHAR,
+		mode=IN},
+		#{IS_AAB019, jdbcType=VARCHAR, mode=IN},#{AAB019,
+		jdbcType=VARCHAR, mode=IN},
+		#{IS_ACC034, jdbcType=VARCHAR,
+		mode=IN},#{ACC034, jdbcType=VARCHAR, mode=IN},
+		#{IS_BCB209,
+		jdbcType=VARCHAR, mode=IN},#{BCB209, jdbcType=VARCHAR, mode=IN},
+		#{IS_ACC201, jdbcType=VARCHAR, mode=IN},#{ACC201, jdbcType=VARCHAR,
+		mode=IN},
+		#{IS_ACC20T, jdbcType=VARCHAR, mode=IN},#{ACC20T,
+		jdbcType=VARCHAR, mode=IN},
+		#{IS_BCA111, jdbcType=VARCHAR,
+		mode=IN},#{BCA111, jdbcType=VARCHAR, mode=IN},
+		#{IS_ACA111,
+		jdbcType=VARCHAR, mode=IN},#{ACA111, jdbcType=VARCHAR, mode=IN},
+		#{IS_ACC214, jdbcType=VARCHAR, mode=IN},#{ACC214, jdbcType=VARCHAR,
+		mode=IN},
+		#{IS_IS_NEW, jdbcType=VARCHAR, mode=IN},#{IS_NEW,
+		jdbcType=VARCHAR, mode=IN},
+		#{IS_ACB208, jdbcType=VARCHAR,
+		mode=IN},#{ACB208, jdbcType=VARCHAR, mode=IN},
+
+		#{V_CURSOR, mode=OUT,
+		jdbcType=CURSOR, resultMap=personRegistStatisticsMap}
+		)}
+	</select>
+	<!-- 单位需求统计 -->
+	<resultMap type="java.util.HashMap" id="corpDemandStatisticsMap">
+		<result column="AAB019" property="AAB019" />
+		<result column="AAB019N" property="AAB019N" />
+		<result column="AAB054" property="AAB054" />
+		<result column="AAB054N" property="AAB054N" />
+		<result column="AAB020" property="AAB020" />
+		<result column="AAB020N" property="AAB020N" />
+		<result column="AAD004" property="AAD004" />
+		<result column="AAD004N" property="AAD004N" />
+		<result column="AAE017" property="AAE017" />
+		<result column="AAE017N" property="AAE017N" />
+		<result column="CCPR10" property="CCPR10" />
+		<result column="CCPR10N" property="CCPR10N" />
+		<result column="AAB022" property="AAB022" />
+		<result column="AAB022N" property="AAB022N" />
+		<result column="AAB056" property="AAB056" />
+		<result column="AAB056N" property="AAB056N" />
+		<result column="AAC011" property="AAC011" />
+		<result column="AAC011N" property="AAC011N" />
+		<result column="ACB223" property="ACB223" />
+		<result column="ACB223N" property="ACB223N" />
+		<result column="ACC01G" property="ACC01G" />
+		<result column="ACC01GN" property="ACC01GN" />
+		<result column="ACC217" property="ACC217" />
+		<result column="ACC217N" property="ACC217N" />
+		<result column="CCZY06" property="CCZY06" />
+		<result column="CCZY06N" property="CCZY06N" />
+		<result column="BCA111" property="BCA111" />
+		<result column="BCA111N" property="BCA111N" />
+		<result column="ACA111" property="ACA111" />
+		<result column="ACA111N" property="ACA111N" />
+		<result column="ACC214" property="ACC214" />
+		<result column="ACC214N" property="ACC214N" />
+		<result column="ACC034" property="ACC034" />
+		<result column="ACC034N" property="ACC034N" />
+		<result column="AAC015" property="AAC015" />
+		<result column="AAC015N" property="AAC015N" />
+		<result column="RECRUIT_FORM" property="RECRUIT_FORM" />
+		<result column="RECRUIT_FORMN" property="RECRUIT_FORMN" />
+		<result column="IS_NEW" property="IS_NEW" />
+		<result column="IS_NEWN" property="IS_NEWN" />
+		<result column="ACB208" property="ACB208" />
+		<result column="ACB208N" property="ACB208N" />
+		<result column="DATA_DATE " property="DATA_DATE " />
+		<result column="DWS" property="DWS" />
+		<result column="BQ_ZPRS" property="BQ_ZPRS" />
+		<result column="BQ_RATE" property="BQ_RATE" />
+		<result column="SQ_ZPRS" property="SQ_ZPRS" />
+		<result column="BQ_SQ_ZPRS" property="BQ_SQ_ZPRS" />
+		<result column="HB_RATE" property="HB_RATE" />
+		<result column="TQ_ZPRS" property="TQ_ZPRS" />
+		<result column="BQ_TQ_ZPRS" property="BQ_TQ_ZPRS" />
+		<result column="TB_RATE" property="TB_RATE" />
+	</resultMap>
+	<select id="getCorpDemandStatistics" parameterType="map"
+		statementType="CALLABLE">
+		{CALL PKG_REPORT_INIT.PROC_COMP_DEMAND_REPORT(
+		#{STARTDATE,jdbcType=VARCHAR, mode=IN},
+		#{ENDDATE,jdbcType=VARCHAR,
+		mode=IN},
+		#{IS_REDUNDANCE, jdbcType=NUMERIC, mode=IN},#{REDUNDANCE_DAYS,
+		jdbcType=NUMERIC, mode=IN},
+		#{IS_AAB019, jdbcType=FLOAT,
+		mode=IN},#{AAB019, jdbcType=VARCHAR, mode=IN},
+		#{IS_AAB054,
+		jdbcType=FLOAT, mode=IN},#{AAB054, jdbcType=VARCHAR, mode=IN},
+		#{IS_AAB020, jdbcType=FLOAT, mode=IN},#{AAB020, jdbcType=VARCHAR,
+		mode=IN},
+		#{IS_AAD004, jdbcType=FLOAT, mode=IN},#{AAD004,
+		jdbcType=VARCHAR, mode=IN},
+		#{IS_AAE017, jdbcType=FLOAT,
+		mode=IN},#{AAE017, jdbcType=VARCHAR, mode=IN},
+		#{IS_CCPR10,
+		jdbcType=FLOAT, mode=IN},#{CCPR10, jdbcType=VARCHAR, mode=IN},
+		#{IS_AAB022, jdbcType=FLOAT, mode=IN},#{AAB022, jdbcType=VARCHAR,
+		mode=IN},
+		#{IS_AAB056, jdbcType=FLOAT, mode=IN},#{AAB056,
+		jdbcType=VARCHAR, mode=IN},
+		#{IS_AAC011, jdbcType=FLOAT,
+		mode=IN},#{AAC011, jdbcType=VARCHAR, mode=IN},
+		#{IS_ACB223,
+		jdbcType=FLOAT, mode=IN},#{ACB223, jdbcType=VARCHAR, mode=IN},
+		#{IS_ACC01G, jdbcType=FLOAT, mode=IN},#{ACC01G, jdbcType=VARCHAR,
+		mode=IN},
+		#{IS_ACC217, jdbcType=FLOAT, mode=IN},#{ACC217,
+		jdbcType=VARCHAR, mode=IN},
+		#{IS_CCZY06, jdbcType=FLOAT,
+		mode=IN},#{CCZY06, jdbcType=VARCHAR, mode=IN},
+		#{IS_BCA111,
+		jdbcType=FLOAT, mode=IN},#{BCA111, jdbcType=VARCHAR, mode=IN},
+		#{IS_ACA111, jdbcType=FLOAT, mode=IN},#{ACA111, jdbcType=VARCHAR,
+		mode=IN},
+		#{IS_ACC214, jdbcType=FLOAT, mode=IN},#{ACC214,
+		jdbcType=VARCHAR, mode=IN},
+		#{IS_ACC034, jdbcType=FLOAT,
+		mode=IN},#{ACC034, jdbcType=VARCHAR, mode=IN},
+		#{IS_AAC015,
+		jdbcType=FLOAT, mode=IN},#{AAC015, jdbcType=VARCHAR, mode=IN},
+		#{IS_RECRUIT_FORM, jdbcType=FLOAT, mode=IN},#{RECRUIT_FORM,
+		jdbcType=VARCHAR, mode=IN},
+		#{IS_NEW, jdbcType=FLOAT,
+		mode=IN},#{V_NEW, jdbcType=VARCHAR, mode=IN},
+		#{IS_ACB208, jdbcType=VARCHAR,
+		mode=IN},#{ACB208, jdbcType=VARCHAR, mode=IN},
+		#{P_CURSOR,
+		mode=OUT,jdbcType=CURSOR, resultMap=corpDemandStatisticsMap}
+		)
+		}
+	</select>
+	<select id="getCorpStatisticsCount" resultType="java.util.HashMap">
+		SELECT COUNT(1) AS TOTALNUM
+		FROM
+		V_AB01
+		WHERE 1=1
+		<include refid="statisticsWhere" />
+	</select>
+	<select id="getCorpStatisticsEcharts" resultType="java.util.HashMap">
+		SELECT COUNT(1) AS CORPNUM ,${columnname} as COLUMNNAME
+		FROM
+		V_AB01
+		WHERE 1=1
+		<include refid="statisticsWhere" />
+		GROUP BY ${groupname}
+	</select>
+	<sql id="statisticsWhere">
+		<if test="@Ognl@isNotEmpty(aae017)"> AND AAE017 = #{aae017}</if>
+		<if test="@Ognl@isNotEmpty(cczy06)"> AND CCZY06 = #{cczy06}</if>
+		<if test="@Ognl@isNotEmpty(startdate)"> AND AAE036 >= #{startdate}</if>
+		<if test="@Ognl@isNotEmpty(enddate)">
+			AND AAE036 <![CDATA[<= #{enddate}]]></if>
+		<choose>
+			<when test="@Ognl@isNotEmpty(view_sub)">
+				<if test="@Ognl@isNotEmpty(curr_org)">
+					AND AAE017 IN ( SELECT ACD200 FROM CD20 M START WITH
+					M.ACD200=
+					#{curr_org} CONNECT BY M.AAB034=PRIOR M.ACD200 )
+				</if>
+			</when>
+			<otherwise>
+				<if test="@Ognl@isNotEmpty(curr_org)">
+					AND AAE017 = #{curr_org}
+				</if>
+			</otherwise>
+		</choose>
+	</sql>
+</mapper>

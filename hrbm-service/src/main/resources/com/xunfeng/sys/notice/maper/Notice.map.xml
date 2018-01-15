@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.sys.notice.model.Notice">
+	<resultMap id="Notice" type="com.xunfeng.sys.notice.model.Notice">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="noticeUserId" column="NOTICE_USER_ID" jdbcType="NUMERIC"/>
+		<result property="beNoticeUserId" column="BE_NOTICE_USER_ID" jdbcType="NUMERIC"/>
+		<result property="noticeDate" column="NOTICE_DATE" jdbcType="DATE"/>
+		<result property="noticeUserType" column="NOTICE_USER_TYPE" jdbcType="NUMERIC"/>
+		<result property="beNoticeUserType" column="BE_NOTICE_USER_TYPE" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,NOTICE_USER_ID,BE_NOTICE_USER_ID,NOTICE_DATE,NOTICE_USER_TYPE,BE_NOTICE_USER_TYPE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(noticeUserId)"> AND NOTICE_USER_ID  =#{noticeUserId} </if>
+			<if test="@Ognl@isNotEmpty(beNoticeUserId)"> AND BE_NOTICE_USER_ID  =#{beNoticeUserId} </if>
+			<if test="@Ognl@isNotEmpty(noticeDate)"> AND NOTICE_DATE  =#{noticeDate} </if>
+			<if test="@Ognl@isNotEmpty(beginnoticeDate)"> AND NOTICE_DATE  >=#{beginnoticeDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endnoticeDate)"> AND NOTICE_DATE <![CDATA[ <=#{endnoticeDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(noticeUserType)"> AND NOTICE_USER_TYPE  =#{noticeUserType} </if>
+			<if test="@Ognl@isNotEmpty(beNoticeUserType)"> AND BE_NOTICE_USER_TYPE  =#{beNoticeUserType} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.sys.notice.model.Notice">
+		INSERT INTO MY_NOTICE
+		(ID,NOTICE_USER_ID,BE_NOTICE_USER_ID,NOTICE_DATE,NOTICE_USER_TYPE,BE_NOTICE_USER_TYPE)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{noticeUserId,jdbcType=NUMERIC}, #{beNoticeUserId,jdbcType=NUMERIC}, #{noticeDate,jdbcType=DATE}, #{noticeUserType,jdbcType=NUMERIC}, #{beNoticeUserType,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM MY_NOTICE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.sys.notice.model.Notice">
+		UPDATE MY_NOTICE SET
+		NOTICE_USER_ID=#{noticeUserId,jdbcType=NUMERIC},
+		BE_NOTICE_USER_ID=#{beNoticeUserId,jdbcType=NUMERIC},
+		NOTICE_DATE=#{noticeDate,jdbcType=DATE},
+		NOTICE_USER_TYPE=#{noticeUserType,jdbcType=NUMERIC},
+		BE_NOTICE_USER_TYPE=#{beNoticeUserType,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Notice">
+		SELECT <include refid="columns"/>
+		FROM MY_NOTICE
+		WHERE
+		ID=#{id}
+	</select>
+	<select id="getMyNoticeList" resultType="java.util.HashMap">
+		select a.aab301 as contactName,a.aac003 as personName,a.ccmu01,'1' ccmu17,t.id
+		from MY_NOTICE t,ac01 a where t.be_notice_user_id=a.ccmu01 and t.notice_user_id=#{noticeUserId} and t.be_notice_user_type='1'
+		union
+		select a.aae006 as contactName,a.aab004 as personName,a.ccmu01,'2' ccmu17,t.id
+		from MY_NOTICE t,ab01 a where t.be_notice_user_id=a.ccmu01 and t.notice_user_id=#{noticeUserId} and t.be_notice_user_type='2'
+	</select>
+	<select id="getMyFansList" resultType="java.util.HashMap">
+       select Y.*,Z.BE_NOTICE_USER_ID as noticeUserId from (
+		select a.aab301 as contactName,a.aac003 as personName,a.ccmu01,'1' ccmu17
+		from MY_NOTICE t,ac01 a where t.notice_user_id=a.ccmu01 and t.be_notice_user_id=#{beNoticeUserId} and t.notice_user_type='1'
+		union
+		select a.aae006 as contactName,a.aab004 as personName,a.ccmu01,'2' ccmu17
+		from MY_NOTICE t,ab01 a where t.notice_user_id=a.ccmu01 and t.be_notice_user_id=#{beNoticeUserId} and t.notice_user_type='2'
+		) Y left join my_notice Z on Y.CCMU01=Z.BE_NOTICE_USER_ID
+	</select>
+	<select id="getMyNoticeCount" resultType="java.lang.Long">
+		select count(distinct  t.be_notice_user_id)
+		from MY_NOTICE t where  t.notice_user_id=#{noticeUserId}
+	</select>
+	<select id="getMyFansCount" resultType="java.lang.Long">
+		select count(distinct  t.notice_user_id)
+		from MY_NOTICE t where  t.be_notice_user_id=#{beNoticeUserId}
+	</select>
+	<select id="getMyNoticeCorpCount" resultType="java.lang.Long">
+		select count(*)
+		from MY_NOTICE t 
+		where  t.notice_user_id=#{noticeUserId} 
+		and t.be_notice_user_id=#{beNoticeUserId}
+		and NOTICE_USER_TYPE = 1
+		and BE_NOTICE_USER_TYPE	=2
+	</select>
+	<!-- 个人关注企业 -->
+	<select id="getAll" resultMap="Notice">
+	select <include refid="columns"/>
+		from my_notice 
+	    <include refid="dynamicWhere" />
+		<if test="@Ognl@isEmpty(orderField)">
+		 order by ID  desc
+		</if>
+	</select>
+</mapper>

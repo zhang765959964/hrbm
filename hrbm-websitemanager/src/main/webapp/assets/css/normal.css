@@ -1,0 +1,54 @@
+@charset "utf-8";
+html,body,div,ul,ol,li,section,nav,span,em,img,article,i{list-style:none; margin: 0; padding:0;}
+.fl{float: left;}
+.fr{float: right;}
+.clearfix:after{content:""; display:block; clear:both; height: 0; visibility: hidden;}
+.clearfix{zoom:1;}
+
+.dib{display: inline-block;}
+.dn{display: none;}
+
+.mgauto{margin:0 auto;}
+.mgr10{margin-right: 10px;}
+.mgl10{margin-left: 10px;}
+.mgl20{margin-left: 20px;}
+.mgt10{margin-top: 10px;}
+.mgx10{margin:0 10px;}
+.mgy10{margin: 10px 0;}
+.pdx20{padding:0 20px;}
+
+.tar{text-align: right;}
+.tal{text-align: left !important;}
+.tac{text-align: center;}
+.vtat{vertical-align: top;}
+.fontRed{color:#f84c4c;}
+
+.perInfoTab{line-height:35px;}
+.perInfoTab tr{height: 35px; line-height: 35px;}
+.perInfoTab td{vertical-align:middle !important;text-align:center; height: 35px; line-height: 35px;}
+.perInfoTab td label{margin-left:10px;}
+.perInfoTab td label[class*=col-]{padding:0; margin-left: 0;}
+.perInfoTab td>em{margin-right:4px;}
+.perInfoTab input[type=radio]{padding:0 3px; line-height: 35px; margin:0;}
+
+.wp2{width:50%;}
+.wp3{width: 80%; margin: 0 auto;}
+.lh1{line-height: 30px; height: 30px;}
+.lh2{line-height: 35px;}
+.trainName{display:inline-block; width:15%; text-align:right;}
+.trainCont{display:inline-block; width:65%;}
+.trainCont input{width:100%;}
+.trainCont .input-group{float:left;}
+.trainCont textarea{width:100%; height:70px;}
+.trainCont .w150{width:150px; display:inline-block; float:left;}
+.trainCont input[type=submit],.trainCont input[type=reset]{width: 60px; padding: 0;}
+.selectArea{vertical-align: top; /*margin-top: -7px;*/ height: 30px; line-height: 30px;}
+.h30{height: 30px;}
+.userId{width:300px;height:200px;}
+select{padding: 0 5px;}
+
+.employment,.absent,.unemployment{display:none;}
+.dph{/*margin-top: -7px;*/ height: 30px; line-height: 30px; vertical-align: middle;}
+.dph input.dp{padding:0 2px; height: 28px;}
+.dph .input-group-addon{padding: 0 6px; height: 28px;}
+.minw{min-width: 400px;}

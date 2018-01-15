@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.jobfair.model.BoothUnsubscribe">
+	<resultMap id="BoothUnsubscribe" type="com.xunfeng.business.jobfair.model.BoothUnsubscribe">
+		<id property="cczt01" column="CCZT01" jdbcType="NUMERIC"/>
+		<result property="cczy01" column="CCZY01" jdbcType="NUMERIC"/>
+		<result property="aab001" column="AAB001" jdbcType="NUMERIC"/>
+		<result property="acb330" column="ACB330" jdbcType="NUMERIC"/>
+		<result property="cczy03" column="CCZY03" jdbcType="NUMERIC"/>
+		<result property="cczt02" column="CCZT02" jdbcType="VARCHAR"/>
+		<result property="cczt03" column="CCZT03" jdbcType="VARCHAR"/>
+		<result property="cczt04" column="CCZT04" jdbcType="VARCHAR"/>
+		<result property="cczt05" column="CCZT05" jdbcType="VARCHAR"/>
+		<result property="cczt06" column="CCZT06" jdbcType="TIMESTAMP"/>
+		<result property="cczt07" column="CCZT07" jdbcType="NUMERIC"/>
+		<result property="cczt08" column="CCZT08" jdbcType="NUMERIC"/>
+		<result property="cczt17" column="CCZT17" jdbcType="NUMERIC"/>
+		<result property="cczt18" column="CCZT18" jdbcType="VARCHAR"/>
+		<result property="cczt09" column="CCZT09" jdbcType="VARCHAR"/>
+		<result property="cczt10" column="CCZT10" jdbcType="VARCHAR"/>
+		<result property="cczt11" column="CCZT11" jdbcType="VARCHAR"/>
+		<result property="cczt12" column="CCZT12" jdbcType="VARCHAR"/>
+		<result property="cczt13" column="CCZT13" jdbcType="TIMESTAMP"/>
+		<result property="cczt14" column="CCZT14" jdbcType="VARCHAR"/>
+		<result property="cczt15" column="CCZT15" jdbcType="VARCHAR"/>
+		<result property="cczt16" column="CCZT16" jdbcType="TIMESTAMP"/>
+		<result property="cczz01" column="CCZZ01" jdbcType="NUMERIC"/>
+		<result property="catc01" column="CATC01" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		CCZT01,CCZY01,AAB001,ACB330,CCZY03,CCZT02,CCZT03,CCZT04,CCZT05,CCZT06,CCZT07,CCZT08,CCZT17,CCZT18,CCZT09,CCZT10,CCZT11,CCZT12,CCZT13,CCZT14,CCZT15,CCZT16,CCZZ01,CATC01
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(cczt01)"> AND CCZT01  =#{cczt01} </if>
+			<if test="@Ognl@isNotEmpty(cczy01)"> AND CCZY01  =#{cczy01} </if>
+			<if test="@Ognl@isNotEmpty(aab001)"> AND AAB001  =#{aab001} </if>
+			<if test="@Ognl@isNotEmpty(acb330)"> AND ACB330  =#{acb330} </if>
+			<if test="@Ognl@isNotEmpty(cczy03)"> AND CCZY03  =#{cczy03} </if>
+			<if test="@Ognl@isNotEmpty(cczt02)"> AND CCZT02  LIKE #{cczt02}  </if>
+			<if test="@Ognl@isNotEmpty(cczt03)"> AND CCZT03  LIKE #{cczt03}  </if>
+			<if test="@Ognl@isNotEmpty(cczt04)"> AND CCZT04  LIKE #{cczt04}  </if>
+			<if test="@Ognl@isNotEmpty(cczt05)"> AND CCZT05  LIKE #{cczt05}  </if>
+			<if test="@Ognl@isNotEmpty(cczt06)"> AND CCZT06  =#{cczt06} </if>
+			<if test="@Ognl@isNotEmpty(begincczt06)"> AND CCZT06  >=#{begincczt06,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcczt06)"> AND CCZT06 <![CDATA[ <=#{endcczt06,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(cczt07)"> AND CCZT07  =#{cczt07} </if>
+			<if test="@Ognl@isNotEmpty(cczt08)"> AND CCZT08  =#{cczt08} </if>
+			<if test="@Ognl@isNotEmpty(cczt17)"> AND CCZT17  =#{cczt17} </if>
+			<if test="@Ognl@isNotEmpty(cczt18)"> AND CCZT18  LIKE #{cczt18}  </if>
+			<if test="@Ognl@isNotEmpty(cczt09)"> AND CCZT09  LIKE #{cczt09}  </if>
+			<if test="@Ognl@isNotEmpty(cczt10)"> AND CCZT10  LIKE #{cczt10}  </if>
+			<if test="@Ognl@isNotEmpty(cczt11)"> AND CCZT11  LIKE #{cczt11}  </if>
+			<if test="@Ognl@isNotEmpty(cczt12)"> AND CCZT12  LIKE #{cczt12}  </if>
+			<if test="@Ognl@isNotEmpty(cczt13)"> AND CCZT13  =#{cczt13} </if>
+			<if test="@Ognl@isNotEmpty(begincczt13)"> AND CCZT13  >=#{begincczt13,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcczt13)"> AND CCZT13 <![CDATA[ <=#{endcczt13,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(cczt14)"> AND CCZT14  LIKE #{cczt14}  </if>
+			<if test="@Ognl@isNotEmpty(cczt15)"> AND CCZT15  LIKE #{cczt15}  </if>
+			<if test="@Ognl@isNotEmpty(cczt16)"> AND CCZT16  =#{cczt16} </if>
+			<if test="@Ognl@isNotEmpty(begincczt16)"> AND CCZT16  >=#{begincczt16,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcczt16)"> AND CCZT16 <![CDATA[ <=#{endcczt16,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(cczz01)"> AND CCZZ01  =#{cczz01} </if>
+			<if test="@Ognl@isNotEmpty(catc01)"> AND CATC01  =#{catc01} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.jobfair.model.BoothUnsubscribe">
+		INSERT INTO CCZ03
+		(CCZT01,CCZY01,AAB001,ACB330,CCZY03,CCZT02,CCZT03,CCZT04,CCZT05,CCZT06,CCZT07,CCZT08,CCZT17,CCZT18,CCZT09,CCZT10,CCZT11,CCZT12,CCZT13,CCZT14,CCZT15,CCZT16,CCZZ01,CATC01)
+		VALUES
+		(#{cczt01,jdbcType=NUMERIC}, #{cczy01,jdbcType=NUMERIC}, #{aab001,jdbcType=NUMERIC}, #{acb330,jdbcType=NUMERIC}, #{cczy03,jdbcType=NUMERIC}, #{cczt02,jdbcType=VARCHAR}, #{cczt03,jdbcType=VARCHAR}, #{cczt04,jdbcType=VARCHAR}, #{cczt05,jdbcType=VARCHAR}, #{cczt06,jdbcType=TIMESTAMP}, #{cczt07,jdbcType=NUMERIC}, #{cczt08,jdbcType=NUMERIC}, #{cczt17,jdbcType=NUMERIC}, #{cczt18,jdbcType=VARCHAR}, #{cczt09,jdbcType=VARCHAR}, #{cczt10,jdbcType=VARCHAR}, #{cczt11,jdbcType=VARCHAR}, #{cczt12,jdbcType=VARCHAR}, #{cczt13,jdbcType=TIMESTAMP}, #{cczt14,jdbcType=VARCHAR}, #{cczt15,jdbcType=VARCHAR}, #{cczt16,jdbcType=TIMESTAMP}, #{cczz01,jdbcType=NUMERIC}, #{catc01,jdbcType=NUMERIC})
+	</insert>
+	<!-- 退订业务开始 -->
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM CCZ03 
+		WHERE
+		CCZT01=#{cczt01}
+	</delete>
+	<delete id="delCcp03ByBookId" parameterType="java.lang.Long">
+	 delete from ccp03
+       where acb210 in
+             (select acb210
+                from cb21 a
+               where a.acb200 in
+                     (select t.acb200 from ccz01 t where t.cczy01 = #{cczy01}));
+	</delete>
+	<delete id="delCcp04ByBookId" parameterType="java.lang.Long">
+	 delete from ccp04
+       where acb210 in
+             (select acb210
+                from cb21 a
+               where a.acb200 in
+                     (select t.acb200 from ccz01 t where t.cczy01 = #{cczy01}));
+	</delete>
+	
+	<delete id="delCb20ByBookId" parameterType="java.lang.Long">
+	 delete from cb20 a
+       where a.acb200 in
+             (select t.acb200 from ccz01 t where t.cczy01 = #{cczy01});
+	</delete>
+	
+    <delete id="delCb21ByBookId" parameterType="java.lang.Long">
+	 delete from cb21 a
+       where a.acb200 in
+             (select t.acb200 from ccz01 t where t.cczy01 = #{cczy01});
+	</delete>
+	
+	 <delete id="delcb35ByBookId" parameterType="java.lang.Long">
+	  delete from cb35 t where t.ace200 = #{cczy01};
+	</delete>
+	<update id="updateCcz05" parameterType="java.lang.Long">
+		update ccz05 t set t.cczz04 = '3' where t.cczy01 = #{cczy01};
+	</update>
+	<!-- 退订业务结束 -->
+	<update id="update" parameterType="com.xunfeng.business.jobfair.model.BoothUnsubscribe">
+		UPDATE CCZ03 SET
+		CCZY01=#{cczy01,jdbcType=NUMERIC},
+		AAB001=#{aab001,jdbcType=NUMERIC},
+		ACB330=#{acb330,jdbcType=NUMERIC},
+		CCZY03=#{cczy03,jdbcType=NUMERIC},
+		CCZT02=#{cczt02,jdbcType=VARCHAR},
+		CCZT03=#{cczt03,jdbcType=VARCHAR},
+		CCZT04=#{cczt04,jdbcType=VARCHAR},
+		CCZT05=#{cczt05,jdbcType=VARCHAR},
+		CCZT06=#{cczt06,jdbcType=TIMESTAMP},
+		CCZT07=#{cczt07,jdbcType=NUMERIC},
+		CCZT08=#{cczt08,jdbcType=NUMERIC},
+		CCZT17=#{cczt17,jdbcType=NUMERIC},
+		CCZT18=#{cczt18,jdbcType=VARCHAR},
+		CCZT09=#{cczt09,jdbcType=VARCHAR},
+		CCZT10=#{cczt10,jdbcType=VARCHAR},
+		CCZT11=#{cczt11,jdbcType=VARCHAR},
+		CCZT12=#{cczt12,jdbcType=VARCHAR},
+		CCZT13=#{cczt13,jdbcType=TIMESTAMP},
+		CCZT14=#{cczt14,jdbcType=VARCHAR},
+		CCZT15=#{cczt15,jdbcType=VARCHAR},
+		CCZT16=#{cczt16,jdbcType=TIMESTAMP},
+		CCZZ01=#{cczz01,jdbcType=NUMERIC},
+		CATC01=#{catc01,jdbcType=NUMERIC}
+		WHERE
+		CCZT01=#{cczt01}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="BoothUnsubscribe">
+		SELECT <include refid="columns"/>
+		FROM CCZ03
+		WHERE
+		CCZT01=#{cczt01}
+	</select>
+	<select id="getAll" resultMap="BoothUnsubscribe">
+		SELECT <include refid="columns"/>
+		FROM CCZ03   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by CCZT01  desc
+		</if>
+	</select>
+</mapper>

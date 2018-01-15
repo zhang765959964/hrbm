@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.print.model.PrintTemplate">
+	<resultMap id="PrintTemplate" type="com.xunfeng.business.personagency.print.model.PrintTemplate">
+		<id property="pkId" column="PK_ID" jdbcType="NUMERIC"/>
+		<result property="fdModelName" column="FD_MODEL_NAME" jdbcType="VARCHAR"/>
+		<result property="fdModelHtml" column="FD_MODEL_HTML" jdbcType="CLOB"/>
+		<result property="fdModelService" column="FD_MODEL_SERVICE" jdbcType="VARCHAR"/>
+		<result property="fkModelType" column="FK_MODEL_TYPE" jdbcType="NUMERIC"/>
+		<result property="fdModelTemplate" column="FD_MODEL_TEMPLATE" jdbcType="CLOB"/>
+		<result property="fkCreaterId" column="FK_CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="fdCreaterName" column="FD_CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="fdCreaterDate" column="FD_CREATER_DATE" jdbcType="DATE"/>
+		<result property="fkCreaterOrgId" column="FK_CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="fdCreaterOrgName" column="FD_CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="fdModelAlias" column="FD_MODEL_ALIAS" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		PK_ID,FD_MODEL_NAME,FD_MODEL_HTML,FD_MODEL_SERVICE,FK_MODEL_TYPE,FD_MODEL_TEMPLATE,FK_CREATER_ID,FD_CREATER_NAME,FD_CREATER_DATE,FK_CREATER_ORG_ID,FD_CREATER_ORG_NAME,FD_MODEL_ALIAS
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(pkId)"> AND PK_ID  =#{pkId} </if>
+			<if test="@Ognl@isNotEmpty(fdModelName)"> AND FD_MODEL_NAME  LIKE #{fdModelName}  </if>
+			<if test="@Ognl@isNotEmpty(fdModelHtml)"> AND FD_MODEL_HTML  LIKE #{fdModelHtml}  </if>
+			<if test="@Ognl@isNotEmpty(fdModelService)"> AND FD_MODEL_SERVICE  LIKE #{fdModelService}  </if>
+			<if test="@Ognl@isNotEmpty(fkModelType)"> AND FK_MODEL_TYPE  =#{fkModelType} </if>
+			<if test="@Ognl@isNotEmpty(fdModelTemplate)"> AND FD_MODEL_TEMPLATE  LIKE #{fdModelTemplate}  </if>
+			<if test="@Ognl@isNotEmpty(fkCreaterId)"> AND FK_CREATER_ID  =#{fkCreaterId} </if>
+			<if test="@Ognl@isNotEmpty(fdCreaterName)"> AND FD_CREATER_NAME  LIKE #{fdCreaterName}  </if>
+			<if test="@Ognl@isNotEmpty(fdCreaterDate)"> AND FD_CREATER_DATE  =#{fdCreaterDate} </if>
+			<if test="@Ognl@isNotEmpty(beginfdCreaterDate)"> AND FD_CREATER_DATE  >=#{beginfdCreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endfdCreaterDate)"> AND FD_CREATER_DATE <![CDATA[ <=#{endfdCreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(fkCreaterOrgId)"> AND FK_CREATER_ORG_ID  =#{fkCreaterOrgId} </if>
+			<if test="@Ognl@isNotEmpty(fdCreaterOrgName)"> AND FD_CREATER_ORG_NAME  LIKE #{fdCreaterOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(fdModelAlias)"> AND FD_MODEL_ALIAS  LIKE #{fdModelAlias}  </if>
+			<if test="@Ognl@isNotEmpty(searchValue)"> AND FD_MODEL_NAME  LIKE #{searchValue}  </if>
+			
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.print.model.PrintTemplate">
+		INSERT INTO RSDA_BS_PRINT_MODEL
+		(PK_ID,FD_MODEL_NAME,FD_MODEL_HTML,FD_MODEL_SERVICE,FK_MODEL_TYPE,FD_MODEL_TEMPLATE,FK_CREATER_ID,FD_CREATER_NAME,FD_CREATER_DATE,FK_CREATER_ORG_ID,FD_CREATER_ORG_NAME,FD_MODEL_ALIAS)
+		VALUES
+		(#{pkId,jdbcType=NUMERIC}, #{fdModelName,jdbcType=VARCHAR}, #{fdModelHtml,jdbcType=CLOB}, #{fdModelService,jdbcType=VARCHAR}, #{fkModelType,jdbcType=NUMERIC}, #{fdModelTemplate,jdbcType=CLOB}, #{fkCreaterId,jdbcType=NUMERIC}, #{fdCreaterName,jdbcType=VARCHAR}, #{fdCreaterDate,jdbcType=DATE}, #{fkCreaterOrgId,jdbcType=NUMERIC}, #{fdCreaterOrgName,jdbcType=VARCHAR}, #{fdModelAlias,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_PRINT_MODEL 
+		WHERE
+		PK_ID=#{pkId}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.print.model.PrintTemplate">
+		UPDATE RSDA_BS_PRINT_MODEL SET
+		FD_MODEL_NAME=#{fdModelName,jdbcType=VARCHAR},
+		FD_MODEL_HTML=#{fdModelHtml,jdbcType=CLOB},
+		FD_MODEL_SERVICE=#{fdModelService,jdbcType=VARCHAR},
+		FK_MODEL_TYPE=#{fkModelType,jdbcType=NUMERIC},
+		FD_MODEL_TEMPLATE=#{fdModelTemplate,jdbcType=CLOB},
+		FK_CREATER_ID=#{fkCreaterId,jdbcType=NUMERIC},
+		FD_CREATER_NAME=#{fdCreaterName,jdbcType=VARCHAR},
+		FD_CREATER_DATE=#{fdCreaterDate,jdbcType=DATE},
+		FK_CREATER_ORG_ID=#{fkCreaterOrgId,jdbcType=NUMERIC},
+		FD_CREATER_ORG_NAME=#{fdCreaterOrgName,jdbcType=VARCHAR},
+		FD_MODEL_ALIAS=#{fdModelAlias,jdbcType=VARCHAR}
+		WHERE
+		PK_ID=#{pkId}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="PrintTemplate">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PRINT_MODEL
+		WHERE
+		PK_ID=#{pkId}
+	</select>
+	
+	<select id="getAll" resultMap="PrintTemplate">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PRINT_MODEL   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by PK_ID  desc
+		</if>
+	</select>
+</mapper>

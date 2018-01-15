@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.sys.role.model.SysRole">
+	<resultMap id="SysRole" type="com.xunfeng.sys.role.model.SysRole">
+		<id property="roleid" column="ROLEID" jdbcType="NUMERIC"/>
+		<result property="rolename" column="ROLENAME" jdbcType="VARCHAR"/>
+		<result property="roledesc" column="ROLEDESC" jdbcType="VARCHAR"/>
+		<result property="aae011" column="AAE011" jdbcType="VARCHAR"/>
+		<result property="aae017" column="AAE017" jdbcType="VARCHAR"/>
+		<result property="aae036" column="AAE036" jdbcType="TIMESTAMP"/>
+		<result property="aae019" column="AAE019" jdbcType="VARCHAR"/>
+		<result property="aae020" column="AAE020" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ROLEID,ROLENAME,ROLEDESC,AAE011,AAE017,AAE036,AAE019,AAE020
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(roleid)"> AND ROLEID  =#{roleid} </if>
+			<if test="@Ognl@isNotEmpty(rolename)"> AND ROLENAME  LIKE #{rolename}  </if>
+			<if test="@Ognl@isNotEmpty(roledesc)"> AND ROLEDESC  LIKE #{roledesc}  </if>
+			<if test="@Ognl@isNotEmpty(aae011)"> AND AAE011  LIKE #{aae011}  </if>
+			<if test="@Ognl@isNotEmpty(aae017)"> AND AAE017  LIKE #{aae017}  </if>
+			<if test="@Ognl@isNotEmpty(aae036)"> AND AAE036  =#{aae036} </if>
+			<if test="@Ognl@isNotEmpty(beginaae036)"> AND AAE036  >=#{beginaae036,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaae036)"> AND AAE036 <![CDATA[ <=#{endaae036,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aae019)"> AND AAE019  LIKE #{aae019}  </if>
+			<if test="@Ognl@isNotEmpty(aae020)"> AND AAE020  LIKE #{aae020}  </if>
+			<if test="@Ognl@isNotEmpty(findKeyword)"> AND ( ROLENAME  LIKE #{findKeyword} OR AAE019  LIKE #{findKeyword} OR AAE020  LIKE #{findKeyword} ) </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.sys.role.model.SysRole">
+		INSERT INTO FRU02
+		(ROLEID,ROLENAME,ROLEDESC,AAE011,AAE017,AAE036,AAE019,AAE020)
+		VALUES
+		(#{roleid,jdbcType=NUMERIC}, #{rolename,jdbcType=VARCHAR}, #{roledesc,jdbcType=VARCHAR}, #{aae011,jdbcType=VARCHAR}, #{aae017,jdbcType=VARCHAR}, #{aae036,jdbcType=TIMESTAMP}, #{aae019,jdbcType=VARCHAR}, #{aae020,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM FRU02 
+		WHERE
+		ROLEID=#{roleid}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.sys.role.model.SysRole">
+		UPDATE FRU02 SET
+		ROLENAME=#{rolename,jdbcType=VARCHAR},
+		ROLEDESC=#{roledesc,jdbcType=VARCHAR},
+		AAE011=#{aae011,jdbcType=VARCHAR},
+		AAE017=#{aae017,jdbcType=VARCHAR},
+		AAE036=#{aae036,jdbcType=TIMESTAMP},
+		AAE019=#{aae019,jdbcType=VARCHAR},
+		AAE020=#{aae020,jdbcType=VARCHAR}
+		WHERE
+		ROLEID=#{roleid}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysRole">
+		SELECT <include refid="columns"/>
+		FROM FRU02
+		WHERE
+		ROLEID=#{roleid}
+	</select>
+	<select id="getUserRole"  resultMap="SysRole">
+		SELECT <include refid="columns"/>
+		from fru02 v where roleid in ( select * from table(split((select cczh03 from cd23 where acd230=#{userId} and ccpr08='0')))) 
+	</select>
+	<select id="getUserRoleByUrl"  resultMap="SysRole">
+		select  v.roleid,v.rolename from v_fru010203 v where v.funmapping=#{funmapping}
+	</select>
+	<select id="getAll" resultMap="SysRole">
+		SELECT <include refid="columns"/>
+		FROM FRU02   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ROLEID  desc
+		</if>
+	</select>
+</mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.sys.dictionary.model.Dictionary">
+	<resultMap id="Dictionary" type="com.xunfeng.sys.dictionary.model.Dictionary">
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="code" column="CODE" jdbcType="VARCHAR"/>
+	</resultMap>
+	<select id="getByTableName" parameterType="hashmap" resultMap="Dictionary">
+		SELECT  a.code,a.name FROM ${tableName} a
+	</select>
+	
+	<!-- 查询所有的行业信息（TAB_INDUSTRY）-->
+	<select id="getIndustry" resultMap="Dictionary" >
+        select code, name from TAB_INDUSTRY
+	</select>
+</mapper>

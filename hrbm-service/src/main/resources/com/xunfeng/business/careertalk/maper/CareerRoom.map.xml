@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xunfeng.business.careertalk.model.CareerRoom">
+	<resultMap id="CareerRoom"
+		type="com.xunfeng.business.careertalk.model.CareerRoom">
+		<id property="crId" column="CR_ID" jdbcType="NUMERIC" />
+		<result property="crName" column="CR_NAME" jdbcType="VARCHAR" />
+		<result property="crAddress" column="CR_ADDRESS" jdbcType="VARCHAR" />
+		<result property="crMaxPeople" column="CR_MAX_PEOPLE" jdbcType="NUMERIC" />
+		<result property="crDesc" column="CR_DESC" jdbcType="VARCHAR" />
+		<result property="crStatus" column="CR_STATUS" jdbcType="NUMERIC" />
+		<result property="crCreatetime" column="CR_CREATETIME"
+			jdbcType="TIMESTAMP" />
+		<result property="crUpdatetime" column="CR_UPDATETIME"
+			jdbcType="TIMESTAMP" />
+		<result property="crCreateBy" column="CR_CREATE_BY" jdbcType="NUMERIC" />
+		<result property="crUpdateBy" column="CR_UPDATE_BY" jdbcType="NUMERIC" />
+	</resultMap>
+
+	<sql id="columns">
+		CR_ID,CR_NAME,CR_ADDRESS,CR_MAX_PEOPLE,CR_DESC,CR_STATUS,CR_CREATETIME,CR_UPDATETIME,CR_CREATE_BY,CR_UPDATE_BY
+	</sql>
+
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(crId)"> AND CR_ID =#{crId} </if>
+			<if test="@Ognl@isNotEmpty(crName)"> AND CR_NAME LIKE #{crName}  </if>
+			<if test="@Ognl@isNotEmpty(crAddress)"> AND CR_ADDRESS LIKE #{crAddress}  </if>
+			<if test="@Ognl@isNotEmpty(crMaxPeople)"> AND CR_MAX_PEOPLE =#{crMaxPeople} </if>
+			<if test="@Ognl@isNotEmpty(crDesc)"> AND CR_DESC LIKE #{crDesc}  </if>
+			<if test="@Ognl@isNotEmpty(crStatus)"> AND CR_STATUS =#{crStatus} </if>
+			<if test="@Ognl@isNotEmpty(crCreatetime)"> AND CR_CREATETIME =#{crCreatetime} </if>
+			<if test="@Ognl@isNotEmpty(begincrCreatetime)"> AND CR_CREATETIME
+				>=#{begincrCreatetime,jdbcType=TIMESTAMP} </if>
+			<if test="@Ognl@isNotEmpty(endcrCreatetime)">
+				AND CR_CREATETIME <![CDATA[ <=#{endcrCreatetime,jdbcType=TIMESTAMP}]]>
+			</if>
+			<if test="@Ognl@isNotEmpty(crUpdatetime)"> AND CR_UPDATETIME =#{crUpdatetime} </if>
+			<if test="@Ognl@isNotEmpty(begincrUpdatetime)"> AND CR_UPDATETIME
+				>=#{begincrUpdatetime,jdbcType=TIMESTAMP} </if>
+			<if test="@Ognl@isNotEmpty(endcrUpdatetime)">
+				AND CR_UPDATETIME <![CDATA[ <=#{endcrUpdatetime,jdbcType=TIMESTAMP}]]>
+			</if>
+			<if test="@Ognl@isNotEmpty(crCreateBy)"> AND CR_CREATE_BY =#{crCreateBy} </if>
+			<if test="@Ognl@isNotEmpty(crUpdateBy)"> AND CR_UPDATE_BY =#{crUpdateBy} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.careertalk.model.CareerRoom">
+		INSERT INTO CAREER_ROOM
+		(CR_ID,CR_NAME,CR_ADDRESS,CR_MAX_PEOPLE,CR_DESC,CR_STATUS,CR_CREATETIME,CR_UPDATETIME,CR_CREATE_BY,CR_UPDATE_BY)
+		VALUES
+		(#{crId,jdbcType=NUMERIC}, #{crName,jdbcType=VARCHAR},
+		#{crAddress,jdbcType=VARCHAR}, #{crMaxPeople,jdbcType=NUMERIC},
+		#{crDesc,jdbcType=VARCHAR}, #{crStatus,jdbcType=NUMERIC},
+		#{crCreatetime,jdbcType=TIMESTAMP},
+		#{crUpdatetime,jdbcType=TIMESTAMP}, #{crCreateBy,jdbcType=NUMERIC},
+		#{crUpdateBy,jdbcType=NUMERIC})
+	</insert>
+
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM CAREER_ROOM
+		WHERE
+		CR_ID=#{crId}
+	</delete>
+
+	<update id="update" parameterType="com.xunfeng.business.careertalk.model.CareerRoom">
+		UPDATE CAREER_ROOM
+		<set>
+			<trim suffixOverrides=",">
+				<if test="@Ognl@isNotEmpty(crId)">CR_ID = #{crId},</if>
+				<if test="@Ognl@isNotEmpty(crName)">CR_NAME = #{crName},</if>
+				<if test="@Ognl@isNotEmpty(crAddress)">CR_ADDRESS=#{crAddress},</if>
+				<if test="@Ognl@isNotEmpty(crMaxPeople)">CR_MAX_PEOPLE=#{crMaxPeople},</if>
+				<if test="@Ognl@isNotEmpty(crDesc)">CR_DESC=#{crDesc},</if>
+				<if test="@Ognl@isNotEmpty(crStatus)">CR_STATUS=#{crStatus},</if>
+				<if test="@Ognl@isNotEmpty(crCreatetime)">CR_CREATETIME=#{crCreatetime},</if>
+				<if test="@Ognl@isNotEmpty(crUpdatetime)">CR_UPDATETIME=#{crUpdatetime},</if>
+				<if test="@Ognl@isNotEmpty(crCreateBy)">CR_CREATE_BY=#{crCreateBy},</if>
+				<if test="@Ognl@isNotEmpty(crUpdateBy)">CR_UPDATE_BY=#{crUpdateBy},</if>
+			</trim>
+		</set>
+		WHERE
+		CR_ID=#{crId}
+	</update>
+
+	<select id="getById" parameterType="java.lang.Long" resultMap="CareerRoom">
+		SELECT
+		<include refid="columns" />
+		FROM CAREER_ROOM
+		WHERE
+		CR_ID=#{crId}
+	</select>
+
+	<select id="getAll" resultMap="CareerRoom">
+		SELECT
+		<include refid="columns" />
+		FROM CAREER_ROOM
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+			order by CR_ID desc
+		</if>
+	</select>
+</mapper>

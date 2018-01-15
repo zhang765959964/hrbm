@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.ovemp.cooporg.model.OvempCoopOrg">
+	<resultMap id="ovempCoopOrg" type="com.xunfeng.business.ovemp.cooporg.model.OvempCoopOrg">
+		<id property="acd200" column="ACD200" jdbcType="NUMERIC"/>
+		<result property="acd201" column="ACD201" jdbcType="VARCHAR"/>
+		<result property="acd207" column="ACD207" jdbcType="VARCHAR"/>
+		<result property="acd202" column="ACD202" jdbcType="VARCHAR"/>
+		<result property="aae006" column="AAE006" jdbcType="VARCHAR"/>
+		<result property="aae007" column="AAE007" jdbcType="VARCHAR"/>
+		<result property="aab030" column="AAB030" jdbcType="VARCHAR"/>
+		<result property="ahb409" column="AHB409" jdbcType="VARCHAR"/>
+		<result property="acd203" column="ACD203" jdbcType="VARCHAR"/>
+		<result property="acd204" column="ACD204" jdbcType="VARCHAR"/>
+		<result property="acd205" column="ACD205" jdbcType="VARCHAR"/>
+		<result property="acd208" column="ACD208" jdbcType="VARCHAR"/>
+		<result property="acd206" column="ACD206" jdbcType="VARCHAR"/>
+		<result property="aab013" column="AAB013" jdbcType="VARCHAR"/>
+		<result property="aab014" column="AAB014" jdbcType="VARCHAR"/>
+		<result property="aac004" column="AAC004" jdbcType="VARCHAR"/>
+		<result property="aac006" column="AAC006" jdbcType="TIMESTAMP"/>
+		<result property="aac011" column="AAC011" jdbcType="VARCHAR"/>
+		<result property="aab015" column="AAB015" jdbcType="VARCHAR"/>
+		<result property="aac026" column="AAC026" jdbcType="VARCHAR"/>
+		<result property="acd20b" column="ACD20B" jdbcType="VARCHAR"/>
+		<result property="acd20c" column="ACD20C" jdbcType="VARCHAR"/>
+		<result property="aab056" column="AAB056" jdbcType="VARCHAR"/>
+		<result property="acd20d" column="ACD20D" jdbcType="NUMERIC"/>
+		<result property="acd20e" column="ACD20E" jdbcType="NUMERIC"/>
+		<result property="acd20f" column="ACD20F" jdbcType="NUMERIC"/>
+		<result property="acd20g" column="ACD20G" jdbcType="NUMERIC"/>
+		<result property="aab049" column="AAB049" jdbcType="NUMERIC"/>
+		<result property="acd20m" column="ACD20M" jdbcType="VARCHAR"/>
+		<result property="acd20n" column="ACD20N" jdbcType="NUMERIC"/>
+		<result property="aab003" column="AAB003" jdbcType="VARCHAR"/>
+		<result property="aab007" column="AAB007" jdbcType="VARCHAR"/>
+		<result property="aae008" column="AAE008" jdbcType="VARCHAR"/>
+		<result property="aae010" column="AAE010" jdbcType="VARCHAR"/>
+		<result property="aab301" column="AAB301" jdbcType="VARCHAR"/>
+		<result property="aab201" column="AAB201" jdbcType="VARCHAR"/>
+		<result property="aae014" column="AAE014" jdbcType="VARCHAR"/>
+		<result property="aae015" column="AAE015" jdbcType="VARCHAR"/>
+		<result property="aae016" column="AAE016" jdbcType="VARCHAR"/>
+		<result property="acd20a" column="ACD20A" jdbcType="VARCHAR"/>
+		<result property="aae004" column="AAE004" jdbcType="VARCHAR"/>
+		<result property="aae005" column="AAE005" jdbcType="VARCHAR"/>
+		<result property="acd20k" column="ACD20K" jdbcType="TIMESTAMP"/>
+		<result property="aab034" column="AAB034" jdbcType="VARCHAR"/>
+		<result property="aae044" column="AAE044" jdbcType="VARCHAR"/>
+		<result property="aae100" column="AAE100" jdbcType="VARCHAR"/>
+		<result property="aae097" column="AAE097" jdbcType="VARCHAR"/>
+		<result property="aae098" column="AAE098" jdbcType="VARCHAR"/>
+		<result property="aae013" column="AAE013" jdbcType="VARCHAR"/>
+		<result property="aae011" column="AAE011" jdbcType="VARCHAR"/>
+		<result property="aae017" column="AAE017" jdbcType="VARCHAR"/>
+		<result property="aae019" column="AAE019" jdbcType="VARCHAR"/>
+		<result property="aae020" column="AAE020" jdbcType="VARCHAR"/>
+		<result property="aae036" column="AAE036" jdbcType="TIMESTAMP"/>
+		<result property="aae022" column="AAE022" jdbcType="VARCHAR"/>
+		<result property="aaea98" column="AAEA98" jdbcType="VARCHAR"/>
+		<result property="aaea13" column="AAEA13" jdbcType="VARCHAR"/>
+		<result property="aaea11" column="AAEA11" jdbcType="VARCHAR"/>
+		<result property="aaea17" column="AAEA17" jdbcType="VARCHAR"/>
+		<result property="aaea36" column="AAEA36" jdbcType="TIMESTAMP"/>
+		<result property="aaea19" column="AAEA19" jdbcType="VARCHAR"/>
+		<result property="aaea20" column="AAEA20" jdbcType="VARCHAR"/>
+		<result property="aaea22" column="AAEA22" jdbcType="VARCHAR"/>
+		<result property="aaeb98" column="AAEB98" jdbcType="VARCHAR"/>
+		<result property="aaeb13" column="AAEB13" jdbcType="VARCHAR"/>
+		<result property="aaeb11" column="AAEB11" jdbcType="VARCHAR"/>
+		<result property="aaeb17" column="AAEB17" jdbcType="VARCHAR"/>
+		<result property="aaeb36" column="AAEB36" jdbcType="TIMESTAMP"/>
+		<result property="aaeb19" column="AAEB19" jdbcType="VARCHAR"/>
+		<result property="aaeb20" column="AAEB20" jdbcType="VARCHAR"/>
+		<result property="aaeb22" column="AAEB22" jdbcType="VARCHAR"/>
+		<result property="acd20h" column="ACD20H" jdbcType="VARCHAR"/>
+		<result property="aaee11" column="AAEE11" jdbcType="VARCHAR"/>
+		<result property="aaee17" column="AAEE17" jdbcType="VARCHAR"/>
+		<result property="aaee36" column="AAEE36" jdbcType="TIMESTAMP"/>
+		<result property="aaee19" column="AAEE19" jdbcType="VARCHAR"/>
+		<result property="aaee20" column="AAEE20" jdbcType="VARCHAR"/>
+		<result property="aaee22" column="AAEE22" jdbcType="VARCHAR"/>
+		<result property="acd20p" column="ACD20P" jdbcType="VARCHAR"/>
+		<result property="acd20j" column="ACD20J" jdbcType="VARCHAR"/>
+		<result property="aaef11" column="AAEF11" jdbcType="VARCHAR"/>
+		<result property="aaef17" column="AAEF17" jdbcType="VARCHAR"/>
+		<result property="aaef36" column="AAEF36" jdbcType="TIMESTAMP"/>
+		<result property="aaef19" column="AAEF19" jdbcType="VARCHAR"/>
+		<result property="aaef20" column="AAEF20" jdbcType="VARCHAR"/>
+		<result property="aaef22" column="AAEF22" jdbcType="VARCHAR"/>
+		<result property="acd20q" column="ACD20Q" jdbcType="VARCHAR"/>
+		<result property="aaeg11" column="AAEG11" jdbcType="VARCHAR"/>
+		<result property="aaeg17" column="AAEG17" jdbcType="VARCHAR"/>
+		<result property="aaeg36" column="AAEG36" jdbcType="TIMESTAMP"/>
+		<result property="aaeg19" column="AAEG19" jdbcType="VARCHAR"/>
+		<result property="aaeg20" column="AAEG20" jdbcType="VARCHAR"/>
+		<result property="aaeg22" column="AAEG22" jdbcType="VARCHAR"/>
+		<result property="acd20t" column="ACD20T" jdbcType="VARCHAR"/>
+		<result property="aaeh11" column="AAEH11" jdbcType="VARCHAR"/>
+		<result property="aaeh17" column="AAEH17" jdbcType="VARCHAR"/>
+		<result property="aaeh36" column="AAEH36" jdbcType="TIMESTAMP"/>
+		<result property="aaeh19" column="AAEH19" jdbcType="VARCHAR"/>
+		<result property="aaeh20" column="AAEH20" jdbcType="VARCHAR"/>
+		<result property="aaeh22" column="AAEH22" jdbcType="VARCHAR"/>
+		<result property="acd20u" column="ACD20U" jdbcType="VARCHAR"/>
+		<result property="ccmu01" column="CCMU01" jdbcType="NUMERIC"/>
+		<result property="ccmu02" column="CCMU02" jdbcType="NUMERIC"/>
+		<result property="ccmu03" column="CCMU03" jdbcType="NUMERIC"/>
+		<result property="ccmu04" column="CCMU04" jdbcType="VARCHAR"/>
+		<result property="ccmu05" column="CCMU05" jdbcType="NUMERIC"/>
+		<result property="acd20v" column="ACD20V" jdbcType="VARCHAR"/>
+		<result property="cabq01" column="CABQ01" jdbcType="NUMERIC"/>
+		<result property="cabq02" column="CABQ02" jdbcType="NUMERIC"/>
+		<result property="cabq03" column="CABQ03" jdbcType="NUMERIC"/>
+		<result property="cabq04" column="CABQ04" jdbcType="NUMERIC"/>
+		<result property="bcd202" column="BCD202" jdbcType="VARCHAR"/>
+		<result property="aczy06" column="ACZY06" jdbcType="VARCHAR"/>
+		<result property="acd20w" column="ACD20W" jdbcType="VARCHAR"/>
+		<result property="acd20s" column="ACD20S" jdbcType="VARCHAR"/>
+			<result property="jco005" column="JCO005" jdbcType="VARCHAR"/>
+		<result property="jco006" column="JCO006" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		JCO005,JCO006,ACB208,ACD200,ACD201,ACD207,ACD202,AAE006,AAE007,AAB030,AHB409,ACD203,ACD204,ACD205,ACD208,ACD206,AAB013,AAB014,AAC004,AAC006,AAC011,AAB015,AAC026,ACD20B,ACD20C,AAB056,ACD20D,ACD20E,ACD20F,ACD20G,AAB049,ACD20M,ACD20N,AAB003,AAB007,AAE008,AAE010,AAB301,AAB201,AAE014,AAE015,AAE016,ACD20A,AAE004,AAE005,ACD20K,AAB034,AAE044,AAE100,AAE097,AAE098,AAE013,AAE011,AAE017,AAE019,AAE020,AAE036,AAE022,AAEA98,AAEA13,AAEA11,AAEA17,AAEA36,AAEA19,AAEA20,AAEA22,AAEB98,AAEB13,AAEB11,AAEB17,AAEB36,AAEB19,AAEB20,AAEB22,ACD20H,AAEE11,AAEE17,AAEE36,AAEE19,AAEE20,AAEE22,ACD20P,ACD20J,AAEF11,AAEF17,AAEF36,AAEF19,AAEF20,AAEF22,ACD20Q,AAEG11,AAEG17,AAEG36,AAEG19,AAEG20,AAEG22,ACD20T,AAEH11,AAEH17,AAEH36,AAEH19,AAEH20,AAEH22,ACD20U,CCMU01,CCMU02,CCMU03,CCMU04,CCMU05,ACD20V,CABQ01,CABQ02,CABQ03,CABQ04,BCD202,ACZY06,ACD20W,ACD20S
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(acb208)"> AND ACB208  =#{acb208} </if>
+			<if test="@Ognl@isNotEmpty(acd200)"> AND ACD200  =#{acd200} </if>
+			<if test="@Ognl@isNotEmpty(jco005)"> AND JCO005  LIKE #{jco005}  </if>
+			<if test="@Ognl@isNotEmpty(acd201)"> AND ACD201  LIKE #{acd201}  </if>
+			<if test="@Ognl@isNotEmpty(acd207)"> AND ACD207  LIKE #{acd207}  </if>
+			<if test="@Ognl@isNotEmpty(acd202)"> AND ACD202  LIKE #{acd202}  </if>
+			<if test="@Ognl@isNotEmpty(aae006)"> AND AAE006  LIKE #{aae006}  </if>
+			<if test="@Ognl@isNotEmpty(aae007)"> AND AAE007  LIKE #{aae007}  </if>
+			<if test="@Ognl@isNotEmpty(aab030)"> AND AAB030  LIKE #{aab030}  </if>
+			<if test="@Ognl@isNotEmpty(ahb409)"> AND AHB409  LIKE #{ahb409}  </if>
+			<if test="@Ognl@isNotEmpty(acd203)"> AND ACD203  LIKE #{acd203}  </if>
+			<if test="@Ognl@isNotEmpty(acd204)"> AND ACD204  LIKE #{acd204}  </if>
+			<if test="@Ognl@isNotEmpty(acd205)"> AND ACD205  LIKE #{acd205}  </if>
+			<if test="@Ognl@isNotEmpty(acd208)"> AND ACD208  LIKE #{acd208}  </if>
+			<if test="@Ognl@isNotEmpty(acd206)"> AND ACD206  LIKE #{acd206}  </if>
+			<if test="@Ognl@isNotEmpty(aab013)"> AND AAB013  LIKE #{aab013}  </if>
+			<if test="@Ognl@isNotEmpty(aab014)"> AND AAB014  LIKE #{aab014}  </if>
+			<if test="@Ognl@isNotEmpty(aac004)"> AND AAC004  LIKE #{aac004}  </if>
+			<if test="@Ognl@isNotEmpty(aac006)"> AND AAC006  =#{aac006} </if>
+			<if test="@Ognl@isNotEmpty(beginaac006)"> AND AAC006  >=#{beginaac006,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaac006)"> AND AAC006 <![CDATA[ <=#{endaac006,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aac011)"> AND AAC011  LIKE #{aac011}  </if>
+			<if test="@Ognl@isNotEmpty(aab015)"> AND AAB015  LIKE #{aab015}  </if>
+			<if test="@Ognl@isNotEmpty(aac026)"> AND AAC026  LIKE #{aac026}  </if>
+			<if test="@Ognl@isNotEmpty(acd20b)"> AND ACD20B  LIKE #{acd20b}  </if>
+			<if test="@Ognl@isNotEmpty(acd20c)"> AND ACD20C  LIKE #{acd20c}  </if>
+			<if test="@Ognl@isNotEmpty(aab056)"> AND AAB056  LIKE #{aab056}  </if>
+			<if test="@Ognl@isNotEmpty(acd20d)"> AND ACD20D  =#{acd20d} </if>
+			<if test="@Ognl@isNotEmpty(acd20e)"> AND ACD20E  =#{acd20e} </if>
+			<if test="@Ognl@isNotEmpty(acd20f)"> AND ACD20F  =#{acd20f} </if>
+			<if test="@Ognl@isNotEmpty(acd20g)"> AND ACD20G  =#{acd20g} </if>
+			<if test="@Ognl@isNotEmpty(aab049)"> AND AAB049  =#{aab049} </if>
+			<if test="@Ognl@isNotEmpty(acd20m)"> AND ACD20M  LIKE #{acd20m}  </if>
+			<if test="@Ognl@isNotEmpty(acd20n)"> AND ACD20N  =#{acd20n} </if>
+			<if test="@Ognl@isNotEmpty(aab003)"> AND AAB003  LIKE #{aab003}  </if>
+			<if test="@Ognl@isNotEmpty(aab007)"> AND AAB007  LIKE #{aab007}  </if>
+			<if test="@Ognl@isNotEmpty(aae008)"> AND AAE008  LIKE #{aae008}  </if>
+			<if test="@Ognl@isNotEmpty(aae010)"> AND AAE010  LIKE #{aae010}  </if>
+			<if test="@Ognl@isNotEmpty(aab301)"> AND AAB301  LIKE #{aab301}  </if>
+			<if test="@Ognl@isNotEmpty(aab201)"> AND AAB201  LIKE #{aab201}  </if>
+			<if test="@Ognl@isNotEmpty(aae014)"> AND AAE014  LIKE #{aae014}  </if>
+			<if test="@Ognl@isNotEmpty(aae015)"> AND AAE015  LIKE #{aae015}  </if>
+			<if test="@Ognl@isNotEmpty(aae016)"> AND AAE016  LIKE #{aae016}  </if>
+			<if test="@Ognl@isNotEmpty(acd20a)"> AND ACD20A  LIKE #{acd20a}  </if>
+			<if test="@Ognl@isNotEmpty(aae004)"> AND AAE004  LIKE #{aae004}  </if>
+			<if test="@Ognl@isNotEmpty(aae005)"> AND AAE005  LIKE #{aae005}  </if>
+			<if test="@Ognl@isNotEmpty(acd20k)"> AND ACD20K  =#{acd20k} </if>
+			<if test="@Ognl@isNotEmpty(beginacd20k)"> AND ACD20K  >=#{beginacd20k,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endacd20k)"> AND ACD20K <![CDATA[ <=#{endacd20k,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aab034)"> AND AAB034  LIKE #{aab034}  </if>
+			<if test="@Ognl@isNotEmpty(aae044)"> AND AAE044  LIKE #{aae044}  </if>
+			<if test="@Ognl@isNotEmpty(aae100)"> AND AAE100  LIKE #{aae100}  </if>
+			<if test="@Ognl@isNotEmpty(aae097)"> AND AAE097  LIKE #{aae097}  </if>
+			<if test="@Ognl@isNotEmpty(aae098)"> AND AAE098  LIKE #{aae098}  </if>
+			<if test="@Ognl@isNotEmpty(aae013)"> AND AAE013  LIKE #{aae013}  </if>
+			<if test="@Ognl@isNotEmpty(aae011)"> AND AAE011  LIKE #{aae011}  </if>
+			<if test="@Ognl@isNotEmpty(aae017)"> AND AAE017  LIKE #{aae017}  </if>
+			<if test="@Ognl@isNotEmpty(aae019)"> AND AAE019  LIKE #{aae019}  </if>
+			<if test="@Ognl@isNotEmpty(aae020)"> AND AAE020  LIKE #{aae020}  </if>
+			<if test="@Ognl@isNotEmpty(aae036)"> AND AAE036  =#{aae036} </if>
+			<if test="@Ognl@isNotEmpty(beginaae036)"> AND AAE036  >=#{beginaae036,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaae036)"> AND AAE036 <![CDATA[ <=#{endaae036,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aae022)"> AND AAE022  LIKE #{aae022}  </if>
+			<if test="@Ognl@isNotEmpty(aaea98)"> AND AAEA98  LIKE #{aaea98}  </if>
+			<if test="@Ognl@isNotEmpty(aaea13)"> AND AAEA13  LIKE #{aaea13}  </if>
+			<if test="@Ognl@isNotEmpty(aaea11)"> AND AAEA11  LIKE #{aaea11}  </if>
+			<if test="@Ognl@isNotEmpty(aaea17)"> AND AAEA17  LIKE #{aaea17}  </if>
+			<if test="@Ognl@isNotEmpty(aaea36)"> AND AAEA36  =#{aaea36} </if>
+			<if test="@Ognl@isNotEmpty(beginaaea36)"> AND AAEA36  >=#{beginaaea36,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaaea36)"> AND AAEA36 <![CDATA[ <=#{endaaea36,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aaea19)"> AND AAEA19  LIKE #{aaea19}  </if>
+			<if test="@Ognl@isNotEmpty(aaea20)"> AND AAEA20  LIKE #{aaea20}  </if>
+			<if test="@Ognl@isNotEmpty(aaea22)"> AND AAEA22  LIKE #{aaea22}  </if>
+			<if test="@Ognl@isNotEmpty(aaeb98)"> AND AAEB98  LIKE #{aaeb98}  </if>
+			<if test="@Ognl@isNotEmpty(aaeb13)"> AND AAEB13  LIKE #{aaeb13}  </if>
+			<if test="@Ognl@isNotEmpty(aaeb11)"> AND AAEB11  LIKE #{aaeb11}  </if>
+			<if test="@Ognl@isNotEmpty(aaeb17)"> AND AAEB17  LIKE #{aaeb17}  </if>
+			<if test="@Ognl@isNotEmpty(aaeb36)"> AND AAEB36  =#{aaeb36} </if>
+			<if test="@Ognl@isNotEmpty(beginaaeb36)"> AND AAEB36  >=#{beginaaeb36,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaaeb36)"> AND AAEB36 <![CDATA[ <=#{endaaeb36,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aaeb19)"> AND AAEB19  LIKE #{aaeb19}  </if>
+			<if test="@Ognl@isNotEmpty(aaeb20)"> AND AAEB20  LIKE #{aaeb20}  </if>
+			<if test="@Ognl@isNotEmpty(aaeb22)"> AND AAEB22  LIKE #{aaeb22}  </if>
+			<if test="@Ognl@isNotEmpty(acd20h)"> AND ACD20H  LIKE #{acd20h}  </if>
+			<if test="@Ognl@isNotEmpty(aaee11)"> AND AAEE11  LIKE #{aaee11}  </if>
+			<if test="@Ognl@isNotEmpty(aaee17)"> AND AAEE17  LIKE #{aaee17}  </if>
+			<if test="@Ognl@isNotEmpty(aaee36)"> AND AAEE36  =#{aaee36} </if>
+			<if test="@Ognl@isNotEmpty(beginaaee36)"> AND AAEE36  >=#{beginaaee36,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaaee36)"> AND AAEE36 <![CDATA[ <=#{endaaee36,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aaee19)"> AND AAEE19  LIKE #{aaee19}  </if>
+			<if test="@Ognl@isNotEmpty(aaee20)"> AND AAEE20  LIKE #{aaee20}  </if>
+			<if test="@Ognl@isNotEmpty(aaee22)"> AND AAEE22  LIKE #{aaee22}  </if>
+			<if test="@Ognl@isNotEmpty(acd20p)"> AND ACD20P  LIKE #{acd20p}  </if>
+			<if test="@Ognl@isNotEmpty(acd20j)"> AND ACD20J  LIKE #{acd20j}  </if>
+			<if test="@Ognl@isNotEmpty(aaef11)"> AND AAEF11  LIKE #{aaef11}  </if>
+			<if test="@Ognl@isNotEmpty(aaef17)"> AND AAEF17  LIKE #{aaef17}  </if>
+			<if test="@Ognl@isNotEmpty(aaef36)"> AND AAEF36  =#{aaef36} </if>
+			<if test="@Ognl@isNotEmpty(beginaaef36)"> AND AAEF36  >=#{beginaaef36,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaaef36)"> AND AAEF36 <![CDATA[ <=#{endaaef36,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aaef19)"> AND AAEF19  LIKE #{aaef19}  </if>
+			<if test="@Ognl@isNotEmpty(aaef20)"> AND AAEF20  LIKE #{aaef20}  </if>
+			<if test="@Ognl@isNotEmpty(aaef22)"> AND AAEF22  LIKE #{aaef22}  </if>
+			<if test="@Ognl@isNotEmpty(acd20q)"> AND ACD20Q  LIKE #{acd20q}  </if>
+			<if test="@Ognl@isNotEmpty(aaeg11)"> AND AAEG11  LIKE #{aaeg11}  </if>
+			<if test="@Ognl@isNotEmpty(aaeg17)"> AND AAEG17  LIKE #{aaeg17}  </if>
+			<if test="@Ognl@isNotEmpty(aaeg36)"> AND AAEG36  =#{aaeg36} </if>
+			<if test="@Ognl@isNotEmpty(beginaaeg36)"> AND AAEG36  >=#{beginaaeg36,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaaeg36)"> AND AAEG36 <![CDATA[ <=#{endaaeg36,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aaeg19)"> AND AAEG19  LIKE #{aaeg19}  </if>
+			<if test="@Ognl@isNotEmpty(aaeg20)"> AND AAEG20  LIKE #{aaeg20}  </if>
+			<if test="@Ognl@isNotEmpty(aaeg22)"> AND AAEG22  LIKE #{aaeg22}  </if>
+			<if test="@Ognl@isNotEmpty(acd20t)"> AND ACD20T  LIKE #{acd20t}  </if>
+			<if test="@Ognl@isNotEmpty(aaeh11)"> AND AAEH11  LIKE #{aaeh11}  </if>
+			<if test="@Ognl@isNotEmpty(aaeh17)"> AND AAEH17  LIKE #{aaeh17}  </if>
+			<if test="@Ognl@isNotEmpty(aaeh36)"> AND AAEH36  =#{aaeh36} </if>
+			<if test="@Ognl@isNotEmpty(beginaaeh36)"> AND AAEH36  >=#{beginaaeh36,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaaeh36)"> AND AAEH36 <![CDATA[ <=#{endaaeh36,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aaeh19)"> AND AAEH19  LIKE #{aaeh19}  </if>
+			<if test="@Ognl@isNotEmpty(aaeh20)"> AND AAEH20  LIKE #{aaeh20}  </if>
+			<if test="@Ognl@isNotEmpty(aaeh22)"> AND AAEH22  LIKE #{aaeh22}  </if>
+			<if test="@Ognl@isNotEmpty(acd20u)"> AND ACD20U  LIKE #{acd20u}  </if>
+			<if test="@Ognl@isNotEmpty(ccmu01)"> AND CCMU01  =#{ccmu01} </if>
+			<if test="@Ognl@isNotEmpty(ccmu02)"> AND CCMU02  =#{ccmu02} </if>
+			<if test="@Ognl@isNotEmpty(ccmu03)"> AND CCMU03  =#{ccmu03} </if>
+			<if test="@Ognl@isNotEmpty(ccmu04)"> AND CCMU04  LIKE #{ccmu04}  </if>
+			<if test="@Ognl@isNotEmpty(ccmu05)"> AND CCMU05  =#{ccmu05} </if>
+			<if test="@Ognl@isNotEmpty(acd20v)"> AND ACD20V  LIKE #{acd20v}  </if>
+			<if test="@Ognl@isNotEmpty(cabq01)"> AND CABQ01  =#{cabq01} </if>
+			<if test="@Ognl@isNotEmpty(cabq02)"> AND CABQ02  =#{cabq02} </if>
+			<if test="@Ognl@isNotEmpty(cabq03)"> AND CABQ03  =#{cabq03} </if>
+			<if test="@Ognl@isNotEmpty(cabq04)"> AND CABQ04  =#{cabq04} </if>
+			<if test="@Ognl@isNotEmpty(bcd202)"> AND BCD202  LIKE #{bcd202}  </if>
+			<if test="@Ognl@isNotEmpty(aczy06)"> AND ACZY06  LIKE #{aczy06}  </if>
+			<if test="@Ognl@isNotEmpty(acd20w)"> AND ACD20W  LIKE #{acd20w}  </if>
+			<if test="@Ognl@isNotEmpty(acd20s)"> AND ACD20S  LIKE #{acd20s}  </if>
+			<if test="@Ognl@isNotEmpty(acd202exists)"> AND ACD202  = #{acd202exists} </if>
+			<if test="@Ognl@isNotEmpty(acd201exists)"> AND ACD201  = #{acd201exists} </if>
+			<if test="@Ognl@isNotEmpty(jco005exists)"> AND JCO005  = #{jco005exists} </if>
+			<if test="@Ognl@isNotEmpty(acd200exists)"> AND ACD200  != #{acd200exists} </if>
+			<if test="@Ognl@isNotEmpty(ids_flag)"> 
+			 AND ACD200 IN 
+			 <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+	            #{item}
+	        </foreach></if>
+			<if test="@Ognl@isNotEmpty(findKeyword)"> AND ( ACD202  LIKE #{findKeyword} OR AAE005  LIKE #{findKeyword} OR ACD201  LIKE #{findKeyword} ) </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.ovemp.cooporg.model.OvempCoopOrg">
+		INSERT INTO JW_COOP_ORG
+		(ACB208,ACD200,JCO005,JCO006,ACD201,ACD207,ACD202,AAE006,AAE007,AAB030,AHB409,ACD203,ACD204,ACD205,ACD208,ACD206,AAB013,AAB014,AAC004,AAC006,AAC011,AAB015,AAC026,ACD20B,ACD20C,AAB056,ACD20D,ACD20E,ACD20F,ACD20G,AAB049,ACD20M,ACD20N,AAB003,AAB007,AAE008,AAE010,AAB301,AAB201,AAE014,AAE015,AAE016,ACD20A,AAE004,AAE005,ACD20K,AAB034,AAE044,AAE100,AAE097,AAE098,AAE013,AAE011,AAE017,AAE019,AAE020,AAE036,AAE022,AAEA98,AAEA13,AAEA11,AAEA17,AAEA36,AAEA19,AAEA20,AAEA22,AAEB98,AAEB13,AAEB11,AAEB17,AAEB36,AAEB19,AAEB20,AAEB22,ACD20H,AAEE11,AAEE17,AAEE36,AAEE19,AAEE20,AAEE22,ACD20P,ACD20J,AAEF11,AAEF17,AAEF36,AAEF19,AAEF20,AAEF22,ACD20Q,AAEG11,AAEG17,AAEG36,AAEG19,AAEG20,AAEG22,ACD20T,AAEH11,AAEH17,AAEH36,AAEH19,AAEH20,AAEH22,ACD20U,CCMU01,CCMU02,CCMU03,CCMU04,CCMU05,ACD20V,CABQ01,CABQ02,CABQ03,CABQ04,BCD202,ACZY06,ACD20W,ACD20S)
+		VALUES
+		(#{acb208,jdbcType=VARCHAR},#{acd200,jdbcType=NUMERIC}, #{jco005,jdbcType=VARCHAR},#{jco006,jdbcType=VARCHAR},#{acd201,jdbcType=VARCHAR}, #{acd207,jdbcType=VARCHAR}, #{acd202,jdbcType=VARCHAR}, #{aae006,jdbcType=VARCHAR}, #{aae007,jdbcType=VARCHAR}, #{aab030,jdbcType=VARCHAR}, #{ahb409,jdbcType=VARCHAR}, #{acd203,jdbcType=VARCHAR}, #{acd204,jdbcType=VARCHAR}, #{acd205,jdbcType=VARCHAR}, #{acd208,jdbcType=VARCHAR}, #{acd206,jdbcType=VARCHAR}, #{aab013,jdbcType=VARCHAR}, #{aab014,jdbcType=VARCHAR}, #{aac004,jdbcType=VARCHAR}, #{aac006,jdbcType=TIMESTAMP}, #{aac011,jdbcType=VARCHAR}, #{aab015,jdbcType=VARCHAR}, #{aac026,jdbcType=VARCHAR}, #{acd20b,jdbcType=VARCHAR}, #{acd20c,jdbcType=VARCHAR}, #{aab056,jdbcType=VARCHAR}, #{acd20d,jdbcType=NUMERIC}, #{acd20e,jdbcType=NUMERIC}, #{acd20f,jdbcType=NUMERIC}, #{acd20g,jdbcType=NUMERIC}, #{aab049,jdbcType=NUMERIC}, #{acd20m,jdbcType=VARCHAR}, #{acd20n,jdbcType=NUMERIC}, #{aab003,jdbcType=VARCHAR}, #{aab007,jdbcType=VARCHAR}, #{aae008,jdbcType=VARCHAR}, #{aae010,jdbcType=VARCHAR}, #{aab301,jdbcType=VARCHAR}, #{aab201,jdbcType=VARCHAR}, #{aae014,jdbcType=VARCHAR}, #{aae015,jdbcType=VARCHAR}, #{aae016,jdbcType=VARCHAR}, #{acd20a,jdbcType=VARCHAR}, #{aae004,jdbcType=VARCHAR}, #{aae005,jdbcType=VARCHAR}, #{acd20k,jdbcType=TIMESTAMP}, #{aab034,jdbcType=VARCHAR}, #{aae044,jdbcType=VARCHAR}, #{aae100,jdbcType=VARCHAR}, #{aae097,jdbcType=VARCHAR}, #{aae098,jdbcType=VARCHAR}, #{aae013,jdbcType=VARCHAR}, #{aae011,jdbcType=VARCHAR}, #{aae017,jdbcType=VARCHAR}, #{aae019,jdbcType=VARCHAR}, #{aae020,jdbcType=VARCHAR}, #{aae036,jdbcType=TIMESTAMP}, #{aae022,jdbcType=VARCHAR}, #{aaea98,jdbcType=VARCHAR}, #{aaea13,jdbcType=VARCHAR}, #{aaea11,jdbcType=VARCHAR}, #{aaea17,jdbcType=VARCHAR}, #{aaea36,jdbcType=TIMESTAMP}, #{aaea19,jdbcType=VARCHAR}, #{aaea20,jdbcType=VARCHAR}, #{aaea22,jdbcType=VARCHAR}, #{aaeb98,jdbcType=VARCHAR}, #{aaeb13,jdbcType=VARCHAR}, #{aaeb11,jdbcType=VARCHAR}, #{aaeb17,jdbcType=VARCHAR}, #{aaeb36,jdbcType=TIMESTAMP}, #{aaeb19,jdbcType=VARCHAR}, #{aaeb20,jdbcType=VARCHAR}, #{aaeb22,jdbcType=VARCHAR}, #{acd20h,jdbcType=VARCHAR}, #{aaee11,jdbcType=VARCHAR}, #{aaee17,jdbcType=VARCHAR}, #{aaee36,jdbcType=TIMESTAMP}, #{aaee19,jdbcType=VARCHAR}, #{aaee20,jdbcType=VARCHAR}, #{aaee22,jdbcType=VARCHAR}, #{acd20p,jdbcType=VARCHAR}, #{acd20j,jdbcType=VARCHAR}, #{aaef11,jdbcType=VARCHAR}, #{aaef17,jdbcType=VARCHAR}, #{aaef36,jdbcType=TIMESTAMP}, #{aaef19,jdbcType=VARCHAR}, #{aaef20,jdbcType=VARCHAR}, #{aaef22,jdbcType=VARCHAR}, #{acd20q,jdbcType=VARCHAR}, #{aaeg11,jdbcType=VARCHAR}, #{aaeg17,jdbcType=VARCHAR}, #{aaeg36,jdbcType=TIMESTAMP}, #{aaeg19,jdbcType=VARCHAR}, #{aaeg20,jdbcType=VARCHAR}, #{aaeg22,jdbcType=VARCHAR}, #{acd20t,jdbcType=VARCHAR}, #{aaeh11,jdbcType=VARCHAR}, #{aaeh17,jdbcType=VARCHAR}, #{aaeh36,jdbcType=TIMESTAMP}, #{aaeh19,jdbcType=VARCHAR}, #{aaeh20,jdbcType=VARCHAR}, #{aaeh22,jdbcType=VARCHAR}, #{acd20u,jdbcType=VARCHAR}, #{ccmu01,jdbcType=NUMERIC}, #{ccmu02,jdbcType=NUMERIC}, #{ccmu03,jdbcType=NUMERIC}, #{ccmu04,jdbcType=VARCHAR}, #{ccmu05,jdbcType=NUMERIC}, #{acd20v,jdbcType=VARCHAR}, #{cabq01,jdbcType=NUMERIC}, #{cabq02,jdbcType=NUMERIC}, #{cabq03,jdbcType=NUMERIC}, #{cabq04,jdbcType=NUMERIC}, #{bcd202,jdbcType=VARCHAR}, #{aczy06,jdbcType=VARCHAR}, #{acd20w,jdbcType=VARCHAR}, #{acd20s,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM JW_COOP_ORG 
+		WHERE
+		ACD200=#{acd200}
+	</delete>
+	<update id="updateStauts" parameterType="com.xunfeng.business.ovemp.cooporg.model.OvempCoopOrg">
+	  UPDATE JW_COOP_ORG SET
+	  ACB208 = #{acb208,jdbcType=VARCHAR}
+	  WHERE ACD200=#{acd200}
+	</update>
+	<update id="update" parameterType="com.xunfeng.business.ovemp.cooporg.model.OvempCoopOrg">
+		UPDATE JW_COOP_ORG SET
+		JCO005=#{jco005,jdbcType=VARCHAR},
+		JCO006=#{jco006,jdbcType=VARCHAR},
+		ACD201=#{acd201,jdbcType=VARCHAR},
+		ACD207=#{acd207,jdbcType=VARCHAR},
+		ACD202=#{acd202,jdbcType=VARCHAR},
+		AAE006=#{aae006,jdbcType=VARCHAR},
+		AAE007=#{aae007,jdbcType=VARCHAR},
+		AAB030=#{aab030,jdbcType=VARCHAR},
+		AHB409=#{ahb409,jdbcType=VARCHAR},
+		ACD203=#{acd203,jdbcType=VARCHAR},
+		ACD204=#{acd204,jdbcType=VARCHAR},
+		ACD205=#{acd205,jdbcType=VARCHAR},
+		ACD208=#{acd208,jdbcType=VARCHAR},
+		ACD206=#{acd206,jdbcType=VARCHAR},
+		AAB013=#{aab013,jdbcType=VARCHAR},
+		AAB014=#{aab014,jdbcType=VARCHAR},
+		AAC004=#{aac004,jdbcType=VARCHAR},
+		AAC006=#{aac006,jdbcType=TIMESTAMP},
+		AAC011=#{aac011,jdbcType=VARCHAR},
+		AAB015=#{aab015,jdbcType=VARCHAR},
+		AAC026=#{aac026,jdbcType=VARCHAR},
+		ACD20B=#{acd20b,jdbcType=VARCHAR},
+		ACD20C=#{acd20c,jdbcType=VARCHAR},
+		AAB056=#{aab056,jdbcType=VARCHAR},
+		ACD20D=#{acd20d,jdbcType=NUMERIC},
+		ACD20E=#{acd20e,jdbcType=NUMERIC},
+		ACD20F=#{acd20f,jdbcType=NUMERIC},
+		ACD20G=#{acd20g,jdbcType=NUMERIC},
+		AAB049=#{aab049,jdbcType=NUMERIC},
+		ACD20M=#{acd20m,jdbcType=VARCHAR},
+		ACD20N=#{acd20n,jdbcType=NUMERIC},
+		AAB003=#{aab003,jdbcType=VARCHAR},
+		AAB007=#{aab007,jdbcType=VARCHAR},
+		AAE008=#{aae008,jdbcType=VARCHAR},
+		AAE010=#{aae010,jdbcType=VARCHAR},
+		AAB301=#{aab301,jdbcType=VARCHAR},
+		AAB201=#{aab201,jdbcType=VARCHAR},
+		AAE014=#{aae014,jdbcType=VARCHAR},
+		AAE015=#{aae015,jdbcType=VARCHAR},
+		AAE016=#{aae016,jdbcType=VARCHAR},
+		ACD20A=#{acd20a,jdbcType=VARCHAR},
+		AAE004=#{aae004,jdbcType=VARCHAR},
+		AAE005=#{aae005,jdbcType=VARCHAR},
+		ACD20K=#{acd20k,jdbcType=TIMESTAMP},
+		AAB034=#{aab034,jdbcType=VARCHAR},
+		AAE044=#{aae044,jdbcType=VARCHAR},
+		AAE100=#{aae100,jdbcType=VARCHAR},
+		AAE097=#{aae097,jdbcType=VARCHAR},
+		AAE098=#{aae098,jdbcType=VARCHAR},
+		AAE013=#{aae013,jdbcType=VARCHAR},
+		AAE011=#{aae011,jdbcType=VARCHAR},
+		AAE017=#{aae017,jdbcType=VARCHAR},
+		AAE019=#{aae019,jdbcType=VARCHAR},
+		AAE020=#{aae020,jdbcType=VARCHAR},
+		AAE036=#{aae036,jdbcType=TIMESTAMP},
+		AAE022=#{aae022,jdbcType=VARCHAR},
+		AAEA98=#{aaea98,jdbcType=VARCHAR},
+		AAEA13=#{aaea13,jdbcType=VARCHAR},
+		AAEA11=#{aaea11,jdbcType=VARCHAR},
+		AAEA17=#{aaea17,jdbcType=VARCHAR},
+		AAEA36=#{aaea36,jdbcType=TIMESTAMP},
+		AAEA19=#{aaea19,jdbcType=VARCHAR},
+		AAEA20=#{aaea20,jdbcType=VARCHAR},
+		AAEA22=#{aaea22,jdbcType=VARCHAR},
+		AAEB98=#{aaeb98,jdbcType=VARCHAR},
+		AAEB13=#{aaeb13,jdbcType=VARCHAR},
+		AAEB11=#{aaeb11,jdbcType=VARCHAR},
+		AAEB17=#{aaeb17,jdbcType=VARCHAR},
+		AAEB36=#{aaeb36,jdbcType=TIMESTAMP},
+		AAEB19=#{aaeb19,jdbcType=VARCHAR},
+		AAEB20=#{aaeb20,jdbcType=VARCHAR},
+		AAEB22=#{aaeb22,jdbcType=VARCHAR},
+		ACD20H=#{acd20h,jdbcType=VARCHAR},
+		AAEE11=#{aaee11,jdbcType=VARCHAR},
+		AAEE17=#{aaee17,jdbcType=VARCHAR},
+		AAEE36=#{aaee36,jdbcType=TIMESTAMP},
+		AAEE19=#{aaee19,jdbcType=VARCHAR},
+		AAEE20=#{aaee20,jdbcType=VARCHAR},
+		AAEE22=#{aaee22,jdbcType=VARCHAR},
+		ACD20P=#{acd20p,jdbcType=VARCHAR},
+		ACD20J=#{acd20j,jdbcType=VARCHAR},
+		AAEF11=#{aaef11,jdbcType=VARCHAR},
+		AAEF17=#{aaef17,jdbcType=VARCHAR},
+		AAEF36=#{aaef36,jdbcType=TIMESTAMP},
+		AAEF19=#{aaef19,jdbcType=VARCHAR},
+		AAEF20=#{aaef20,jdbcType=VARCHAR},
+		AAEF22=#{aaef22,jdbcType=VARCHAR},
+		ACD20Q=#{acd20q,jdbcType=VARCHAR},
+		AAEG11=#{aaeg11,jdbcType=VARCHAR},
+		AAEG17=#{aaeg17,jdbcType=VARCHAR},
+		AAEG36=#{aaeg36,jdbcType=TIMESTAMP},
+		AAEG19=#{aaeg19,jdbcType=VARCHAR},
+		AAEG20=#{aaeg20,jdbcType=VARCHAR},
+		AAEG22=#{aaeg22,jdbcType=VARCHAR},
+		ACD20T=#{acd20t,jdbcType=VARCHAR},
+		AAEH11=#{aaeh11,jdbcType=VARCHAR},
+		AAEH17=#{aaeh17,jdbcType=VARCHAR},
+		AAEH36=#{aaeh36,jdbcType=TIMESTAMP},
+		AAEH19=#{aaeh19,jdbcType=VARCHAR},
+		AAEH20=#{aaeh20,jdbcType=VARCHAR},
+		AAEH22=#{aaeh22,jdbcType=VARCHAR},
+		ACD20U=#{acd20u,jdbcType=VARCHAR},
+		CCMU01=#{ccmu01,jdbcType=NUMERIC},
+		CCMU02=#{ccmu02,jdbcType=NUMERIC},
+		CCMU03=#{ccmu03,jdbcType=NUMERIC},
+		CCMU04=#{ccmu04,jdbcType=VARCHAR},
+		CCMU05=#{ccmu05,jdbcType=NUMERIC},
+		ACD20V=#{acd20v,jdbcType=VARCHAR},
+		CABQ01=#{cabq01,jdbcType=NUMERIC},
+		CABQ02=#{cabq02,jdbcType=NUMERIC},
+		CABQ03=#{cabq03,jdbcType=NUMERIC},
+		CABQ04=#{cabq04,jdbcType=NUMERIC},
+		BCD202=#{bcd202,jdbcType=VARCHAR},
+		ACZY06=#{aczy06,jdbcType=VARCHAR},
+		ACD20W=#{acd20w,jdbcType=VARCHAR},
+		ACD20S=#{acd20s,jdbcType=VARCHAR}
+		WHERE
+		ACD200=#{acd200}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="ovempCoopOrg">
+		SELECT <include refid="columns"/>
+		FROM JW_COOP_ORG
+		WHERE
+		ACD200=#{acd200}
+	</select>
+	
+	<select id="getAll" resultMap="ovempCoopOrg">
+		SELECT <include refid="columns"/>
+		FROM JW_COOP_ORG   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ACD200  desc
+		</if>
+	</select>
+	<select id="getSubOrgs" resultMap="ovempCoopOrg"  parameterType="java.lang.Long" >
+		SELECT <include refid="columns"/>
+		FROM JW_COOP_ORG M START WITH M.ACD200=#{acd200} CONNECT BY M.AAB034=PRIOR M.ACD200 
+	</select>
+	<select id="getSysOrgByExcept" resultMap="ovempCoopOrg">
+		SELECT * 
+		FROM JW_COOP_ORG   
+		where 1=1  
+		<if test="@Ognl@isNotEmpty(servicekey)">  and ACD202 like #{servicekey}</if>
+		<if test="@Ognl@isNotEmpty(localCity)">  and AAB301 = #{localCity} </if>
+		 AND aae100=1 and CABQ02 is not null and CABQ03 is not null
+		order by ACD200 desc 
+	</select>
+</mapper>

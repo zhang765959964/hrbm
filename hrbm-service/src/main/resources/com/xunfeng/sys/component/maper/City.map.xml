@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.sys.component.model.City">
+	<resultMap id="City" type="com.xunfeng.sys.component.model.City">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="code" column="CODE" jdbcType="VARCHAR"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="pid" column="PID" jdbcType="NUMERIC"/>
+		<result property="px" column="PX" jdbcType="NUMERIC"/>
+		<result property="yb" column="YB" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,CODE,NAME,PID,PX,YB
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(code)"> AND CODE  LIKE #{code}  </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(pid)"> AND PID  =#{pid} </if>
+			<if test="@Ognl@isNotEmpty(px)"> AND PX  =#{px} </if>
+			<if test="@Ognl@isNotEmpty(yb)"> AND YB  LIKE #{yb}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.sys.component.model.City">
+		INSERT INTO TAB_CITY
+		(ID,CODE,NAME,PID,PX,YB)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{pid,jdbcType=NUMERIC}, #{px,jdbcType=NUMERIC}, #{yb,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM TAB_CITY 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.sys.component.model.City">
+		UPDATE TAB_CITY SET
+		CODE=#{code,jdbcType=VARCHAR},
+		NAME=#{name,jdbcType=VARCHAR},
+		PID=#{pid,jdbcType=NUMERIC},
+		PX=#{px,jdbcType=NUMERIC},
+		YB=#{yb,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="City">
+		SELECT <include refid="columns"/>
+		FROM TAB_CITY
+		WHERE
+		ID=#{id}
+	</select>
+	<select id="getByCode" parameterType="java.lang.String" resultMap="City">
+		SELECT <include refid="columns"/>
+		FROM TAB_CITY
+		WHERE
+		code=#{code}
+	</select>
+	
+	<select id="getAll" resultMap="City">
+		SELECT <include refid="columns"/>
+		FROM TAB_CITY   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	<!--获取所有的省份-->
+	<select id="getAllProvince" resultMap="City">
+		SELECT <include refid="columns"/>
+		FROM TAB_CITY
+		WHERE pid=0
+		ORDER BY px
+	</select>
+
+	<select id="getByPid" parameterType="java.lang.Long" resultMap="City">
+		SELECT <include refid="columns"/>
+		FROM TAB_CITY
+		WHERE pid=#{pId}
+		ORDER BY px
+	</select>
+</mapper>

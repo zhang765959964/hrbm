@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.archive.model.ArchiveCheckout">
+	<resultMap id="ArchiveCheckout" type="com.xunfeng.business.personagency.archive.model.ArchiveCheckout">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="archiveId" column="ARCHIVE_ID" jdbcType="NUMERIC"/>
+		<result property="checkoutType" column="CHECKOUT_TYPE" jdbcType="NUMERIC"/>
+		<result property="checkoutDate" column="CHECKOUT_DATE" jdbcType="DATE"/>
+		<result property="checkoutPeriodDate" column="CHECKOUT_PERIOD_DATE" jdbcType="DATE"/>
+		<result property="checkoutCorp" column="CHECKOUT_CORP" jdbcType="VARCHAR"/>
+		<result property="checkoutPerson" column="CHECKOUT_PERSON" jdbcType="VARCHAR"/>
+		<result property="checkoutReason" column="CHECKOUT_REASON" jdbcType="VARCHAR"/>
+		<result property="checkoutPersonPhone" column="CHECKOUT_PERSON_PHONE" jdbcType="VARCHAR"/>
+		<result property="checkoutStatus" column="CHECKOUT_STATUS" jdbcType="NUMERIC"/>
+		<result property="checkoutDesc" column="CHECKOUT_DESC" jdbcType="VARCHAR"/>
+		<result property="confirmAllowFlag" column="CONFIRM_ALLOW_FLAG" jdbcType="NUMERIC"/>
+		<result property="confirmReason" column="CONFIRM_REASON" jdbcType="VARCHAR"/>
+		<result property="checkinDate" column="CHECKIN_DATE" jdbcType="TIMESTAMP"/>
+		<result property="checkoutMortgage" column="CHECKOUT_MORTGAGE" jdbcType="VARCHAR"/>
+		<result property="isReceiveMortgage" column="IS_RECEIVE_MORTGAGE" jdbcType="NUMERIC"/>
+		<result property="isRestoreMortgage" column="IS_RESTORE_MORTGAGE" jdbcType="NUMERIC"/>
+		<result property="checkoutPeopleMention" column="CHECKOUT_PEOPLE_MENTION" jdbcType="VARCHAR"/>
+		<result property="checkoutPeoplePhone" column="CHECKOUT_PEOPLE_PHONE" jdbcType="VARCHAR"/>
+		<result property="checkoutPeopleCard" column="CHECKOUT_PEOPLE_CARD" jdbcType="VARCHAR"/>
+		<result property="checkoutRegisterId" column="CHECKOUT_REGISTER_ID" jdbcType="NUMERIC"/>
+		<result property="checkoutRegisterName" column="CHECKOUT_REGISTER_NAME" jdbcType="VARCHAR"/>
+		<result property="checkoutRegisterOrgId" column="CHECKOUT_REGISTER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="checkoutRegisterOrgName" column="CHECKOUT_REGISTER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="checkoutRegisterDate" column="CHECKOUT_REGISTER_DATE" jdbcType="TIMESTAMP"/>
+		<result property="checkoutConfirmId" column="CHECKOUT_CONFIRM_ID" jdbcType="NUMERIC"/>
+		<result property="checkoutConfirmName" column="CHECKOUT_CONFIRM_NAME" jdbcType="VARCHAR"/>
+		<result property="checkoutConfirmOrgId" column="CHECKOUT_CONFIRM_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="checkoutConfirmOrgName" column="CHECKOUT_CONFIRM_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="checkoutConfirmDate" column="CHECKOUT_CONFIRM_DATE" jdbcType="TIMESTAMP"/>
+		<result property="checkinId" column="CHECKIN_ID" jdbcType="NUMERIC"/>
+		<result property="checkinName" column="CHECKIN_NAME" jdbcType="VARCHAR"/>
+		<result property="checkinOrgId" column="CHECKIN_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="checkinOrgName" column="CHECKIN_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="checkinConfirmId" column="CHECKIN_CONFIRM_ID" jdbcType="NUMERIC"/>
+		<result property="checkinConfirmName" column="CHECKIN_CONFIRM_NAME" jdbcType="VARCHAR"/>
+		<result property="checkinConfirmOrgId" column="CHECKIN_CONFIRM_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="checkinConfirmOrgName" column="CHECKIN_CONFIRM_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="checkinConfirmDate" column="CHECKIN_CONFIRM_DATE" jdbcType="TIMESTAMP"/>
+		<result property="seizureMaterial" column="SEIZURE_MATERIAL" jdbcType="NUMERIC"/>
+		<result property="checkoutKinds" column="CHECKOUT_KINDS" jdbcType="NUMERIC"/>
+		<result property="checkoutContent" column="CHECKOUT_CONTENT" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+		<result property="batchName" column="BATCH_NAME" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<resultMap id="ArchiveCheckoutAppDto" type="com.xunfeng.business.personagency.archive.dto.ArchiveCheckoutAppDto">
+		<result property="position" column="position" jdbcType="VARCHAR"/>
+		<result property="archiveCode" column="archiveCode" jdbcType="VARCHAR"/>
+		<result property="aac003" column="aac003" jdbcType="VARCHAR"/>
+		<result property="aac002" column="aac002" jdbcType="VARCHAR"/>
+		<result property="checkoutRegisterName" column="checkoutRegisterName" jdbcType="VARCHAR"/>
+		<result property="batchName" column="batchName" jdbcType="VARCHAR"/>
+		<result property="checkinName" column="checkinName" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,ARCHIVE_ID,CHECKOUT_TYPE,CHECKOUT_DATE,CHECKOUT_PERIOD_DATE,CHECKOUT_CORP,CHECKOUT_PERSON,CHECKOUT_REASON,CHECKOUT_PERSON_PHONE,CHECKOUT_STATUS,CHECKOUT_DESC,CONFIRM_ALLOW_FLAG,CONFIRM_REASON,CHECKIN_DATE,CHECKOUT_MORTGAGE,IS_RECEIVE_MORTGAGE,IS_RESTORE_MORTGAGE,CHECKOUT_PEOPLE_MENTION,CHECKOUT_PEOPLE_PHONE,CHECKOUT_PEOPLE_CARD,CHECKOUT_REGISTER_ID,CHECKOUT_REGISTER_NAME,CHECKOUT_REGISTER_ORG_ID,CHECKOUT_REGISTER_ORG_NAME,CHECKOUT_REGISTER_DATE,CHECKOUT_CONFIRM_ID,CHECKOUT_CONFIRM_NAME,CHECKOUT_CONFIRM_ORG_ID,CHECKOUT_CONFIRM_ORG_NAME,CHECKOUT_CONFIRM_DATE,CHECKIN_ID,CHECKIN_NAME,CHECKIN_ORG_ID,CHECKIN_ORG_NAME,CHECKIN_CONFIRM_ID,CHECKIN_CONFIRM_NAME,CHECKIN_CONFIRM_ORG_ID,CHECKIN_CONFIRM_ORG_NAME,CHECKIN_CONFIRM_DATE,SEIZURE_MATERIAL,CHECKOUT_KINDS,CHECKOUT_CONTENT,CCPR08,BATCH_NAME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(archiveId)"> AND ARCHIVE_ID  =#{archiveId} </if>
+			<if test="@Ognl@isNotEmpty(checkoutType)"> AND CHECKOUT_TYPE  =#{checkoutType} </if>
+			<if test="@Ognl@isNotEmpty(checkoutDate)"> AND CHECKOUT_DATE  =#{checkoutDate} </if>
+			<if test="@Ognl@isNotEmpty(begincheckoutDate)"> AND CHECKOUT_DATE  >=#{begincheckoutDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcheckoutDate)"> AND CHECKOUT_DATE <![CDATA[ <=#{endcheckoutDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(checkoutPeriodDate)"> AND CHECKOUT_PERIOD_DATE  =#{checkoutPeriodDate} </if>
+			<if test="@Ognl@isNotEmpty(begincheckoutPeriodDate)"> AND CHECKOUT_PERIOD_DATE  >=#{begincheckoutPeriodDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcheckoutPeriodDate)"> AND CHECKOUT_PERIOD_DATE <![CDATA[ <=#{endcheckoutPeriodDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(checkoutCorp)"> AND CHECKOUT_CORP  LIKE #{checkoutCorp}  </if>
+			<if test="@Ognl@isNotEmpty(checkoutPerson)"> AND CHECKOUT_PERSON  LIKE #{checkoutPerson}  </if>
+			<if test="@Ognl@isNotEmpty(checkoutReason)"> AND CHECKOUT_REASON  LIKE #{checkoutReason}  </if>
+			<if test="@Ognl@isNotEmpty(checkoutPersonPhone)"> AND CHECKOUT_PERSON_PHONE  LIKE #{checkoutPersonPhone}  </if>
+			<if test="@Ognl@isNotEmpty(checkoutStatus)"> AND CHECKOUT_STATUS  =#{checkoutStatus} </if>
+			<if test="@Ognl@isNotEmpty(checkoutDesc)"> AND CHECKOUT_DESC  LIKE #{checkoutDesc}  </if>
+			<if test="@Ognl@isNotEmpty(confirmAllowFlag)"> AND CONFIRM_ALLOW_FLAG  =#{confirmAllowFlag} </if>
+			<if test="@Ognl@isNotEmpty(confirmReason)"> AND CONFIRM_REASON  LIKE #{confirmReason}  </if>
+			<if test="@Ognl@isNotEmpty(checkinDate)"> AND CHECKIN_DATE  =#{checkinDate} </if>
+			<if test="@Ognl@isNotEmpty(begincheckinDate)"> AND CHECKIN_DATE  >=#{begincheckinDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcheckinDate)"> AND CHECKIN_DATE <![CDATA[ <=#{endcheckinDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(checkoutMortgage)"> AND CHECKOUT_MORTGAGE  LIKE #{checkoutMortgage}  </if>
+			<if test="@Ognl@isNotEmpty(isReceiveMortgage)"> AND IS_RECEIVE_MORTGAGE  =#{isReceiveMortgage} </if>
+			<if test="@Ognl@isNotEmpty(isRestoreMortgage)"> AND IS_RESTORE_MORTGAGE  =#{isRestoreMortgage} </if>
+			<if test="@Ognl@isNotEmpty(checkoutPeopleMention)"> AND CHECKOUT_PEOPLE_MENTION  LIKE #{checkoutPeopleMention}  </if>
+			<if test="@Ognl@isNotEmpty(checkoutPeoplePhone)"> AND CHECKOUT_PEOPLE_PHONE  LIKE #{checkoutPeoplePhone}  </if>
+			<if test="@Ognl@isNotEmpty(checkoutPeopleCard)"> AND CHECKOUT_PEOPLE_CARD  LIKE #{checkoutPeopleCard}  </if>
+			<if test="@Ognl@isNotEmpty(checkoutRegisterId)"> AND CHECKOUT_REGISTER_ID  =#{checkoutRegisterId} </if>
+			<if test="@Ognl@isNotEmpty(checkoutRegisterName)"> AND CHECKOUT_REGISTER_NAME  LIKE #{checkoutRegisterName}  </if>
+			<if test="@Ognl@isNotEmpty(checkoutRegisterOrgId)"> AND CHECKOUT_REGISTER_ORG_ID  =#{checkoutRegisterOrgId} </if>
+			<if test="@Ognl@isNotEmpty(checkoutRegisterOrgName)"> AND CHECKOUT_REGISTER_ORG_NAME  LIKE #{checkoutRegisterOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(checkoutRegisterDate)"> AND CHECKOUT_REGISTER_DATE  =#{checkoutRegisterDate} </if>
+			<if test="@Ognl@isNotEmpty(begincheckoutRegisterDate)"> AND CHECKOUT_REGISTER_DATE  >=#{begincheckoutRegisterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcheckoutRegisterDate)"> AND CHECKOUT_REGISTER_DATE <![CDATA[ <=#{endcheckoutRegisterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(checkoutConfirmId)"> AND CHECKOUT_CONFIRM_ID  =#{checkoutConfirmId} </if>
+			<if test="@Ognl@isNotEmpty(checkoutConfirmName)"> AND CHECKOUT_CONFIRM_NAME  LIKE #{checkoutConfirmName}  </if>
+			<if test="@Ognl@isNotEmpty(checkoutConfirmOrgId)"> AND CHECKOUT_CONFIRM_ORG_ID  =#{checkoutConfirmOrgId} </if>
+			<if test="@Ognl@isNotEmpty(checkoutConfirmOrgName)"> AND CHECKOUT_CONFIRM_ORG_NAME  LIKE #{checkoutConfirmOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(checkoutConfirmDate)"> AND CHECKOUT_CONFIRM_DATE  =#{checkoutConfirmDate} </if>
+			<if test="@Ognl@isNotEmpty(begincheckoutConfirmDate)"> AND CHECKOUT_CONFIRM_DATE  >=#{begincheckoutConfirmDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcheckoutConfirmDate)"> AND CHECKOUT_CONFIRM_DATE <![CDATA[ <=#{endcheckoutConfirmDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(checkinId)"> AND CHECKIN_ID  =#{checkinId} </if>
+			<if test="@Ognl@isNotEmpty(checkinName)"> AND CHECKIN_NAME  LIKE #{checkinName}  </if>
+			<if test="@Ognl@isNotEmpty(checkinOrgId)"> AND CHECKIN_ORG_ID  =#{checkinOrgId} </if>
+			<if test="@Ognl@isNotEmpty(checkinOrgName)"> AND CHECKIN_ORG_NAME  LIKE #{checkinOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(checkinConfirmId)"> AND CHECKIN_CONFIRM_ID  =#{checkinConfirmId} </if>
+			<if test="@Ognl@isNotEmpty(checkinConfirmName)"> AND CHECKIN_CONFIRM_NAME  LIKE #{checkinConfirmName}  </if>
+			<if test="@Ognl@isNotEmpty(checkinConfirmOrgId)"> AND CHECKIN_CONFIRM_ORG_ID  =#{checkinConfirmOrgId} </if>
+			<if test="@Ognl@isNotEmpty(checkinConfirmOrgName)"> AND CHECKIN_CONFIRM_ORG_NAME  LIKE #{checkinConfirmOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(checkinConfirmDate)"> AND CHECKIN_CONFIRM_DATE  =#{checkinConfirmDate} </if>
+			<if test="@Ognl@isNotEmpty(begincheckinConfirmDate)"> AND CHECKIN_CONFIRM_DATE  >=#{begincheckinConfirmDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcheckinConfirmDate)"> AND CHECKIN_CONFIRM_DATE <![CDATA[ <=#{endcheckinConfirmDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(seizureMaterial)"> AND SEIZURE_MATERIAL  =#{seizureMaterial} </if>
+			<if test="@Ognl@isNotEmpty(checkoutKinds)"> AND CHECKOUT_KINDS  =#{checkoutKinds} </if>
+			<if test="@Ognl@isNotEmpty(checkoutContent)"> AND CHECKOUT_CONTENT  LIKE #{checkoutContent}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr08)"> AND n.CCPR08  LIKE #{ccpr08}  </if>
+			<if test="@Ognl@isNotEmpty(batchName)"> AND BATCH_NAME  LIKE #{batchName}  </if>
+			
+			<if test="@Ognl@isNotEmpty(checkoutStatusNot)"> AND CHECKOUT_STATUS！=#{checkoutStatusNot}  </if>
+			<if test="@Ognl@isNotEmpty(checkoutStatusValue)"> AND CHECKOUT_STATUS in (${checkoutStatusValue}) </if>
+			
+			<!-- 档案查询 -->
+			<if test="@Ognl@isNotEmpty(archiveCode)"> AND upper(a.ARCHIVE_CODE) LIKE upper(#{archiveCode}) </if>
+			<if test="@Ognl@isNotEmpty(personId)"> AND p.AAC001  = #{personId}  </if>
+			<if test="@Ognl@isNotEmpty(aac002)"> AND upper(p.AAC002) LIKE upper(#{aac002})  </if>
+			<if test="@Ognl@isNotEmpty(aac003)"> AND p.AAC003  LIKE #{aac003}  </if>
+			<if test="@Ognl@isNotEmpty(aac004)"> AND p.AAC004  = #{aac004}  </if>
+			<if test="@Ognl@isNotEmpty(beginreceiveDate)"> AND a.RECEIVE_DATE  >=#{beginreceiveDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endreceiveDate)"> AND a.RECEIVE_DATE <![CDATA[ <=#{endreceiveDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(archiveName)"> AND a.ARCHIVE_NAME  LIKE #{archiveName}  </if>
+			<if test="@Ognl@isNotEmpty(beginarchiveBirthDate)"> AND a.ARCHIVE_BIRTH_DATE  >=#{beginarchiveBirthDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endarchiveBirthDate)"> AND a.ARCHIVE_BIRTH_DATE <![CDATA[ <=#{endarchiveBirthDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(archiveStatus)"> AND a.ARCHIVE_STATUS  =#{archiveStatus} </if>
+			<if test="@Ognl@isNotEmpty(archiveType)"> AND a.ARCHIVE_TYPE  =#{archiveType} </if>
+			
+			<if test="@Ognl@isNotEmpty(checkoutRegisterOrgIdApp)"> AND n.CHECKOUT_REGISTER_ORG_ID  in (${checkoutRegisterOrgIdApp})</if>
+			<if test="@Ognl@isNotEmpty(checkinOrgIdApp)"> AND n.CHECKIN_ORG_ID in (${checkinOrgIdApp})</if>
+			<if test="@Ognl@isNotEmpty(archiveCodes)"> AND a.ARCHIVE_CODE in (${archiveCodes}) </if>
+			<if test="@Ognl@isNotEmpty(ids)"> AND n.ID in (${ids})</if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.archive.model.ArchiveCheckout">
+		INSERT INTO RSDA_BS_ARCHIVE_CHECKOUT
+		(ID,ARCHIVE_ID,CHECKOUT_TYPE,CHECKOUT_DATE,CHECKOUT_PERIOD_DATE,CHECKOUT_CORP,CHECKOUT_PERSON,CHECKOUT_REASON,CHECKOUT_PERSON_PHONE,CHECKOUT_STATUS,CHECKOUT_DESC,CONFIRM_ALLOW_FLAG,CONFIRM_REASON,CHECKIN_DATE,CHECKOUT_MORTGAGE,IS_RECEIVE_MORTGAGE,IS_RESTORE_MORTGAGE,CHECKOUT_PEOPLE_MENTION,CHECKOUT_PEOPLE_PHONE,CHECKOUT_PEOPLE_CARD,CHECKOUT_REGISTER_ID,CHECKOUT_REGISTER_NAME,CHECKOUT_REGISTER_ORG_ID,CHECKOUT_REGISTER_ORG_NAME,CHECKOUT_REGISTER_DATE,CHECKOUT_CONFIRM_ID,CHECKOUT_CONFIRM_NAME,CHECKOUT_CONFIRM_ORG_ID,CHECKOUT_CONFIRM_ORG_NAME,CHECKOUT_CONFIRM_DATE,CHECKIN_ID,CHECKIN_NAME,CHECKIN_ORG_ID,CHECKIN_ORG_NAME,CHECKIN_CONFIRM_ID,CHECKIN_CONFIRM_NAME,CHECKIN_CONFIRM_ORG_ID,CHECKIN_CONFIRM_ORG_NAME,CHECKIN_CONFIRM_DATE,SEIZURE_MATERIAL,CHECKOUT_KINDS,CHECKOUT_CONTENT,CCPR08,BATCH_NAME)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{archiveId,jdbcType=NUMERIC}, #{checkoutType,jdbcType=NUMERIC}, #{checkoutDate,jdbcType=DATE}, #{checkoutPeriodDate,jdbcType=DATE}, #{checkoutCorp,jdbcType=VARCHAR}, #{checkoutPerson,jdbcType=VARCHAR}, #{checkoutReason,jdbcType=VARCHAR}, #{checkoutPersonPhone,jdbcType=VARCHAR}, #{checkoutStatus,jdbcType=NUMERIC}, #{checkoutDesc,jdbcType=VARCHAR}, #{confirmAllowFlag,jdbcType=NUMERIC}, #{confirmReason,jdbcType=VARCHAR}, #{checkinDate,jdbcType=TIMESTAMP}, #{checkoutMortgage,jdbcType=VARCHAR}, #{isReceiveMortgage,jdbcType=NUMERIC}, #{isRestoreMortgage,jdbcType=NUMERIC}, #{checkoutPeopleMention,jdbcType=VARCHAR}, #{checkoutPeoplePhone,jdbcType=VARCHAR}, #{checkoutPeopleCard,jdbcType=VARCHAR}, #{checkoutRegisterId,jdbcType=NUMERIC}, #{checkoutRegisterName,jdbcType=VARCHAR}, #{checkoutRegisterOrgId,jdbcType=NUMERIC}, #{checkoutRegisterOrgName,jdbcType=VARCHAR}, #{checkoutRegisterDate,jdbcType=TIMESTAMP}, #{checkoutConfirmId,jdbcType=NUMERIC}, #{checkoutConfirmName,jdbcType=VARCHAR}, #{checkoutConfirmOrgId,jdbcType=NUMERIC}, #{checkoutConfirmOrgName,jdbcType=VARCHAR}, #{checkoutConfirmDate,jdbcType=TIMESTAMP}, #{checkinId,jdbcType=NUMERIC}, #{checkinName,jdbcType=VARCHAR}, #{checkinOrgId,jdbcType=NUMERIC}, #{checkinOrgName,jdbcType=VARCHAR}, #{checkinConfirmId,jdbcType=NUMERIC}, #{checkinConfirmName,jdbcType=VARCHAR}, #{checkinConfirmOrgId,jdbcType=NUMERIC}, #{checkinConfirmOrgName,jdbcType=VARCHAR}, #{checkinConfirmDate,jdbcType=TIMESTAMP}, #{seizureMaterial,jdbcType=NUMERIC}, #{checkoutKinds,jdbcType=NUMERIC},#{checkoutContent,jdbcType=VARCHAR}, #{ccpr08,jdbcType=VARCHAR}, #{batchName,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_ARCHIVE_CHECKOUT 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.archive.model.ArchiveCheckout">
+		UPDATE RSDA_BS_ARCHIVE_CHECKOUT SET
+		ARCHIVE_ID=#{archiveId,jdbcType=NUMERIC},
+		CHECKOUT_TYPE=#{checkoutType,jdbcType=NUMERIC},
+		CHECKOUT_DATE=#{checkoutDate,jdbcType=DATE},
+		CHECKOUT_PERIOD_DATE=#{checkoutPeriodDate,jdbcType=DATE},
+		CHECKOUT_CORP=#{checkoutCorp,jdbcType=VARCHAR},
+		CHECKOUT_PERSON=#{checkoutPerson,jdbcType=VARCHAR},
+		CHECKOUT_REASON=#{checkoutReason,jdbcType=VARCHAR},
+		CHECKOUT_PERSON_PHONE=#{checkoutPersonPhone,jdbcType=VARCHAR},
+		CHECKOUT_STATUS=#{checkoutStatus,jdbcType=NUMERIC},
+		CHECKOUT_DESC=#{checkoutDesc,jdbcType=VARCHAR},
+		CONFIRM_ALLOW_FLAG=#{confirmAllowFlag,jdbcType=NUMERIC},
+		CONFIRM_REASON=#{confirmReason,jdbcType=VARCHAR},
+		CHECKIN_DATE=#{checkinDate,jdbcType=TIMESTAMP},
+		CHECKOUT_MORTGAGE=#{checkoutMortgage,jdbcType=VARCHAR},
+		IS_RECEIVE_MORTGAGE=#{isReceiveMortgage,jdbcType=NUMERIC},
+		IS_RESTORE_MORTGAGE=#{isRestoreMortgage,jdbcType=NUMERIC},
+		CHECKOUT_PEOPLE_MENTION=#{checkoutPeopleMention,jdbcType=VARCHAR},
+		CHECKOUT_PEOPLE_PHONE=#{checkoutPeoplePhone,jdbcType=VARCHAR},
+		CHECKOUT_PEOPLE_CARD=#{checkoutPeopleCard,jdbcType=VARCHAR},
+		CHECKOUT_REGISTER_ID=#{checkoutRegisterId,jdbcType=NUMERIC},
+		CHECKOUT_REGISTER_NAME=#{checkoutRegisterName,jdbcType=VARCHAR},
+		CHECKOUT_REGISTER_ORG_ID=#{checkoutRegisterOrgId,jdbcType=NUMERIC},
+		CHECKOUT_REGISTER_ORG_NAME=#{checkoutRegisterOrgName,jdbcType=VARCHAR},
+		CHECKOUT_REGISTER_DATE=#{checkoutRegisterDate,jdbcType=TIMESTAMP},
+		CHECKOUT_CONFIRM_ID=#{checkoutConfirmId,jdbcType=NUMERIC},
+		CHECKOUT_CONFIRM_NAME=#{checkoutConfirmName,jdbcType=VARCHAR},
+		CHECKOUT_CONFIRM_ORG_ID=#{checkoutConfirmOrgId,jdbcType=NUMERIC},
+		CHECKOUT_CONFIRM_ORG_NAME=#{checkoutConfirmOrgName,jdbcType=VARCHAR},
+		CHECKOUT_CONFIRM_DATE=#{checkoutConfirmDate,jdbcType=TIMESTAMP},
+		CHECKIN_ID=#{checkinId,jdbcType=NUMERIC},
+		CHECKIN_NAME=#{checkinName,jdbcType=VARCHAR},
+		CHECKIN_ORG_ID=#{checkinOrgId,jdbcType=NUMERIC},
+		CHECKIN_ORG_NAME=#{checkinOrgName,jdbcType=VARCHAR},
+		CHECKIN_CONFIRM_ID=#{checkinConfirmId,jdbcType=NUMERIC},
+		CHECKIN_CONFIRM_NAME=#{checkinConfirmName,jdbcType=VARCHAR},
+		CHECKIN_CONFIRM_ORG_ID=#{checkinConfirmOrgId,jdbcType=NUMERIC},
+		CHECKIN_CONFIRM_ORG_NAME=#{checkinConfirmOrgName,jdbcType=VARCHAR},
+		CHECKIN_CONFIRM_DATE=#{checkinConfirmDate,jdbcType=TIMESTAMP},
+		SEIZURE_MATERIAL=#{seizureMaterial,jdbcType=NUMERIC},
+		CHECKOUT_KINDS=#{checkoutKinds,jdbcType=NUMERIC},
+		CHECKOUT_CONTENT=#{checkoutContent,jdbcType=VARCHAR},
+		CCPR08=#{ccpr08,jdbcType=VARCHAR},
+		BATCH_NAME=#{batchName,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="ArchiveCheckout">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_ARCHIVE_CHECKOUT
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getByIdForUpdate" parameterType="java.lang.Long" resultMap="ArchiveCheckout">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_ARCHIVE_CHECKOUT
+		WHERE
+		ID=#{id} FOR UPDATE
+	</select>
+	
+	<select id="getAll" resultMap="ArchiveCheckout">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_ARCHIVE_CHECKOUT   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	<!-- 查询档案借阅信息 -->
+	<select id="getAllArchiveCheckout" resultType="java.util.HashMap">
+		select  n.ID as "id",a.ARCHIVE_CODE as "archiveCode",n.CHECKOUT_REASON as "checkoutReason",n.CHECKOUT_CONTENT as "checkoutContent"
+				,p.AAC003 as "aac003",p.AAC002 as "aac002",p.AAE005 as "aae005",to_char(p.AAC006,'yyyy-mm-dd') as "aac006"
+				,e.name as "genderName",p.AAC001 as "aac001"
+				,to_char(n.CHECKOUT_DATE,'yyyy-mm-dd') as "checkoutDate"
+				,to_char(n.CHECKOUT_PERIOD_DATE,'yyyy-mm-dd') as "checkoutPeriodDate"
+				,n.CHECKOUT_STATUS as "checkoutStatus"
+				,m.name as "checkoutStatusName"
+				,o.name as "checkoutTypeName"
+				,n.CHECKOUT_DESC as "checkoutDesc"
+				,n.CHECKOUT_PERSON as "checkoutPerson"
+				,n.CHECKOUT_PERSON_PHONE as "checkoutPersonPhone"
+				,n.CHECKOUT_CORP as "checkoutCorp"
+				,q.name as "checkoutKindsName"
+				,r.name as "seizureMaterialName"
+				,f_getmultiplereal(n.checkout_mortgage,'RSDA_TAB_SEIZUREMATERIAL') "checkoutMortgage"
+				,n.CHECKOUT_REGISTER_NAME as "checkoutRegisterName"
+				,to_char(n.CHECKOUT_REGISTER_DATE,'yyyy-mm-dd') as "checkoutRegisterDate"
+				,n.CHECKOUT_REGISTER_ORG_NAME as "checkoutRegisterOrgName"
+				,n.CHECKOUT_CONFIRM_NAME as "checkoutConfirmName"
+				,to_char(n.CHECKOUT_CONFIRM_DATE,'yyyy-mm-dd') as "checkoutConfirmDate"
+				,n.CHECKOUT_CONFIRM_ORG_NAME as "checkoutConfirmOrgName"
+				,n.CHECKIN_NAME as "checkinName"
+				,to_char(n.CHECKIN_DATE,'yyyy-mm-dd') as "checkinDate"
+				,n.CHECKIN_ORG_NAME as "checkinOrgName" 
+				,to_char(n.CHECKIN_CONFIRM_DATE,'yyyy-mm-dd') as "checkinConfirmDate"
+				,n.CHECKIN_CONFIRM_NAME as "checkinConfirmName"
+				,n.CHECKIN_CONFIRM_ORG_NAME as "checkinConfirmOrgName" 
+				,a.ARCHIVE_NAME as "archiveName"
+				,to_char(a.ARCHIVE_BIRTH_DATE,'yyyy-mm-dd') as "archiveBirthDate"
+				,to_char(a.RECEIVE_DATE,'yyyy-mm-dd') as "receiveDate"
+				,s.name as "archiveStatusName"
+				,h.name as "archiveTypeName"
+				,i.EXP_PERSON_PHONE as "expPersonPhone"
+				,a.ARCHIVE_SOURCE as "archiveSource"
+				,n.BATCH_NAME as "batchName"
+				,a.MARKET_POSITION as "marketPosition"
+				,a.MARKET_POSITION as "position"
+				,j.name as "marketPositionName"
+				,a.CABINETS_LIBRARY as "cabinetsLibrary",a.CABINETS_CODE as "cabinetsCode",a.CABINETS_LAYER as "cabinetsLayer",a.CABINETS_LATTICE as "cabinetsLattice"
+				,ab.AAB004 as "expEntrustCompany"
+				,a.ARCHIVE_RECEIVE_NAME as "archiveReceiveName"
+				,to_char(a.ARCHIVE_RECEIVE_DATE,'yyyy-mm-dd') as "archiveReceiveDate",a.ARCHIVE_RECEIVE_ORG_NAME as "archiveReceiveOrgName"
+				
+						
+		from RSDA_BS_ARCHIVE_CHECKOUT n
+		left join RSDA_BS_ARCHIVE_ARCHIVES a on a.ID=n.ARCHIVE_ID
+		left join ac01 p on p.aac001=a.PERSON_ID
+        left join TAB_SEX e on e.code=p.AAC004
+        left join RSDA_TAB_CHECKOUTSTATUS m on m.code=n.CHECKOUT_STATUS  
+        left join RSDA_TAB_CHECKOUTTYPE o on o.code=n.CHECKOUT_TYPE
+        left join RSDA_TAB_CHECKOUKINDS q on q.code=n.CHECKOUT_KINDS
+        left join RSDA_TAB_SEIZUREMATERIAL r on r.code=n.SEIZURE_MATERIAL
+        left join RSDA_TAB_ARCHIVESTATUS s on s.code=a.ARCHIVE_STATUS
+        left join RSDA_TAB_ARCHIVETYPE h on h.code=a.ARCHIVE_TYPE
+        left join RSDA_BS_PERSON_EXPAND i on i.EXP_PERSON_ID=a.PERSON_ID  
+        left join RSDA_TAB_MARKET_POSITION j on j.code=a.MARKET_POSITION
+        left join rsda_bs_corp_person rbcp on rbcp.PERSON_ID=p.AAC001
+        left join ab01 ab on ab.aab001 = rbcp.corp_id
+        
+        <include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+			order by n.CHECKOUT_REGISTER_DATE  desc,a.person_id asc
+		</if>
+	</select>
+	<!-- 根据档案id和借阅状态查询借阅单条数据 -->
+	<select id="getArchiveCheckoutByArchiveId" parameterType="java.lang.Long" resultMap="ArchiveCheckout">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_ARCHIVE_CHECKOUT
+		WHERE
+		ARCHIVE_ID=#{archiveId} and CHECKOUT_STATUS=#{checkoutStatus} and CCPR08 = '0'
+	</select>
+	<!-- 查询批次名 -->
+	<select id="getBatchName" resultType="java.util.HashMap">
+		SELECT BATCH_NAME as "batchName" from rsda_bs_archive_checkout 
+ 			WHERE rowid in (select max(rowid) from rsda_bs_archive_checkout where  CHECKOUT_STATUS = #{checkoutStatus} group by BATCH_NAME) and BATCH_NAME is not null and CCPR08 = '0'
+	</select>
+	<!-- 查询批次名是不是已经存在 -->
+	<select id="getCheckedByBatchName"  parameterType="java.lang.Long" resultType="java.lang.Long">
+		select count(*)
+		FROM RSDA_BS_ARCHIVE_CHECKOUT
+		WHERE
+		BATCH_NAME =#{batchName} and ccpr08=0
+	</select>
+	<!-- 根据档案状态查询条数 -->
+	<select id="getArchivesCheckoutCount"  parameterType="java.lang.Long" resultType="java.lang.Long">
+		select count(*)
+		FROM RSDA_BS_ARCHIVE_CHECKOUT
+		WHERE
+		CHECKOUT_STATUS =#{checkoutStatus} and ccpr08=0 
+		<include refid="dynamicOrgWhere" />
+	</select>
+	<sql id="dynamicOrgWhere">
+		<if test="@Ognl@isNotEmpty(checkoutRegisterOrgId)"> AND CHECKOUT_REGISTER_ORG_ID  in (${checkoutRegisterOrgId})</if>
+		<if test="@Ognl@isNotEmpty(checkinOrgId)"> AND CHECKIN_ORG_ID in (${checkinOrgId})</if>
+	</sql>
+	<!-- 手机app接口借阅，返还数据接口 2016.11.21 -->
+	<select id="getAllArchiveCheckoutApp" resultMap="ArchiveCheckoutAppDto">
+		select  n.ID as "id",a.ARCHIVE_CODE as "archiveCode"
+				,p.AAC003 as "aac003",p.AAC002 as "aac002"
+				,e.name as "genderName",p.AAC001 as "aac001"
+				,n.CHECKOUT_STATUS as "checkoutStatus"
+				,m.name as "checkoutStatusName"
+				,o.name as "checkoutTypeName"
+				,q.name as "checkoutKindsName"
+				,n.CHECKOUT_REGISTER_NAME as "checkoutRegisterName"
+				,n.CHECKIN_NAME as "checkinName"
+				,a.ARCHIVE_NAME as "archiveName"
+				,n.BATCH_NAME as "batchName"
+				,a.MARKET_POSITION as "marketPosition"
+				,a.MARKET_POSITION as "position"
+				,n.ARCHIVE_ID as "archiveId"
+				
+						
+		from RSDA_BS_ARCHIVE_CHECKOUT n
+		left join RSDA_BS_ARCHIVE_ARCHIVES a on a.ID=n.ARCHIVE_ID
+		left join ac01 p on p.aac001=a.PERSON_ID
+        left join TAB_SEX e on e.code=p.AAC004
+        left join RSDA_TAB_CHECKOUTSTATUS m on m.code=n.CHECKOUT_STATUS  
+        left join RSDA_TAB_CHECKOUTTYPE o on o.code=n.CHECKOUT_TYPE
+        left join RSDA_TAB_CHECKOUKINDS q on q.code=n.CHECKOUT_KINDS
+        left join RSDA_TAB_SEIZUREMATERIAL r on r.code=n.SEIZURE_MATERIAL
+        left join RSDA_TAB_ARCHIVESTATUS s on s.code=a.ARCHIVE_STATUS
+        left join RSDA_TAB_ARCHIVETYPE h on h.code=a.ARCHIVE_TYPE
+        left join RSDA_BS_PERSON_EXPAND i on i.EXP_PERSON_ID=a.PERSON_ID  
+        left join RSDA_TAB_MARKET_POSITION j on j.code=a.MARKET_POSITION
+        
+        <include refid="dynamicWhereApp" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+			order by n.id asc
+		</if>
+	</select>
+	<sql id="dynamicWhereApp">
+		<where>
+			<if test="@Ognl@isNotEmpty(ccpr08)"> AND n.CCPR08  LIKE #{ccpr08}  </if>
+			<if test="@Ognl@isNotEmpty(batchName)"> AND BATCH_NAME  LIKE #{batchName}  </if>
+			<if test="@Ognl@isNotEmpty(checkoutStatusValue)"> AND CHECKOUT_STATUS in (${checkoutStatusValue}) </if>
+			<if test="@Ognl@isNotEmpty(checkoutRegisterOrgIdApp)"> AND n.CHECKOUT_REGISTER_ORG_ID  in (${checkoutRegisterOrgIdApp})</if>
+			<if test="@Ognl@isNotEmpty(checkinOrgIdApp)"> AND n.CHECKIN_ORG_ID in (${checkinOrgIdApp})</if>
+			<if test="@Ognl@isNotEmpty(checkoutKinds)"> AND CHECKOUT_KINDS  =#{checkoutKinds} </if>
+		</where>
+	</sql>
+	
+	
+</mapper>

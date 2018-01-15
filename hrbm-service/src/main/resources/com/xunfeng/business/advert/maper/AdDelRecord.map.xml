@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.advert.model.AdDelRecord">
+	<resultMap id="AdDelRecord" type="com.xunfeng.business.advert.model.AdDelRecord">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="caac01" column="CAAC01" jdbcType="NUMERIC"/>
+		<result property="adid" column="ADID" jdbcType="NUMERIC"/>
+		<result property="aab001" column="AAB001" jdbcType="NUMERIC"/>
+		<result property="caae03" column="CAAE03" jdbcType="VARCHAR"/>
+		<result property="caae04" column="CAAE04" jdbcType="VARCHAR"/>
+		<result property="jobid" column="JOBID" jdbcType="NUMERIC"/>
+		<result property="caad14" column="CAAD14" jdbcType="NUMERIC"/>
+		<result property="aae036" column="AAE036" jdbcType="TIMESTAMP"/>
+		<result property="aae019" column="AAE019" jdbcType="VARCHAR"/>
+		<result property="deltime" column="DELTIME" jdbcType="TIMESTAMP"/>
+		<result property="deluser" column="DELUSER" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,CAAC01,ADID,AAB001,CAAE03,CAAE04,JOBID,CAAD14,AAE036,AAE019,DELTIME,DELUSER
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(caac01)"> AND CAAC01  =#{caac01} </if>
+			<if test="@Ognl@isNotEmpty(adid)"> AND ADID  =#{adid} </if>
+			<if test="@Ognl@isNotEmpty(aab001)"> AND AAB001  =#{aab001} </if>
+			<if test="@Ognl@isNotEmpty(caae03)"> AND CAAE03  LIKE #{caae03}  </if>
+			<if test="@Ognl@isNotEmpty(caae04)"> AND CAAE04  LIKE #{caae04}  </if>
+			<if test="@Ognl@isNotEmpty(jobid)"> AND JOBID  =#{jobid} </if>
+			<if test="@Ognl@isNotEmpty(caad14)"> AND CAAD14  =#{caad14} </if>
+			<if test="@Ognl@isNotEmpty(aae036)"> AND AAE036  =#{aae036} </if>
+			<if test="@Ognl@isNotEmpty(beginaae036)"> AND AAE036  >=#{beginaae036,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaae036)"> AND AAE036 <![CDATA[ <=#{endaae036,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aae019)"> AND AAE019  LIKE #{aae019}  </if>
+			<if test="@Ognl@isNotEmpty(deltime)"> AND DELTIME  =#{deltime} </if>
+			<if test="@Ognl@isNotEmpty(begindeltime)"> AND DELTIME  >=#{begindeltime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(enddeltime)"> AND DELTIME <![CDATA[ <=#{enddeltime,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(deluser)"> AND DELUSER  LIKE #{deluser}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.advert.model.AdDelRecord">
+		INSERT INTO AD_DEL_RECORD
+		(ID,CAAC01,ADID,AAB001,CAAE03,CAAE04,JOBID,CAAD14,AAE036,AAE019,DELTIME,DELUSER)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{caac01,jdbcType=NUMERIC}, #{adid,jdbcType=NUMERIC}, #{aab001,jdbcType=NUMERIC}, #{caae03,jdbcType=VARCHAR}, #{caae04,jdbcType=VARCHAR}, #{jobid,jdbcType=NUMERIC}, #{caad14,jdbcType=NUMERIC}, #{aae036,jdbcType=TIMESTAMP}, #{aae019,jdbcType=VARCHAR}, #{deltime,jdbcType=TIMESTAMP}, #{deluser,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM AD_DEL_RECORD 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.advert.model.AdDelRecord">
+		UPDATE AD_DEL_RECORD SET
+		CAAC01=#{caac01,jdbcType=NUMERIC},
+		ADID=#{adid,jdbcType=NUMERIC},
+		AAB001=#{aab001,jdbcType=NUMERIC},
+		CAAE03=#{caae03,jdbcType=VARCHAR},
+		CAAE04=#{caae04,jdbcType=VARCHAR},
+		JOBID=#{jobid,jdbcType=NUMERIC},
+		CAAD14=#{caad14,jdbcType=NUMERIC},
+		AAE036=#{aae036,jdbcType=TIMESTAMP},
+		AAE019=#{aae019,jdbcType=VARCHAR},
+		DELTIME=#{deltime,jdbcType=TIMESTAMP},
+		DELUSER=#{deluser,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="AdDelRecord">
+		SELECT <include refid="columns"/>
+		FROM AD_DEL_RECORD
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="AdDelRecord">
+		SELECT <include refid="columns"/>
+		FROM AD_DEL_RECORD   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

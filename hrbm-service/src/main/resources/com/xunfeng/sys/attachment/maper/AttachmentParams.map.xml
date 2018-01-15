@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.sys.attachment.model.AttachmentParams">
+	<resultMap id="AttachmentParams" type="com.xunfeng.sys.attachment.model.AttachmentParams">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="p001" column="P001" jdbcType="VARCHAR"/>
+		<result property="p002" column="P002" jdbcType="VARCHAR"/>
+		<result property="p003" column="P003" jdbcType="VARCHAR"/>
+		<result property="p004" column="P004" jdbcType="VARCHAR"/>
+		<result property="p005" column="P005" jdbcType="VARCHAR"/>
+		<result property="p006" column="P006" jdbcType="NUMERIC"/>
+		<result property="p007" column="P007" jdbcType="NUMERIC"/>
+		<result property="p008" column="P008" jdbcType="NUMERIC"/>
+		<result property="p009" column="P009" jdbcType="NUMERIC"/>
+		<result property="p010" column="P010" jdbcType="VARCHAR"/>
+		<result property="p011" column="P011" jdbcType="NUMERIC"/>
+		<result property="p012" column="P012" jdbcType="VARCHAR"/>
+		<result property="p013" column="P013" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,P001,P002,P003,P004,P005,P006,P007,P008,P009,P010,P011,P012,P013
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(p001)"> AND P001  LIKE #{p001}  </if>
+			<if test="@Ognl@isNotEmpty(p002)"> AND P002  LIKE #{p002}  </if>
+			<if test="@Ognl@isNotEmpty(p003)"> AND P003  LIKE #{p003}  </if>
+			<if test="@Ognl@isNotEmpty(p004)"> AND P004  LIKE #{p004}  </if>
+			<if test="@Ognl@isNotEmpty(p005)"> AND P005  LIKE #{p005}  </if>
+			<if test="@Ognl@isNotEmpty(p006)"> AND P006  =#{p006} </if>
+			<if test="@Ognl@isNotEmpty(p007)"> AND P007  =#{p007} </if>
+			<if test="@Ognl@isNotEmpty(p008)"> AND P008  =#{p008} </if>
+			<if test="@Ognl@isNotEmpty(p009)"> AND P009  =#{p009} </if>
+			<if test="@Ognl@isNotEmpty(p010)"> AND P010  LIKE #{p010}  </if>
+			<if test="@Ognl@isNotEmpty(p011)"> AND P011  =#{p011} </if>
+			<if test="@Ognl@isNotEmpty(p012)"> AND P012  LIKE #{p012}  </if>
+			<if test="@Ognl@isNotEmpty(p013)"> AND P013  LIKE #{p013}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.sys.attachment.model.AttachmentParams">
+		INSERT INTO PIC_UPLOAD
+		(ID,P001,P002,P003,P004,P005,P006,P007,P008,P009,P010,P011,P012,P013)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{p001,jdbcType=VARCHAR}, #{p002,jdbcType=VARCHAR}, #{p003,jdbcType=VARCHAR}, #{p004,jdbcType=VARCHAR}, #{p005,jdbcType=VARCHAR}, #{p006,jdbcType=NUMERIC}, #{p007,jdbcType=NUMERIC}, #{p008,jdbcType=NUMERIC}, #{p009,jdbcType=NUMERIC}, #{p010,jdbcType=VARCHAR}, #{p011,jdbcType=NUMERIC}, #{p012,jdbcType=VARCHAR}, #{p013,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM PIC_UPLOAD 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.sys.attachment.model.AttachmentParams">
+		UPDATE PIC_UPLOAD SET
+		P001=#{p001,jdbcType=VARCHAR},
+		P002=#{p002,jdbcType=VARCHAR},
+		P003=#{p003,jdbcType=VARCHAR},
+		P004=#{p004,jdbcType=VARCHAR},
+		P005=#{p005,jdbcType=VARCHAR},
+		P006=#{p006,jdbcType=NUMERIC},
+		P007=#{p007,jdbcType=NUMERIC},
+		P008=#{p008,jdbcType=NUMERIC},
+		P009=#{p009,jdbcType=NUMERIC},
+		P010=#{p010,jdbcType=VARCHAR},
+		P011=#{p011,jdbcType=NUMERIC},
+		P012=#{p012,jdbcType=VARCHAR},
+		P013=#{p013,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="AttachmentParams">
+		SELECT <include refid="columns"/>
+		FROM PIC_UPLOAD
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="AttachmentParams">
+		SELECT <include refid="columns"/>
+		FROM PIC_UPLOAD   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

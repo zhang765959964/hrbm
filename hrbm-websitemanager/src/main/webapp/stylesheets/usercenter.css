@@ -1,0 +1,510 @@
+@charset "utf-8";
+
+
+/*resume page*/
+.resumecol{float: left; width: 748px; height: auto; border: 1px solid #d4d4d4; background: url("../img/usercenter/resumebg1.jpg") 4px 4px #fff no-repeat;}
+.resumehead{ position: relative; width: 100%; height: 180px; margin-top: 30px;}
+.portrait{ width: 130px; height: 130px; margin: 0px auto; background-color: #fff; border-radius: 50%;  behavior:url(/website-theme/PIE/PIE.htc); position:relative; box-shadow: 0px 1px 3px #999; padding: 5px;}
+.portrait>img{ width: 130px; height: 130px; border-radius: 50%;  behavior:url(/website-theme/PIE/PIE.htc); position:relative;}
+.resumename{ text-align: center; font-size: 24px; line-height: 40px;}
+.update{ position: absolute; color: #fff; top: 0; right: 20px;}
+.resumeinfo{ padding: 30px 19px; width: 710px; height: auto;}
+.resumeinfobar{ color: #f84c4c; font-size: 18px; line-height: 36px; border-bottom: 1px solid #d4d4d4;}
+.resumeinfocon{ padding: 10px 5px; width: 700px; height: auto;}
+.resumebase{ display: block; width: 100%; height: auto;}
+.baseitem{ display: inline-block; width: 212px; padding-right: 15px; line-height: 26px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.baseitem>span, .baseitem-site>span{}
+.per-tags{ display: block; width: 100%; height: auto;}
+.per-tags>li{ display: inline-block; padding: 4px 12px; margin-right: 10px; margin-top: 10px; border: 1px solid #f84c4c; color: #f84c4c;}
+.resumeorder{ display: block; width: 100%; height: auto;}
+.resumeorder>li>em{ padding-right: 10px; font-size: 14px; color: #333;}
+.orderitem{ display: inline-block; width: 212px; padding-right: 15px; line-height: 26px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.itemrow{ width: 100%;}
+.work-exper, .job-exper, .train-exper{ width: 100%; height: auto;}
+.work-exper>li, .job-exper>li, .train-exper>li{ display: inline-block; padding-right: 10px; line-height: 32px; color: #000; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.work-exper-time, .work-exper-job{ width: 22%;}
+.work-exper-comname{ width: 50%;}
+.work-memo{ width: 100%; height: auto; line-height: 26px; color: #666; }
+.work-memo li{ list-style: decimal inside;}
+.job-exper-time, .job-exper-major{ width: 22%}
+.job-exper-school{ width: 35%}
+.job-exper-degree{ width: 12%}
+.train-exper-time{ width: 25%}
+.train-exper-major{ width: 26%;}
+.train-exper-site{ width: 42%}
+.train-memo{ width: 100%; height: auto; line-height: 26px; color: #666;}
+.invitePop{z-index:9999;background:#fff;width:528px;min-height:550px;border:1px solid #d4d4d4;position:absolute;top:10%;left:50%;margin-left:-265px;line-height:30px;}
+.invpopTit{height:40px;line-height:40px;}
+.invpopTit>div{padding:0 15px;}
+.invpopTit .fa:hover{color:#f84c4c;}
+.invpopCont{width:484px;margin:15px auto 0;}
+.invpopTip{line-height:30px;padding:5px 15px;width:450px;min-height:65px;border:1px solid #e9e9e9;}
+.invitePop .bgfa{background:#fafafa;}
+.invpopBz>textarea{width:458px;height:65px;padding:5px 10px;border-color:#e9e9e9;}
+.invpopBtn{margin-top:15px;}
+.invpopBtn>input{width:60px;height:30px;}
+
+.resume-btn{ width: 228px; height: auto;}
+.resume-btn li{ width: 208px; height: 38px; text-align: center; line-height: 38px; margin: 20px auto;}
+.resume-btn li a{ font-size: 16px; color: #fff;}
+.resume-btn li a:hover{ color: #fff;}
+.contact-nodown{ border: 1px dashed #d4d4d4; width: 188px; height:98px; margin: 20px auto;}
+.contact-nodown span{ display: block; padding: 30px 20px; text-align: center;}
+.contact-down{ display: none; width: 208px; height: auto; padding: 20px 10px;}
+.contact-down dt{ color: #999;}
+.contact-down dd{ margin: 5px auto;}
+.moduletitle>img{ position: absolute; top: 5px; left: 80px;}
+.per-photo{ display: block; position: relative; width: 208px; height: auto; padding: 20px 10px;}
+.per-photo>a{ position: absolute; display: none; top: 100px; z-index:100;}
+.per-photo>.per-ph-left{ left: 10px;}
+.per-photo>.per-ph-right{ right: 10px;}
+.per-photo:hover>a{ display: block;}
+.per-photowrap{ width: 100%; height: 180px;}
+.per-photolist{ width: 208px; height: 180px; overflow: hidden;}
+.per-photoitem{ display: inline-block; width: 208px; height: 180px;}
+.per-photoitem>img{ width: 208px; height: 180px;}
+.per-video{ width: 208px; height: auto; padding: 20px 10px;}
+/*popover list*/
+.popBg{width:100%; height:300%;overflow-y:hidden; position:absolute; top:0px; left:0px; filter:alpha(opacity=60); opacity:0.6; background:rgba(119,119,119,.6); z-index:9; display: none;}
+.popLayer{position:absolute; z-index:99; right:initial; top:initial; background:#fff; display:none; width:650px; min-height:300px; border:1px solid gray;}
+.popTittle{height:40px; line-height:40px; padding:2px 10px; background:#f5f5f5;}
+.popTittle div{float:left;}
+.userSelected{width:290px; padding:0 10px; }
+.popCon{width:100%; min-height:50px; display:block;}
+.industryCat{width:20%; padding:0 10px;}
+.industryCatList{width:75%}
+.industryCatList label{width:30%; margin-right:8px; float:left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.arealist{position:absolute; top:39px; width:96%; padding:1% 2%; min-height:205px;}
+.areabox{width:100%;min-height:250px; width:100%;}
+.economicList{width:96%; padding:2%;}
+
+/***************************** personal center*****************************/
+/*personal top title*/
+.infoName{padding-right:10px;}
+.topTitleWrap{width:1000px; height:50px; margin-bottom:20px; background:url(../img/usercenter/personal_rightBg.png) no-repeat top right #fff;}
+.topContWrap a{width:129px; height:inherit; line-height:50px; text-align:center; border-right:1px solid #e9e9e9; float:left; font-size:16px;}
+.topContWrap a:hover,.topContWrap .active a{background:#3ca0ff; color:#fff;}
+.topContWrap .active{background:#3ca0ff; color:#fff;}
+/*personal user infomation*/
+.topInfoBox{width:948px; height:168px; margin-bottom:20px; border:1px solid #d4d4d4; background:#fff; padding:15px 25px;}
+.topInfo_Left,.info_Right{width:472px; height:inherit; vertical-align:middle;}
+.topInfoBox .br0,.topContWrap .br0{border-right:0;}
+.topInfo_Left{border-right:1px solid #e9e9e9; width:473px;}
+.headImg{width:150px; height:150px; border:1px solid #e5e5e5;   }
+.headImg img{width:150px; height:150px; }
+.imgText{width:150px; height:auto; background:#000; FILTER:alpha(opacity=60); opacity:0.6; -moz-opacity:0.6; position:absolute; left:0; bottom:0;text-align:center;}
+.imgTextCont{width:150px; height:auto; color:#FFF; line-height:28px; display:none;}
+.imgTextCont a{color:#FFF;}
+.infoDetailWrap{width:auto;height:auto; margin:10px 0 0 20px; font-size:13px;}
+.infoDetailWrap a:hover{color:#585858;}
+.infoDetailWrap span{height:30px; line-height:30px; margin-right:5px;}
+.info_RightCont{height:120px; vertical-align:middle; padding:24px 0 24px 31px;}
+.info_RightContDetail{width:109px; height:inherit; border-right:1px solid #e9e9e9; text-align:center; line-height:35px;}
+.info_RightContDetail i{margin-left:15px; color:#3ca0ff;}
+.liNobr{border-right:0;}
+.info_RightContDetail a{width:90px;height:120px; display:block; margin:0 auto;}
+.info_RightContDetail a:hover{background:#f8f8f8; border-radius:5px; behavior:url(/website-theme/PIE/PIE.htc); position:relative;}
+/*com center*/
+.w432{width:432px;}
+.info_RightCont1{padding:9px 0;}
+.w215{width:214px;border-right:0;height:150px;padding-top:7px;}
+.w215 .pdr20{padding-right: 20px;}
+.w215 div{height:30px;line-height:30px;}
+.w215 .fa-2x{font-size:1.5em;}
+.w215 a{line-height:30px;width:auto;height:inherit;display:inline;color:#b9b8b9;}
+.w215 a:hover{background:none;color:#f84c4c;}
+.w215 .w135{width:135px;margin:10px auto 0;line-height:28px;}
+
+.mr0 .resultitem{margin:0;border-bottom:0;border-left:0;}
+.w190{width:190px;}
+/*personal left*/
+.leftColumn{ float:left; width:750px; height: auto;}
+.leftBox{ width:748px; height:auto; background:#fff; border:1px solid #d4d4d4; margin-bottom:20px;}
+.createResume{width:598px; height:135px; margin:69px 85px;}
+.resumeIcon{display:inline-block; width:120px; height:135px; background:url(../img/usercenter/resumeicon.png) no-repeat left top;}
+.pleaseCreateResume{width:415px; height:inherit; margin-left:30px; line-height:35px; padding:5px 15px;}
+.createResumeBtn{width:125px; height:42px; line-height:55px;}
+.per_resumeBox{width:718px; height:203px; padding:35px 15px;}
+.per_resDetail{width:280px; height:210px; padding:5px 15px; line-height:22px;}
+.per_resDetail li{clear:both;}
+.userDetailTitle{width:85px; float:left;  color:#999;}
+.userDetailType{width:180px; float:left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.per_resumeEdit{min-width:408px; height:210px; line-height:40px;}
+.per_resumeLine{width:300px; margin:0 auto;}
+.per_resumeLine span{margin-right:8px;}
+.progress{height:10px; margin:20px 10px; overflow:hidden; background:#f5f5f5;border-radius:5px; behavior:url(/website-theme/PIE/PIE.htc); position:relative; box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);}
+.resumeLine{width:151px;height:7px; line-height:40px; margin:15px 2px;}
+.progress-bar{width:0; height:100%;font-size:12px; line-height:20px; color:green; text-align:center;background:#428bca; box-shadow:inset 0 -1px 0 rgba(0,0,0,0.15); transition:width .6s ease}
+.per_resumeTip{width:310px; height:auto; border:1px solid #d9d8d8; background:#f8f8f8; padding:0 20px; margin:0 auto;}
+.per_resumeTip a,.per_resumeTip a:hover{color:#3ca0ff !important;}
+.resumeEdit a,.resEdit .fa,.resEdit a:hover .fa{color:#fff;}
+.resEdit{width:115px; text-align:center; line-height:35px;}
+.editMore{width:113px; height:33px;position:relative;}
+.editMore a,.editMore .fa,.editMore a:hover .fa{color:#585858;}
+.editMoreDetial{display:none;width:113px;height:auto;line-height:30px;border:1px solid #d4d4d4;top:33px;left:-1px;}
+.resumeEditBox .editMore:hover .editMoreDetial{display: block;}
+.editMore .editMoreDetial>a{border-bottom:1px solid #d4d4d4;}
+.editMore .editMoreDetial>a:last-child{border:none;}
+.resumeEditBox{width:300px; margin:20px auto;}
+
+/*recommended position*/
+.per_leftTitle{width:688px; height:45px; line-height:45px; padding-left:20px; padding-right:40px;}
+.mar0{margin:0; padding:20px; border-bottom:0; border-left:0;}
+.mar0:nth-child(even){background:#fafafa;}
+/*personal right*/
+.helpTop{height:28px;}
+/*personal resume edit detail page*/
+/*personal resume manage content*/
+.per_resumeManage{width:998px; height:auto; background:#fff;}
+.per_resumeTitle{width:968px; height:40px; padding:15px; line-height:40px;}
+.bggray{background:#b6b6b6; width:136px; height:26px; line-height:26px; text-align:center; border-radius:13px; behavior:url(/website-theme/PIE/PIE.htc); position:relative;color:#fff; margin:7px 7px 0 0;}
+.bggray a,.bggray i,.bggray a:hover i{color:#fff;}
+.per_resumeContWrap{overflow:hidden; height:100%;}
+.leftTab{width:130px; height:inherit; }
+.rightCont{width:818px; min-height:600px; height:auto; padding:20px 25px 20px; background:#fff;}
+.leftTab .active{background:#84c3ff;}
+.resumeli{width:inherit; height:44px; line-height:44px; text-align:center; border-bottom:1px solid #6cbfff;}
+.resumeli a,.resumeli a:hover{color:#fff;}
+/*create resume*/
+.leftBox1{width:820px;}
+/*preview resume list*/
+.resumeListItem{width:796px; height:128px; padding:20px 10px;}
+.itemLeft{width:390px; line-height:32px; padding:5px 10px; margin-right:20px;}
+a.fcolorblue,a:hover .fcolorblue{color:#3ca0ff;}
+.itemLeftStatus{height:32px; line-height:32px;  padding:0 5px; background:#f8f8f8;}
+.resumeListAdd{width:120px; height:40px; text-align:center; line-height:40px; margin-bottom:20px;}
+a.afWhite,.afWhite:hover{color:#fff;}
+/*preview resume detail*/
+.resumeDetail{width:818px;height:auto;}
+.resume1{}
+.resumeTitle{width:800px; height:40px; line-height:40px; background:#f5f5f5; padding-left:16px; margin-bottom:10px;}
+.resumeCont,.comCont{width:798px; line-height:30px; padding:10px 10px 15px;}
+.w500{width:500px;}
+.w300{width:270px;}
+.w400{width:399px;}
+.pd5{padding:2px 5px; margin-right:5px;}
+
+/*resume edit page*/
+.resumeContEdit,.comContEdit{line-height:40px;color:#585858;}
+.userChar{width:110px; text-align:right; display:inline-block; margin-right:10px; vertical-align:top; line-height:40px;}
+.comContEdit .userChar{width:120px;}
+.userValue{width:600px; display:inline-block; line-height:40px; clear:both;}
+.userValue>span{padding:0 5px; white-space:nowrap;margin-right:5px;}
+.userValue .save{float:left;}
+.rightselect{margin-top:10px;}
+.rightselect .edit-rowSelect,.rightselect .edit-rowInput{margin:0;}
+.edit-rowInput,.edit-rowSelect{height:30px; width:223px; border:1px solid #d4d4d4; color:#999; margin:4px 0; line-height:30px;padding:0 5px;}
+.edit-rowSelect{height:32px;line-height:32px;width:235px;}
+.w50{width:50px;}
+.w116{width:116px;}
+.selected{border:1px solid #f84c4c;}
+.save,.cancel,.saveAdd{width:95px; height:32px; line-height:32px;margin:10px 20px 0 0; text-align:center;cursor:pointer;}
+.saveAdd{width:105px !important;}
+.userValue:hover .save,.userValue:hover .saveAdd,.userValue:hover .cancel{color:#fff;}
+.createBox{text-align:center;width:100%;margin: 15px auto;}
+.createBox a{color:#fff;}
+.createBtn{width:120px;margin:10px auto;}
+/*user img manage*/
+.imgWrap{line-height:40px;}
+.imgList{width:165px; height:150px; margin: 20px 15px 10px 15px; }
+.imgBox{width:153px; height:103px;padding:5px; }
+.imgDesc{height:40px; width:165px; line-height:40px; text-align:center;}
+.imgShow a{color:#999;}
+.imgShow a:hover{color:#3ca0ff;}
+
+/*************job search management**************/
+.titleTab{display:block; width:99px; text-align:center; float:left; margin-right:1px;cursor:pointer;}
+.listWrap{line-height:25px;}
+.listWrap a:hover{color:#3ca0ff;}
+/*.comDetail{width:705px; height:69px; padding:15px;}*/
+.comtTitle{color:#333;}
+.checkResume{margin-left:10px;}
+.comJobs{width:70px; background:#f8f8f8; padding:5px; text-align:center; line-height:47px;margin:-10px -15px;}
+.jobNum{font-size:36px;}
+/*job applied*/
+/*.positionList{width:788px; height:45px;}*/
+/*.pd15{padding:15px;}*/
+.jobName{width:300px;}
+.jobCom{width:400px;}
+.applyStatus span{margin:0 8px;}
+/*interview*/
+/*.interviewBox{height:53px; width:788px; padding:10px 15px;}*/
+.positionDetail{height:34px; line-height:34px;}
+.w320{width:320px;}
+.w240{width:240px; text-align:left; }
+.w220{width:220px; text-align:right;}
+.acceptBtn,.denyBtn,.cancelBtn{border-radius:5px; behavior:url(/website-theme/PIE/PIE.htc); position:relative; margin-right:20px; padding:5px 26px;width:32px;}
+.doneBtn{border-radius:5px; behavior:url(/website-theme/PIE/PIE.htc); position:relative; margin-right:20px; padding:5px 18px;width:48px;}
+/*position collect --jobFav*/
+.favList{height:53px; padding:10px 15px; line-height:26px;}
+.cancelBtn{ margin-top:8px; height:26px; line-height:26px;width:auto;}
+/*company collect --comFav*/
+.rightBtn{width:160px;line-height:26px;}
+.rightBtn div:last-child{margin-top:9px;}
+.bradiu{border-radius:5px; behavior:url(/website-theme/PIE/PIE.htc); position:relative;}
+/**************************personal account information**************************/
+.userValue{width:auto; margin-right:20px;position:relative;}
+.w600{width:600px;}
+div.userValue>span{cursor:pointer;}
+.w480{width:480px;}
+.userValue>.fa{ position: absolute; top:11px; right: 8px;}
+.userValue:hover input, .userValue:hover .fa{ color: #333;}
+.userValue .filter-list{   position: absolute;left: 0px; top: 36px; z-index: 800; width: 233px; height: auto; border: 1px solid #d4d4d4; background-color: #fff; display: none;}
+.userValue .filter-list>a{ display: block; padding: 2px 8px;line-height:28px;}
+.userValue .filter-list>a:hover{ color: #fff; background-color: #f84c4c;}
+.userValue:hover .filter-list{ display: block;}
+.siteMessageBox{min-height:43px; }
+.resumeCont .per-jobsort,.comCont .per-jobsort{top:36px;left:-19px;line-height:normal;}
+.comCont .ecnoType{padding:0;line-height:30px;}
+.ecnoCont{min-height:312px;padding:10px;}
+.resumeCont .per-areaselect,.comCont .per-areaselect,.comCont .ecnoType{top:36px;left:124px;}
+.resumeCont .arealist,.comCont .arealist{top:34px;}
+.h40{height:40px;line-height:40px;}
+/*****personal train course*****/
+.contBox{width:788px;padding:10px 15px;border:1px solid #d4d4d4;line-height:30px;margin-bottom:20px;}
+.contBoxBg{width:788px;padding:10px 15px;background:#fafafa;border:1px solid #d4d4d4;line-height:30px;margin-bottom:20px;}
+.contTabBox{width:818px;border:1px solid #d4d4d4;line-height:40px;height:40px;margin-bottom:20px;}
+.contTabBox span.active,.contTabBox span:hover{background:#f84c4c;color:#fff;}
+.logoBox{width:69px;height:69px;}
+.logoBoxBd{width:69px;height:69px;border:1px solid #d4d4d4;}
+.infoBox{min-width:385px;width:auto;line-height:25px;}
+.rightBox{min-width:10px;}
+/**************************pop over box******************************************/
+.authenBox{width:608px; min-height:340px; position:absolute; top:50%; left:50%; margin-left:-304px; margin-top:-170px; background:#fff;}
+.w140{width:140px; display:inline-block; text-align:right;}
+.w150{width:150px; display:inline-block;}
+.popTip{min-height:80px; width:565px; margin:20px; padding:15px 20px; background:#fafafa; border:1px solid #e9e9e9; line-height:25px;}
+.secutityBox{margin-bottom:20px;}
+.peraccSet{margin-bottom:20px;}
+.perSortTit{height:40px;line-height:40px;border:1px solid #d4d4d4; margin-bottom:20px;background: #f5f5f5;font-size:16px;clear:both;padding:0 20px;}
+.marl100{margin-left:145px;margin-top:10px;}
+.curp{cursor:pointer;}
+/**********************company style*************************/
+.titleWrap{padding-left:20px;}
+.listWrap .logintip{width:auto;}
+.editArea{width:350px;height:350px;background: #ddd;margin-right:20px;}
+.resultChart{width:150px;height:350px;}
+.resultChart img{border:1px solid #d4d4d4;}
+.resultChart150{width:150px;height:180px;}
+.resultChart70{width:70px;height:100px;}
+.mapWrap{width:818px;height:493px;}
+.posBtn{top:20px;right:20px;z-index: 9}
+.itemCont{width:500px;}
+.item-tagslist .itemCont{width:570px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;}
+/*company resume page*/
+.comTitWrap,.comContWrap{width:808px;line-height:30px;padding-left:10px;}
+.checkWrap .fa {position: absolute;top: 2px;right: 10px;}
+.checkItem{top:26px;width:118px;}
+.checkBox:hover .checkItem{display:block;}
+.checkBox input{width:108px;}
+.w818{width:818px;}
+.resTit{height:40px;line-height: 40px;}
+.recResWrap dt,.recResWrap dd{clear:both;padding-left:10px;}
+.recResWrap dt>div,.recResWrap dd>div{float:left;height:inherit;}
+.recResWrap dd{height:69px;line-height:69px;border-top:1px solid #d4d4d4;}
+.resCheck{width:15px;}
+.resHead{width:65px;height:49px !important;padding:9px 0;}
+.resHead img{width:45px;height:50px;}
+.resName{width:95px;}
+.resPosition{width:160px;}
+.resAge{width: 50px}
+.resEducation{width: 100px;}
+.resTime{width: 105px}
+.resHead1,.resResource,.resRead,.resStatus{width: 65px;}
+.recResWrap .resResource{width:70px;}
+.resjobIntension{width:280px;}
+.lineH1{line-height:34px;}
+.resInviteTime{width:120px;}
+.resFeedStatus{width:120px;}
+.resjobPos{width:255px;}
+.resRemark{width:80px;}
+.resRemark1{width:140px;}
+.mars i{color:#51b06c;}
+.venus i{color:#f84c4c;}
+/*company position manage*/
+.jipin{background:url("../img/jipin.png") no-repeat top right;}
+.positionName{width:150px;}
+.positionnameBox{width:140px;}
+.positionResNum{width:70px;}
+.positionPubTime,.positionFreshTime{width:100px;}
+.positionResource,.positionStatus,.positionAuditStatus{width:90px;}
+.positionOpe{width:80px;}
+.jiIcon{background: url("../img/c-icon1.png") no-repeat 135px 15px;}
+.comPosTit{height:40px;line-height:40px;}
+.cancelFlash{background:url("../img/closeRight.png") no-repeat bottom left;}
+.sendpos{max-width:220px; display:inline-block;}
+/*company fair book*/
+.progressBar{height:40px;width:818px;line-height:40px;background:#fbfbfb;}
+.progressBar>div{float:left;}
+.step01{width:180px;background:url(../img/usercenter/proBar01.png) no-repeat;}
+.step02{width:184px;background:url(../img/usercenter/proBar02.png) no-repeat;margin-left:-10px; }
+.step03{width:178px;background:url(../img/usercenter/proBar03.png) no-repeat;margin-left:-10px; }
+.step04{width:144px;background:url(../img/usercenter/proBar04.png) no-repeat;margin-left:-10px; }
+.step05{width:172px;margin-left:-10px; }
+.step01 .active{background:url(../img/usercenter/proBar1.png) no-repeat;color:#fff;}
+.step02 .active{background:url(../img/usercenter/proBar2.png) no-repeat;color:#fff; }
+.step03 .active{background:url(../img/usercenter/proBar3.png) no-repeat;color:#fff; }
+.step04 .active{background:url(../img/usercenter/proBar4.png) no-repeat;color:#fff; }
+.step05 .active{background:url(../img/usercenter/proBar5.png) no-repeat;color:#fff; }
+.step{line-height:40px;}
+.fairs dt>div,.fairs dd>div{float:left;}
+.bgf5>div{float:left;}
+.fairTit{width:280px;}
+.fairType{width:140px;}
+.fairDate{width:250px;}
+.fairOpe{width:130px;}
+.positionResult span{display:inline-block;text-align:center !important;}
+.posName{width:130px;}
+.posNum{width:85px;}
+.posAdd{width:180px;}
+.posSch{width:85px;}
+.posYear{width:80px;}
+.posSala{width:140px;}
+.posOpe{width:80px;}
+.wordbreak{word-break: break-all;word-wrap:break-word;width:160px;padding-left:10px;line-height:30px;display:none;}
+/*my book booth*/
+.booth{line-height:40px;}
+.booth dt,.booth dd{height:40px;clear:both;text-align:center;}
+.booth dt>div,.booth dd>div,.fairPos dt>div,.fairPos dd>div{float:left;vertical-align:middle;}
+.booth dd,.fairPos dd{min-height:55px;line-height:55px;}
+.boothNum{width:70px;}
+.boothFair{width:150px;}
+.boothPlace{width:105px;}
+.boothUseTime{width:85px;}
+.boothBookTime{width:100px;}
+.boothStatus{width:90px;}
+.boothPosNum{width:80px;}
+.boothOpe{width:135px;}
+.lineH25{line-height:25px;}
+.lineH30{line-height:30px;}
+/*fair position manage*/
+.w348{width:348px !important;}
+.w358{width:358px !important;}
+.fairPos{line-height:40px;}
+.fairPos dt{height:40px;}
+.fairPos dt,.fairPos dd{clear:both;text-align: center;}
+.fposName{width:120px;}
+.fposNum{width:120px;}
+.fposPubTime{width:100px;}
+.fposSource{width:80px;}
+.fposMaster{width:150px;}
+.fposResNum{width:80px;}
+.fposStatus{width:70px;}
+.fposOpe{width:95px;}
+.boothFair,.boothPlace,.boothBookTime,.boothUseTime,.fposMaster{text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+/*vedio interview*/
+.vedioPorBar{height:40px;line-height:40px;}
+.vedioPorBar>div{width:134px;background:url("../img/usercenter/white.png") no-repeat top right;}
+.vedioPorBar .w140{width:145px;text-align: center;}
+.vedioPorBar .bgnone{background:none;}
+.comSortTit{height:40px;line-height:40px;border:1px solid #d4d4d4; margin-bottom:20px;background: #f5f5f5;font-size:16px;clear:both;padding-left:20px;}
+.viposWrap{line-height:60px;}
+.writenPosition .viposWrap li{clear:both;height:60px;border-top:1px solid #d4d4d4;}
+.writenPosition .viposWrap:first-child{border-top:0;}
+.writenPosition li>div{float:left;}
+.viposName{width:145px;}
+.viposNum{width:80px;}
+.viposArea{width:175px;}
+.viposEdu{width:120px;}
+.viposExp{width:90px;}
+.viposSal{width:110px;}
+.viposOpe{width:90px;}
+/*vedio interview room manage*/
+.vedioRoomWrap dd{height:59px;line-height:59px}
+.roomCreatTime{width:180px;}
+.roomUseTime{width:140px;}
+.roomStatus{width:140px;}
+.roomOpe{width:290px;}
+.goonPos{padding:3px 15px;margin:2px 0;}
+.viposComm{width:265px;}
+/*company adds manage*/
+#comadds .logintip,#comapplyRec .logintip{width:786px;height:auto;}
+.addsBox{width:278px;height:188px;margin:0 auto 10px;border:1px dashed #a9a9a9;background:#fafafa;}
+.uploadImg{width:99px;height:30px;border:1px solid #d4d4d4;margin:45px auto 0;background:white;line-height:30px;padding-left:13px;cursor:pointer;}
+.uploadTip{width:150px;height:60px;line-height:30px;margin:15px auto 0;padding-left:10px;}
+.previewImg{width:233px;height:89px;border:1px solid #d4d4d4;margin:22px auto 0;}
+.uploadingTip{width:233px;height:60px;line-height:30px;margin:10px auto 0;}
+.apply2rec{width:568px;height:500px;border:1px solid #d8d8d8;clear:both;}
+.comLogo{width:194px;height:inherit;float:left;}
+.comLogoImg{width:150px;height:150px;border:1px solid #e5e5e5;margin:20px;}
+.comName{width:150px;text-align:center;word-break:break-all;margin:20px;}
+.applyCond{width:373px;height:inherit;border-left:1px solid #d8d8d8;float:right;line-height:45px;}
+.applyCond dt,.applyCond dd{border-bottom:1px solid #d8d8d8;}
+.applyCond dd>div{width:300px;margin:0 auto;clear:both;}
+.apply2Btn{width:155px;height:30px;line-height:30px;border-radius:14px; behavior:url(/website-theme/PIE/PIE.htc); position:relative; margin:20px auto;text-align:center;}
+.applySucess{width:180px;}
+/*job position detail*/
+.jobTitWrap{height:60px;}
+.jobTit{padding-left:10px;}
+.jobTit>div:first-child{margin-bottom:10px;}
+.applyFav{height:40px;line-height:40px;}
+.store,.cancelStore{cursor:pointer;width:75px;margin-left:20px;}
+.fcolorRed .fa-star{color:#f84c4c;}
+.jobCont{padding:10px;line-height:30px;}
+.jobNeed>li{float:left;}
+.jobNeed>li>span{display:block;padding:0;margin:0;float:left;}
+.jobNeedItem{width:68px;}
+.jobNeedCont{width:100px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;}
+.jobContDetail{height:auto;max-height:335px;overflow:hidden;}
+.jobNeed>li:last-child .jobNeedCont{width:260px;}
+.jobTip{padding-top:20px;}
+.tipCont{border:1px solid #fff0bc;background:#ffffeb;text-align:center;padding:5px 0;margin-top:15px;}
+.jobDetail .resultitem{background:#fff !important;}
+/*select history position*/
+#popWrap .posBox{border:1px solid #e4e3e3;min-height:40px;border-top:0;}
+#popWrap .popBox{width:630px;}
+#popWrap .posCont{width:590px;}
+#popWrap .posBox li{clear:both;height:59px;line-height:59px;border-top:1px solid #e4e3e3;}
+#popWrap .posBox li>div{float:left;height:inherit;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;}
+#popWrap .pos30{width:30px;}
+#popWrap .pos125{width:125px;}
+#popWrap .pos105{width:105px}
+#popWrap .pos55{width:60px}
+#popWrap .pos75{width:70px}
+#popWrap .pos105{width:105px}
+#popWrap .pos90{width:90px}
+#popWrap .pageNav{border:1px solid #e4e3e3;border-top:0;height:46px;background:#f8f8f8;}
+#popWrap .showpage{height: 40px;line-height: 40px;padding-top:3px;margin:0 auto;}
+#popWrap .showpage li{height:28px;line-height:28px;}
+/*set resume status*/
+#popWrap .statusBox{width:500px !important;height:357px !important;}
+#popWrap .resStatus{width:456px;margin-left:12px;}
+#popWrap .resStatus>div{width:100px;height:36px;line-height:36px;border-radius:5px; behavior:url(/website-theme/PIE/PIE.htc); position:relative; border:1px solid #e4e3e3;float:left;margin:0 12px 15px 0;display:inline-block;cursor:pointer;}
+#popWrap .resStatus>div:hover,#popWrap .resStatus>div.active{background:#2786df;color:#fff;}
+.resTip{width:423px;height:86px;border:1px solid #e4e3e3;padding:0 10px;margin:0 auto;}
+
+/*page-company*/
+a.sf-text{ display: inline-block; float: left; width: 30px; line-height: 16px; margin-left: 10px; }
+.item-header{ width: 708px; height: 24px; line-height: 24px;clear:both;}
+.item-header>span{ display: inline-block; float: left;}
+.item-jobname{ width: 278px; position: relative;}
+.a-jobname{ display: inline-block; max-width: 187px; font-size: 16px; color: #3ca0fe !important;}
+.a-jobname:hover{ color: #f84c4c;}
+.resultconwrap1{ position: absolute; left: 120px; top: -45px; z-index: 10; display: none; width: 470px; height: auto;}
+.item-jobname:hover .resultconwrap1{ display: block;}
+.item-jobicon{ display: inline-block; vertical-align: top;}
+.jicon{ display: inline-block; width: 15px; height: 15px; margin: auto 3px -2px auto; margin: auto 1px 1px auto \9; background: url("../img/c-icon1.png") no-repeat;}
+:root .jicon{ margin: auto 3px -2px auto;}
+.jicon:last-child{ margin-right: 0px;}
+.icon-wanted{ background-position: 0px 0px;}
+.icon-top{ width: 29px; background-position: -20px 0px;}
+.icon-paid{ width: 29px; background-position: -54px 0px;}
+.item-companyname{ width:300px; margin:0px 15px;}
+.a-companyname{ display: inline-block; max-width: 237px;}
+.item-companyicon{ display: inline-block; vertical-align: top;}
+.cicon{ display: inline-block; width: 15px; height: 15px; margin: auto 3px -2px auto; margin: auto 1px 1px auto \9; background: url("../img/c-icon.png") no-repeat;}
+:root .cicon{ margin: auto 3px -2px auto;}
+.cicon:last-child{ margin-right: 0px;}
+.icon-certified{ background-position: 0px 0px;}
+.icon-pics{ background-position: -20px 0px;}
+.icon-videos{ background-position: -40px 0px;}
+.item-jobsalary{ width: 100px; color: #f84c4c;}
+.item-tagslist{ display: block; width: 708px;clear:both;}
+.item-tagesitem{ display: inline-block; float: left; border-right: 1px solid #d4d4d4; border-right: none \9; line-height: 18px; padding: 0px 8px;}
+.item-tagesitem:first-child{ padding: 0px 8px 0px 0px;}
+.item-tagesitem:last-child{ border-right: none;}
+.item-tagesitem>i{ font-size: 14px; color: #585858;}
+.item-tagesitem>em{ font-size: 14px; color: #999;}
+
+.advs{ width: 230px; height: auto; margin-top: 20px;}
+.advs>img{ width: 230px;}

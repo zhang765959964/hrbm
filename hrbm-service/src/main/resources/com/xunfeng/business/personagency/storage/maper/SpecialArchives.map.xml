@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.storage.model.SpecialArchives">
+	<resultMap id="SpecialArchives" type="com.xunfeng.business.personagency.storage.model.SpecialArchives">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="aac003" column="AAC003" jdbcType="VARCHAR"/>
+		<result property="aac002" column="AAC002" jdbcType="VARCHAR"/>
+		<result property="aac004" column="AAC004" jdbcType="VARCHAR"/>
+		<result property="schoolName" column="SCHOOL_NAME" jdbcType="VARCHAR"/>
+		<result property="schoolClass" column="SCHOOL_CLASS" jdbcType="VARCHAR"/>
+		<result property="major" column="MAJOR" jdbcType="VARCHAR"/>
+		<result property="corpName" column="CORP_NAME" jdbcType="VARCHAR"/>
+		<result property="specialNumber" column="SPECIAL_NUMBER" jdbcType="VARCHAR"/>
+		<result property="specialType" column="SPECIAL_TYPE" jdbcType="VARCHAR"/>
+		<result property="specialStatus" column="SPECIAL_STATUS" jdbcType="VARCHAR"/>
+		<result property="veteransNumber" column="VETERANS_NUMBER" jdbcType="VARCHAR"/>
+		<result property="description" column="DESCRIPTION" jdbcType="VARCHAR"/>
+		<result property="lrCreaterId" column="LR_CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="lrCreaterName" column="LR_CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="lrCreaterOrgId" column="LR_CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="lrCreaterOrgName" column="LR_CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="lrCreaterDate" column="LR_CREATER_DATE" jdbcType="DATE"/>
+		<result property="zcName" column="ZC_NAME" jdbcType="VARCHAR"/>
+		<result property="zcPhone" column="ZC_PHONE" jdbcType="VARCHAR"/>
+		<result property="zcWhere" column="ZC_WHERE" jdbcType="VARCHAR"/>
+		<result property="zcReason" column="ZC_REASON" jdbcType="VARCHAR"/>
+		<result property="zcCreaterId" column="ZC_CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="zcCreaterName" column="ZC_CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="zcCreaterOrgId" column="ZC_CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="zcCreaterOrgName" column="ZC_CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="zcCreaterDate" column="ZC_CREATER_DATE" jdbcType="DATE"/>
+		<result property="cczy06" column="CCZY06" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+		<result property="printNumber" column="PRINT_NUMBER" jdbcType="NUMERIC"/>
+		<result property="zcDescription" column="ZC_DESCRIPTION" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<resultMap id="SpecialArchivesDto" type="com.xunfeng.business.personagency.storage.dto.SpecialArchivesDto">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="aac003" column="AAC003" jdbcType="VARCHAR"/>
+		<result property="aac002" column="AAC002" jdbcType="VARCHAR"/>
+		<result property="aac004" column="AAC004" jdbcType="VARCHAR"/>
+		<result property="schoolName" column="SCHOOL_NAME" jdbcType="VARCHAR"/>
+		<result property="schoolClass" column="SCHOOL_CLASS" jdbcType="VARCHAR"/>
+		<result property="major" column="MAJOR" jdbcType="VARCHAR"/>
+		<result property="corpName" column="CORP_NAME" jdbcType="VARCHAR"/>
+		<result property="specialNumber" column="SPECIAL_NUMBER" jdbcType="VARCHAR"/>
+		<result property="specialType" column="SPECIAL_TYPE" jdbcType="VARCHAR"/>
+		<result property="specialStatus" column="SPECIAL_STATUS" jdbcType="VARCHAR"/>
+		<result property="veteransNumber" column="VETERANS_NUMBER" jdbcType="VARCHAR"/>
+		<result property="description" column="DESCRIPTION" jdbcType="VARCHAR"/>
+		<result property="lrCreaterId" column="LR_CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="lrCreaterName" column="LR_CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="lrCreaterOrgId" column="LR_CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="lrCreaterOrgName" column="LR_CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="lrCreaterDate" column="LR_CREATER_DATE" jdbcType="DATE"/>
+		<result property="zcName" column="ZC_NAME" jdbcType="VARCHAR"/>
+		<result property="zcPhone" column="ZC_PHONE" jdbcType="VARCHAR"/>
+		<result property="zcWhere" column="ZC_WHERE" jdbcType="VARCHAR"/>
+		<result property="zcReason" column="ZC_REASON" jdbcType="VARCHAR"/>
+		<result property="zcCreaterId" column="ZC_CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="zcCreaterName" column="ZC_CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="zcCreaterOrgId" column="ZC_CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="zcCreaterOrgName" column="ZC_CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="zcCreaterDate" column="ZC_CREATER_DATE" jdbcType="DATE"/>
+		<result property="cczy06" column="CCZY06" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+		<result property="printNumber" column="PRINT_NUMBER" jdbcType="NUMERIC"/>
+		<result property="zcDescription" column="ZC_DESCRIPTION" jdbcType="VARCHAR"/>
+		
+		<result property="genderName" column="genderName" jdbcType="VARCHAR"/>
+		<result property="specialTypeName" column="specialTypeName" jdbcType="VARCHAR"/>
+		<result property="specialStatusName" column="specialStatusName" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		a.ID,AAC003,AAC002,AAC004,SCHOOL_NAME,SCHOOL_CLASS,MAJOR,CORP_NAME,SPECIAL_NUMBER,SPECIAL_TYPE,SPECIAL_STATUS,VETERANS_NUMBER,DESCRIPTION,LR_CREATER_ID,LR_CREATER_NAME,LR_CREATER_ORG_ID,LR_CREATER_ORG_NAME,LR_CREATER_DATE,ZC_NAME,ZC_PHONE,ZC_WHERE,ZC_REASON,ZC_CREATER_ID,ZC_CREATER_NAME,ZC_CREATER_ORG_ID,ZC_CREATER_ORG_NAME,ZC_CREATER_DATE,CCZY06,CCPR08,PRINT_NUMBER,ZC_DESCRIPTION
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(idnot)"> AND ID  !=#{idnot} </if>
+			<if test="@Ognl@isNotEmpty(aac003)"> AND AAC003  LIKE #{aac003}  </if>
+			<if test="@Ognl@isNotEmpty(aac002)"> AND upper(AAC002) LIKE upper(#{aac002})  </if>
+			<if test="@Ognl@isNotEmpty(aac004)"> AND AAC004  LIKE #{aac004}  </if>
+			<if test="@Ognl@isNotEmpty(schoolName)"> AND SCHOOL_NAME  LIKE #{schoolName}  </if>
+			<if test="@Ognl@isNotEmpty(schoolClass)"> AND SCHOOL_CLASS  LIKE #{schoolClass}  </if>
+			<if test="@Ognl@isNotEmpty(major)"> AND MAJOR  LIKE #{major}  </if>
+			<if test="@Ognl@isNotEmpty(corpName)"> AND CORP_NAME  LIKE #{corpName}  </if>
+			<if test="@Ognl@isNotEmpty(specialNumber)"> AND SPECIAL_NUMBER  LIKE #{specialNumber}  </if>
+			<if test="@Ognl@isNotEmpty(beginSpecialNumber)"> AND SPECIAL_NUMBER  >=#{beginSpecialNumber} </if>
+			<if test="@Ognl@isNotEmpty(endSpecialNumber)"> AND SPECIAL_NUMBER  <![CDATA[ <=#{endSpecialNumber}]]>  </if> 
+			<if test="@Ognl@isNotEmpty(specialType)"> AND SPECIAL_TYPE  LIKE #{specialType}  </if>
+			<if test="@Ognl@isNotEmpty(specialStatus)"> AND SPECIAL_STATUS  LIKE #{specialStatus}  </if>
+			<if test="@Ognl@isNotEmpty(veteransNumber)"> AND VETERANS_NUMBER  LIKE #{veteransNumber}  </if>
+			<if test="@Ognl@isNotEmpty(description)"> AND DESCRIPTION  LIKE #{description}  </if>
+			<if test="@Ognl@isNotEmpty(lrCreaterId)"> AND LR_CREATER_ID  =#{lrCreaterId} </if>
+			<if test="@Ognl@isNotEmpty(lrCreaterName)"> AND LR_CREATER_NAME  LIKE #{lrCreaterName}  </if>
+			<if test="@Ognl@isNotEmpty(lrCreaterOrgId)"> AND LR_CREATER_ORG_ID  =#{lrCreaterOrgId} </if>
+			<if test="@Ognl@isNotEmpty(lrCreaterOrgName)"> AND LR_CREATER_ORG_NAME  LIKE #{lrCreaterOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(lrCreaterDate)"> AND LR_CREATER_DATE  =#{lrCreaterDate} </if>
+			<if test="@Ognl@isNotEmpty(beginlrCreaterDate)"> AND LR_CREATER_DATE  >=#{beginlrCreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endlrCreaterDate)"> AND LR_CREATER_DATE <![CDATA[ <=#{endlrCreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(zcName)"> AND ZC_NAME  LIKE #{zcName}  </if>
+			<if test="@Ognl@isNotEmpty(zcPhone)"> AND ZC_PHONE  LIKE #{zcPhone}  </if>
+			<if test="@Ognl@isNotEmpty(zcWhere)"> AND ZC_WHERE  LIKE #{zcWhere}  </if>
+			<if test="@Ognl@isNotEmpty(zcReason)"> AND ZC_REASON  LIKE #{zcReason}  </if>
+			<if test="@Ognl@isNotEmpty(zcCreaterId)"> AND ZC_CREATER_ID  =#{zcCreaterId} </if>
+			<if test="@Ognl@isNotEmpty(zcCreaterName)"> AND ZC_CREATER_NAME  LIKE #{zcCreaterName}  </if>
+			<if test="@Ognl@isNotEmpty(zcCreaterOrgId)"> AND ZC_CREATER_ORG_ID  =#{zcCreaterOrgId} </if>
+			<if test="@Ognl@isNotEmpty(zcCreaterOrgName)"> AND ZC_CREATER_ORG_NAME  LIKE #{zcCreaterOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(zcCreaterDate)"> AND ZC_CREATER_DATE  =#{zcCreaterDate} </if>
+			<if test="@Ognl@isNotEmpty(beginzcCreaterDate)"> AND ZC_CREATER_DATE  >=#{beginzcCreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endzcCreaterDate)"> AND ZC_CREATER_DATE <![CDATA[ <=#{endzcCreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(cczy06)"> AND CCZY06  LIKE #{cczy06}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr08)"> AND CCPR08  LIKE #{ccpr08}  </if>
+			<if test="@Ognl@isNotEmpty(printNumber)"> AND PRINT_NUMBER  =#{printNumber} </if>
+			<if test="@Ognl@isNotEmpty(zcDescription)"> AND ZC_DESCRIPTION  LIKE #{zcDescription}  </if>
+			
+			<if test="@Ognl@isNotEmpty(ids)"> AND a.ID in (${ids})</if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.storage.model.SpecialArchives">
+		INSERT INTO RSDA_BS_SPECIAL_ARCHIVES
+		(ID,AAC003,AAC002,AAC004,SCHOOL_NAME,SCHOOL_CLASS,MAJOR,CORP_NAME,SPECIAL_NUMBER,SPECIAL_TYPE,SPECIAL_STATUS,VETERANS_NUMBER,DESCRIPTION,LR_CREATER_ID,LR_CREATER_NAME,LR_CREATER_ORG_ID,LR_CREATER_ORG_NAME,LR_CREATER_DATE,ZC_NAME,ZC_PHONE,ZC_WHERE,ZC_REASON,ZC_CREATER_ID,ZC_CREATER_NAME,ZC_CREATER_ORG_ID,ZC_CREATER_ORG_NAME,ZC_CREATER_DATE,CCZY06,CCPR08,PRINT_NUMBER,ZC_DESCRIPTION)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{aac003,jdbcType=VARCHAR}, #{aac002,jdbcType=VARCHAR}, #{aac004,jdbcType=VARCHAR}, #{schoolName,jdbcType=VARCHAR}, #{schoolClass,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, #{corpName,jdbcType=VARCHAR}, #{specialNumber,jdbcType=VARCHAR}, #{specialType,jdbcType=VARCHAR}, #{specialStatus,jdbcType=VARCHAR}, #{veteransNumber,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{lrCreaterId,jdbcType=NUMERIC}, #{lrCreaterName,jdbcType=VARCHAR}, #{lrCreaterOrgId,jdbcType=NUMERIC}, #{lrCreaterOrgName,jdbcType=VARCHAR}, #{lrCreaterDate,jdbcType=DATE}, #{zcName,jdbcType=VARCHAR}, #{zcPhone,jdbcType=VARCHAR}, #{zcWhere,jdbcType=VARCHAR}, #{zcReason,jdbcType=VARCHAR}, #{zcCreaterId,jdbcType=NUMERIC}, #{zcCreaterName,jdbcType=VARCHAR}, #{zcCreaterOrgId,jdbcType=NUMERIC}, #{zcCreaterOrgName,jdbcType=VARCHAR}, #{zcCreaterDate,jdbcType=DATE}, #{cczy06,jdbcType=VARCHAR}, #{ccpr08,jdbcType=VARCHAR}, #{printNumber,jdbcType=NUMERIC}, #{zcDescription,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_SPECIAL_ARCHIVES 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.storage.model.SpecialArchives">
+		UPDATE RSDA_BS_SPECIAL_ARCHIVES SET
+		AAC003=#{aac003,jdbcType=VARCHAR},
+		AAC002=#{aac002,jdbcType=VARCHAR},
+		AAC004=#{aac004,jdbcType=VARCHAR},
+		SCHOOL_NAME=#{schoolName,jdbcType=VARCHAR},
+		SCHOOL_CLASS=#{schoolClass,jdbcType=VARCHAR},
+		MAJOR=#{major,jdbcType=VARCHAR},
+		CORP_NAME=#{corpName,jdbcType=VARCHAR},
+		SPECIAL_NUMBER=#{specialNumber,jdbcType=VARCHAR},
+		SPECIAL_TYPE=#{specialType,jdbcType=VARCHAR},
+		SPECIAL_STATUS=#{specialStatus,jdbcType=VARCHAR},
+		VETERANS_NUMBER=#{veteransNumber,jdbcType=VARCHAR},
+		DESCRIPTION=#{description,jdbcType=VARCHAR},
+		LR_CREATER_ID=#{lrCreaterId,jdbcType=NUMERIC},
+		LR_CREATER_NAME=#{lrCreaterName,jdbcType=VARCHAR},
+		LR_CREATER_ORG_ID=#{lrCreaterOrgId,jdbcType=NUMERIC},
+		LR_CREATER_ORG_NAME=#{lrCreaterOrgName,jdbcType=VARCHAR},
+		LR_CREATER_DATE=#{lrCreaterDate,jdbcType=DATE},
+		ZC_NAME=#{zcName,jdbcType=VARCHAR},
+		ZC_PHONE=#{zcPhone,jdbcType=VARCHAR},
+		ZC_WHERE=#{zcWhere,jdbcType=VARCHAR},
+		ZC_REASON=#{zcReason,jdbcType=VARCHAR},
+		ZC_CREATER_ID=#{zcCreaterId,jdbcType=NUMERIC},
+		ZC_CREATER_NAME=#{zcCreaterName,jdbcType=VARCHAR},
+		ZC_CREATER_ORG_ID=#{zcCreaterOrgId,jdbcType=NUMERIC},
+		ZC_CREATER_ORG_NAME=#{zcCreaterOrgName,jdbcType=VARCHAR},
+		ZC_CREATER_DATE=#{zcCreaterDate,jdbcType=DATE},
+		CCZY06=#{cczy06,jdbcType=VARCHAR},
+		CCPR08=#{ccpr08,jdbcType=VARCHAR},
+		PRINT_NUMBER=#{printNumber,jdbcType=NUMERIC},
+		ZC_DESCRIPTION=#{zcDescription,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SpecialArchives">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_SPECIAL_ARCHIVES a
+		WHERE
+		a.ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SpecialArchivesDto">
+		SELECT  <include refid="columns"/>
+				,decode(a.SPECIAL_STATUS , 0, '入档', 1, '已转出') as "specialStatusName"
+				,e.name as "genderName"
+				,b.name as "specialTypeName"
+				
+		FROM RSDA_BS_SPECIAL_ARCHIVES a
+		left join TAB_SEX e on e.code=a.AAC004
+		left join rsda_tab_special_type b on b.code=a.SPECIAL_TYPE
+		
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by a.ID  desc
+		</if>
+	</select>
+	<!-- 根据身份证号和id获取信息 -->
+	<select id="getSpecialArchivesByUnidAndId" resultMap="SpecialArchives">
+		SELECT *
+		FROM RSDA_BS_SPECIAL_ARCHIVES 
+		<include refid="dynamicWhere" />
+	</select>
+</mapper>

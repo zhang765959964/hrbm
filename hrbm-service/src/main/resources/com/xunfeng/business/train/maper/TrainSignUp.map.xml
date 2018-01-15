@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.train.model.TrainSignUp">
+	<resultMap id="TrainSignUp" type="com.xunfeng.business.train.model.TrainSignUp">
+		<id property="pxSignUpId" column="PX_SIGN_UP_ID" jdbcType="NUMERIC"/>
+		<result property="pxOrgId" column="PX_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="pxCourseId" column="PX_COURSE_ID" jdbcType="NUMERIC"/>
+		<result property="aac001" column="AAC001" jdbcType="NUMERIC"/>
+		<result property="aae011" column="AAE011" jdbcType="VARCHAR"/>
+		<result property="aae017" column="AAE017" jdbcType="VARCHAR"/>
+		<result property="aae036" column="AAE036" jdbcType="TIMESTAMP"/>
+		<result property="aae019" column="AAE019" jdbcType="VARCHAR"/>
+		<result property="aae020" column="AAE020" jdbcType="VARCHAR"/>
+		<result property="signUpStatus" column="SIGN_UP_STATUS" jdbcType="VARCHAR"/>
+		<result property="remarks" column="REMARKS" jdbcType="VARCHAR"/>
+		<result property="cczy06" column="CCZY06" jdbcType="VARCHAR"/>
+		<result property="isCheck" column="IS_CHECK" jdbcType="VARCHAR"/>
+		<result property="isContact" column="IS_CONTACT" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		PX_SIGN_UP_ID,PX_ORG_ID,PX_COURSE_ID,AAC001,AAE011,AAE017,AAE036,AAE019,AAE020,SIGN_UP_STATUS,REMARKS,CCZY06,IS_CHECK,IS_CONTACT
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(pxSignUpId)"> AND PX_SIGN_UP_ID  =#{pxSignUpId} </if>
+			<if test="@Ognl@isNotEmpty(pxOrgId)"> AND PX_ORG_ID  =#{pxOrgId} </if>
+			<if test="@Ognl@isNotEmpty(pxCourseId)"> AND PX_COURSE_ID  =#{pxCourseId} </if>
+			<if test="@Ognl@isNotEmpty(aac001)"> AND AAC001  =#{aac001} </if>
+			<if test="@Ognl@isNotEmpty(aae011)"> AND AAE011  LIKE #{aae011}  </if>
+			<if test="@Ognl@isNotEmpty(aae017)"> AND AAE017  LIKE #{aae017}  </if>
+			<if test="@Ognl@isNotEmpty(aae036)"> AND AAE036  =#{aae036} </if>
+			<if test="@Ognl@isNotEmpty(beginaae036)"> AND AAE036  >=#{beginaae036,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaae036)"> AND AAE036 <![CDATA[ <=#{endaae036,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aae019)"> AND AAE019  LIKE #{aae019}  </if>
+			<if test="@Ognl@isNotEmpty(aae020)"> AND AAE020  LIKE #{aae020}  </if>
+			<if test="@Ognl@isNotEmpty(signUpStatus)"> AND SIGN_UP_STATUS  = #{signUpStatus}  </if>
+			<if test="@Ognl@isNotEmpty(remarks)"> AND REMARKS  LIKE #{remarks}  </if>
+			<if test="@Ognl@isNotEmpty(cczy06)"> AND CCZY06  LIKE #{cczy06}  </if>
+			<if test="@Ognl@isNotEmpty(isCheck)"> AND IS_CHECK  = #{isCheck}  </if>
+			<if test="@Ognl@isNotEmpty(isContact)"> AND IS_CONTACT  = #{isContact}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.train.model.TrainSignUp">
+		INSERT INTO PX_SIGN_UP
+		(PX_SIGN_UP_ID,PX_ORG_ID,PX_COURSE_ID,AAC001,AAE011,AAE017,AAE036,AAE019,AAE020,SIGN_UP_STATUS,REMARKS,CCZY06,IS_CHECK,IS_CONTACT)
+		VALUES
+		(#{pxSignUpId,jdbcType=NUMERIC}, #{pxOrgId,jdbcType=NUMERIC}, #{pxCourseId,jdbcType=NUMERIC}, #{aac001,jdbcType=NUMERIC}, #{aae011,jdbcType=VARCHAR}, #{aae017,jdbcType=VARCHAR}, #{aae036,jdbcType=TIMESTAMP}, #{aae019,jdbcType=VARCHAR}, #{aae020,jdbcType=VARCHAR}, #{signUpStatus,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, #{cczy06,jdbcType=VARCHAR},#{isCheck,jdbcType=VARCHAR},#{isContact,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM PX_SIGN_UP 
+		WHERE
+		PX_SIGN_UP_ID=#{pxSignUpId}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.train.model.TrainSignUp">
+		UPDATE PX_SIGN_UP SET
+		PX_ORG_ID=#{pxOrgId,jdbcType=NUMERIC},
+		PX_COURSE_ID=#{pxCourseId,jdbcType=NUMERIC},
+		AAC001=#{aac001,jdbcType=NUMERIC},
+		AAE011=#{aae011,jdbcType=VARCHAR},
+		AAE017=#{aae017,jdbcType=VARCHAR},
+		AAE036=#{aae036,jdbcType=TIMESTAMP},
+		AAE019=#{aae019,jdbcType=VARCHAR},
+		AAE020=#{aae020,jdbcType=VARCHAR},
+		SIGN_UP_STATUS=#{signUpStatus,jdbcType=VARCHAR},
+		REMARKS=#{remarks,jdbcType=VARCHAR},
+		CCZY06=#{cczy06,jdbcType=VARCHAR},
+		IS_CHECK=#{isCheck,jdbcType=VARCHAR},
+		IS_CONTACT=#{isContact,jdbcType=VARCHAR}
+		WHERE
+		PX_SIGN_UP_ID=#{pxSignUpId}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="TrainSignUp">
+		SELECT <include refid="columns"/>
+		FROM PX_SIGN_UP
+		WHERE
+		PX_SIGN_UP_ID=#{pxSignUpId}
+	</select>
+	
+	<select id="getAll" resultMap="TrainSignUp">
+		SELECT <include refid="columns"/>
+		FROM PX_SIGN_UP   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by PX_SIGN_UP_ID  desc
+		</if>
+	</select>
+	
+	<select id="getCountByCourseId" resultType="java.util.HashMap">
+		SELECT count(*) count from px_sign_up s where s.PX_COURSE_ID = #{id}
+	</select>
+	<select id="getCountByUserId" resultType="java.util.HashMap">
+		SELECT count(*) as "count" from px_sign_up s where s.AAC001 = #{userId} and s.PX_COURSE_ID=#{courseId}
+	</select>
+	
+	<!-- 个人报名管理的所有相关信息 -->
+	<select id="getAllTrainSignUp" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+	    SELECT pxs.px_org_id,pxs.px_sign_up_id pxSignUpId,pxs.sign_up_status,pxs.cczy06,pxs.aae036,pxs.is_check,pxs.is_contact,pxo.name orgTypeName,pxo.org_name orgName,pxc.name courseTypeName,pxc.course_name courseName,ac.aac003 userName,ac.aac002 userCard,ac.aae005 phone,ac.name1 sex,ac.name nationName from PX_SIGN_UP pxs,
+        
+        (select p1.px_org_id,p1.is_del,p1.is_disable,p1.org_name,p2.name,p2.type_id from px_org p1  LEFT JOIN  px_org_type p2 on p1.org_type=p2.type_id AND  p2.is_del='0'
+        ) pxo,
+        
+        (select c1.px_course_id,c1.course_name,c1.is_del,c1.ACB208,c1.is_disable,c2.name,c2.type_id from px_course c1 LEFT JOIN px_course_type c2 on c1.course_type=c2.type_id and c2.is_del='0'
+        ) pxc,
+        
+        (select a.aac001,a.aac003,a.aac002,a.aae005,ts.name name1,ts.code,tn.name from AC01 a LEFT JOIN TAB_SEX ts on a.aac004=ts.code LEFT JOIN TAB_NATION tn on a.aac005=tn.code 
+        ) ac
+        
+       where pxs.px_org_id=pxo.px_org_id 
+       AND pxs.px_course_id=pxc.px_course_id 
+       AND pxs.aac001=ac.aac001 
+       AND pxo.is_del='0'
+       AND pxo.is_disable='0' 
+       AND pxc.is_del='0' 
+       AND pxc.is_disable='0'  
+       AND pxc.ACB208 = '0'
+       <if test="@Ognl@isNotEmpty(orgType)">AND pxo.type_id=#{orgType}</if>
+	   <if test="@Ognl@isNotEmpty(orgName)">AND pxo.org_name LIKE '%${orgName}%'</if>
+	   <if test="@Ognl@isNotEmpty(orgId)">AND pxo.px_org_id=#{orgId}</if>
+	   <if test="@Ognl@isNotEmpty(courseId)">AND pxc.px_course_id=#{courseId}</if>
+	   <if test="@Ognl@isNotEmpty(courseType)">AND pxc.type_id=#{courseType}</if>
+	   <if test="@Ognl@isNotEmpty(courseName)">AND pxc.course_name LIKE '%${courseName}%'</if>
+	   <if test="@Ognl@isNotEmpty(aac003)">AND ac.aac003=#{aac003}</if>
+	   <if test="@Ognl@isNotEmpty(aac002)">AND ac.aac002=#{aac002}</if>
+	   <if test="@Ognl@isNotEmpty(aac004)">AND ac.code=#{aac004}</if>
+	   <if test="@Ognl@isNotEmpty(aae005)">AND ac.aae005=#{aae005}</if>
+	   <if test="@Ognl@isNotEmpty(isCheck)"> AND pxs.is_check=#{isCheck}  </if>
+	   <if test="@Ognl@isNotEmpty(isContact)"> AND pxs.is_contact=#{isContact}  </if>
+	   <if test="@Ognl@isNotEmpty(pxOrgIds)">AND pxs.px_org_id IN　<![CDATA[ ${pxOrgIds} ]]></if>
+        order by pxs.aae036 desc
+	</select>
+	
+	<!--获取所有的数据来源  -->
+	<select id="getALLDataSourses" resultType="java.util.HashMap">
+		SELECT td.code,td.name from TAB_DATASOURCES td
+	</select>
+	
+	 <!--批量更新个人报名状态  -->
+	<update id="updateBatchTrainSignUp" parameterType="java.util.HashMap">    
+	          UPDATE PX_SIGN_UP SET 
+	          <if test="@Ognl@isNotEmpty(isCheck)">    
+	             IS_CHECK=#{isCheck,jdbcType=VARCHAR}
+	          </if>
+	          <if test="@Ognl@isNotEmpty(isContact)">
+	             IS_CONTACT=#{isContact,jdbcType=VARCHAR} 
+	          </if>
+	          where 1=1 and PX_SIGN_UP_ID in
+		     <foreach item="item" collection="IdList" separator="," open="(" close=")" index="">    
+	                 #{item}    
+	         </foreach>    
+	   </update>
+	   
+	   <!--更新个人报名状态查看状态为null时更新为0  -->
+	  <update id="updateIsCheck">    
+	          UPDATE PX_SIGN_UP SET 
+	             IS_CHECK='0'
+	          where IS_CHECK IS NULL
+	   </update>
+	   
+	   <!--更新个人报名状态联系状态为null时更新为0  -->
+	  <update id="updateIsContact">    
+	          UPDATE PX_SIGN_UP SET 
+	             IS_CONTACT='0'
+	          where IS_CONTACT IS NULL
+	   </update>
+	
+</mapper>

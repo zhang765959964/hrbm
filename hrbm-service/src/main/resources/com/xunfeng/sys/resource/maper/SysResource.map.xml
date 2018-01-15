@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.sys.resource.model.SysResource">
+	<resultMap id="SysResource" type="com.xunfeng.sys.resource.model.SysResource">
+		<id property="funid" column="FUNID" jdbcType="NUMERIC"/>
+		<result property="funplat" column="FUNPLAT" jdbcType="NUMERIC"/>
+		<result property="funpid" column="FUNPID" jdbcType="NUMERIC"/>
+		<result property="funname" column="FUNNAME" jdbcType="VARCHAR"/>
+		<result property="funmapping" column="FUNMAPPING" jdbcType="VARCHAR"/>
+		<result property="fundemo" column="FUNDEMO" jdbcType="VARCHAR"/>
+		<result property="funuse" column="FUNUSE" jdbcType="NUMERIC"/>
+		<result property="funsort" column="FUNSORT" jdbcType="NUMERIC"/>
+	</resultMap>
+	<sql id="funplanWhere">
+		AND FUNPLAT IN(18) 
+		AND FUNUSE =0
+	</sql>
+	<sql id="columns">
+		FUNID,FUNPLAT,FUNPID,FUNNAME,FUNMAPPING,FUNDEMO,FUNUSE,FUNMENU,FUNSORT
+	</sql>
+	
+	<sql id="dynamicWhere">
+	        where 1=1 <include refid="funplanWhere"/> 
+			<if test="@Ognl@isNotEmpty(funid)"> AND FUNID  =#{funid} </if>
+			<if test="@Ognl@isNotEmpty(funplat)"> AND FUNPLAT  =#{funplat} </if>
+			<if test="@Ognl@isNotEmpty(funpid)"> AND FUNPID  =#{funpid} </if>
+			<if test="@Ognl@isNotEmpty(funname)"> AND FUNNAME  LIKE #{funname}  </if>
+			<if test="@Ognl@isNotEmpty(funmapping)"> AND FUNMAPPING  LIKE #{funmapping}  </if>
+			<if test="@Ognl@isNotEmpty(fundemo)"> AND FUNDEMO  LIKE #{fundemo}  </if>
+			<if test="@Ognl@isNotEmpty(funuse)"> AND FUNUSE  =#{funuse} </if>
+			<if test="@Ognl@isNotEmpty(funsort)"> AND FUNSORT  =#{funsort} </if>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.sys.resource.model.SysResource">
+		INSERT INTO FRU01
+		(FUNID,FUNPLAT,FUNPID,FUNNAME,FUNMAPPING,FUNDEMO,FUNUSE,FUNMENU,FUNSORT)
+		VALUES
+		(#{funid,jdbcType=NUMERIC}, #{funplat,jdbcType=NUMERIC}, #{funpid,jdbcType=NUMERIC}, #{funname,jdbcType=VARCHAR}, #{funmapping,jdbcType=VARCHAR}, #{fundemo,jdbcType=VARCHAR}, #{funuse,jdbcType=NUMERIC},#{funmenu,jdbcType=VARCHAR}, #{funsort,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM FRU01 
+		WHERE
+		FUNID=#{funid}
+		<include refid="funplanWhere"/>
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.sys.resource.model.SysResource">
+		UPDATE FRU01 SET
+		FUNPLAT=#{funplat,jdbcType=NUMERIC},
+		FUNPID=#{funpid,jdbcType=NUMERIC},
+		FUNNAME=#{funname,jdbcType=VARCHAR},
+		FUNMAPPING=#{funmapping,jdbcType=VARCHAR},
+		FUNDEMO=#{fundemo,jdbcType=VARCHAR},
+		FUNUSE=#{funuse,jdbcType=NUMERIC},
+		FUNMENU=#{funmenu,jdbcType=VARCHAR},
+		FUNSORT=#{funsort,jdbcType=NUMERIC}
+		WHERE
+		FUNID=#{funid}
+		<include refid="funplanWhere"/>
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysResource">
+		SELECT <include refid="columns"/>
+		FROM FRU01
+		WHERE
+		FUNID=#{funid}
+		<include refid="funplanWhere"/>
+	</select>
+	
+	<select id="getAllUserResourceByUserId" parameterType="java.lang.Long" resultMap="SysResource">
+		select distinct funname,funmapping ,funid,funpid,funmenu,funsort from v_fru010203 v where roleid in 
+		  ( select * from table(split((select cczh03 from cd23 where acd230=#{userId} and ccpr08='0'))))
+		 and funplat=18
+		 <include refid="funplanWhere"/>
+		 order by funsort asc,funid asc 
+	</select>
+	
+	<select id="getAll" resultMap="SysResource">
+		SELECT <include refid="columns"/>
+		FROM FRU01   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by FUNSORT asc,FUNID asc 
+		</if>
+	</select>
+		<select id="getRoleResourceByRoleId" resultType="com.xunfeng.sys.resource.model.SysResource" parameterType="java.util.HashMap">
+		  select distinct funname,funmapping ,funid,funpid,funplat,funuse,funsort from v_fru010203  
+		  where  
+			 <foreach collection="roles" index="index" item="item" open="(" separator="or" close=")">
+	            ROLEID=#{item}
+	        </foreach>
+	         <include refid="funplanWhere"/> 
+	</select>
+</mapper>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.retired.model.YangLao">
+	<resultMap id="YangLao" type="com.xunfeng.business.personagency.retired.model.YangLao">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="payDate" column="PAY_DATE" jdbcType="DATE"/>
+		<result property="retiredDate" column="RETIRED_DATE" jdbcType="DATE"/>
+		<result property="declareNote" column="DECLARE_NOTE" jdbcType="VARCHAR"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="DATE"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="retiredId" column="RETIRED_ID" jdbcType="NUMERIC"/>
+		<result property="personId" column="PERSON_ID" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,PAY_DATE,RETIRED_DATE,DECLARE_NOTE,CREATER_ID,CREATER_NAME,CREATER_DATE,CREATER_ORG_ID,CREATER_ORG_NAME,RETIRED_ID,PERSON_ID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(payDate)"> AND PAY_DATE  =#{payDate} </if>
+			<if test="@Ognl@isNotEmpty(beginpayDate)"> AND PAY_DATE  >=#{beginpayDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endpayDate)"> AND PAY_DATE <![CDATA[ <=#{endpayDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(retiredDate)"> AND RETIRED_DATE  =#{retiredDate} </if>
+			<if test="@Ognl@isNotEmpty(beginretiredDate)"> AND RETIRED_DATE  >=#{beginretiredDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endretiredDate)"> AND RETIRED_DATE <![CDATA[ <=#{endretiredDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(declareNote)"> AND DECLARE_NOTE  LIKE #{declareNote}  </if>
+			<if test="@Ognl@isNotEmpty(createrId)"> AND CREATER_ID  =#{createrId} </if>
+			<if test="@Ognl@isNotEmpty(createrName)"> AND CREATER_NAME  LIKE #{createrName}  </if>
+			<if test="@Ognl@isNotEmpty(createrDate)"> AND CREATER_DATE  =#{createrDate} </if>
+			<if test="@Ognl@isNotEmpty(begincreaterDate)"> AND CREATER_DATE  >=#{begincreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(createrOrgId)"> AND CREATER_ORG_ID  =#{createrOrgId} </if>
+			<if test="@Ognl@isNotEmpty(createrOrgName)"> AND CREATER_ORG_NAME  LIKE #{createrOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(retiredId)"> AND RETIRED_ID  =#{retiredId} </if>
+			<if test="@Ognl@isNotEmpty(personId)"> AND PERSON_ID  =#{personId} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.retired.model.YangLao">
+		INSERT INTO RSDA_BS_YANGLAO
+		(ID,PAY_DATE,RETIRED_DATE,DECLARE_NOTE,CREATER_ID,CREATER_NAME,CREATER_DATE,CREATER_ORG_ID,CREATER_ORG_NAME,RETIRED_ID,PERSON_ID)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{payDate,jdbcType=DATE}, #{retiredDate,jdbcType=DATE}, #{declareNote,jdbcType=VARCHAR}, #{createrId,jdbcType=NUMERIC}, #{createrName,jdbcType=VARCHAR}, #{createrDate,jdbcType=DATE}, #{createrOrgId,jdbcType=NUMERIC}, #{createrOrgName,jdbcType=VARCHAR}, #{retiredId,jdbcType=NUMERIC},#{personId,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_YANGLAO 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<!-- 根据人员id删除信息 -->
+	<delete id="delByPersonId" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_YANGLAO 
+		WHERE
+		PERSON_ID=#{personId}
+	</delete>
+	
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.retired.model.YangLao">
+		UPDATE RSDA_BS_YANGLAO SET
+		PAY_DATE=#{payDate,jdbcType=DATE},
+		RETIRED_DATE=#{retiredDate,jdbcType=DATE},
+		DECLARE_NOTE=#{declareNote,jdbcType=VARCHAR},
+		CREATER_ID=#{createrId,jdbcType=NUMERIC},
+		CREATER_NAME=#{createrName,jdbcType=VARCHAR},
+		CREATER_DATE=#{createrDate,jdbcType=DATE},
+		CREATER_ORG_ID=#{createrOrgId,jdbcType=NUMERIC},
+		CREATER_ORG_NAME=#{createrOrgName,jdbcType=VARCHAR},
+		RETIRED_ID=#{retiredId,jdbcType=NUMERIC},
+		PERSON_ID=#{personId,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="YangLao">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_YANGLAO
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<!-- 根据人员id查询养老信息 -->
+	<select id="getByPersonId" parameterType="java.lang.Long" resultMap="YangLao">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_YANGLAO
+		WHERE
+		PERSON_ID=#{personId}
+	</select>
+	
+	
+	<select id="getByRetiredId" parameterType="java.lang.Long" resultMap="YangLao">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_YANGLAO
+		WHERE
+		retired_id=#{retiredId}
+	</select>
+	
+	
+	
+	
+	<select id="getAll" resultMap="YangLao">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_YANGLAO   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

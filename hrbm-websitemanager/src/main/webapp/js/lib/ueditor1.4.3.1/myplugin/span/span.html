@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <script type="text/javascript" src="../../dialogs/internal.js"></script>
+    <style type="text/css">
+        *{margin:0;padding:0;color: #838383;}
+        table{font-size: 12px;margin: 10px;line-height: 30px}
+        .txt{width:200px;height:21px;line-height:21px;border:1px solid #d7d7d7;}
+        select{width:200px}
+    </style>
+</head>
+<body>
+ <table>
+        <tr>
+            <td><label for="txtName"> 名称:</label></td>
+            <td><input class="txt" id="txtName" type="text" /></td>
+        </tr>
+        <tr>
+            <td><label for="txtCode"> 代码:</label></td>
+            <td><input class="txt" id="txtCode" type="text" /></td>
+        </tr>
+        <tr>
+            <td><label for="txtCode"> 类型:</label></td>
+            <td>
+                <select id="txtType">
+	              <option value="text">文本</option>
+	              <option value="img">图片</option>
+	            </select>
+	        </td>
+        </tr>
+        <tr>
+            <td><label for="href"> 常用值:</label></td>
+            <td>
+	            <select>
+	              <option>--请选择--</option>
+	            </select>
+            </td>
+        </tr>
+    </table>
+<script>
+    //可以直接使用以下全局变量
+    //当前打开dialog的实例变量
+    //console.log('editor: '+editor);
+    //一些常用工具
+    //console.log('domUtils: '+domUtils);
+    //console.log('utils: '+utils);
+    //console.log('browser: '+browser);
+        var range = editor.selection.getRange(),
+        span = editor.curInputElement ;
+        if(span){
+        	var external=span.getAttribute("external");
+        	external= JSON.parse(external);
+        	$G("txtName").value=external.name;
+        	$G("txtCode").value=external.key;
+        	$G("txtType").value=external.type;
+        	editor.curInputElement=null;
+        }
+        dialog.onok = function (){
+        console.log("我点击了确定");
+        var value= document.getElementById("txtName").value;
+        var key= document.getElementById("txtCode").value;
+        var txtType= document.getElementById("txtType").value;
+        
+        //var externalValue='<span external="{key:&#39;'+key+'&#39;,name:&#39;'+value+'&#39;}">['+value+']</span>';
+        var obj={key:key,name:value,type:txtType};
+//         if(link){      	
+        editor.execCommand('span', obj,span);
+//         }else{
+//         	editor.execCommand('inserthtml', externalValue);
+//         }
+        
+    };
+    
+    dialog.oncancel = function () {
+        //console.log("我点击了取消");
+    };
+    
+</script>
+</body>
+</html>

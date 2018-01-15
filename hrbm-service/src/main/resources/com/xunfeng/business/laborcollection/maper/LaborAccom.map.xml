@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.laborcollection.model.LaborAccom">
+	<resultMap id="LaborAccom" type="com.xunfeng.business.laborcollection.model.LaborAccom">
+		<id property="acc0m01" column="ACC0M01" jdbcType="NUMERIC"/>
+		<result property="aac001" column="AAC001" jdbcType="NUMERIC"/>
+		<result property="acc0m1" column="ACC0M1" jdbcType="VARCHAR"/>
+		<result property="aab004" column="AAB004" jdbcType="VARCHAR"/>
+		<result property="aab019" column="AAB019" jdbcType="VARCHAR"/>
+		<result property="aab054" column="AAB054" jdbcType="VARCHAR"/>
+		<result property="aab020" column="AAB020" jdbcType="VARCHAR"/>
+		<result property="accm02" column="ACCM02" jdbcType="VARCHAR"/>
+		<result property="accm03" column="ACCM03" jdbcType="TIMESTAMP"/>
+		<result property="accm04" column="ACCM04" jdbcType="VARCHAR"/>
+		<result property="accm05" column="ACCM05" jdbcType="TIMESTAMP"/>
+		<result property="accm06" column="ACCM06" jdbcType="TIMESTAMP"/>
+		<result property="accm07" column="ACCM07" jdbcType="VARCHAR"/>
+		<result property="accm08" column="ACCM08" jdbcType="TIMESTAMP"/>
+		<result property="accm09" column="ACCM09" jdbcType="TIMESTAMP"/>
+		<result property="accm10" column="ACCM10" jdbcType="VARCHAR"/>
+		<result property="accm11" column="ACCM11" jdbcType="VARCHAR"/>
+		<result property="accm12" column="ACCM12" jdbcType="VARCHAR"/>
+		<result property="acc20t" column="ACC20T" jdbcType="VARCHAR"/>
+		<result property="accm13" column="ACCM13" jdbcType="VARCHAR"/>
+		<result property="aae011" column="AAE011" jdbcType="VARCHAR"/>
+		<result property="aae017" column="AAE017" jdbcType="VARCHAR"/>
+		<result property="aae036" column="AAE036" jdbcType="TIMESTAMP"/>
+		<result property="aae019" column="AAE019" jdbcType="VARCHAR"/>
+		<result property="aae020" column="AAE020" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+		<result property="cczy06" column="CCZY06" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ACC0M01,AAC001,ACC0M1,AAB004,AAB019,AAB054,AAB020,ACCM02,ACCM03,ACCM04,ACCM05,ACCM06,ACCM07,ACCM08,ACCM09,ACCM10,ACCM11,ACCM12,ACC20T,ACCM13,AAE011,AAE017,AAE036,AAE019,AAE020,CCPR08,CCZY06
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(acc0m01)"> AND ACC0M01  =#{acc0m01} </if>
+			<if test="@Ognl@isNotEmpty(aac001)"> AND AAC001  =#{aac001} </if>
+			<if test="@Ognl@isNotEmpty(acc0m1)"> AND ACC0M1  LIKE #{acc0m1}  </if>
+			<if test="@Ognl@isNotEmpty(aab004)"> AND AAB004  LIKE #{aab004}  </if>
+			<if test="@Ognl@isNotEmpty(aab019)"> AND AAB019  LIKE #{aab019}  </if>
+			<if test="@Ognl@isNotEmpty(aab054)"> AND AAB054  LIKE #{aab054}  </if>
+			<if test="@Ognl@isNotEmpty(aab020)"> AND AAB020  LIKE #{aab020}  </if>
+			<if test="@Ognl@isNotEmpty(accm02)"> AND ACCM02  LIKE #{accm02}  </if>
+			<if test="@Ognl@isNotEmpty(accm03)"> AND ACCM03  =#{accm03} </if>
+			<if test="@Ognl@isNotEmpty(beginaccm03)"> AND ACCM03  >=#{beginaccm03,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaccm03)"> AND ACCM03 <![CDATA[ <=#{endaccm03,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(accm04)"> AND ACCM04  LIKE #{accm04}  </if>
+			<if test="@Ognl@isNotEmpty(accm05)"> AND ACCM05  =#{accm05} </if>
+			<if test="@Ognl@isNotEmpty(beginaccm05)"> AND ACCM05  >=#{beginaccm05,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaccm05)"> AND ACCM05 <![CDATA[ <=#{endaccm05,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(accm06)"> AND ACCM06  =#{accm06} </if>
+			<if test="@Ognl@isNotEmpty(beginaccm06)"> AND ACCM06  >=#{beginaccm06,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaccm06)"> AND ACCM06 <![CDATA[ <=#{endaccm06,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(accm07)"> AND ACCM07  LIKE #{accm07}  </if>
+			<if test="@Ognl@isNotEmpty(accm08)"> AND ACCM08  =#{accm08} </if>
+			<if test="@Ognl@isNotEmpty(beginaccm08)"> AND ACCM08  >=#{beginaccm08,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaccm08)"> AND ACCM08 <![CDATA[ <=#{endaccm08,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(accm09)"> AND ACCM09  =#{accm09} </if>
+			<if test="@Ognl@isNotEmpty(beginaccm09)"> AND ACCM09  >=#{beginaccm09,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaccm09)"> AND ACCM09 <![CDATA[ <=#{endaccm09,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(accm10)"> AND ACCM10  LIKE #{accm10}  </if>
+			<if test="@Ognl@isNotEmpty(accm11)"> AND ACCM11  LIKE #{accm11}  </if>
+			<if test="@Ognl@isNotEmpty(accm12)"> AND ACCM12  LIKE #{accm12}  </if>
+			<if test="@Ognl@isNotEmpty(acc20t)"> AND ACC20T  LIKE #{acc20t}  </if>
+			<if test="@Ognl@isNotEmpty(accm13)"> AND ACCM13  LIKE #{accm13}  </if>
+			<if test="@Ognl@isNotEmpty(aae011)"> AND AAE011  LIKE #{aae011}  </if>
+			<if test="@Ognl@isNotEmpty(aae017)"> AND AAE017  LIKE #{aae017}  </if>
+			<if test="@Ognl@isNotEmpty(aae036)"> AND AAE036  =#{aae036} </if>
+			<if test="@Ognl@isNotEmpty(beginaae036)"> AND AAE036  >=#{beginaae036,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaae036)"> AND AAE036 <![CDATA[ <=#{endaae036,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aae019)"> AND AAE019  LIKE #{aae019}  </if>
+			<if test="@Ognl@isNotEmpty(aae020)"> AND AAE020  LIKE #{aae020}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr08)"> AND CCPR08  LIKE #{ccpr08}  </if>
+			<if test="@Ognl@isNotEmpty(cczy06)"> AND CCZY06  LIKE #{cczy06}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.laborcollection.model.LaborAccom">
+		INSERT INTO ACC0M
+		(ACC0M01,AAC001,ACC0M1,AAB004,AAB019,AAB054,AAB020,ACCM02,ACCM03,ACCM04,ACCM05,ACCM06,ACCM07,ACCM08,ACCM09,ACCM10,ACCM11,ACCM12,ACC20T,ACCM13,AAE011,AAE017,AAE036,AAE019,AAE020,CCPR08,CCZY06)
+		VALUES
+		(#{acc0m01,jdbcType=NUMERIC}, #{aac001,jdbcType=NUMERIC}, #{acc0m1,jdbcType=VARCHAR}, #{aab004,jdbcType=VARCHAR}, #{aab019,jdbcType=VARCHAR}, #{aab054,jdbcType=VARCHAR}, #{aab020,jdbcType=VARCHAR}, #{accm02,jdbcType=VARCHAR}, #{accm03,jdbcType=TIMESTAMP}, #{accm04,jdbcType=VARCHAR}, #{accm05,jdbcType=TIMESTAMP}, #{accm06,jdbcType=TIMESTAMP}, #{accm07,jdbcType=VARCHAR}, #{accm08,jdbcType=TIMESTAMP}, #{accm09,jdbcType=TIMESTAMP}, #{accm10,jdbcType=VARCHAR}, #{accm11,jdbcType=VARCHAR}, #{accm12,jdbcType=VARCHAR}, #{acc20t,jdbcType=VARCHAR}, #{accm13,jdbcType=VARCHAR}, #{aae011,jdbcType=VARCHAR}, #{aae017,jdbcType=VARCHAR}, #{aae036,jdbcType=TIMESTAMP}, #{aae019,jdbcType=VARCHAR}, #{aae020,jdbcType=VARCHAR}, #{ccpr08,jdbcType=VARCHAR}, #{cczy06,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM ACC0M 
+		WHERE
+		ACC0M01=#{acc0m01}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.laborcollection.model.LaborAccom">
+		UPDATE ACC0M SET
+		AAC001=#{aac001,jdbcType=NUMERIC},
+		ACC0M1=#{acc0m1,jdbcType=VARCHAR},
+		AAB004=#{aab004,jdbcType=VARCHAR},
+		AAB019=#{aab019,jdbcType=VARCHAR},
+		AAB054=#{aab054,jdbcType=VARCHAR},
+		AAB020=#{aab020,jdbcType=VARCHAR},
+		ACCM02=#{accm02,jdbcType=VARCHAR},
+		ACCM03=#{accm03,jdbcType=TIMESTAMP},
+		ACCM04=#{accm04,jdbcType=VARCHAR},
+		ACCM05=#{accm05,jdbcType=TIMESTAMP},
+		ACCM06=#{accm06,jdbcType=TIMESTAMP},
+		ACCM07=#{accm07,jdbcType=VARCHAR},
+		ACCM08=#{accm08,jdbcType=TIMESTAMP},
+		ACCM09=#{accm09,jdbcType=TIMESTAMP},
+		ACCM10=#{accm10,jdbcType=VARCHAR},
+		ACCM11=#{accm11,jdbcType=VARCHAR},
+		ACCM12=#{accm12,jdbcType=VARCHAR},
+		ACC20T=#{acc20t,jdbcType=VARCHAR},
+		ACCM13=#{accm13,jdbcType=VARCHAR},
+		AAE011=#{aae011,jdbcType=VARCHAR},
+		AAE017=#{aae017,jdbcType=VARCHAR},
+		AAE036=#{aae036,jdbcType=TIMESTAMP},
+		AAE019=#{aae019,jdbcType=VARCHAR},
+		AAE020=#{aae020,jdbcType=VARCHAR},
+		CCPR08=#{ccpr08,jdbcType=VARCHAR},
+		CCZY06=#{cczy06,jdbcType=VARCHAR}
+		WHERE
+		ACC0M01=#{acc0m01}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="LaborAccom">
+		SELECT <include refid="columns"/>
+		FROM ACC0M
+		WHERE
+		ACC0M01=#{acc0m01}
+	</select>
+	<!-- 查询是否填写过就业情况信息 -->
+	<select id="getByAccom" resultMap="LaborAccom">
+		SELECT <include refid="columns"/>
+		FROM ACC0M
+		WHERE
+		AAC001=#{aac001} 
+	</select>
+	
+	<!-- 查询是否填写过就业情况信息 -->
+	<select id="getByAac001" resultMap="LaborAccom">
+		SELECT ACC0M01,AAC001,ACC0M1,AAB004,u.name as AAB019,c.name as AAB054,e.name as AAB020,ACCM02,ACCM03,ACCM04,ACCM05,ACCM06,ACCM07,ACCM08,ACCM09,ACCM10,ACCM11,ACCM12,s.name as ACC20T,ACCM13,AAE011,AAE017,AAE036,AAE019,AAE020,CCPR08,CCZY06
+	    FROM ACC0M t
+	    LEFT  JOIN TAB_UNITNATURE        u ON u.code = t.aab019
+	    LEFT  JOIN TAB_INDUSTRYCLASSES   c ON c.code = t.aab054
+	    LEFT  JOIN TAB_ECONOMIC          e ON e.code = t.aab020
+	    LEFT  JOIN TAB_STAFFTYPE         s ON s.code = t.acc20t
+		WHERE
+		AAC001=#{aac001} 
+	</select>
+	<select id="getAll" resultMap="LaborAccom">
+		SELECT <include refid="columns"/>
+		FROM ACC0M   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ACC0M01  desc
+		</if>
+	</select>
+</mapper>

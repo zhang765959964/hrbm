@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.ovemp.corp.model.OvempCorp">
+	<resultMap id="TrainOrg" type="com.xunfeng.business.ovemp.corp.model.OvempCorp">
+		<id property="pxOrgId" column="PX_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="orgAccount" column="ORG_ACCOUNT" jdbcType="VARCHAR"/>
+		<result property="orgPwd" column="ORG_PWD" jdbcType="VARCHAR"/>
+		<result property="orgName" column="ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="orgLogoDir" column="ORG_LOGO_DIR" jdbcType="VARCHAR"/>
+		<result property="orgAddr" column="ORG_ADDR" jdbcType="VARCHAR"/>
+		<result property="orgType" column="ORG_TYPE" jdbcType="VARCHAR"/>
+		<result property="orgEstablishDate" column="ORG_ESTABLISH_DATE" jdbcType="TIMESTAMP"/>
+		<result property="orgManageRange" column="ORG_MANAGE_RANGE" jdbcType="CLOB"/>
+		<result property="contactsName" column="CONTACTS_NAME" jdbcType="VARCHAR"/>
+		<result property="contactsTel" column="CONTACTS_TEL" jdbcType="VARCHAR"/>
+		<result property="orgEmail" column="ORG_EMAIL" jdbcType="VARCHAR"/>
+		<result property="orgCertificate" column="ORG_CERTIFICATE" jdbcType="VARCHAR"/>
+		<result property="orgLegalPersonId" column="ORG_LEGAL_PERSON_ID" jdbcType="VARCHAR"/>
+		<result property="isAudit" column="IS_AUDIT" jdbcType="VARCHAR"/>
+		<result property="isDel" column="IS_DEL" jdbcType="VARCHAR"/>
+		<result property="isDisable" column="IS_DISABLE" jdbcType="VARCHAR"/>
+		<result property="aae011" column="AAE011" jdbcType="VARCHAR"/>
+		<result property="aae017" column="AAE017" jdbcType="VARCHAR"/>
+		<result property="aae036" column="AAE036" jdbcType="TIMESTAMP"/>
+		<result property="aae019" column="AAE019" jdbcType="VARCHAR"/>
+		<result property="aae020" column="AAE020" jdbcType="VARCHAR"/>
+		<result property="orgAdminDivision" column="ORG_ADMIN_DIVISION" jdbcType="VARCHAR"/>
+		<result property="cczy06" column="CCZY06" jdbcType="VARCHAR"/>
+		<result property="abb771" column="ABB771" jdbcType="TIMESTAMP"/>
+		<result property="abb767" column="ABB767" jdbcType="VARCHAR"/>
+		<result property="abb768" column="ABB768" jdbcType="VARCHAR"/>
+		<result property="abb769" column="ABB769" jdbcType="VARCHAR"/>
+		<result property="abb770" column="ABB770" jdbcType="VARCHAR"/>
+		<result property="abb772" column="ABB772" jdbcType="VARCHAR"/>
+		<result property="aac022" column="AAC022" jdbcType="VARCHAR"/>
+		<result property="cabq02" column="CABQ02" jdbcType="NUMERIC"/>
+		<result property="cabq03" column="CABQ03" jdbcType="NUMERIC"/>
+		<result property="orgPublishName" column="ORG_PUBLISH_NAME" jdbcType="VARCHAR"/>
+		<result property="orgCertificateId" column="ORG_CERTIFICATE_ID" jdbcType="VARCHAR"/>
+		<result property="orgLegalPersonZphoto" column="ORG_LEGAL_PERSON_ZPHOTO" jdbcType="VARCHAR"/>
+		<result property="orgLegalPersonFphoto" column="ORG_LEGAL_PERSON_FPHOTO" jdbcType="VARCHAR"/>
+		<result property="pog009" column="POG009" jdbcType="VARCHAR"/>
+		<result property="pog010" column="POG010" jdbcType="VARCHAR"/>
+		<result property="pog011" column="POG011" jdbcType="VARCHAR"/>
+		<result property="pog001" column="POG001" jdbcType="VARCHAR"/>
+		<result property="pog012" column="POG012" jdbcType="VARCHAR"/>
+		<result property="contactsCard" column="CONTACTS_CARD" jdbcType="VARCHAR"/>
+	</resultMap>
+	<resultMap id ="TrainOrgDto" extends="TrainOrg" type="com.xunfeng.business.train.dto.TrainOrgDto">  
+	  	<result property="sum" column="sum" jdbcType="NUMERIC"/>  
+	</resultMap> 
+	<sql id="columns">
+		POG001,CONTACTS_CARD,POG009,POG010,POG011,POG012,PX_ORG_ID,ORG_ACCOUNT,ORG_PWD,ORG_NAME,ORG_LOGO_DIR,ORG_ADDR,ORG_TYPE,ORG_ESTABLISH_DATE,ORG_MANAGE_RANGE,CONTACTS_NAME,CONTACTS_TEL,ORG_EMAIL,ORG_CERTIFICATE,ORG_LEGAL_PERSON_ID,IS_AUDIT,IS_DEL,IS_DISABLE,AAE011,AAE017,AAE036,AAE019,AAE020,ORG_ADMIN_DIVISION,CCZY06,
+		ABB771,ABB767,ABB768,ABB769,ABB770,ABB772,AAC022,CABQ02,CABQ03,ORG_PUBLISH_NAME,ORG_CERTIFICATE_ID,ORG_LEGAL_PERSON_ZPHOTO,ORG_LEGAL_PERSON_FPHOTO,ORG_ADMIN_DIVISIONN orgAdminDivisionn
+	</sql>
+	<sql id="columnsNoContent"> 
+		POG001,CONTACTS_CARD,POG009,POG010,POG011,POG012,PX_ORG_ID,ORG_ACCOUNT,ORG_PWD,ORG_NAME,ORG_LOGO_DIR,ORG_ADDR,ORG_TYPE,ORG_ESTABLISH_DATE,CONTACTS_NAME,CONTACTS_TEL,ORG_EMAIL,ORG_CERTIFICATE,ORG_LEGAL_PERSON_ID,IS_AUDIT,IS_DEL,IS_DISABLE,AAE011,AAE017,AAE036,AAE019,AAE020,ORG_ADMIN_DIVISION,CCZY06,
+		ABB771,ABB767,ABB768,ABB769,ABB770,ABB772,AAC022,CABQ02,CABQ03,ORG_PUBLISH_NAME,ORG_CERTIFICATE_ID,ORG_LEGAL_PERSON_ZPHOTO,ORG_LEGAL_PERSON_FPHOTO
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(pxOrgId)"> AND PX_ORG_ID  =#{pxOrgId} </if>
+			<if test="@Ognl@isNotEmpty(orgAccount)"> AND ORG_ACCOUNT  = #{orgAccount}  </if>
+			<if test="@Ognl@isNotEmpty(orgPwd)"> AND ORG_PWD  LIKE #{orgPwd}  </if>
+			<if test="@Ognl@isNotEmpty(orgName)"> AND ORG_NAME  LIKE  '%${orgName}%' </if>
+			<if test="@Ognl@isNotEmpty(orgLogoDir)"> AND ORG_LOGO_DIR  LIKE #{orgLogoDir}  </if>
+			<if test="@Ognl@isNotEmpty(orgAddr)"> AND ORG_ADDR  LIKE #{orgAddr}  </if>
+			<if test="@Ognl@isNotEmpty(orgType)"> AND ORG_TYPE  = #{orgType}  </if>
+			<if test="@Ognl@isNotEmpty(orgEstablishDate)"> AND ORG_ESTABLISH_DATE  =#{orgEstablishDate} </if>
+			<if test="@Ognl@isNotEmpty(beginorgEstablishDate)"> AND ORG_ESTABLISH_DATE  >=#{beginorgEstablishDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endorgEstablishDate)"> AND ORG_ESTABLISH_DATE <![CDATA[ <=#{endorgEstablishDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(orgManageRange)"> AND ORG_MANAGE_RANGE  LIKE #{orgManageRange}  </if>
+			<if test="@Ognl@isNotEmpty(contactsName)"> AND CONTACTS_NAME  = #{contactsName}  </if>
+			<if test="@Ognl@isNotEmpty(contactsTel)"> AND CONTACTS_TEL  = #{contactsTel}  </if>
+			<if test="@Ognl@isNotEmpty(orgEmail)"> AND ORG_EMAIL  = #{orgEmail}  </if>
+			<if test="@Ognl@isNotEmpty(orgCertificate)"> AND ORG_CERTIFICATE  LIKE #{orgCertificate}  </if>
+			<if test="@Ognl@isNotEmpty(orgLegalPersonId)"> AND ORG_LEGAL_PERSON_ID  LIKE #{orgLegalPersonId}  </if>
+			<if test="@Ognl@isNotEmpty(isAudit)"> AND IS_AUDIT  = #{isAudit}  </if>
+			<if test="@Ognl@isNotEmpty(isDel)"> AND IS_DEL  = #{isDel}  </if>
+			<if test="@Ognl@isNotEmpty(isDisable)"> AND IS_DISABLE  = #{isDisable}  </if>
+			<if test="@Ognl@isNotEmpty(aae011)"> AND AAE011  = #{aae011}  </if>
+			<if test="@Ognl@isNotEmpty(aae017)"> AND AAE017  = #{aae017}  </if>
+			<if test="@Ognl@isNotEmpty(aae017s)">AND AAE017 IN  <![CDATA[ ${aae017s} ]]> </if>
+			<if test="@Ognl@isNotEmpty(aae036)"> AND to_char(AAE036,'yyyy-mm-dd')  =#{aae036} </if>
+			<if test="@Ognl@isNotEmpty(beginaae036)"> AND AAE036  >=#{beginaae036,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaae036)"> AND AAE036 <![CDATA[ <=#{endaae036,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aae019)"> AND AAE019  = #{aae019}  </if>
+			<if test="@Ognl@isNotEmpty(aae020)"> AND AAE020  = #{aae020}  </if>
+			<if test="@Ognl@isNotEmpty(orgAdminDivision)"> AND ORG_ADMIN_DIVISION  LIKE #{orgAdminDivision}  </if>
+			<if test="@Ognl@isNotEmpty(cczy06)"> AND CCZY06  = #{cczy06}  </if>
+			<if test="@Ognl@isNotEmpty(abb771)"> AND ABB771  =#{abb771} </if>
+			<if test="@Ognl@isNotEmpty(beginabb771)"> AND ABB771  >=#{beginabb771,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endabb771)"> AND ABB771 <![CDATA[ <=#{endabb771,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(abb767)"> AND ABB767  LIKE #{abb767}  </if>
+			<if test="@Ognl@isNotEmpty(abb768)"> AND ABB768  LIKE #{abb768}  </if>
+			<if test="@Ognl@isNotEmpty(abb769)"> AND ABB769  LIKE #{abb769}  </if>
+			<if test="@Ognl@isNotEmpty(abb770)"> AND ABB770  LIKE #{abb770}  </if>
+			<if test="@Ognl@isNotEmpty(abb772)"> AND ABB772  LIKE #{abb772}  </if>
+			<if test="@Ognl@isNotEmpty(aac022)"> AND AAC022  LIKE #{aac022}  </if>
+			<if test="@Ognl@isNotEmpty(cabq02)"> AND CABQ02  =#{cabq02} </if>
+			<if test="@Ognl@isNotEmpty(cabq03)"> AND CABQ03  =#{cabq03} </if>
+			<if test="@Ognl@isNotEmpty(orgPublishName)"> AND ORG_PUBLISH_NAME  = #{orgPublishName}  </if>
+			<if test="@Ognl@isNotEmpty(orgCertificateId)"> AND ORG_CERTIFICATE_ID  = #{orgCertificateId}  </if>
+			<if test="@Ognl@isNotEmpty(orgLegalPersonZphoto)"> AND ORG_LEGAL_PERSON_ZPHOTO  =#{orgLegalPersonZphoto} </if>
+			<if test="@Ognl@isNotEmpty(orgLegalPersonFphoto)"> AND ORG_LEGAL_PERSON_FPHOTO  =#{orgLegalPersonFphoto} </if>
+		</where>
+	</sql>
+	
+	<insert id="insertOrgUser" parameterType="com.xunfeng.business.ovemp.corp.model.OvempCorp">
+	INSERT INTO PX_ORG(PX_ORG_ID,ORG_ACCOUNT,ORG_PWD,ORG_NAME,AAE011,AAE017,AAE036,AAE019,AAE020,CCZY06,ACB208)
+	VALUES (#{pxOrgId,jdbcType=NUMERIC}, #{orgAccount,jdbcType=VARCHAR}, #{orgPwd,jdbcType=VARCHAR}, #{orgName,jdbcType=VARCHAR},
+	#{aae011,jdbcType=VARCHAR}, #{aae017,jdbcType=VARCHAR}, #{aae036,jdbcType=TIMESTAMP}, 
+	#{aae019,jdbcType=VARCHAR}, #{aae020,jdbcType=VARCHAR},#{cczy06,jdbcType=VARCHAR}, 0)
+	</insert>
+	<insert id="add" parameterType="com.xunfeng.business.ovemp.corp.model.OvempCorp">
+		INSERT INTO PX_ORG
+		(CONTACTS_CARD,PX_ORG_ID,ORG_ACCOUNT,ORG_PWD,ORG_NAME,ORG_LOGO_DIR,ORG_ADDR,ORG_TYPE,ORG_ESTABLISH_DATE,ORG_MANAGE_RANGE,CONTACTS_NAME,CONTACTS_TEL,ORG_EMAIL,ORG_CERTIFICATE,ORG_LEGAL_PERSON_ID,IS_AUDIT,IS_DEL,IS_DISABLE,AAE011,AAE017,AAE036,AAE019,AAE020,ORG_ADMIN_DIVISION,CCZY06,ABB771,ABB767,ABB768,ABB769,ABB770,ABB772,AAC022,CABQ02,CABQ03,ORG_PUBLISH_NAME,ORG_CERTIFICATE_ID,ORG_LEGAL_PERSON_ZPHOTO,ORG_LEGAL_PERSON_FPHOTO
+		,POG009,POG010,POG011,POG012,POG001)
+		VALUES
+		(#{contactsCard,jdbcType=NUMERIC},#{pxOrgId,jdbcType=NUMERIC}, #{orgAccount,jdbcType=VARCHAR}, #{orgPwd,jdbcType=VARCHAR}, #{orgName,jdbcType=VARCHAR}, #{orgLogoDir,jdbcType=VARCHAR}, #{orgAddr,jdbcType=VARCHAR}, #{orgType,jdbcType=VARCHAR}, #{orgEstablishDate,jdbcType=TIMESTAMP}, #{orgManageRange,jdbcType=VARCHAR}, #{contactsName,jdbcType=VARCHAR}, #{contactsTel,jdbcType=VARCHAR}, #{orgEmail,jdbcType=VARCHAR}, 
+		#{orgCertificate,jdbcType=VARCHAR}, #{orgLegalPersonId,jdbcType=VARCHAR}, #{isAudit,jdbcType=VARCHAR}, #{isDel,jdbcType=VARCHAR}, 
+		#{isDisable,jdbcType=VARCHAR}, #{aae011,jdbcType=VARCHAR}, #{aae017,jdbcType=VARCHAR}, #{aae036,jdbcType=TIMESTAMP}, 
+		#{aae019,jdbcType=VARCHAR}, #{aae020,jdbcType=VARCHAR}, #{orgAdminDivision,jdbcType=VARCHAR}, #{cczy06,jdbcType=VARCHAR}, 
+		#{abb771,jdbcType=TIMESTAMP}, #{abb767,jdbcType=VARCHAR}, #{abb768,jdbcType=VARCHAR}, #{abb769,jdbcType=VARCHAR}, 
+		#{abb770,jdbcType=VARCHAR}, #{abb772,jdbcType=VARCHAR}, #{aac022,jdbcType=VARCHAR}, #{cabq02,jdbcType=NUMERIC}, 
+		#{cabq03,jdbcType=NUMERIC},#{orgPublishName,jdbcType=VARCHAR}, #{orgCertificateId,jdbcType=VARCHAR}, #{orgLegalPersonZphoto,jdbcType=VARCHAR}, #{orgLegalPersonFphoto,jdbcType=NUMERIC}
+		,#{pog009,jdbcType=VARCHAR},#{pog010,jdbcType=VARCHAR},#{pog011,jdbcType=VARCHAR},#{pog012,jdbcType=VARCHAR},#{pog001,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM PX_ORG 
+		WHERE
+		PX_ORG_ID=#{pxOrgId}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.ovemp.corp.model.OvempCorp">
+		UPDATE PX_ORG SET
+		ORG_ACCOUNT=#{orgAccount,jdbcType=VARCHAR},
+		ORG_PWD=#{orgPwd,jdbcType=VARCHAR},
+		ORG_NAME=#{orgName,jdbcType=VARCHAR},
+		ORG_LOGO_DIR=#{orgLogoDir,jdbcType=VARCHAR},
+		ORG_ADDR=#{orgAddr,jdbcType=VARCHAR},
+		ORG_TYPE=#{orgType,jdbcType=VARCHAR},
+		ORG_ESTABLISH_DATE=#{orgEstablishDate,jdbcType=TIMESTAMP},
+		ORG_MANAGE_RANGE=#{orgManageRange,jdbcType=VARCHAR},
+		CONTACTS_NAME=#{contactsName,jdbcType=VARCHAR},
+		CONTACTS_TEL=#{contactsTel,jdbcType=VARCHAR},
+		ORG_EMAIL=#{orgEmail,jdbcType=VARCHAR},
+		ORG_CERTIFICATE=#{orgCertificate,jdbcType=VARCHAR},
+		ORG_LEGAL_PERSON_ID=#{orgLegalPersonId,jdbcType=VARCHAR},
+		IS_AUDIT=#{isAudit,jdbcType=VARCHAR},
+		IS_DEL=#{isDel,jdbcType=VARCHAR},
+		IS_DISABLE=#{isDisable,jdbcType=VARCHAR},
+		AAE011=#{aae011,jdbcType=VARCHAR},
+		AAE017=#{aae017,jdbcType=VARCHAR},
+		AAE036=#{aae036,jdbcType=TIMESTAMP},
+		AAE019=#{aae019,jdbcType=VARCHAR},
+		AAE020=#{aae020,jdbcType=VARCHAR},
+		ORG_ADMIN_DIVISION=#{orgAdminDivision,jdbcType=VARCHAR},
+		CCZY06=#{cczy06,jdbcType=VARCHAR},
+		ABB771=#{abb771,jdbcType=TIMESTAMP},
+		ABB767=#{abb767,jdbcType=VARCHAR},
+		ABB768=#{abb768,jdbcType=VARCHAR},
+		ABB769=#{abb769,jdbcType=VARCHAR},
+		ABB770=#{abb770,jdbcType=VARCHAR},
+		ABB772=#{abb772,jdbcType=VARCHAR},
+		AAC022=#{aac022,jdbcType=VARCHAR},
+		CABQ02=#{cabq02,jdbcType=NUMERIC},
+		CABQ03=#{cabq03,jdbcType=NUMERIC},
+		ORG_PUBLISH_NAME=#{orgPublishName,jdbcType=VARCHAR},
+		ORG_CERTIFICATE_ID=#{orgCertificateId,jdbcType=VARCHAR},
+		ORG_LEGAL_PERSON_ZPHOTO=#{orgLegalPersonZphoto,jdbcType=VARCHAR},
+		ORG_LEGAL_PERSON_FPHOTO=#{orgLegalPersonFphoto,jdbcType=VARCHAR},
+		POG009=#{pog009,jdbcType=VARCHAR},
+		POG010=#{pog010,jdbcType=VARCHAR},
+		POG011=#{pog011,jdbcType=VARCHAR},
+		POG012=#{pog012,jdbcType=VARCHAR},
+		POG001=#{pog001,jdbcType=VARCHAR},
+		CONTACTS_CARD=#{contactsCard,jdbcType=VARCHAR}
+		WHERE
+		PX_ORG_ID=#{pxOrgId}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="TrainOrg">
+		SELECT <include refid="columns"/>
+		FROM V_PX_ORG
+		WHERE
+		PX_ORG_ID=#{pxOrgId}
+	</select>
+	
+	<select id="getAll" resultMap="TrainOrg">
+		SELECT <include refid="columns"/>
+		FROM V_PX_ORG   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by PX_ORG_ID  desc
+		</if>
+	</select>
+	
+	<select id="getHotTrainCorp" resultType="java.util.HashMap">
+		SELECT t2.PX_ORG_ID,t2.ORG_LOGO_DIR,t2.ORG_NAME,t1.cn FROM 
+		(SELECT t.px_org_id, max(t.click_times) max_click,count(*) cn FROM px_course t  
+			where IS_AUDIT=1 and ACB208 =0 and IS_DEL=0 and IS_DISABLE=0
+		group by t.px_org_id) t1,px_org t2
+		where t1.px_org_id=t2.px_org_id(+) and t2.IS_AUDIT=1 and t2.IS_DEL=0
+		order by max_click desc
+	</select>
+	
+	<select id="getOrgByCondition" resultType="java.util.HashMap">
+		SELECT t.PX_ORG_ID,t.ORG_LOGO_DIR,t.ORG_NAME,t.ORG_ADDR,t.CONTACTS_TEL,t.CONTACTS_NAME,t.ORG_TYPE,t.CABQ02,t.CABQ03, nvL(t2.course_nums, 0) sum
+		  FROM px_org t,
+		       (SELECT t.px_org_id, count(*) course_nums
+		          FROM px_course t where t.IS_AUDIT=1 and t.ACB208=0 and t.IS_DEL=0 and t.IS_DISABLE=0
+		         group by t.px_org_id) t2
+		 where t.px_org_id = t2.px_org_id(+) AND t.IS_DEL = 0 and t.IS_AUDIT=1
+		<if test="@Ognl@isNotEmpty(orgType)"> AND t.ORG_TYPE = #{orgType}  </if>
+		<if test="@Ognl@isNotEmpty(orgName)"> AND t.ORG_NAME LIKE #{orgName}  </if>
+	</select>
+	
+	<select id="getOrgMapByCondition" resultType="java.util.HashMap">
+		select <include refid="columnsNoContent"/>  from PX_ORG a 
+		where 1=1 
+		<if test="@Ognl@isNotEmpty(orgkey)"> AND a.org_name like  #{orgkey} </if>
+		<if test="@Ognl@isNotEmpty(coursekey)"> AND a.px_org_id in (select b.px_org_id from PX_COURSE b  where b.course_name like #{coursekey} and b.IS_AUDIT=1 and b.ACB208=0 and b.IS_DEL=0 and b.IS_DISABLE=0 ) </if>
+		<if test="@Ognl@isNotEmpty(localCity)">   AND a.ORG_ADMIN_DIVISION = #{localCity} </if>
+		<if test="@Ognl@isEmpty(coursekey)">
+		 	AND a.PX_ORG_ID IN (SELECT PX_ORG_ID  FROM PX_COURSE  where IS_AUDIT=1 and ACB208=0 and IS_DEL=0 and IS_DISABLE=0 group by PX_ORG_ID having count(*)>=1)
+		</if>
+		 and a.IS_AUDIT = 1 and a.IS_DEL=0 and a.IS_DISABLE=0 and a.CABQ02 is not null and a.CABQ03 is not null
+		 order by PX_ORG_ID desc
+	</select>
+	
+	<select id="getTrainCorpById" resultMap="TrainOrgDto">
+		SELECT
+		PX_ORG_ID,
+		ORG_NAME,
+		ORG_LOGO_DIR ,
+		ORG_ADDR,
+		ORG_TYPE  ,
+		CONTACTS_NAME,
+		CONTACTS_TEL,
+		ORG_EMAIL,
+		ORG_ADMIN_DIVISION,
+		CABQ02, CABQ03, 
+		ORG_PUBLISH_NAME
+		 <if test="@Ognl@isNotEmpty(needContent)">
+			, ORG_MANAGE_RANGE,
+			(SELECT count(*) from px_course c where c.PX_ORG_ID=#{orgId} and IS_AUDIT=1 and ACB208=0 and IS_DEL=0 and IS_DISABLE=0 ) sum
+		 </if>
+		from px_org o where o.PX_ORG_ID=#{orgId}
+	</select>
+	
+	<!--批量更新培训机构禁用状态  -->
+	 <update id="updateBatchDisable" parameterType="java.util.HashMap">    
+            UPDATE PX_ORG SET     
+            IS_DISABLE = #{isDisable} 
+            <if test="@Ognl@isNotEmpty(aae011)">,AAE011=#{aae011,jdbcType=VARCHAR}</if>
+			<if test="@Ognl@isNotEmpty(aae017)">,AAE017=#{aae017,jdbcType=VARCHAR}</if>
+			<if test="@Ognl@isNotEmpty(aae036)">,AAE036=#{aae036,jdbcType=TIMESTAMP}</if>
+			<if test="@Ognl@isNotEmpty(aae019)">,AAE019=#{aae019,jdbcType=VARCHAR}</if>
+			<if test="@Ognl@isNotEmpty(aae020)"> ,AAE020=#{aae020,jdbcType=VARCHAR}</if>   
+            where 1=1 and PX_ORG_ID in
+			<foreach item="item" collection="orgIdList" separator="," open="(" close=")" index="">    
+                   #{item}    
+           </foreach>    
+     </update>  
+     
+     <!--批量更新培训机构删除状态  -->
+	 <update id="updateBatchDel" parameterType="java.util.HashMap">    
+            UPDATE PX_ORG SET     
+               IS_DEL = #{isDel}
+	        <if test="@Ognl@isNotEmpty(aae011)"> ,AAE011=#{aae011,jdbcType=VARCHAR}</if>
+			<if test="@Ognl@isNotEmpty(aae017)"> ,AAE017=#{aae017,jdbcType=VARCHAR}</if>
+			<if test="@Ognl@isNotEmpty(aae036)"> ,AAE036=#{aae036,jdbcType=TIMESTAMP}</if>
+			<if test="@Ognl@isNotEmpty(aae019)"> ,AAE019=#{aae019,jdbcType=VARCHAR}</if>
+			<if test="@Ognl@isNotEmpty(aae020)"> ,AAE020=#{aae020,jdbcType=VARCHAR} </if>  
+            where 1=1 and PX_ORG_ID in
+			<foreach item="item" collection="orgIdList" separator="," open="(" close=")" index="">    
+                   #{item}    
+           </foreach>    
+     </update> 
+     
+     <!--批量更新培训机构审核状态  -->
+	 <update id="updateBatchAudit" parameterType="java.util.HashMap">    
+            UPDATE PX_ORG SET     
+            IS_AUDIT=#{isAudit,jdbcType=VARCHAR}, 
+            ABB771=#{abb771,jdbcType=TIMESTAMP},
+			ABB767=#{abb767,jdbcType=VARCHAR},
+			ABB768=#{abb768,jdbcType=VARCHAR},
+			ABB769=#{abb769,jdbcType=VARCHAR},
+			ABB770=#{abb770,jdbcType=VARCHAR},
+			ABB772=#{abb772,jdbcType=VARCHAR}
+            where 1=1 and PX_ORG_ID in
+			<foreach item="item" collection="orgIdList" separator="," open="(" close=")" index="">    
+                   #{item}    
+           </foreach>    
+     </update>
+     
+    <!-- 根据账号获取机构-->
+     <select id="getOrgByAccount" parameterType="java.lang.String" resultMap="TrainOrg">
+		SELECT <include refid="columns"/>
+		FROM V_PX_ORG
+		WHERE IS_DEL='0' 
+		AND ORG_ACCOUNT=#{orgAccount,jdbcType=VARCHAR}
+	 </select>
+	 
+	 <!-- 根据机构名称获取机构-->
+     <select id="getOrgByName" parameterType="java.lang.String" resultMap="TrainOrg">
+		SELECT <include refid="columns"/>
+		FROM V_PX_ORG
+		WHERE IS_DEL='0' 
+		AND　ORG_NAME=#{orgName,jdbcType=VARCHAR}
+	 </select>
+	 
+	  <!-- 根据机构发布名称获取机构-->
+     <select id="getOrgByPubName" parameterType="java.lang.String" resultMap="TrainOrg">
+		SELECT <include refid="columns"/>
+		FROM V_PX_ORG
+		WHERE IS_DEL='0' 
+		AND　ORG_PUBLISH_NAME=#{orgPublishName,jdbcType=VARCHAR}
+	 </select>
+</mapper>

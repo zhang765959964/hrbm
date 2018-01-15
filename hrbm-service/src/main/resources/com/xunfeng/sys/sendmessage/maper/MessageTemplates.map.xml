@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.sys.sendmessage.model.MessageTemplates">
+	<resultMap id="MessageTemplates" type="com.xunfeng.sys.sendmessage.model.MessageTemplates">
+		<id property="comm01" column="COMM01" jdbcType="NUMERIC"/>
+		<result property="comm02" column="COMM02" jdbcType="VARCHAR"/>
+		<result property="comm03" column="COMM03" jdbcType="NUMERIC"/>
+		<result property="comm04" column="COMM04" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		COMM01,COMM02,COMM03,COMM04
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(comm01)"> AND COMM01  =#{comm01} </if>
+			<if test="@Ognl@isNotEmpty(comm02)"> AND COMM02  LIKE #{comm02}  </if>
+			<if test="@Ognl@isNotEmpty(comm03)"> AND COMM03  =#{comm03} </if>
+			<if test="@Ognl@isNotEmpty(comm04)"> AND COMM04  LIKE #{comm04}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.sys.sendmessage.model.MessageTemplates">
+		INSERT INTO COM03
+		(COMM01,COMM02,COMM03,COMM04)
+		VALUES
+		(#{comm01,jdbcType=NUMERIC}, #{comm02,jdbcType=VARCHAR}, #{comm03,jdbcType=NUMERIC}, #{comm04,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM COM03 
+		WHERE
+		COMM01=#{comm01}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.sys.sendmessage.model.MessageTemplates">
+		UPDATE COM03 SET
+		COMM02=#{comm02,jdbcType=VARCHAR},
+		COMM03=#{comm03,jdbcType=NUMERIC},
+		COMM04=#{comm04,jdbcType=VARCHAR}
+		WHERE
+		COMM01=#{comm01}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="MessageTemplates">
+		SELECT <include refid="columns"/>
+		FROM COM03
+		WHERE
+		COMM01=#{comm01}
+	</select>
+	
+	<select id="getAll" resultMap="MessageTemplates">
+		SELECT <include refid="columns"/>
+		FROM COM03   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by COMM01  desc
+		</if>
+	</select>
+</mapper>

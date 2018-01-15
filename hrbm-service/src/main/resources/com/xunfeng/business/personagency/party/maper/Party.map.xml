@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.party.model.Party">
+	<resultMap id="Party" type="com.xunfeng.business.personagency.party.model.Party">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="partyPersonId" column="PARTY_PERSON_ID" jdbcType="NUMERIC"/>
+		<result property="partyIntoDate" column="PARTY_INTO_DATE" jdbcType="DATE"/>
+		<result property="partyOutDate" column="PARTY_OUT_DATE" jdbcType="DATE"/>
+		<result property="partyOutReason" column="PARTY_OUT_REASON" jdbcType="VARCHAR"/>
+		<result property="partyOutWhere" column="PARTY_OUT_WHERE" jdbcType="VARCHAR"/>
+		<result property="partyStatus" column="PARTY_STATUS" jdbcType="NUMERIC"/>
+		<result property="isParty" column="IS_PARTY" jdbcType="NUMERIC"/>
+		<result property="isPay" column="IS_PAY" jdbcType="NUMERIC"/>
+		<result property="partyMoney" column="PARTY_MONEY" jdbcType="NUMERIC"/>
+		<result property="lastPartyDate" column="LAST_PARTY_DATE" jdbcType="DATE"/>
+		<result property="firstPartyDate" column="FIRST_PARTY_DATE" jdbcType="DATE"/>
+		
+		
+		<result property="partyDate" column="PARTY_DATE" jdbcType="DATE"/>
+		<result property="partyNote" column="PARTY_NOTE" jdbcType="VARCHAR"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="DATE"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="partyOldName" column="PARTY_OLD_NAME" jdbcType="VARCHAR"/>
+		<result property="partyZhuanye" column="PARTY_ZHUANYE" jdbcType="VARCHAR"/>
+		<result property="partySchoolName" column="PARTY_SCHOOL_NAME" jdbcType="VARCHAR"/>
+		<result property="partySchoolDate" column="PARTY_SCHOOL_DATE" jdbcType="DATE"/>
+		<result property="partyPhone" column="PARTY_PHONE" jdbcType="VARCHAR"/>
+		<result property="partyQq" column="PARTY_QQ" jdbcType="VARCHAR"/>
+		<result property="partyOtherAdd" column="PARTY_OTHER_ADD" jdbcType="VARCHAR"/>
+		<result property="partyPositiveDate" column="PARTY_POSITIVE_DATE" jdbcType="DATE"/>
+		<result property="outCreaterId" column="OUT_CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="outCreaterName" column="OUT_CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="outCreaterDate" column="OUT_CREATER_DATE" jdbcType="DATE"/>
+		<result property="outCreaterOrgId" column="OUT_CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="outCreaterOrgName" column="OUT_CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		
+		
+	</resultMap>
+
+	<sql id="columns">
+		ID,PARTY_PERSON_ID,PARTY_INTO_DATE,PARTY_OUT_DATE,PARTY_OUT_REASON,PARTY_OUT_WHERE,PARTY_STATUS,IS_PARTY,IS_PAY,PARTY_DATE,PARTY_NOTE,CREATER_ID,CREATER_NAME,CREATER_DATE,CREATER_ORG_ID,CREATER_ORG_NAME,PARTY_OLD_NAME,PARTY_ZHUANYE,PARTY_SCHOOL_NAME,PARTY_SCHOOL_DATE,PARTY_PHONE,PARTY_QQ,
+		PARTY_OTHER_ADD,PARTY_POSITIVE_DATE,LAST_PARTY_DATE,FIRST_PARTY_DATE,PARTY_MONEY,OUT_CREATER_ID,OUT_CREATER_NAME,OUT_CREATER_DATE,OUT_CREATER_ORG_ID,OUT_CREATER_ORG_NAME
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(partyPersonId)"> AND PARTY_PERSON_ID  =#{partyPersonId} </if>
+			<if test="@Ognl@isNotEmpty(partyIntoDate)"> AND PARTY_INTO_DATE  =#{partyIntoDate} </if>
+			<if test="@Ognl@isNotEmpty(beginpartyIntoDate)"> AND PARTY_INTO_DATE  >=#{beginpartyIntoDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endpartyIntoDate)"> AND PARTY_INTO_DATE <![CDATA[ <=#{endpartyIntoDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(partyOutDate)"> AND PARTY_OUT_DATE  =#{partyOutDate} </if>
+			<if test="@Ognl@isNotEmpty(beginpartyOutDate)"> AND PARTY_OUT_DATE  >=#{beginpartyOutDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endpartyOutDate)"> AND PARTY_OUT_DATE <![CDATA[ <=#{endpartyOutDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(partyOutReason)"> AND PARTY_OUT_REASON  LIKE #{partyOutReason}  </if>
+			<if test="@Ognl@isNotEmpty(partyOutWhere)"> AND PARTY_OUT_WHERE  LIKE #{partyOutWhere}  </if>
+			<if test="@Ognl@isNotEmpty(partyStatus)"> AND PARTY_STATUS  =#{partyStatus} </if>
+			<if test="@Ognl@isNotEmpty(isParty)"> AND IS_PARTY  =#{isParty} </if>
+			<if test="@Ognl@isNotEmpty(partyDate)"> AND PARTY_DATE  =#{partyDate} </if>
+			<if test="@Ognl@isNotEmpty(beginpartyDate)"> AND PARTY_DATE  >=#{beginpartyDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endpartyDate)"> AND PARTY_DATE <![CDATA[ <=#{endpartyDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(partyNote)"> AND PARTY_NOTE  =#{partyNote} </if>
+			<if test="@Ognl@isNotEmpty(createrId)"> AND CREATER_ID  =#{createrId} </if>
+			<if test="@Ognl@isNotEmpty(createrName)"> AND CREATER_NAME  LIKE #{createrName}  </if>
+			<if test="@Ognl@isNotEmpty(createrDate)"> AND CREATER_DATE  =#{createrDate} </if>
+			<if test="@Ognl@isNotEmpty(begincreaterDate)"> AND CREATER_DATE  >=#{begincreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(createrOrgId)"> AND CREATER_ORG_ID  =#{createrOrgId} </if>
+			<if test="@Ognl@isNotEmpty(createrOrgName)"> AND CREATER_ORG_NAME  LIKE #{createrOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(partyOldName)"> AND PARTY_OLD_NAME  LIKE #{partyOldName}  </if>
+			<if test="@Ognl@isNotEmpty(partyZhuanye)"> AND PARTY_ZHUANYE  LIKE #{partyZhuanye}  </if>
+			<if test="@Ognl@isNotEmpty(partySchoolName)"> AND PARTY_SCHOOL_NAME  LIKE #{partySchoolName}  </if>
+			<if test="@Ognl@isNotEmpty(partySchoolDate)"> AND PARTY_SCHOOL_DATE  =#{partySchoolDate} </if>
+			<if test="@Ognl@isNotEmpty(beginpartySchoolDate)"> AND PARTY_SCHOOL_DATE  >=#{beginpartySchoolDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endpartySchoolDate)"> AND PARTY_SCHOOL_DATE <![CDATA[ <=#{endpartySchoolDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(partyPhone)"> AND PARTY_PHONE  LIKE #{partyPhone}  </if>
+			<if test="@Ognl@isNotEmpty(partyQq)"> AND PARTY_QQ  LIKE #{partyQq}  </if>
+			<if test="@Ognl@isNotEmpty(partyOtherAdd)"> AND PARTY_OTHER_ADD  LIKE #{partyOtherAdd}  </if>
+			<if test="@Ognl@isNotEmpty(partyPositiveDate)"> AND PARTY_POSITIVE_DATE  =#{partyPositiveDate} </if>
+			<if test="@Ognl@isNotEmpty(beginpartyPositiveDate)"> AND PARTY_POSITIVE_DATE  >=#{beginpartyPositiveDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endpartyPositiveDate)"> AND PARTY_POSITIVE_DATE <![CDATA[ <=#{endpartyPositiveDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(outCreaterName)"> AND  party.OUT_CREATER_NAME  like #{outCreaterName} </if>
+			<if test="@Ognl@isNotEmpty(begincreaterOutDate)"> AND party.OUT_CREATER_DATE   <![CDATA[  >=#{begincreaterOutDate,jdbcType=DATE} ]]> </if>
+			<if test="@Ognl@isNotEmpty(endcreaterOutDate)"> AND party.OUT_CREATER_DATE <![CDATA[ <=#{endcreaterOutDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(outCreaterOrgName)"> AND  party.OUT_CREATER_ORG_NAME  like #{outCreaterOrgName} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.party.model.Party">
+		INSERT INTO RSDA_BS_PARTY
+		(ID,PARTY_PERSON_ID,PARTY_INTO_DATE,PARTY_OUT_DATE,PARTY_OUT_REASON,PARTY_OUT_WHERE,PARTY_STATUS,PARTY_DATE,PARTY_NOTE,CREATER_ID,CREATER_NAME,CREATER_DATE,CREATER_ORG_ID,CREATER_ORG_NAME,PARTY_OLD_NAME,PARTY_ZHUANYE,PARTY_SCHOOL_NAME,PARTY_SCHOOL_DATE,PARTY_PHONE,PARTY_QQ,PARTY_OTHER_ADD,
+		PARTY_POSITIVE_DATE,IS_PARTY,IS_PAY,OUT_CREATER_ID,OUT_CREATER_NAME,OUT_CREATER_DATE,OUT_CREATER_ORG_ID,OUT_CREATER_ORG_NAME)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{partyPersonId,jdbcType=NUMERIC}, #{partyIntoDate,jdbcType=DATE}, #{partyOutDate,jdbcType=DATE}, #{partyOutReason,jdbcType=VARCHAR}, #{partyOutWhere,jdbcType=VARCHAR}, #{partyStatus,jdbcType=NUMERIC}, #{partyDate,jdbcType=DATE}, #{partyNote,jdbcType=VARCHAR}, #{createrId,jdbcType=NUMERIC}, #{createrName,jdbcType=VARCHAR}, #{createrDate,jdbcType=DATE}, #{createrOrgId,jdbcType=NUMERIC}, #{createrOrgName,jdbcType=VARCHAR}, #{partyOldName,jdbcType=VARCHAR}, #{partyZhuanye,jdbcType=VARCHAR}, #{partySchoolName,jdbcType=VARCHAR}, #{partySchoolDate,jdbcType=DATE}, #{partyPhone,jdbcType=VARCHAR}, #{partyQq,jdbcType=VARCHAR}, #{partyOtherAdd,jdbcType=VARCHAR}, #{partyPositiveDate,jdbcType=DATE},
+		#{isParty,jdbcType=NUMERIC},#{isPay,jdbcType=NUMERIC},#{outCreaterId,jdbcType=NUMERIC}, #{outCreaterName,jdbcType=VARCHAR}, #{outCreaterDate,jdbcType=DATE}, #{outCreaterOrgId,jdbcType=NUMERIC}, #{outCreaterOrgName,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_PARTY 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	
+	<!-- 根据人员id删除信息 -->
+	<delete id="delByPersonId" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_PARTY 
+		WHERE
+		PARTY_PERSON_ID=#{personId}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.party.model.Party">
+		UPDATE RSDA_BS_PARTY SET
+		PARTY_PERSON_ID=#{partyPersonId,jdbcType=NUMERIC},
+		PARTY_INTO_DATE=#{partyIntoDate,jdbcType=DATE},
+		PARTY_OUT_DATE=#{partyOutDate,jdbcType=DATE},
+		PARTY_OUT_REASON=#{partyOutReason,jdbcType=VARCHAR},
+		PARTY_OUT_WHERE=#{partyOutWhere,jdbcType=VARCHAR},
+		PARTY_STATUS=#{partyStatus,jdbcType=NUMERIC},
+		PARTY_DATE=#{partyDate,jdbcType=DATE},
+		PARTY_NOTE=#{partyNote,jdbcType=VARCHAR},
+		CREATER_ID=#{createrId,jdbcType=NUMERIC},
+		CREATER_NAME=#{createrName,jdbcType=VARCHAR},
+		CREATER_DATE=#{createrDate,jdbcType=DATE},
+		CREATER_ORG_ID=#{createrOrgId,jdbcType=NUMERIC},
+		CREATER_ORG_NAME=#{createrOrgName,jdbcType=VARCHAR},
+		PARTY_OLD_NAME=#{partyOldName,jdbcType=VARCHAR},
+		PARTY_ZHUANYE=#{partyZhuanye,jdbcType=VARCHAR},
+		PARTY_SCHOOL_NAME=#{partySchoolName,jdbcType=VARCHAR},
+		PARTY_SCHOOL_DATE=#{partySchoolDate,jdbcType=DATE},
+		PARTY_PHONE=#{partyPhone,jdbcType=VARCHAR},
+		PARTY_QQ=#{partyQq,jdbcType=VARCHAR},
+		PARTY_OTHER_ADD=#{partyOtherAdd,jdbcType=VARCHAR},
+		PARTY_POSITIVE_DATE=#{partyPositiveDate,jdbcType=DATE},
+		IS_PARTY=#{isParty,jdbcType=NUMERIC},
+		IS_PAY=#{isPay,jdbcType=NUMERIC},
+		LAST_PARTY_DATE=#{lastPartyDate,jdbcType=DATE},
+		FIRST_PARTY_DATE=#{firstPartyDate,jdbcType=DATE},
+		PARTY_MONEY=#{partyMoney,jdbcType=NUMERIC},
+		OUT_CREATER_ID=#{outCreaterId,jdbcType=NUMERIC},
+		OUT_CREATER_NAME=#{outCreaterName,jdbcType=VARCHAR},
+		OUT_CREATER_DATE=#{outCreaterDate,jdbcType=DATE},
+		OUT_CREATER_ORG_ID=#{outCreaterOrgId,jdbcType=NUMERIC},
+		OUT_CREATER_ORG_NAME=#{outCreaterOrgName,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<!-- 更新缴费状态 -->	    
+	<update id="updatePay" parameterType="com.xunfeng.business.personagency.party.model.Party">
+		update  RSDA_BS_PARTY SET
+		IS_PAY=0
+		where PARTY_PERSON_ID = #{personId}
+	</update>	    
+		    
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Party">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PARTY
+		WHERE
+		ID=#{id}
+	</select>
+	
+	
+	<!-- 根据人员id查询党员信息 -->
+	<select id="findByPersonId" parameterType="java.lang.Long" resultMap="Party">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PARTY
+		WHERE
+		PARTY_PERSON_ID=#{personId}
+	</select>
+	
+	
+	
+	<!-- 查找党组织关系转入的数据-->
+	<select id="findByPartyInto" parameterType="java.lang.Long" resultMap="Party">
+		SELECT <include refid="columns"/> from
+		( select *  from  rsda_bs_party t where t.id in  ( select max(c.id) from rsda_bs_party c group by c.party_person_id )) t
+		WHERE
+		t.PARTY_PERSON_ID=#{personId} and  t.party_status!='0' 
+	</select>
+	
+	<select id="getAll" resultMap="Party">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PARTY   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+	<!-- 综合查询 中代理党组织关系详细查询 -->
+	<select id="getByvPersonId" resultType="java.util.Map">
+		select * from v_rsda_bs_party t
+		where 1=1
+		<if test="@Ognl@isNotEmpty(personId)"> AND t.PERSON_ID   =#{personId} </if>
+	</select>
+	
+	<!-- 党费人数统计 -->
+	<select id="getSumPerson" parameterType="java.lang.Long" resultType="java.lang.Long">
+		select  count(*) as "sumParty" from rsda_bs_party party where party.id in  ( select max(c.id) from rsda_bs_party c group by c.party_person_id )
+	</select>
+	
+	<!-- 党费缴费人数统计 -->
+	<select id="getJfPerson" parameterType="java.lang.Long" resultType="java.lang.Long">
+		select count(*) as "sumParty" from rsda_bs_party t where t.Party_Money > 0
+	</select>
+	
+	<!-- 代管组织关系为是的 -->
+	<select id="getPartyStatus" parameterType="java.lang.Long" resultType="java.lang.Long">
+		  select count(*) as "partyStatus" from rsda_bs_party t where t.party_status = '1'
+	</select>
+	
+	
+	<!-- 欠费人数 -->
+	<select id="getPartyOweSum"  parameterType="java.lang.Long" resultType="java.lang.Long">
+		select count(*) as "getPartyOwnSum"  from v_rsda_bs_party_pay_result t where t."isflag"  = 0
+	</select>
+	
+	<!-- 党员关系转入转出信息查询  根据人员id 查询人员信息和档案信息   
+		  使用视图查询
+		  改动需求 创建时间：2016年10月14日14:55:26
+	-->
+	<select id="getPartyByPersonId"  resultType="java.util.Map">
+		select * from v_rsda_bs_party_person_archive t 
+		where t."personId" = #{personId}
+	</select> 
+	
+	
+	
+	<!-- 查询党组织关系转入转出 -->
+	<select id="getByPeronIdList" resultType="java.util.Map">
+		select 
+			party.id as "id",
+	        party.PARTY_PERSON_ID as "personId",
+	        person.aac002 as "personCard",
+	        person.aac003 as "personName",
+	        archive.archive_code as "archiveCode",
+	        decode(party.PARTY_STATUS,0,'否',1,'是') as "partyStatus",
+	        to_char(party.PARTY_INTO_DATE,'yyyy-MM-dd') as "partyIntoDate",
+	        to_char(party.PARTY_DATE,'yyyy-MM-dd') as "partyDate",
+	        to_char(party.PARTY_POSITIVE_DATE,'yyyy-MM-dd') as "partyPositiveDate",
+	        decode(person.AAC004,1,'男',2,'女') as "sex",
+	        nation.name as "nationName",
+	        person.aac025 as "placeName",
+	        to_char(person.aac006,'yyyy-MM-dd') as "personCsrq", 
+	        whcd.name as "whcdName",
+	        person.AAC180 as "shoolName",
+	        expand.EXP_ADDRESS as "expAddress",
+	        to_char(party.PARTY_OUT_DATE,'yyyy-MM-dd') as "partyOutDate",
+	        reason.name as "partyOutReason",
+	        party.PARTY_OUT_WHERE as "partyOutWhere", 
+	        party.party_note as "partyNote",
+	        party.creater_name as "createrName",
+	        party.creater_org_name as "createrOrgName",
+	        to_char(party.creater_date,'yyyy-MM-dd') as "createrDate",
+	        party.out_creater_name as "outCreaterName",
+            party.out_creater_org_name as "outCreaterOrgName",
+	        to_char(party.out_creater_date,'yyyy-MM-dd') as "outCreaterDate"
+	     from 
+	        rsda_bs_party party
+	        left join ac01 person  on person.aac001 = party.party_person_id
+	        left join RSDA_BS_ARCHIVE_ARCHIVES archive on archive.person_id = person.aac001
+	        left join RSDA_BS_PERSON_EXPAND expand on expand.exp_person_id = person.aac001
+	        left JOIN TAB_NATION nation on nation.code = person.aac005
+	        left join TAB_EDUCATION  whcd on whcd.code = person.AAC011
+	        left join TAB_AFFIL affil on affil.code = person.aac024 
+	        left join RSDA_TAB_ARCHIVETYPE    archiveType on archiveType.Code =  archive.archive_type
+	        left join rsda_tab_archivestatus archiveStatus on archiveStatus.Code = archive.archive_status
+	        left join RSDA_TAB_PARTY_REASON reason on reason.code = party.party_out_reason
+	 	  where 1=1 
+			<if test="@Ognl@isNotEmpty(partyPersonId)"> AND PARTY_PERSON_ID  =#{partyPersonId} </if>
+			<if test="@Ognl@isNotEmpty(orderField)">
+				order by ${orderField} ${orderSeq}
+			</if>
+			<if test="@Ognl@isEmpty(orderField)">
+				order by party.ID   desc
+			</if>
+	</select>
+	
+	<!-- 党组织关系查询 -->
+	<select id="getPartyList" resultType="java.util.Map">
+	 select 
+	 		party.id as "id",
+	        party.PARTY_PERSON_ID as "personId",
+	        person.aac002 as "personCard",
+	        person.aac003 as "personName",
+	        archive.archive_code as "archiveCode",
+	        decode(party.PARTY_STATUS,0,'否',1,'是') as "partyStatus",
+	        to_char(party.PARTY_INTO_DATE,'yyyy-MM-dd') as "partyIntoDate",
+	        to_char(party.PARTY_DATE,'yyyy-MM-dd') as "partyDate",
+	        to_char(party.PARTY_POSITIVE_DATE,'yyyy-MM-dd') as "partyPositiveDate",
+	        decode(person.AAC004,1,'男',2,'女') as "sex",
+	        nation.name as "nationName",
+	        person.aac025 as "placeName",
+	        to_char(person.aac006,'yyyy-MM-dd') as "personCsrq", 
+	        whcd.name as "whcdName",
+	        person.AAC180 as "shoolName",
+	        expand.EXP_ADDRESS as "expAddress",
+	        to_char(party.PARTY_OUT_DATE,'yyyy-MM-dd') as "partyOutDate",
+	        reason.name as "partyOutReason",
+	        party.PARTY_OUT_WHERE as "partyOutWhere", 
+	        party.party_note as "partyNote",
+	        party.creater_name as "createrName",
+	        party.creater_org_name as "createrOrgName",
+	        to_char(party.creater_date,'yyyy-MM-dd') as "createrDate",
+	        party.out_creater_name as "outCreaterName",
+            party.out_creater_org_name as "outCreaterOrgName",
+            expand.EXP_USER_NAME as "expUserName",
+	        to_char(party.out_creater_date,'yyyy-MM-dd') as "outCreaterDate"
+	     from 
+	        rsda_bs_party party
+	        left join ac01 person  on person.aac001 = party.party_person_id
+	        left join RSDA_BS_ARCHIVE_ARCHIVES archive on archive.person_id = person.aac001
+	        left join RSDA_BS_PERSON_EXPAND expand on expand.exp_person_id = person.aac001
+	        left JOIN TAB_NATION nation on nation.code = person.aac005
+	        left join TAB_EDUCATION  whcd on whcd.code = person.AAC011
+	        left join TAB_AFFIL affil on affil.code = person.aac024 
+	        left join RSDA_TAB_ARCHIVETYPE    archiveType on archiveType.Code =  archive.archive_type
+	        left join rsda_tab_archivestatus archiveStatus on archiveStatus.Code = archive.archive_status
+	        left join RSDA_TAB_PARTY_REASON reason on reason.code = party.party_out_reason
+       	where 1=1 
+    <if test="@Ognl@isNotEmpty(ids)"> AND party.id in (${ids}) </if>
+    <if test="@Ognl@isNotEmpty(personCard)"> AND upper(aac002)     like  upper(#{personCard}) </if>
+	<if test="@Ognl@isNotEmpty(personName)"> AND aac003   like #{personName} </if>
+	<if test="@Ognl@isNotEmpty(personId)"> AND  party.party_person_id  = #{personId} </if>
+	<if test="@Ognl@isNotEmpty(pinyin)"> AND upper(AAC022) LIKE upper(#{pinyin}) </if>
+	<if test="@Ognl@isNotEmpty(sex)"> AND AAC004   =#{sex}</if>
+	<if test="@Ognl@isNotEmpty(minzu)"> AND AAC005  = #{minzu} </if>
+	<if test="@Ognl@isNotEmpty(whcd)"> AND AAC011   = #{whcd} </if>
+	<if test="@Ognl@isNotEmpty(archiveCode)"> AND upper(ARCHIVE_CODE)  like upper(#{archiveCode}) </if>
+	<if test="@Ognl@isNotEmpty(archiveType)"> AND ARCHIVE_TYPE  = #{archiveType} </if>
+	<if test="@Ognl@isNotEmpty(expUserName)"> AND EXP_USER_NAME  like #{expUserName} </if>
+	<if test="@Ognl@isNotEmpty(beginpartyIntoDate)"> AND PARTY_INTO_DATE  >=#{beginpartyIntoDate,jdbcType=DATE} </if>
+	<if test="@Ognl@isNotEmpty(endpartyIntoDate)"> AND PARTY_INTO_DATE <![CDATA[ <=#{endpartyIntoDate,jdbcType=DATE}]]> </if>
+	<if test="@Ognl@isNotEmpty(partyStatus)"> AND PARTY_STATUS <![CDATA[  = #{partyStatus,jdbcType=VARCHAR} ]]> </if>
+    <if test="@Ognl@isNotEmpty(partyOutReason)"> AND PARTY_OUT_REASON  = #{partyOutReason}   </if>
+    <if test="@Ognl@isNotEmpty(beginpartyOutDate)"> AND  PARTY_OUT_DATE  <![CDATA[  >=#{beginpartyOutDate,jdbcType=DATE} ]]> </if>
+	<if test="@Ognl@isNotEmpty(endpartyOutDate)"> AND PARTY_OUT_DATE <![CDATA[ <=#{endpartyOutDate,jdbcType=DATE}]]> </if>
+    <if test="@Ognl@isNotEmpty(createrName)"> AND party.CREATER_NAME  like #{createrName} </if>
+    <if test="@Ognl@isNotEmpty(begincreaterDate)"> AND party.CREATER_DATE   <![CDATA[  >=#{begincreaterDate,jdbcType=DATE} ]]> </if>
+	<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND party.CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+	<if test="@Ognl@isNotEmpty(createrOrgName)"> AND  party.CREATER_ORG_NAME   like #{createrOrgName} </if>
+	<if test="@Ognl@isNotEmpty(outCreaterName)"> AND  party.OUT_CREATER_NAME  like #{outCreaterName} </if>
+	<if test="@Ognl@isNotEmpty(begincreaterOutDate)"> AND party.OUT_CREATER_DATE   <![CDATA[  >=#{begincreaterOutDate,jdbcType=DATE} ]]> </if>
+	<if test="@Ognl@isNotEmpty(endcreaterOutDate)"> AND party.OUT_CREATER_DATE <![CDATA[ <=#{endcreaterOutDate,jdbcType=DATE}]]> </if>
+	<if test="@Ognl@isNotEmpty(outCreaterOrgName)"> AND  party.OUT_CREATER_ORG_NAME  like #{outCreaterOrgName} </if>
+	
+	
+	
+	<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+	</if>
+	<if test="@Ognl@isEmpty(orderField)">
+			order by party.CREATER_DATE  desc
+	</if>
+			
+	</select>
+	
+	
+
+	
+	
+</mapper>

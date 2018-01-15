@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.residence.model.ResidenceReturn">
+	<resultMap id="ResidenceReturn" type="com.xunfeng.business.personagency.residence.model.ResidenceReturn">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="archivesId" column="ARCHIVES_ID" jdbcType="NUMERIC"/>
+		<result property="personId" column="PERSON_ID" jdbcType="NUMERIC"/>
+		<result property="moId" column="MO_ID" jdbcType="NUMERIC"/>
+		<result property="borrowerName" column="BORROWER_NAME" jdbcType="VARCHAR"/>
+		<result property="borrowerCard" column="BORROWER_CARD" jdbcType="VARCHAR"/>
+		<result property="borrowerPhone" column="BORROWER_PHONE" jdbcType="VARCHAR"/>
+		<result property="borrowerDate" column="BORROWER_DATE" jdbcType="DATE"/>
+		<result property="maturityDate" column="MATURITY_DATE" jdbcType="DATE"/>
+		<result property="returnDate" column="RETURN_DATE" jdbcType="DATE"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="DATE"/>
+		<result property="returnCreaterId" column="RETURN_CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="returnCreaterName" column="RETURN_CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="returnCreaterOrgId" column="RETURN_CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="returnCreaterOrgName" column="RETURN_CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="returnCreaterDate" column="RETURN_CREATER_DATE" jdbcType="DATE"/>
+		<result property="cczy06" column="CCZY06" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,ARCHIVES_ID,PERSON_ID,MO_ID,BORROWER_NAME,BORROWER_CARD,BORROWER_PHONE,BORROWER_DATE,MATURITY_DATE,RETURN_DATE,CREATER_ID,CREATER_NAME,CREATER_ORG_ID,CREATER_ORG_NAME,CREATER_DATE,RETURN_CREATER_ID,RETURN_CREATER_NAME,RETURN_CREATER_ORG_ID,RETURN_CREATER_ORG_NAME,RETURN_CREATER_DATE,CCZY06,CCPR08
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(archivesId)"> AND ARCHIVES_ID  =#{archivesId} </if>
+			<if test="@Ognl@isNotEmpty(personId)"> AND PERSON_ID  =#{personId} </if>
+			<if test="@Ognl@isNotEmpty(moId)"> AND MO_ID  =#{moId} </if>
+			<if test="@Ognl@isNotEmpty(borrowerName)"> AND BORROWER_NAME  LIKE #{borrowerName}  </if>
+			<if test="@Ognl@isNotEmpty(borrowerCard)"> AND BORROWER_CARD  LIKE #{borrowerCard}  </if>
+			<if test="@Ognl@isNotEmpty(borrowerPhone)"> AND BORROWER_PHONE  LIKE #{borrowerPhone}  </if>
+			<if test="@Ognl@isNotEmpty(borrowerDate)"> AND BORROWER_DATE  =#{borrowerDate} </if>
+			<if test="@Ognl@isNotEmpty(beginborrowerDate)"> AND BORROWER_DATE  >=#{beginborrowerDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endborrowerDate)"> AND BORROWER_DATE <![CDATA[ <=#{endborrowerDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(maturityDate)"> AND MATURITY_DATE  =#{maturityDate} </if>
+			<if test="@Ognl@isNotEmpty(beginmaturityDate)"> AND MATURITY_DATE  >=#{beginmaturityDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endmaturityDate)"> AND MATURITY_DATE <![CDATA[ <=#{endmaturityDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(returnDate)"> AND RETURN_DATE  =#{returnDate} </if>
+			<if test="@Ognl@isNotEmpty(beginreturnDate)"> AND RETURN_DATE  >=#{beginreturnDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endreturnDate)"> AND RETURN_DATE <![CDATA[ <=#{endreturnDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(createrId)"> AND CREATER_ID  =#{createrId} </if>
+			<if test="@Ognl@isNotEmpty(createrName)"> AND c.CREATER_NAME  LIKE #{createrName}  </if>
+			<if test="@Ognl@isNotEmpty(createrOrgId)"> AND CREATER_ORG_ID  =#{createrOrgId} </if>
+			<if test="@Ognl@isNotEmpty(createrOrgName)"> AND c.CREATER_ORG_NAME  LIKE #{createrOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(createrDate)"> AND CREATER_DATE  =#{createrDate} </if>
+			<if test="@Ognl@isNotEmpty(begincreaterDate)"> AND c.CREATER_DATE  >=#{begincreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND c.CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(returnCreaterId)"> AND RETURN_CREATER_ID  =#{returnCreaterId} </if>
+			<if test="@Ognl@isNotEmpty(returnCreaterName)"> AND RETURN_CREATER_NAME  LIKE #{returnCreaterName}  </if>
+			<if test="@Ognl@isNotEmpty(returnCreaterOrgId)"> AND RETURN_CREATER_ORG_ID  =#{returnCreaterOrgId} </if>
+			<if test="@Ognl@isNotEmpty(returnCreaterOrgName)"> AND RETURN_CREATER_ORG_NAME  LIKE #{returnCreaterOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(returnCreaterDate)"> AND RETURN_CREATER_DATE  =#{returnCreaterDate} </if>
+			<if test="@Ognl@isNotEmpty(beginreturnCreaterDate)"> AND RETURN_CREATER_DATE  >=#{beginreturnCreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endreturnCreaterDate)"> AND RETURN_CREATER_DATE <![CDATA[ <=#{endreturnCreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(cczy06)"> AND CCZY06  LIKE #{cczy06}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr08)"> AND c.CCPR08  LIKE #{ccpr08}  </if>
+			
+			
+			<if test="@Ognl@isNotEmpty(beginmoveDate)"> AND m.MOVE_DATE  >=#{beginmoveDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endmoveDate)"> AND m.MOVE_DATE <![CDATA[ <=#{endmoveDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(settleDepartment)"> AND m.SETTLE_DEPARTMENT  LIKE #{settleDepartment}  </if>
+			<if test="@Ognl@isNotEmpty(beginoutDate)"> AND m.OUT_DATE  >=#{beginoutDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endoutDate)"> AND m.OUT_DATE <![CDATA[ <=#{endoutDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(moveToAddress)"> AND m.MOVE_TO_ADDRESS  LIKE #{moveToAddress}  </if>
+			<if test="@Ognl@isNotEmpty(residenceStatus)"> AND m.RESIDENCE_STATUS  LIKE #{residenceStatus}  </if>
+			
+			<if test="@Ognl@isNotEmpty(archiveCode)"> AND upper(a.ARCHIVE_CODE) LIKE upper(#{archiveCode}) </if>
+			<if test="@Ognl@isNotEmpty(aac002)"> AND upper(p.AAC002) LIKE upper(#{aac002})  </if>
+			<if test="@Ognl@isNotEmpty(aac003)"> AND p.AAC003  LIKE #{aac003}  </if>
+			<if test="@Ognl@isNotEmpty(aac004)"> AND p.AAC004  LIKE #{aac004}  </if>
+			<if test="@Ognl@isNotEmpty(aac022)"> AND upper(p.AAC022)   LIKE upper(#{aac022})  </if>
+			<if test="@Ognl@isNotEmpty(archiveType)"> AND a.ARCHIVE_TYPE  =#{archiveType} </if>
+			<if test="@Ognl@isNotEmpty(ids)"> AND c.ID in (${ids}) </if>
+			
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.residence.model.ResidenceReturn">
+		INSERT INTO RSDA_BS_RESIDENCE_RETURN
+		(ID,ARCHIVES_ID,PERSON_ID,MO_ID,BORROWER_NAME,BORROWER_CARD,BORROWER_PHONE,BORROWER_DATE,MATURITY_DATE,RETURN_DATE,CREATER_ID,CREATER_NAME,CREATER_ORG_ID,CREATER_ORG_NAME,CREATER_DATE,RETURN_CREATER_ID,RETURN_CREATER_NAME,RETURN_CREATER_ORG_ID,RETURN_CREATER_ORG_NAME,RETURN_CREATER_DATE,CCZY06,CCPR08)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{archivesId,jdbcType=NUMERIC}, #{personId,jdbcType=NUMERIC}, #{moId,jdbcType=NUMERIC}, #{borrowerName,jdbcType=VARCHAR}, #{borrowerCard,jdbcType=VARCHAR}, #{borrowerPhone,jdbcType=VARCHAR}, #{borrowerDate,jdbcType=DATE}, #{maturityDate,jdbcType=DATE}, #{returnDate,jdbcType=DATE}, #{createrId,jdbcType=NUMERIC}, #{createrName,jdbcType=VARCHAR}, #{createrOrgId,jdbcType=NUMERIC}, #{createrOrgName,jdbcType=VARCHAR}, #{createrDate,jdbcType=DATE}, #{returnCreaterId,jdbcType=NUMERIC}, #{returnCreaterName,jdbcType=VARCHAR}, #{returnCreaterOrgId,jdbcType=NUMERIC}, #{returnCreaterOrgName,jdbcType=VARCHAR}, #{returnCreaterDate,jdbcType=DATE}, #{cczy06,jdbcType=VARCHAR}, #{ccpr08,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_RESIDENCE_RETURN 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.residence.model.ResidenceReturn">
+		UPDATE RSDA_BS_RESIDENCE_RETURN SET
+		ARCHIVES_ID=#{archivesId,jdbcType=NUMERIC},
+		PERSON_ID=#{personId,jdbcType=NUMERIC},
+		MO_ID=#{moId,jdbcType=NUMERIC},
+		BORROWER_NAME=#{borrowerName,jdbcType=VARCHAR},
+		BORROWER_CARD=#{borrowerCard,jdbcType=VARCHAR},
+		BORROWER_PHONE=#{borrowerPhone,jdbcType=VARCHAR},
+		BORROWER_DATE=#{borrowerDate,jdbcType=DATE},
+		MATURITY_DATE=#{maturityDate,jdbcType=DATE},
+		RETURN_DATE=#{returnDate,jdbcType=DATE},
+		CREATER_ID=#{createrId,jdbcType=NUMERIC},
+		CREATER_NAME=#{createrName,jdbcType=VARCHAR},
+		CREATER_ORG_ID=#{createrOrgId,jdbcType=NUMERIC},
+		CREATER_ORG_NAME=#{createrOrgName,jdbcType=VARCHAR},
+		CREATER_DATE=#{createrDate,jdbcType=DATE},
+		RETURN_CREATER_ID=#{returnCreaterId,jdbcType=NUMERIC},
+		RETURN_CREATER_NAME=#{returnCreaterName,jdbcType=VARCHAR},
+		RETURN_CREATER_ORG_ID=#{returnCreaterOrgId,jdbcType=NUMERIC},
+		RETURN_CREATER_ORG_NAME=#{returnCreaterOrgName,jdbcType=VARCHAR},
+		RETURN_CREATER_DATE=#{returnCreaterDate,jdbcType=DATE},
+		CCZY06=#{cczy06,jdbcType=VARCHAR},
+		CCPR08=#{ccpr08,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="ResidenceReturn">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_RESIDENCE_RETURN
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="ResidenceReturn">
+		SELECT c.ID,c.ARCHIVES_ID,c.PERSON_ID,c.MO_ID,c.BORROWER_NAME,c.BORROWER_CARD,c.BORROWER_PHONE,c.BORROWER_DATE,c.MATURITY_DATE
+			,c.RETURN_DATE,c.CREATER_ID,c.CREATER_NAME,c.CREATER_ORG_ID,c.CREATER_ORG_NAME,c.CREATER_DATE,c.RETURN_CREATER_ID
+			,c.RETURN_CREATER_NAME,c.RETURN_CREATER_ORG_ID,c.RETURN_CREATER_ORG_NAME,c.RETURN_CREATER_DATE,c.CCZY06,c.CCPR08
+		
+		
+		FROM RSDA_BS_RESIDENCE_RETURN  c 
+		
+		left join RSDA_BS_RESIDENCE_MOVE_OUT m on m.id=c.MO_ID
+		left join RSDA_BS_ARCHIVE_ARCHIVES a on a.ID=m.ARCHIVES_ID
+		left join ac01 p on p.AAC001=a.PERSON_ID
+		left join RSDA_TAB_RESIDENCE_status b on b.code=m.RESIDENCE_STATUS
+		
+		
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by c.BORROWER_DATE  desc,c.ID desc
+		</if>
+	</select>
+</mapper>

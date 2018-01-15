@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.affair.model.TitleDeclaration">
+	<resultMap id="TitleDeclaration" type="com.xunfeng.business.personagency.affair.model.TitleDeclaration">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="archivesId" column="ARCHIVES_ID" jdbcType="NUMERIC"/>
+		<result property="personId" column="PERSON_ID" jdbcType="NUMERIC"/>
+		<result property="serialNumber" column="SERIAL_NUMBER" jdbcType="VARCHAR"/>
+		<result property="contactNumber" column="CONTACT_NUMBER" jdbcType="VARCHAR"/>
+		<result property="workUnit" column="WORK_UNIT" jdbcType="VARCHAR"/>
+		<result property="workingAge" column="WORKING_AGE" jdbcType="NUMERIC"/>
+		<result property="nowTitleGrade" column="NOW_TITLE_GRADE" jdbcType="NUMERIC"/>
+		<result property="declarationLevel" column="DECLARATION_LEVEL" jdbcType="NUMERIC"/>
+		<result property="evaluationResult" column="EVALUATION_RESULT" jdbcType="NUMERIC"/>
+		<result property="cczy06" column="CCZY06" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="DATE"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,ARCHIVES_ID,PERSON_ID,SERIAL_NUMBER,CONTACT_NUMBER,WORK_UNIT,WORKING_AGE,NOW_TITLE_GRADE,DECLARATION_LEVEL,EVALUATION_RESULT,CCZY06,CCPR08,CREATER_ID,CREATER_NAME,CREATER_ORG_ID,CREATER_ORG_NAME,CREATER_DATE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(archivesId)"> AND ARCHIVES_ID  =#{archivesId} </if>
+			<if test="@Ognl@isNotEmpty(personId)"> AND PERSON_ID  =#{personId} </if>
+			<if test="@Ognl@isNotEmpty(serialNumber)"> AND SERIAL_NUMBER  LIKE #{serialNumber}  </if>
+			<if test="@Ognl@isNotEmpty(contactNumber)"> AND CONTACT_NUMBER  LIKE #{contactNumber}  </if>
+			<if test="@Ognl@isNotEmpty(workUnit)"> AND WORK_UNIT  LIKE #{workUnit}  </if>
+			<if test="@Ognl@isNotEmpty(workingAge)"> AND WORKING_AGE  =#{workingAge}  </if>
+			<if test="@Ognl@isNotEmpty(nowTitleGrade)"> AND NOW_TITLE_GRADE  =#{nowTitleGrade} </if>
+			<if test="@Ognl@isNotEmpty(declarationLevel)"> AND DECLARATION_LEVEL  =#{declarationLevel} </if>
+			<if test="@Ognl@isNotEmpty(evaluationResult)"> AND EVALUATION_RESULT  =#{evaluationResult} </if>
+			<if test="@Ognl@isNotEmpty(cczy06)"> AND CCZY06  LIKE #{cczy06}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr08)"> AND CCPR08  LIKE #{ccpr08}  </if>
+			<if test="@Ognl@isNotEmpty(createrId)"> AND CREATER_ID  =#{createrId} </if>
+			<if test="@Ognl@isNotEmpty(createrName)"> AND CREATER_NAME  LIKE #{createrName}  </if>
+			<if test="@Ognl@isNotEmpty(createrOrgId)"> AND CREATER_ORG_ID  =#{createrOrgId} </if>
+			<if test="@Ognl@isNotEmpty(createrOrgName)"> AND CREATER_ORG_NAME  LIKE #{createrOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(createrDate)"> AND CREATER_DATE  =#{createrDate} </if>
+			<if test="@Ognl@isNotEmpty(begincreaterDate)"> AND CREATER_DATE  >=#{begincreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.affair.model.TitleDeclaration">
+		INSERT INTO RSDA_BS_TITLE_DECLARATION
+		(ID,ARCHIVES_ID,PERSON_ID,SERIAL_NUMBER,CONTACT_NUMBER,WORK_UNIT,WORKING_AGE,NOW_TITLE_GRADE,DECLARATION_LEVEL,EVALUATION_RESULT,CCZY06,CCPR08,CREATER_ID,CREATER_NAME,CREATER_ORG_ID,CREATER_ORG_NAME,CREATER_DATE)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{archivesId,jdbcType=NUMERIC}, #{personId,jdbcType=NUMERIC}, #{serialNumber,jdbcType=VARCHAR}, #{contactNumber,jdbcType=VARCHAR}, #{workUnit,jdbcType=VARCHAR}, #{workingAge,jdbcType=NUMERIC}, #{nowTitleGrade,jdbcType=NUMERIC}, #{declarationLevel,jdbcType=NUMERIC}, #{evaluationResult,jdbcType=NUMERIC}, #{cczy06,jdbcType=VARCHAR}, #{ccpr08,jdbcType=VARCHAR}, #{createrId,jdbcType=NUMERIC}, #{createrName,jdbcType=VARCHAR}, #{createrOrgId,jdbcType=NUMERIC}, #{createrOrgName,jdbcType=VARCHAR}, #{createrDate,jdbcType=DATE})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_TITLE_DECLARATION 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.affair.model.TitleDeclaration">
+		UPDATE RSDA_BS_TITLE_DECLARATION SET
+		ARCHIVES_ID=#{archivesId,jdbcType=NUMERIC},
+		PERSON_ID=#{personId,jdbcType=NUMERIC},
+		SERIAL_NUMBER=#{serialNumber,jdbcType=VARCHAR},
+		CONTACT_NUMBER=#{contactNumber,jdbcType=VARCHAR},
+		WORK_UNIT=#{workUnit,jdbcType=VARCHAR},
+		WORKING_AGE=#{workingAge,jdbcType=NUMERIC},
+		NOW_TITLE_GRADE=#{nowTitleGrade,jdbcType=NUMERIC},
+		DECLARATION_LEVEL=#{declarationLevel,jdbcType=NUMERIC},
+		EVALUATION_RESULT=#{evaluationResult,jdbcType=NUMERIC},
+		CCZY06=#{cczy06,jdbcType=VARCHAR},
+		CCPR08=#{ccpr08,jdbcType=VARCHAR},
+		CREATER_ID=#{createrId,jdbcType=NUMERIC},
+		CREATER_NAME=#{createrName,jdbcType=VARCHAR},
+		CREATER_ORG_ID=#{createrOrgId,jdbcType=NUMERIC},
+		CREATER_ORG_NAME=#{createrOrgName,jdbcType=VARCHAR},
+		CREATER_DATE=#{createrDate,jdbcType=DATE}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="TitleDeclaration">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_TITLE_DECLARATION
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="TitleDeclaration">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_TITLE_DECLARATION   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	<!-- 职称申报信息查询 -->
+	<select id="getAllTitleDeclaration" resultType="java.util.HashMap">
+		select  a.ID as "id",a.SERIAL_NUMBER as "serialNumber",a.CONTACT_NUMBER as "contactNumber"
+				,a.WORK_UNIT as "workUnit",a.WORKING_AGE as "workingAge"
+				,decode(a.EVALUATION_RESULT , 0, '成功', 1, '失败') as "evaluationResultName"
+				,to_char(a.CREATER_DATE,'yyyy-mm-dd') as "createrDate",a.CREATER_NAME as "createrName",a.CREATER_ORG_NAME as "createrOrgName"
+				,d.ARCHIVE_CODE as "archiveCode",b.AAC003 as "aac003",b.AAC002 as "aac002",e.name as "genderName",k.name as "educationName",g.name as "archiveTypeName"
+				,h.name as "nowTitleGradeName",j.name as "declarationLevelName",b.AAC022 as "aac022"
+				
+						
+		from RSDA_BS_TITLE_DECLARATION a
+		left join ac01 b on b.AAC001=a.PERSON_ID 
+        left join RSDA_BS_PERSON_EXPAND c on c.EXP_PERSON_ID=b.AAC001
+		left join RSDA_BS_ARCHIVE_ARCHIVES d on d.ID=a.ARCHIVES_ID
+        left join TAB_SEX e on e.code=b.AAC004
+		left join RSDA_TAB_ARCHIVETYPE g on g.code=d.ARCHIVE_TYPE
+		left join rsda_tab_level h on h.code=a.NOW_TITLE_GRADE
+		left join rsda_tab_level j on j.code=a.DECLARATION_LEVEL
+		left join TAB_EDUCATION k on k.code=b.aac011  
+        
+       	where a.ccpr08 = 0
+        <include refid="dynamicNoWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+			order by a.CREATER_DATE  desc,a.ID desc
+		</if>
+	</select>
+	
+	<sql id="dynamicNoWhere">
+			<if test="@Ognl@isNotEmpty(id)"> AND a.ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(aac002)"> AND upper(b.AAC002) LIKE upper(#{aac002})  </if>
+			<if test="@Ognl@isNotEmpty(aac003)"> AND b.AAC003  LIKE #{aac003}  </if>
+			<if test="@Ognl@isNotEmpty(aac022)"> AND upper(b.AAC022)   LIKE upper(#{aac022})  </if>
+			<if test="@Ognl@isNotEmpty(aac004)"> AND b.AAC004  = #{aac004}  </if>
+			<if test="@Ognl@isNotEmpty(aac011)"> AND b.AAC011  = #{aac011}  </if>
+			<if test="@Ognl@isNotEmpty(archiveCode)"> AND upper(d.ARCHIVE_CODE) LIKE upper(#{archiveCode}) </if>
+			<if test="@Ognl@isNotEmpty(archiveType)"> AND d.ARCHIVE_TYPE  =#{archiveType} </if>
+			<if test="@Ognl@isNotEmpty(nowTitleGrade)"> AND a.NOW_TITLE_GRADE  =#{nowTitleGrade} </if>
+			<if test="@Ognl@isNotEmpty(declarationLevel)"> AND a.DECLARATION_LEVEL  =#{declarationLevel} </if>
+			<if test="@Ognl@isNotEmpty(evaluationResult)"> AND a.EVALUATION_RESULT  =#{evaluationResult} </if>
+			<if test="@Ognl@isNotEmpty(workingAge)"> AND a.WORKING_AGE  =#{workingAge}  </if>
+			<if test="@Ognl@isNotEmpty(beginworkingAge)"> AND a.WORKING_AGE  >=#{beginworkingAge,jdbcType=VARCHAR} </if>
+			<if test="@Ognl@isNotEmpty(endworkingAge)"> AND a.WORKING_AGE <![CDATA[ <=#{endworkingAge,jdbcType=VARCHAR}]]> </if>
+			<if test="@Ognl@isNotEmpty(workUnit)"> AND a.WORK_UNIT  LIKE #{workUnit}  </if>
+			<if test="@Ognl@isNotEmpty(begincreaterDate)"> AND a.CREATER_DATE  >=#{begincreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND a.CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(createrOrgName)"> AND a.CREATER_ORG_NAME  LIKE #{createrOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(createrName)"> AND a.CREATER_NAME  LIKE #{createrName}  </if>
+			<if test="@Ognl@isNotEmpty(archivesId)"> AND a.ARCHIVES_ID  =#{archivesId} </if>
+			<if test="@Ognl@isNotEmpty(personId)"> AND a.PERSON_ID  =#{personId} </if>
+			<if test="@Ognl@isNotEmpty(ids)"> AND a.ID in (${ids})</if>
+	</sql>
+</mapper>

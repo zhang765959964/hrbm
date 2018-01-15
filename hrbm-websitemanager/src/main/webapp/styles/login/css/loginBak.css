@@ -1,0 +1,62 @@
+
+/*---------------------reset----------------------*/
+ 
+body { background:#FdFdFd;}
+:focus { outline:0 }
+
+.header{ height:100px;margin:26px auto; overflow: hidden; width: 800px;}
+.banner{ min-width:1000px;  position:relative;  height:478px; overflow:hidden; background:url(../images/15.jpg) 0px -260px no-repeat;  }
+.footer{text-align:center; font-size:12px; line-height:50px; color:#666; background:url(../images/banner-shdow.png) repeat-x; margin-top:0px;}
+.login-aside{position:absolute; width:320px; height:320px; z-index:999; border-radius:5px; left:64%; top:80px; background:url(../images/bg.png) repeat; padding-top:20px;}
+label.form-label {
+    display: block;
+    float: none;
+    height: auto;
+    line-height: 12px;
+    text-align: left;
+    width: auto;
+	font-size:16px;
+	color:#fff;
+	font-weight:bold;
+	text-shadow:1px 1px 1px #4e6877;
+	-o-text-shadow:1px 1px 1px #4e6877;
+	-o-moz-shadow:1px 1px 1px #4e6877;
+	-o-mis-shadow:1px 1px 1px #4e6877;
+	-o-webkit-shadow:1px 1px 1px #4e6877;
+	margin-top:20px;
+	margin-bottom:15px;
+	text-indent:20px;
+}
+
+.i-text{ 
+  width:280px;
+  height:37px;
+  margin-left:20px;
+  line-height:37px;
+  border:1px solid #858585;
+  background:#f5f5f5;
+  color:#9cb5cd;
+  font-size:14px; 
+  text-indent:10px; 
+  box-shadow:1px 1px 1px #dfe4e8 inset;
+  -moz-box-shadow:1px 1px 1px #dfe4e8 inset;
+  -webkit-box-shadow:1px 1px 1px #dfe4e8 inset;
+  -o-box-shadow:1px 1px 1px #dfe4e8 inset;
+  -mis-box-shadow:1px 1px 1px #dfe4e8 inset;
+ }
+
+
+.btn-login{ width:242px; height:38px; background:url(../images/login-btn.png) no-repeat; border:none; margin-left:39px; margin-top:50px;}
+
+
+
+
+
+
+
+
+
+
+
+
+

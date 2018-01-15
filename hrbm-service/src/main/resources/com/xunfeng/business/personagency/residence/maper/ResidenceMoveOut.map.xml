@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.residence.model.ResidenceMoveOut">
+	<resultMap id="ResidenceMoveOut" type="com.xunfeng.business.personagency.residence.model.ResidenceMoveOut">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="archivesId" column="ARCHIVES_ID" jdbcType="NUMERIC"/>
+		<result property="personId" column="PERSON_ID" jdbcType="NUMERIC"/>
+		<result property="residenceNumber" column="RESIDENCE_NUMBER" jdbcType="VARCHAR"/>
+		<result property="residenceStatus" column="RESIDENCE_STATUS" jdbcType="VARCHAR"/>
+		<result property="moveDate" column="MOVE_DATE" jdbcType="DATE"/>
+		<result property="outDate" column="OUT_DATE" jdbcType="DATE"/>
+		<result property="settleDepartment" column="SETTLE_DEPARTMENT" jdbcType="VARCHAR"/>
+		<result property="originalDomicile" column="ORIGINAL_DOMICILE" jdbcType="VARCHAR"/>
+		<result property="settleAddress" column="SETTLE_ADDRESS" jdbcType="VARCHAR"/>
+		<result property="openDate" column="OPEN_DATE" jdbcType="DATE"/>
+		<result property="thoseGraduates" column="THOSE_GRADUATES" jdbcType="VARCHAR"/>
+		<result property="moveToAddress" column="MOVE_TO_ADDRESS" jdbcType="VARCHAR"/>
+		<result property="description" column="DESCRIPTION" jdbcType="VARCHAR"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="DATE"/>
+		<result property="cczy06" column="CCZY06" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,ARCHIVES_ID,PERSON_ID,RESIDENCE_NUMBER,RESIDENCE_STATUS,MOVE_DATE,OUT_DATE,SETTLE_DEPARTMENT,ORIGINAL_DOMICILE,SETTLE_ADDRESS,OPEN_DATE,THOSE_GRADUATES,MOVE_TO_ADDRESS,DESCRIPTION,CREATER_ID,CREATER_NAME,CREATER_ORG_ID,CREATER_ORG_NAME,CREATER_DATE,CCZY06,CCPR08
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(archivesId)"> AND m.ARCHIVES_ID  =#{archivesId} </if>
+			<if test="@Ognl@isNotEmpty(personId)"> AND m.PERSON_ID  =#{personId} </if>
+			<if test="@Ognl@isNotEmpty(residenceNumber)"> AND RESIDENCE_NUMBER  LIKE #{residenceNumber}  </if>
+			<if test="@Ognl@isNotEmpty(residenceStatus)"> AND RESIDENCE_STATUS  LIKE #{residenceStatus}  </if>
+			<if test="@Ognl@isNotEmpty(moveDate)"> AND MOVE_DATE  =#{moveDate} </if>
+			<if test="@Ognl@isNotEmpty(beginmoveDate)"> AND MOVE_DATE  >=#{beginmoveDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endmoveDate)"> AND MOVE_DATE <![CDATA[ <=#{endmoveDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(outDate)"> AND OUT_DATE  =#{outDate} </if>
+			<if test="@Ognl@isNotEmpty(beginoutDate)"> AND OUT_DATE  >=#{beginoutDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endoutDate)"> AND OUT_DATE <![CDATA[ <=#{endoutDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(settleDepartment)"> AND SETTLE_DEPARTMENT  LIKE #{settleDepartment}  </if>
+			<if test="@Ognl@isNotEmpty(originalDomicile)"> AND ORIGINAL_DOMICILE  LIKE #{originalDomicile}  </if>
+			<if test="@Ognl@isNotEmpty(settleAddress)"> AND SETTLE_ADDRESS  LIKE #{settleAddress}  </if>
+			<if test="@Ognl@isNotEmpty(openDate)"> AND OPEN_DATE  =#{openDate} </if>
+			<if test="@Ognl@isNotEmpty(beginopenDate)"> AND OPEN_DATE  >=#{beginopenDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endopenDate)"> AND OPEN_DATE <![CDATA[ <=#{endopenDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(thoseGraduates)"> AND THOSE_GRADUATES  LIKE #{thoseGraduates}  </if>
+			<if test="@Ognl@isNotEmpty(moveToAddress)"> AND MOVE_TO_ADDRESS  LIKE #{moveToAddress}  </if>
+			<if test="@Ognl@isNotEmpty(description)"> AND DESCRIPTION  LIKE #{description}  </if>
+			<if test="@Ognl@isNotEmpty(createrId)"> AND CREATER_ID  =#{createrId} </if>
+			<if test="@Ognl@isNotEmpty(createrName)"> AND CREATER_NAME  LIKE #{createrName}  </if>
+			<if test="@Ognl@isNotEmpty(createrOrgId)"> AND CREATER_ORG_ID  =#{createrOrgId} </if>
+			<if test="@Ognl@isNotEmpty(createrOrgName)"> AND CREATER_ORG_NAME  LIKE #{createrOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(createrDate)"> AND CREATER_DATE  =#{createrDate} </if>
+			<if test="@Ognl@isNotEmpty(begincreaterDate)"> AND CREATER_DATE  >=#{begincreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(cczy06)"> AND CCZY06  LIKE #{cczy06}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr08)"> AND m.CCPR08  LIKE #{ccpr08}  </if>
+			
+			<if test="@Ognl@isNotEmpty(archiveCode)"> AND upper(a.ARCHIVE_CODE) LIKE upper(#{archiveCode}) </if>
+			<if test="@Ognl@isNotEmpty(aac002)"> AND upper(p.AAC002) LIKE upper(#{aac002})  </if>
+			<if test="@Ognl@isNotEmpty(aac003)"> AND p.AAC003  LIKE #{aac003}  </if>
+			<if test="@Ognl@isNotEmpty(aac004)"> AND p.AAC004  LIKE #{aac004}  </if>
+			<if test="@Ognl@isNotEmpty(aac022)"> AND upper(p.AAC022)   LIKE upper(#{aac022})  </if>
+			<if test="@Ognl@isNotEmpty(archiveType)"> AND a.ARCHIVE_TYPE  =#{archiveType} </if>
+			<if test="@Ognl@isNotEmpty(ids)"> AND m.ID in (${ids}) </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.residence.model.ResidenceMoveOut">
+		INSERT INTO RSDA_BS_RESIDENCE_MOVE_OUT
+		(ID,ARCHIVES_ID,PERSON_ID,RESIDENCE_NUMBER,RESIDENCE_STATUS,MOVE_DATE,OUT_DATE,SETTLE_DEPARTMENT,ORIGINAL_DOMICILE,SETTLE_ADDRESS,OPEN_DATE,THOSE_GRADUATES,MOVE_TO_ADDRESS,DESCRIPTION,CREATER_ID,CREATER_NAME,CREATER_ORG_ID,CREATER_ORG_NAME,CREATER_DATE,CCZY06,CCPR08)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{archivesId,jdbcType=NUMERIC}, #{personId,jdbcType=NUMERIC}, #{residenceNumber,jdbcType=VARCHAR}, #{residenceStatus,jdbcType=VARCHAR}, #{moveDate,jdbcType=DATE}, #{outDate,jdbcType=DATE}, #{settleDepartment,jdbcType=VARCHAR}, #{originalDomicile,jdbcType=VARCHAR}, #{settleAddress,jdbcType=VARCHAR}, #{openDate,jdbcType=DATE}, #{thoseGraduates,jdbcType=VARCHAR}, #{moveToAddress,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{createrId,jdbcType=NUMERIC}, #{createrName,jdbcType=VARCHAR}, #{createrOrgId,jdbcType=NUMERIC}, #{createrOrgName,jdbcType=VARCHAR}, #{createrDate,jdbcType=DATE}, #{cczy06,jdbcType=VARCHAR}, #{ccpr08,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_RESIDENCE_MOVE_OUT 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.residence.model.ResidenceMoveOut">
+		UPDATE RSDA_BS_RESIDENCE_MOVE_OUT SET
+		ARCHIVES_ID=#{archivesId,jdbcType=NUMERIC},
+		PERSON_ID=#{personId,jdbcType=NUMERIC},
+		RESIDENCE_NUMBER=#{residenceNumber,jdbcType=VARCHAR},
+		RESIDENCE_STATUS=#{residenceStatus,jdbcType=VARCHAR},
+		MOVE_DATE=#{moveDate,jdbcType=DATE},
+		OUT_DATE=#{outDate,jdbcType=DATE},
+		SETTLE_DEPARTMENT=#{settleDepartment,jdbcType=VARCHAR},
+		ORIGINAL_DOMICILE=#{originalDomicile,jdbcType=VARCHAR},
+		SETTLE_ADDRESS=#{settleAddress,jdbcType=VARCHAR},
+		OPEN_DATE=#{openDate,jdbcType=DATE},
+		THOSE_GRADUATES=#{thoseGraduates,jdbcType=VARCHAR},
+		MOVE_TO_ADDRESS=#{moveToAddress,jdbcType=VARCHAR},
+		DESCRIPTION=#{description,jdbcType=VARCHAR},
+		CREATER_ID=#{createrId,jdbcType=NUMERIC},
+		CREATER_NAME=#{createrName,jdbcType=VARCHAR},
+		CREATER_ORG_ID=#{createrOrgId,jdbcType=NUMERIC},
+		CREATER_ORG_NAME=#{createrOrgName,jdbcType=VARCHAR},
+		CREATER_DATE=#{createrDate,jdbcType=DATE},
+		CCZY06=#{cczy06,jdbcType=VARCHAR},
+		CCPR08=#{ccpr08,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="ResidenceMoveOut">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_RESIDENCE_MOVE_OUT
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="ResidenceMoveOut">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_RESIDENCE_MOVE_OUT   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<!-- 查询所有户口迁入数据-->
+	<select id="getAllResidenceMoveOut" resultType="java.util.HashMap">
+		SELECT  m.ID as "id"
+				,p.AAC003 as "aac003",p.AAC002 as "aac002",to_char(p.AAC006,'yyyy-mm-dd') as "aac006"
+				,a.ARCHIVE_CODE as "archiveCode",a.ARCHIVE_NAME as "archiveName"
+				,m.RESIDENCE_NUMBER as "residenceNumber"
+				,b.name as "residenceStatusName"
+				,to_char(m.MOVE_DATE,'yyyy-mm-dd') as "moveDate"
+				,to_char(m.OUT_DATE,'yyyy-mm-dd') as "outDate"
+				,m.SETTLE_DEPARTMENT as "settleDepartment"
+				,m.ORIGINAL_DOMICILE as "originalDomicile"
+				,m.SETTLE_ADDRESS as "settleAddress"
+				,to_char(m.OPEN_DATE,'yyyy-mm-dd') as "openDate"
+				,THOSE_GRADUATES as "thoseGraduates"
+				,m.MOVE_TO_ADDRESS as "moveToAddress"
+				,m.DESCRIPTION as "description"
+				,to_char(m.CREATER_DATE,'yyyy-mm-dd') as "createrDate"
+				,m.CREATER_NAME as "createrName"
+				,m.CREATER_ORG_NAME as "createrOrgName"
+				
+		FROM RSDA_BS_RESIDENCE_MOVE_OUT m 
+		left join RSDA_BS_ARCHIVE_ARCHIVES a on a.ID=m.ARCHIVES_ID
+		left join ac01 p on p.AAC001=a.PERSON_ID
+		left join RSDA_TAB_RESIDENCE_status b on b.code=m.RESIDENCE_STATUS
+        
+        <include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+			order by m.CREATER_DATE  desc,m.ID desc
+		</if>
+	</select>
+	
+	<!-- 获取户口迁入迁移条数-->
+	<select id="getTotalResidenceMoveOut" parameterType="java.lang.Long" resultType="java.lang.Long">
+		SELECT 	count(m.ID) FROM  RSDA_BS_RESIDENCE_MOVE_OUT m
+		<include refid="dynamicWhere" />
+	</select>
+	
+</mapper>

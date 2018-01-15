@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.advert.model.AdCategory">
+	<resultMap id="AdCategory" type="com.xunfeng.business.advert.model.AdCategory">
+		<id property="caac01" column="CAAC01" jdbcType="NUMERIC"/>
+		<result property="caac02" column="CAAC02" jdbcType="VARCHAR"/>
+		<result property="caac03" column="CAAC03" jdbcType="NUMERIC"/>
+		<result property="caac04" column="CAAC04" jdbcType="NUMERIC"/>
+		<result property="caac05" column="CAAC05" jdbcType="NUMERIC"/>
+		<result property="caac06" column="CAAC06" jdbcType="NUMERIC"/>
+		<result property="indent" column="INDENT" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		CAAC01,CAAC02,CAAC03,CAAC04,CAAC05,CAAC06,INDENT
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(caac01)"> AND CAAC01  =#{caac01} </if>
+			<if test="@Ognl@isNotEmpty(caac02)"> AND CAAC02  LIKE CONCAT(CONCAT('%', #{caac02}),'%')  </if>
+			<if test="@Ognl@isNotEmpty(caac03)"> AND CAAC03  =#{caac03} </if>
+			<if test="@Ognl@isNotEmpty(caac04)"> AND CAAC04  =#{caac04} </if>
+			<if test="@Ognl@isNotEmpty(caac05)"> AND CAAC05  =#{caac05} </if>
+			<if test="@Ognl@isNotEmpty(caac06)"> AND CAAC06  =#{caac06} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.advert.model.AdCategory">
+		INSERT INTO CAA01
+		(CAAC01,CAAC02,CAAC03,CAAC04,CAAC05,CAAC06,INDENT)
+		VALUES
+		(#{caac01,jdbcType=NUMERIC}, #{caac02,jdbcType=VARCHAR}, #{caac03,jdbcType=NUMERIC}, #{caac04,jdbcType=NUMERIC}, #{caac05,jdbcType=NUMERIC}, #{caac06,jdbcType=NUMERIC}, #{indent,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM CAA01 
+		WHERE
+		CAAC01=#{caac01}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.advert.model.AdCategory">
+		UPDATE CAA01 SET
+		CAAC02=#{caac02,jdbcType=VARCHAR},
+		CAAC03=#{caac03,jdbcType=NUMERIC},
+		CAAC04=#{caac04,jdbcType=NUMERIC},
+		CAAC05=#{caac05,jdbcType=NUMERIC},
+		CAAC06=#{caac06,jdbcType=NUMERIC},
+		INDENT=#{indent,jdbcType=VARCHAR}
+		WHERE
+		CAAC01=#{caac01}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="AdCategory">
+		SELECT <include refid="columns"/>
+		FROM CAA01
+		WHERE
+		CAAC01=#{caac01}
+	</select>
+	<!-- 通过标示获得记录 -->
+	<select id="getByIndent" parameterType="java.lang.String" resultMap="AdCategory">
+		SELECT <include refid="columns"/>
+		FROM CAA01
+		WHERE
+		indent=#{indent}
+	</select>
+	
+	<!-- 通过条件查找出所有的广告分类 -->
+	<select id="getAllCategoryByExcept" resultType="java.util.HashMap">
+		SELECT <include refid="columns"/>
+		FROM CAA01   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by CAAC01  desc
+		</if>
+	</select>
+	<!-- 通过条件查找出所有的广告分类名称和标识 -->
+	<select id="getNameListByExcept"  resultType="java.util.HashMap">
+		SELECT CAAC01,CAAC02,INDENT
+		FROM CAA01  
+		where CAAC06=#{_parameter}
+		order by CAAC01 desc
+	</select>
+	
+</mapper>

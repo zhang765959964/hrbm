@@ -1,0 +1,45 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">  
+<beans>  
+<!-- 	  境外就业相关接口发布  -->
+<bean name="/ovempCoopOrg"   class="org.springframework.remoting.caucho.HessianServiceExporter">  
+        <!-- service引用具体的实现实体Bean-->  
+        <property name="service" ref="ovempCoopOrgService" />  
+        <property name="serviceInterface" value="com.xunfeng.business.ovemp.cooporg.interf.OvempCoopOrgServiceInterf" />  
+</bean>  
+<bean name="/ovempCommon"   class="org.springframework.remoting.caucho.HessianServiceExporter">  
+        <!-- service引用具体的实现实体Bean-->  
+        <property name="service" ref="commonService" />  
+        <property name="serviceInterface" value="com.xunfeng.business.ovemp.common.interf.CommonServiceInterf" />  
+</bean> 
+
+	<!-- 合作企业-->
+	<bean name="/ovempCorp"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="ovempCorpService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.ovemp.corp.interf.OvempCorpServiceInterf" />
+	</bean>
+	<bean name="/ovempCorpType"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="ovempCorpTypeService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.ovemp.corp.interf.OvempCorpTypeServiceInterf" />
+	</bean>
+	<bean name="/ovempCorpCourse"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="ovempCorpCourseService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.ovemp.corp.interf.OvempCorpCourseServiceInterf" />
+	</bean>
+	<bean name="/ovempCorpCourseType"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="ovempCorpCourseTypeService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.ovemp.corp.interf.OvempCorpCourseTypeServiceInterf" />
+	</bean>
+
+</beans> 

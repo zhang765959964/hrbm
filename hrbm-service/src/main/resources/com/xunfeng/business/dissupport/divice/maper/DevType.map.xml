@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.dissupport.divice.model.DevType">
+	<resultMap id="DevType" type="com.xunfeng.business.dissupport.divice.model.DevType">
+		<id property="typeId" column="TYPE_ID" jdbcType="NUMERIC"/>
+		<result property="typePid" column="TYPE_PID" jdbcType="NUMERIC"/>
+		<result property="typeName" column="TYPE_NAME" jdbcType="VARCHAR"/>
+		<result property="typeDesc" column="TYPE_DESC" jdbcType="VARCHAR"/>
+		<result property="isEnable" column="IS_ENABLE" jdbcType="VARCHAR"/>
+		<result property="typeSpl" column="TYPE_SPL" jdbcType="VARCHAR"/>
+		<result property="typeRange" column="TYPE_RANGE" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		TYPE_ID,TYPE_PID,TYPE_NAME,TYPE_DESC,IS_ENABLE,TYPE_SPL,TYPE_RANGE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(typeId)"> AND TYPE_ID  =#{typeId} </if>
+			<if test="@Ognl@isNotEmpty(typePid)"> AND TYPE_PID  =#{typePid} </if>
+			<if test="@Ognl@isNotEmpty(typeName)"> AND TYPE_NAME  LIKE #{typeName}  </if>
+			<if test="@Ognl@isNotEmpty(typeDesc)"> AND TYPE_DESC  LIKE #{typeDesc}  </if>
+			<if test="@Ognl@isNotEmpty(isEnable)"> AND IS_ENABLE  LIKE #{isEnable}  </if>
+			<if test="@Ognl@isNotEmpty(typeSpl)"> AND TYPE_SPL  LIKE #{typeSpl}  </if>
+			<if test="@Ognl@isNotEmpty(typeRange)"> AND TYPE_RANGE  LIKE #{typeRange}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.dissupport.divice.model.DevType">
+		INSERT INTO DEV_TYPE
+		(TYPE_ID,TYPE_PID,TYPE_NAME,TYPE_DESC,IS_ENABLE,TYPE_SPL,TYPE_RANGE)
+		VALUES
+		(#{typeId,jdbcType=NUMERIC}, #{typePid,jdbcType=NUMERIC}, #{typeName,jdbcType=VARCHAR}, #{typeDesc,jdbcType=VARCHAR}, #{isEnable,jdbcType=VARCHAR}, #{typeSpl,jdbcType=VARCHAR}, #{typeRange,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM DEV_TYPE 
+		WHERE
+		TYPE_ID=#{typeId}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.dissupport.divice.model.DevType">
+		UPDATE DEV_TYPE SET
+		TYPE_PID=#{typePid,jdbcType=NUMERIC},
+		TYPE_NAME=#{typeName,jdbcType=VARCHAR},
+		TYPE_DESC=#{typeDesc,jdbcType=VARCHAR},
+		IS_ENABLE=#{isEnable,jdbcType=VARCHAR},
+		TYPE_SPL=#{typeSpl,jdbcType=VARCHAR},
+		TYPE_RANGE=#{typeRange,jdbcType=VARCHAR}
+		WHERE
+		TYPE_ID=#{typeId}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="DevType">
+		SELECT <include refid="columns"/>
+		FROM DEV_TYPE
+		WHERE
+		TYPE_ID=#{typeId}
+	</select>
+	
+	<select id="getAll" resultMap="DevType">
+		SELECT <include refid="columns"/>
+		FROM DEV_TYPE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by TYPE_ID  desc
+		</if>
+	</select>
+</mapper>

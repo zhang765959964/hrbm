@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.erecord.model.ErecordCatalog">
+	<resultMap id="ErecordCatalog" type="com.xunfeng.business.personagency.erecord.model.ErecordCatalog">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="code" column="CODE" jdbcType="VARCHAR"/>
+		<result property="description" column="DESCRIPTION" jdbcType="VARCHAR"/>
+		<result property="sortnum" column="SORTNUM" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,NAME,CODE,DESCRIPTION,SORTNUM
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(code)"> AND CODE  LIKE #{code}  </if>
+			<if test="@Ognl@isNotEmpty(description)"> AND DESCRIPTION  LIKE #{description}  </if>
+			<if test="@Ognl@isNotEmpty(sortnum)"> AND SORTNUM  =#{sortnum} </if>
+			<if test="@Ognl@isNotEmpty(jqName)"> AND NAME  =#{jqName}  </if>
+			<if test="@Ognl@isNotEmpty(noId)"> AND ID  !=#{noId} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.erecord.model.ErecordCatalog">
+		INSERT INTO RSDA_BS_E_CATALOG
+		(ID,NAME,CODE,DESCRIPTION,SORTNUM)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{sortnum,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_E_CATALOG 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.erecord.model.ErecordCatalog">
+		UPDATE RSDA_BS_E_CATALOG SET
+		NAME=#{name,jdbcType=VARCHAR},
+		CODE=#{code,jdbcType=VARCHAR},
+		DESCRIPTION=#{description,jdbcType=VARCHAR},
+		SORTNUM=#{sortnum,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="ErecordCatalog">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_E_CATALOG
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="ErecordCatalog">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_E_CATALOG   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by SORTNUM
+		</if>
+	</select>
+</mapper>

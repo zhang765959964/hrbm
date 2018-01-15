@@ -1,0 +1,806 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.archive.model.Archives">
+	<resultMap id="Archives" type="com.xunfeng.business.personagency.archive.model.Archives">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="archiveCode" column="ARCHIVE_CODE" jdbcType="VARCHAR"/>
+		<result property="receiveDate" column="RECEIVE_DATE" jdbcType="DATE"/>
+		<result property="archiveName" column="ARCHIVE_NAME" jdbcType="VARCHAR"/>
+		<result property="archiveBirthDate" column="ARCHIVE_BIRTH_DATE" jdbcType="DATE"/>
+		<result property="retiredAge" column="RETIRED_AGE" jdbcType="NUMERIC"/>
+		<result property="planRetiredDate" column="PLAN_RETIRED_DATE" jdbcType="DATE"/>
+		<result property="archiveType" column="ARCHIVE_TYPE" jdbcType="NUMERIC"/>
+		<result property="marketPosition" column="MARKET_POSITION" jdbcType="VARCHAR"/>
+		<result property="contractCode" column="CONTRACT_CODE" jdbcType="VARCHAR"/>
+		<result property="archiveStatus" column="ARCHIVE_STATUS" jdbcType="NUMERIC"/>
+		<result property="personId" column="PERSON_ID" jdbcType="NUMERIC"/>
+		<result property="cabinetsCode" column="CABINETS_CODE" jdbcType="VARCHAR"/>
+		<result property="cabinetsLayer" column="CABINETS_LAYER" jdbcType="VARCHAR"/>
+		<result property="cabinetsLattice" column="CABINETS_LATTICE" jdbcType="VARCHAR"/>
+		<result property="receiveDesc" column="RECEIVE_DESC" jdbcType="VARCHAR"/>
+		<result property="archiveReceiveUserid" column="ARCHIVE_RECEIVE_USERID" jdbcType="NUMERIC"/>
+		<result property="archiveStorageUserid" column="ARCHIVE_STORAGE_USERID" jdbcType="NUMERIC"/>
+		<result property="storageDate" column="STORAGE_DATE" jdbcType="DATE"/>
+		<result property="archiveFlowStatus" column="ARCHIVE_FLOW_STATUS" jdbcType="NUMERIC"/>
+		<result property="cabinetsPositionStatus" column="CABINETS_POSITION_STATUS" jdbcType="NUMERIC"/>
+		<result property="archiveSource" column="ARCHIVE_SOURCE" jdbcType="VARCHAR"/>
+		<result property="cabinetsLibrary" column="CABINETS_LIBRARY" jdbcType="VARCHAR"/>
+		<result property="archiveReceiveName" column="ARCHIVE_RECEIVE_NAME" jdbcType="VARCHAR"/>
+		<result property="archiveReceiveOrgId" column="ARCHIVE_RECEIVE_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="archiveReceiveOrgName" column="ARCHIVE_RECEIVE_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="archiveReceiveDate" column="ARCHIVE_RECEIVE_DATE" jdbcType="TIMESTAMP"/>
+		<result property="archiveStorageName" column="ARCHIVE_STORAGE_NAME" jdbcType="VARCHAR"/>
+		<result property="archiveStorageOrgId" column="ARCHIVE_STORAGE_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="archiveStorageOrgName" column="ARCHIVE_STORAGE_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="archiveStorageDate" column="ARCHIVE_STORAGE_DATE" jdbcType="TIMESTAMP"/>
+		<result property="archiveReceiveStatus" column="ARCHIVE_RECEIVE_STATUS" jdbcType="NUMERIC"/>
+		<result property="archivePrintLabel" column="ARCHIVE_PRINT_LABEL" jdbcType="NUMERIC"/>
+		<result property="archiveReceiveDesc" column="ARCHIVE_RECEIVE_DESC" jdbcType="VARCHAR"/>
+		<result property="dataSources" column="DATA_SOURCES" jdbcType="VARCHAR"/>
+		<result property="historyArchiveCode" column="HISTORY_ARCHIVE_CODE" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<resultMap id="StorageArchiveAppDto" type="com.xunfeng.business.personagency.archive.dto.StorageArchiveAppDto">
+		<result property="position" column="position" jdbcType="VARCHAR"/>
+		<result property="archiveCode" column="archiveCode" jdbcType="VARCHAR"/>
+		<result property="aac003" column="aac003" jdbcType="VARCHAR"/>
+		<result property="aac002" column="aac002" jdbcType="VARCHAR"/>
+		<result property="lendCreaterName" column="lendCreaterName" jdbcType="VARCHAR"/>
+		<result property="genderName" column="genderName" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<resultMap id="ArchiveAppDto" type="com.xunfeng.business.personagency.archive.dto.ArchiveAppDto">
+		<result property="position" column="position" jdbcType="VARCHAR"/>
+		<result property="archiveCode" column="archiveCode" jdbcType="VARCHAR"/>
+		<result property="aac003" column="aac003" jdbcType="VARCHAR"/>
+		<result property="aac002" column="aac002" jdbcType="VARCHAR"/>
+		<result property="lendCreaterName" column="lendCreaterName" jdbcType="VARCHAR"/>
+		<result property="genderName" column="genderName" jdbcType="VARCHAR"/>
+		
+		<result property="batchName" column="batchName" jdbcType="VARCHAR"/>
+		<result property="archiveReceiveStatusName" column="archiveReceiveStatusName" jdbcType="VARCHAR"/>
+		<result property="archiveStatusName" column="archiveStatusName" jdbcType="VARCHAR"/>
+		<result property="archiveTypeName" column="archiveTypeName" jdbcType="VARCHAR"/>
+		<result property="id" column="id" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<resultMap id="ArchivesStatisticsAppDto" type="com.xunfeng.business.personagency.archive.dto.ArchivesStatisticsAppDto">
+		<result property="id" column="id" jdbcType="NUMERIC"/>
+		<result property="position" column="position" jdbcType="VARCHAR"/>
+		<result property="archiveCode" column="archiveCode" jdbcType="VARCHAR"/>
+		<result property="aac003" column="aac003" jdbcType="VARCHAR"/>
+		<result property="aac002" column="aac002" jdbcType="VARCHAR"/>
+		<result property="createrName" column="createrName" jdbcType="VARCHAR"/>
+		<result property="genderName" column="genderName" jdbcType="VARCHAR"/>
+		<result property="typeName" column="typeName" jdbcType="VARCHAR"/>
+		<result property="type" column="type" jdbcType="NUMERIC"/>
+		<result property="createrId" column="createrId" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+
+	<sql id="columns">
+		ID,ARCHIVE_CODE,RECEIVE_DATE,ARCHIVE_NAME,ARCHIVE_BIRTH_DATE,RETIRED_AGE,PLAN_RETIRED_DATE,ARCHIVE_TYPE,MARKET_POSITION,CONTRACT_CODE,ARCHIVE_STATUS,PERSON_ID,CABINETS_CODE,CABINETS_LAYER,CABINETS_LATTICE,RECEIVE_DESC,ARCHIVE_RECEIVE_USERID,ARCHIVE_STORAGE_USERID,STORAGE_DATE,ARCHIVE_FLOW_STATUS,CABINETS_POSITION_STATUS,ARCHIVE_SOURCE,CABINETS_LIBRARY,ARCHIVE_RECEIVE_NAME,ARCHIVE_RECEIVE_ORG_ID,ARCHIVE_RECEIVE_ORG_NAME,ARCHIVE_RECEIVE_DATE,ARCHIVE_STORAGE_NAME,ARCHIVE_STORAGE_ORG_ID,ARCHIVE_STORAGE_ORG_NAME,ARCHIVE_STORAGE_DATE,ARCHIVE_RECEIVE_STATUS,ARCHIVE_PRINT_LABEL,ARCHIVE_RECEIVE_DESC,DATA_SOURCES,HISTORY_ARCHIVE_CODE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(archiveCode)"> AND upper(ARCHIVE_CODE) LIKE upper(#{archiveCode}) </if>
+			<if test="@Ognl@isNotEmpty(receiveDate)"> AND RECEIVE_DATE  =#{receiveDate} </if>
+			<if test="@Ognl@isNotEmpty(beginreceiveDate)"> AND RECEIVE_DATE  >=#{beginreceiveDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endreceiveDate)"> AND RECEIVE_DATE <![CDATA[ <=#{endreceiveDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(archiveName)"> AND ARCHIVE_NAME  LIKE #{archiveName}  </if>
+			<if test="@Ognl@isNotEmpty(archiveBirthDate)"> AND ARCHIVE_BIRTH_DATE  =#{archiveBirthDate} </if>
+			<if test="@Ognl@isNotEmpty(beginarchiveBirthDate)"> AND ARCHIVE_BIRTH_DATE  >=#{beginarchiveBirthDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endarchiveBirthDate)"> AND ARCHIVE_BIRTH_DATE <![CDATA[ <=#{endarchiveBirthDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(retiredAge)"> AND RETIRED_AGE  =#{retiredAge} </if>
+			<if test="@Ognl@isNotEmpty(planRetiredDate)"> AND PLAN_RETIRED_DATE  =#{planRetiredDate} </if>
+			<if test="@Ognl@isNotEmpty(beginplanRetiredDate)"> AND PLAN_RETIRED_DATE  >=#{beginplanRetiredDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endplanRetiredDate)"> AND PLAN_RETIRED_DATE <![CDATA[ <=#{endplanRetiredDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(archiveType)"> AND ARCHIVE_TYPE  =#{archiveType} </if>
+			<if test="@Ognl@isNotEmpty(marketPosition)"> AND MARKET_POSITION  LIKE #{marketPosition}  </if>
+			<if test="@Ognl@isNotEmpty(contractCode)"> AND CONTRACT_CODE  LIKE #{contractCode}  </if>
+			<if test="@Ognl@isNotEmpty(archiveStatus)"> AND a.ARCHIVE_STATUS  =#{archiveStatus} </if>
+			<if test="@Ognl@isNotEmpty(personId)"> AND PERSON_ID  =#{personId} </if>
+			<if test="@Ognl@isNotEmpty(cabinetsCode)"> AND CABINETS_CODE  LIKE #{cabinetsCode}  </if>
+			<if test="@Ognl@isNotEmpty(cabinetsLayer)"> AND CABINETS_LAYER  LIKE #{cabinetsLayer}  </if>
+			<if test="@Ognl@isNotEmpty(cabinetsLattice)"> AND CABINETS_LATTICE  LIKE #{cabinetsLattice}  </if>
+			<if test="@Ognl@isNotEmpty(receiveDesc)"> AND RECEIVE_DESC  LIKE #{receiveDesc}  </if>
+			<if test="@Ognl@isNotEmpty(archiveReceiveUserid)"> AND ARCHIVE_RECEIVE_USERID  =#{archiveReceiveUserid} </if>
+			<if test="@Ognl@isNotEmpty(archiveStorageUserid)"> AND ARCHIVE_STORAGE_USERID  =#{archiveStorageUserid} </if>
+			<if test="@Ognl@isNotEmpty(storageDate)"> AND STORAGE_DATE  =#{storageDate} </if>
+			<if test="@Ognl@isNotEmpty(beginstorageDate)"> AND STORAGE_DATE  >=#{beginstorageDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endstorageDate)"> AND STORAGE_DATE <![CDATA[ <=#{endstorageDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(archiveFlowStatus)"> AND ARCHIVE_FLOW_STATUS  =#{archiveFlowStatus} </if>
+			<if test="@Ognl@isNotEmpty(cabinetsPositionStatus)"> AND CABINETS_POSITION_STATUS  =#{cabinetsPositionStatus} </if>
+			<if test="@Ognl@isNotEmpty(archiveSource)"> AND ARCHIVE_SOURCE  LIKE #{archiveSource}  </if>
+			<if test="@Ognl@isNotEmpty(cabinetsLibrary)"> AND CABINETS_LIBRARY  LIKE #{cabinetsLibrary}  </if>
+			<if test="@Ognl@isNotEmpty(archiveReceiveName)"> AND ARCHIVE_RECEIVE_NAME  LIKE #{archiveReceiveName}  </if>
+			<if test="@Ognl@isNotEmpty(archiveReceiveOrgId)"> AND ARCHIVE_RECEIVE_ORG_ID  =#{archiveReceiveOrgId} </if>
+			<if test="@Ognl@isNotEmpty(archiveReceiveOrgName)"> AND ARCHIVE_RECEIVE_ORG_NAME  LIKE #{archiveReceiveOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(archiveReceiveDate)"> AND ARCHIVE_RECEIVE_DATE  =#{archiveReceiveDate} </if>
+			<if test="@Ognl@isNotEmpty(beginarchiveReceiveDate)"> AND ARCHIVE_RECEIVE_DATE  >=#{beginarchiveReceiveDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endarchiveReceiveDate)"> AND ARCHIVE_RECEIVE_DATE <![CDATA[ <=#{endarchiveReceiveDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(archiveStorageName)"> AND ARCHIVE_STORAGE_NAME  LIKE #{archiveStorageName}  </if>
+			<if test="@Ognl@isNotEmpty(archiveStorageOrgId)"> AND ARCHIVE_STORAGE_ORG_ID  =#{archiveStorageOrgId} </if>
+			<if test="@Ognl@isNotEmpty(archiveStorageOrgName)"> AND ARCHIVE_STORAGE_ORG_NAME  LIKE #{archiveStorageOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(archiveStorageDate)"> AND ARCHIVE_STORAGE_DATE  =#{archiveStorageDate} </if>
+			<if test="@Ognl@isNotEmpty(beginarchiveStorageDate)"> AND ARCHIVE_STORAGE_DATE  >=#{beginarchiveStorageDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endarchiveStorageDate)"> AND ARCHIVE_STORAGE_DATE <![CDATA[ <=#{endarchiveStorageDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(archiveReceiveStatus)"> AND ARCHIVE_RECEIVE_STATUS  =#{archiveReceiveStatus} </if>
+			<if test="@Ognl@isNotEmpty(beginArchivePrintLabel)"> AND ARCHIVE_PRINT_LABEL  >=#{beginArchivePrintLabel} </if>
+			<if test="@Ognl@isNotEmpty(endArchivePrintLabel)"> AND ARCHIVE_PRINT_LABEL  <![CDATA[ <=#{endArchivePrintLabel}]]>  </if>
+			<if test="@Ognl@isNotEmpty(archiveReceiveDesc)"> AND ARCHIVE_RECEIVE_DESC  LIKE #{archiveReceiveDesc}  </if>
+			<if test="@Ognl@isNotEmpty(dataSources)"> AND DATA_SOURCES  LIKE #{dataSources}  </if>
+			<if test="@Ognl@isNotEmpty(historyArchiveCode)"> AND HISTORY_ARCHIVE_CODE  LIKE #{historyArchiveCode}  </if>
+			
+			<if test="@Ognl@isNotEmpty(aac002)"> AND upper(p.AAC002) LIKE upper(#{aac002})  </if>
+			<if test="@Ognl@isNotEmpty(aac003)"> AND p.AAC003  LIKE #{aac003}  </if>
+			<if test="@Ognl@isNotEmpty(aac022)"> AND upper(p.AAC022)   LIKE upper(#{aac022})  </if>
+			<if test="@Ognl@isNotEmpty(beginaac006)"> AND p.AAC006  >=#{beginaac006,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaac006)"> AND p.AAC006 <![CDATA[ <=#{endaac006,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aac004)"> AND p.AAC004  = #{aac004}  </if>
+			<if test="@Ognl@isNotEmpty(aac011)"> AND p.AAC011  LIKE #{aac011}  </if>
+			
+			<if test="@Ognl@isNotEmpty(faMarriage)"> AND t.FA_MARRIAGE  LIKE #{faMarriage}  </if>
+			<if test="@Ognl@isNotEmpty(expSoctalNumber)"> AND i.EXP_SOCTAL_NUMBER  LIKE #{expSoctalNumber}  </if>
+			<!-- <if test="@Ognl@isNotEmpty(expEntrustCompany)"> AND i.EXP_ENTRUST_COMPANY  LIKE #{expEntrustCompany}  </if> -->
+			<if test="@Ognl@isNotEmpty(expEntrustCompany)"> AND ab.AAB004  LIKE #{expEntrustCompany}  </if>
+			<if test="@Ognl@isNotEmpty(expOldCompany)"> AND i.EXP_OLD_COMPANY  LIKE #{expOldCompany}  </if>
+			
+			<if test="@Ognl@isNotEmpty(lendCreaterName)"> AND m.LEND_CREATER_NAME  LIKE #{lendCreaterName}  </if>
+			<if test="@Ognl@isNotEmpty(lendStringReason)"> AND m.LEND_STRING_REASON  LIKE #{lendStringReason}  </if>
+			<if test="@Ognl@isNotEmpty(lendCreaterOrgName)"> AND m.LEND_CREATER_ORG_NAME  LIKE #{lendCreaterOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(beginlendCreaterDate)"> AND m.LEND_CREATER_DATE  >=#{beginlendCreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endlendCreaterDate)"> AND m.LEND_CREATER_DATE <![CDATA[ <=#{endlendCreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(lendReason)"> AND m.LEND_REASON  =#{lendReason} </if>
+			
+			<if test="@Ognl@isNotEmpty(expIsCadre)"> AND i.EXP_IS_CADRE  LIKE #{expIsCadre}  </if>
+			<if test="@Ognl@isNotEmpty(expIsDiscount)"> AND i.EXP_IS_DISCOUNT  LIKE #{expIsDiscount}  </if>
+			
+			<if test="@Ognl@isNotEmpty(searchValue)"> AND (upper(ARCHIVE_CODE) LIKE upper(#{searchValue})  or upper(p.AAC002) like upper(#{searchValue}) or p.AAC003 like #{searchValue} ) </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.archive.model.Archives">
+		INSERT INTO RSDA_BS_ARCHIVE_ARCHIVES
+		(ID,ARCHIVE_CODE,RECEIVE_DATE,ARCHIVE_NAME,ARCHIVE_BIRTH_DATE,RETIRED_AGE,PLAN_RETIRED_DATE,ARCHIVE_TYPE,MARKET_POSITION,CONTRACT_CODE,ARCHIVE_STATUS,PERSON_ID,CABINETS_CODE,CABINETS_LAYER,CABINETS_LATTICE,RECEIVE_DESC,ARCHIVE_RECEIVE_USERID,ARCHIVE_STORAGE_USERID,STORAGE_DATE,ARCHIVE_FLOW_STATUS,CABINETS_POSITION_STATUS,ARCHIVE_SOURCE,CABINETS_LIBRARY,ARCHIVE_RECEIVE_NAME,ARCHIVE_RECEIVE_ORG_ID,ARCHIVE_RECEIVE_ORG_NAME,ARCHIVE_RECEIVE_DATE,ARCHIVE_STORAGE_NAME,ARCHIVE_STORAGE_ORG_ID,ARCHIVE_STORAGE_ORG_NAME,ARCHIVE_STORAGE_DATE,ARCHIVE_RECEIVE_STATUS,ARCHIVE_PRINT_LABEL,ARCHIVE_RECEIVE_DESC,DATA_SOURCES,HISTORY_ARCHIVE_CODE)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{archiveCode,jdbcType=VARCHAR}, #{receiveDate,jdbcType=DATE}, #{archiveName,jdbcType=VARCHAR}, #{archiveBirthDate,jdbcType=DATE}, #{retiredAge,jdbcType=NUMERIC}, #{planRetiredDate,jdbcType=DATE}, #{archiveType,jdbcType=NUMERIC}, #{marketPosition,jdbcType=VARCHAR}, #{contractCode,jdbcType=VARCHAR}, #{archiveStatus,jdbcType=NUMERIC}, #{personId,jdbcType=NUMERIC}, #{cabinetsCode,jdbcType=VARCHAR}, #{cabinetsLayer,jdbcType=VARCHAR}, #{cabinetsLattice,jdbcType=VARCHAR}, #{receiveDesc,jdbcType=VARCHAR}, #{archiveReceiveUserid,jdbcType=NUMERIC}, #{archiveStorageUserid,jdbcType=NUMERIC}, #{storageDate,jdbcType=DATE}, #{archiveFlowStatus,jdbcType=NUMERIC}, #{cabinetsPositionStatus,jdbcType=NUMERIC}, #{archiveSource,jdbcType=VARCHAR}, #{cabinetsLibrary,jdbcType=VARCHAR}, #{archiveReceiveName,jdbcType=VARCHAR}, #{archiveReceiveOrgId,jdbcType=NUMERIC}, #{archiveReceiveOrgName,jdbcType=VARCHAR}, #{archiveReceiveDate,jdbcType=TIMESTAMP}, #{archiveStorageName,jdbcType=VARCHAR}, #{archiveStorageOrgId,jdbcType=NUMERIC}, #{archiveStorageOrgName,jdbcType=VARCHAR}, #{archiveStorageDate,jdbcType=TIMESTAMP}, #{archiveReceiveStatus,jdbcType=NUMERIC}, #{archivePrintLabel,jdbcType=NUMERIC}, #{archiveReceiveDesc,jdbcType=VARCHAR}, #{dataSources,jdbcType=VARCHAR},#{historyArchiveCode,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_ARCHIVE_ARCHIVES 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.archive.model.Archives">
+		UPDATE RSDA_BS_ARCHIVE_ARCHIVES SET
+		ARCHIVE_CODE=#{archiveCode,jdbcType=VARCHAR},
+		RECEIVE_DATE=#{receiveDate,jdbcType=DATE},
+		ARCHIVE_NAME=#{archiveName,jdbcType=VARCHAR},
+		ARCHIVE_BIRTH_DATE=#{archiveBirthDate,jdbcType=DATE},
+		RETIRED_AGE=#{retiredAge,jdbcType=NUMERIC},
+		PLAN_RETIRED_DATE=#{planRetiredDate,jdbcType=DATE},
+		ARCHIVE_TYPE=#{archiveType,jdbcType=NUMERIC},
+		MARKET_POSITION=#{marketPosition,jdbcType=VARCHAR},
+		CONTRACT_CODE=#{contractCode,jdbcType=VARCHAR},
+		ARCHIVE_STATUS=#{archiveStatus,jdbcType=NUMERIC},
+		PERSON_ID=#{personId,jdbcType=NUMERIC},
+		CABINETS_CODE=#{cabinetsCode,jdbcType=VARCHAR},
+		CABINETS_LAYER=#{cabinetsLayer,jdbcType=VARCHAR},
+		CABINETS_LATTICE=#{cabinetsLattice,jdbcType=VARCHAR},
+		RECEIVE_DESC=#{receiveDesc,jdbcType=VARCHAR},
+		ARCHIVE_RECEIVE_USERID=#{archiveReceiveUserid,jdbcType=NUMERIC},
+		ARCHIVE_STORAGE_USERID=#{archiveStorageUserid,jdbcType=NUMERIC},
+		STORAGE_DATE=#{storageDate,jdbcType=DATE},
+		ARCHIVE_FLOW_STATUS=#{archiveFlowStatus,jdbcType=NUMERIC},
+		CABINETS_POSITION_STATUS=#{cabinetsPositionStatus,jdbcType=NUMERIC},
+		ARCHIVE_SOURCE=#{archiveSource,jdbcType=VARCHAR},
+		CABINETS_LIBRARY=#{cabinetsLibrary,jdbcType=VARCHAR},
+		ARCHIVE_RECEIVE_NAME=#{archiveReceiveName,jdbcType=VARCHAR},
+		ARCHIVE_RECEIVE_ORG_ID=#{archiveReceiveOrgId,jdbcType=NUMERIC},
+		ARCHIVE_RECEIVE_ORG_NAME=#{archiveReceiveOrgName,jdbcType=VARCHAR},
+		ARCHIVE_RECEIVE_DATE=#{archiveReceiveDate,jdbcType=TIMESTAMP},
+		ARCHIVE_STORAGE_NAME=#{archiveStorageName,jdbcType=VARCHAR},
+		ARCHIVE_STORAGE_ORG_ID=#{archiveStorageOrgId,jdbcType=NUMERIC},
+		ARCHIVE_STORAGE_ORG_NAME=#{archiveStorageOrgName,jdbcType=VARCHAR},
+		ARCHIVE_STORAGE_DATE=#{archiveStorageDate,jdbcType=TIMESTAMP},
+		ARCHIVE_RECEIVE_STATUS=#{archiveReceiveStatus,jdbcType=NUMERIC},
+		ARCHIVE_PRINT_LABEL=#{archivePrintLabel,jdbcType=NUMERIC},
+		ARCHIVE_RECEIVE_DESC=#{archiveReceiveDesc,jdbcType=VARCHAR},
+		DATA_SOURCES=#{dataSources,jdbcType=VARCHAR},
+		HISTORY_ARCHIVE_CODE=#{historyArchiveCode,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Archives">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_ARCHIVE_ARCHIVES
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getByIdForUpdate" parameterType="java.lang.Long" resultMap="Archives">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_ARCHIVE_ARCHIVES
+		WHERE
+		ID=#{id} for update
+	</select>
+	
+	<select id="getAll" resultMap="Archives">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_ARCHIVE_ARCHIVES   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	<!-- 档案信息查询 -->
+
+	<select id="getArchivesPersonList" resultType="java.util.HashMap">
+		select t.personId as "aac001",t.aac002 as "aac002",t.aac003 as "aac003",t.genderName as "aac004",t.expCardNumber as "expCardNumber" from v_rsda_bs_archives t
+			 where upper(t.AAC002) LIKE upper(#{searchValue})  or t.AAC003  LIKE #{searchValue} or upper(t.ARCHIVECODE)  LIKE upper(#{searchValue})
+	</select>
+	<!-- 档案信息查询 包括社保补贴档案补录数据-->
+	<select id="getAllArchivesPersonList" resultType="java.util.HashMap">
+		select
+	        a.ID as id,
+	        a.PERSON_ID as "aac001",
+	        p.AAC003 as "aac003",
+	        p.AAC002 as "aac002",
+	        p.AAE005 as "aae005",
+	        e.name as "aac004"
+      	from RSDA_BS_ARCHIVE_ARCHIVES a
+        left join ac01 p on p.aac001=a.person_id
+        left join TAB_SEX e on e.code=p.AAC004 
+		where upper(p.AAC002) LIKE upper(#{searchValue})  or p.AAC003  LIKE #{searchValue} or upper(a.archive_code)  LIKE upper(#{searchValue})
+	</select>
+	
+	<select id="getNoArchivesPersonList" resultType="java.util.HashMap">
+		select t.aac001 as "aac001",t.aac002 as "aac002",t.aac003 as "aac003",t.aac004 as "aac004",t.expCardNumber as  "expCardNumber" from V_AC01 t
+			 where upper(t.AAC002) LIKE upper(#{searchValue}) or t.AAC003  LIKE #{searchValue} and t.aac001 not in (select t.personId from V_RSDA_BS_ARCHIVES t )
+	</select>
+	<select id="getAllArchives" resultType="java.util.HashMap">
+        select  a.* from v_rsda_bs_all_archives a
+		<include refid="dynamicCheckout" />
+		order by a.receiveDate desc,a.id desc
+	</select>
+	<!-- 查询个人信息和档案信息，以人员表为主表 -->
+	<select id="getAllPersonArchives" resultType="java.util.HashMap">
+		select  p.AAC001 as AAC001,p.AAC003 as AAC003,p.AAC002 as AAC002,p.AAC004 as aac004
+				,p.AAC005 as aac005,p.AAC011 as AAC011,to_char(p.AAC006,'yyyy-mm-dd') as AAC006,p.AAE005 as AAE005
+				,a.ARCHIVE_CODE as archiveCode,a.ID as id,a.CONTRACT_CODE as contractCode
+				,a.ARCHIVE_NAME as archiveName
+				,a.ARCHIVE_RECEIVE_NAME as archiveReceiveName
+				,to_char(a.RECEIVE_DATE,'yyyy-mm-dd') as receiveDate
+				,a.ARCHIVE_STATUS as archiveStatus
+				,a.ARCHIVE_FLOW_STATUS as archiveFlowStatus
+				,a.ARCHIVE_RECEIVE_STATUS as archiveReceiveStatus
+				,cp.corp_id as corpid
+						
+		from ac01 p
+		left join (select * from RSDA_BS_ARCHIVE_ARCHIVES b where b.data_sources = 1 ) a on a.person_id = p.aac001
+		left join RSDA_BS_PERSON_EXPAND i on i.EXP_PERSON_ID=a.PERSON_ID
+		left join RSDA_BS_CORP_PERSON cp on cp.PERSON_ID = a.PERSON_ID  
+        
+        <include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+			order by a.RECEIVE_DATE  desc,a.person_id asc
+		</if>
+	</select>
+	<!-- 档案信息查询 -->
+	<select id="getArchivesByPersonId" resultType="java.util.HashMap">
+		select  
+				p.AAC003 as AAC003,p.AAC002 as AAC002,e.name as "genderName",p.AAC004 as "aac004",p.AAC005 as "aac005",p.AAC011 as "aac011"
+				,a.ARCHIVE_CODE as "archiveCode",a.ID as "id",a.CONTRACT_CODE as "contractCode"
+				,to_char(a.ARCHIVE_BIRTH_DATE,'yyyy-mm-dd') as "archiveBirthDate",a.ARCHIVE_STATUS as "archiveStatus"
+				,s.name as "archiveStatusName"
+				,h.name as "archiveTypeName"
+				,i.EXP_PERSON_PHONE as "expPersonPhone"
+				,to_char(p.AAC006,'yyyy-mm-dd') as AAC006
+				,a.ARCHIVE_NAME as "archiveName"
+				,a.ARCHIVE_RECEIVE_NAME as "archiveReceiveName"
+				,to_char(a.RECEIVE_DATE,'yyyy-mm-dd') as "receiveDate"
+				,p.AAE005 as AAE005
+				,i.EXP_OLD_COMPANY as "expOldCompany"
+				,ab.AAB004 as "expEntrustCompany"
+				,a.ARCHIVE_FLOW_STATUS as "archiveFlowStatus"
+				,a.ARCHIVE_RECEIVE_STATUS as "archiveReceiveStatus"
+				,to_char(i.EXP_START_JOB_DATE,'yyyy-mm-dd') as "expStartJobDate"
+				,to_char(a.STORAGE_DATE,'yyyy-mm-dd') as "storageDate"
+						
+		from ac01 p
+		left join (select * from RSDA_BS_ARCHIVE_ARCHIVES b where b.data_sources = 1 ) a on a.person_id = p.aac001
+		left join RSDA_BS_PERSON_EXPAND i on i.EXP_PERSON_ID=a.PERSON_ID
+        left join RSDA_TAB_ARCHIVETYPE h on h.code=a.ARCHIVE_TYPE
+        left join TAB_SEX e on e.code=p.AAC004
+        left join RSDA_TAB_ARCHIVESTATUS s on s.code=a.ARCHIVE_STATUS
+       	left join rsda_bs_corp_person rbcp on rbcp.PERSON_ID=p.AAC001
+        left join ab01 ab on ab.aab001 = rbcp.corp_id
+        
+       where p.aac001=#{personId}
+	</select>
+	<!-- 查询档案接收信息 -->
+	<select id="getReceiveArchivesByPersonId" resultType="java.util.HashMap">
+		select  a.ID as "id"
+				,a.ARCHIVE_CODE as "archiveCode",a.ARCHIVE_TYPE as "archiveType"
+				,to_char(a.RECEIVE_DATE,'yyyy-mm-dd') as "receiveDate"
+				,a.ARCHIVE_NAME as "archiveName"
+				,to_char(a.ARCHIVE_BIRTH_DATE,'yyyy-mm-dd') as "archiveBirthDate"
+				,to_char(a.PLAN_RETIRED_DATE,'yyyy-mm-dd') as "planRetiredDate"
+				,a.RETIRED_AGE as "retiredAge",a.ARCHIVE_SOURCE as "archiveSource"
+				,a.CONTRACT_CODE as "contractCode",a.MARKET_POSITION as "marketPosition"
+				,a.CABINETS_LIBRARY as "cabinetsLibrary",a.CABINETS_CODE as "cabinetsCode",a.CABINETS_LAYER as "cabinetsLayer"
+				,a.CABINETS_LATTICE as "cabinetsLattice",a.ARCHIVE_RECEIVE_DESC as "archiveReceiveDesc"
+				,a.ARCHIVE_RECEIVE_USERID as "archiveReceiveUserid",a.ARCHIVE_RECEIVE_NAME as "archiveReceiveName"
+				,ARCHIVE_RECEIVE_ORG_ID as "archiveReceiveOrgId",a.ARCHIVE_RECEIVE_ORG_NAME as "archiveReceiveOrgName"
+				,to_char(a.ARCHIVE_RECEIVE_DATE,'yyyy-mm-dd') as "archiveReceiveDate"
+				,i.EXP_PERSON_NUMBER as "expPersonNumber"
+				
+						
+		from RSDA_BS_ARCHIVE_ARCHIVES a 
+		left join ac01 p on p.aac001=a.PERSON_ID
+		left join RSDA_BS_PERSON_EXPAND i on i.EXP_PERSON_ID=a.PERSON_ID
+       
+       where p.AAC001=#{personId} and a.DATA_SOURCES = 1
+	</select>
+	<!-- 根据个人id查询档案入库信息 -->
+	<select id="getStorageArchivesByPersonId" resultType="java.util.HashMap">
+		select  a.ID as "id"
+				,p.AAC003 as "aac003",p.AAC002 as "aac002",to_char(p.AAC006,'yyyy-mm-dd') as "aac006",p.AAE005 as "aae005"
+				,p.AAC022 as "aac022"
+				,e.name as "genderName"
+				,f.name as "nationName"
+				,u.name as "maritalStatusName"
+				,t.FA_NAME as "faName"
+				,d.name as "educationName"
+				,v.name as "politicalLandScape"
+				,to_char(i.EXP_START_JOB_DATE,'yyyy-mm-dd') as "expStartJobDate"
+				,decode(i.EXP_IS_CADRE , 0, '否', 1, '是') as "expIsCadreName"
+				,i.EXP_PERSON_PHONE as "expPersonPhone"
+				,decode(i.EXP_IS_DISCOUNT , 0, '否', 1, '是') as "expISDiscount"
+				,p.AAB301 as "aab301"
+				,a.ARCHIVE_CODE as "archiveCode"
+				,to_char(a.ARCHIVE_BIRTH_DATE,'yyyy-mm-dd') as "archiveBirthDate"
+				,to_char(a.RECEIVE_DATE,'yyyy-mm-dd') as "receiveDate"
+				,a.ARCHIVE_NAME as "archiveName"
+				,a.RETIRED_AGE as "retiredAge"
+				,to_char(a.PLAN_RETIRED_DATE,'yyyy-mm-dd') as "planRetiredDate"
+				,s.name as "archiveStatusName"
+				,i.EXP_PERSON_NUMBER as "expPersonNumber"
+				,ab.AAB004 as "expEntrustCompany"
+				,h.name as "archiveTypeName"
+				,p.aae013 as "aae013"
+				,i.EXP_SOCTAL_NUMBER as "expSoctalNumber"
+				,i.EXP_OLD_COMPANY as "expOldCompany"  
+				,a.ARCHIVE_RECEIVE_STATUS as "archiveReceiveStatus"
+				,decode(a.ARCHIVE_RECEIVE_STATUS , 1, '未入库', 2, '已入库') as "archiveReceiveStatusName"
+				,j.name as "marketPositionName"
+				,a.CABINETS_LIBRARY as "cabinetsLibrary",a.CABINETS_CODE as "cabinetsCode",a.CABINETS_LAYER as "cabinetsLayer",a.CABINETS_LATTICE as "cabinetsLattice"
+				,a.ARCHIVE_RECEIVE_DESC as "archiveReceiveDesc"
+				,a.ARCHIVE_SOURCE as "archiveSource"
+				
+		from RSDA_BS_ARCHIVE_ARCHIVES a 
+		left join ac01 p on p.aac001=a.PERSON_ID
+		left join RSDA_BS_PERSON_EXPAND i on i.EXP_PERSON_ID=a.PERSON_ID
+		left join RSDA_BS_PERSON_FAMILY t on t.FA_PERSON_ID=p.AAC001 
+        left join TAB_SEX e on e.code=p.AAC004
+        left join TAB_NATION f on f.code=p.AAC005 
+        left join TAB_MARRIAGE u on u.code=t.FA_MARRIAGE
+        left join TAB_EDUCATION d on d.code=p.aac011  
+        left join TAB_AFFIL v on v.code=p.AAC024
+        left join RSDA_TAB_ARCHIVESTATUS s on s.code=a.ARCHIVE_STATUS
+        left join RSDA_TAB_ARCHIVETYPE h on h.code=a.ARCHIVE_TYPE
+        left join RSDA_TAB_MARKET_POSITION j on j.code=a.MARKET_POSITION
+        left join rsda_bs_corp_person rbcp on rbcp.PERSON_ID=p.AAC001
+        left join ab01 ab on ab.aab001 = rbcp.corp_id
+        
+       where p.AAC001=#{personId} and a.DATA_SOURCES = 1
+	</select>
+	<select id="getArchivesByPId" resultMap="Archives">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_ARCHIVE_ARCHIVES a  
+		WHERE a.PERSON_ID=#{personId} and a.DATA_SOURCES = 1
+	</select>
+	
+	<!-- 单位档案接收查询单位下所有的档案信息 -->
+	<select id="getCorpAllArchive" resultType="java.util.HashMap">
+		select  a.ID as "ID"
+				,a.ARCHIVE_CODE as "archiveCode"
+				,p.AAC001 as "aac001",p.AAC003 as "aac003",p.AAC002 as "aac002"
+				,e.name as "genderName"
+				,to_char(p.AAC006,'yyyy-mm-dd') as "aac006"
+				,i.EXP_SOCTAL_NUMBER as "ExpSoctalNumber"
+				,a.CONTRACT_CODE as "ContractCode"
+				,h.name as "archiveTypeName"
+				,a.ARCHIVE_NAME as "archiveName"
+				,to_char(a.ARCHIVE_BIRTH_DATE,'yyyy-mm-dd') as "archiveBirthDate"
+				,p.AAB301 as "aab301"
+				,t.FA_NAME as "FAName"
+				,to_char(a.PLAN_RETIRED_DATE,'yyyy-mm-dd') as "planRetiredDate"
+				,to_char(a.RECEIVE_DATE,'yyyy-mm-dd') as "receiveDate"
+				,s.name as "archiveStatusName"
+				,a.ARCHIVE_RECEIVE_DESC as "archiveReceiveDesc"
+				,a.ARCHIVE_RECEIVE_NAME as "ArchiveReceiveName"
+				,ab.AAB004 as "expEntrustCompany"
+				,i.EXP_OLD_COMPANY as "expOldCompany"
+				,to_char(i.EXP_START_JOB_DATE,'yyyy-mm-dd') as "expStartJobDate"
+				,p.AAE005 as "aae005"
+				,i.EXP_PERSON_PHONE as "expPersonPhone"
+				,decode(a.ARCHIVE_RECEIVE_STATUS , 1, '未入库', 2, '已入库') as "archiveReceiveStatusName"
+				,a.MARKET_POSITION as "marketPosition"
+				,a.CABINETS_LIBRARY as "cabinetsLibrary",a.CABINETS_CODE as "cabinetsCode",a.CABINETS_LAYER as "cabinetsLayer"
+				,a.CABINETS_LATTICE as "cabinetsLattice"
+				,a.ARCHIVE_STORAGE_NAME as "archiveStorageName",a.ARCHIVE_STORAGE_ORG_NAME as "archiveStorageOrgName"
+				,to_char(a.ARCHIVE_STORAGE_DATE,'yyyy-mm-dd') as "archiveStorageDate"
+				,main.FD_END_PAYMENT_DATE as "endPaymentDate"			
+		from RSDA_BS_ARCHIVE_ARCHIVES a 
+		left join ac01 p on p.AAC001=a.person_id
+		left join rsda_bs_corp_person rbcp on rbcp.PERSON_ID=p.AAC001
+        left join RSDA_BS_PERSON_EXPAND i on i.EXP_PERSON_ID=a.PERSON_ID  
+        left join RSDA_TAB_ARCHIVETYPE h on h.code=a.ARCHIVE_TYPE
+        left join TAB_SEX e on e.code=p.AAC004
+		left join RSDA_BS_PERSON_FAMILY t on t.FA_PERSON_ID=p.AAC001 
+        left join RSDA_TAB_ARCHIVESTATUS s on s.code=a.ARCHIVE_STATUS
+        left join rsda_bs_payment_main main on main.FK_PERSONID=a.PERSON_ID 
+        left join ab01 ab on ab.aab001 = rbcp.corp_id
+        <include refid="dynamicNotWhere" />
+		order by a.RECEIVE_DATE  desc,a.person_id asc
+	</select>
+	<sql id="dynamicNotWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(archiveCode)"> AND upper(a.ARCHIVE_CODE) LIKE upper(#{archiveCode}) </if>
+			<if test="@Ognl@isNotEmpty(aac002)"> AND upper(p.AAC002) LIKE upper(#{aac002})  </if>
+			<if test="@Ognl@isNotEmpty(aac003)"> AND p.AAC003  LIKE #{aac003}  </if>
+			<if test="@Ognl@isNotEmpty(aab001)"> AND rbcp.CORP_ID  =#{aab001} </if>
+			<if test="@Ognl@isNotEmpty(archiveStatusValue)"> AND a.ARCHIVE_STATUS in (${archiveStatusValue}) </if>
+			<if test="@Ognl@isNotEmpty(archiveFlowStatusValue)"> AND a.ARCHIVE_FLOW_STATUS in (${archiveFlowStatusValue}) </if>
+			<if test="@Ognl@isNotEmpty(archiveReceiveStatus)"> AND a.ARCHIVE_RECEIVE_STATUS  =#{archiveReceiveStatus} </if>
+			<if test="@Ognl@isNotEmpty(searchValue)"> AND (upper(a.ARCHIVE_CODE) LIKE upper(#{searchValue})  or p.AAC002 like #{searchValue} or p.AAC003 like #{searchValue}) </if>
+			<if test="@Ognl@isNotEmpty(dataSources)"> AND a.DATA_SOURCES  LIKE #{dataSources}  </if>
+			<if test="@Ognl@isNotEmpty(ids)"> AND a.ID in (${ids}) </if>
+		</where>
+	</sql>
+	<!-- 社保关系管理模块下  根据id查询档案和个人数据映射 -->
+	<select id="getArchivesPersonByArchivesId" resultType="java.util.HashMap">
+		select  
+				a.ID as "archivesId"
+				,a.ARCHIVE_CODE as "archiveCode"
+				,p.AAC002 as "aac002",p.AAC003 as "aac003",p.AAC004 as "aac004",p.AAC005 as "aac005",p.AAC006 as "aac006"
+				,i.EXP_PERSON_NUMBER as "expPersonNumber"
+				,i.EXP_START_JOB_DATE as "expStartJobDate"
+				,i.EXP_PENSION_DATE as "expPensionDate"
+				,i.EXP_MEDICAL_DATE as "expMedicalDate"
+				,p.AAE005 as "aae005"
+				,i.EXP_PERSON_PHONE as "expPersonPhone"
+				,p.AAB301 as "aab301"
+				,p.AAE007 as "aae007"
+				,p.AAC001 as "personId"
+				
+		from RSDA_BS_ARCHIVE_ARCHIVES a 
+		left join ac01 p on p.aac001=a.PERSON_ID
+		left join RSDA_BS_PERSON_EXPAND i on i.EXP_PERSON_ID=a.PERSON_ID
+		
+        where a.id=#{id} and a.DATA_SOURCES = 1
+	</select>
+	<!-- 查找所有可以批量借阅归还的数据 -->
+	<select id="getAllArchivesCheckoutR" resultType="java.util.HashMap">
+		select  a.* from v_rsda_bs_archives a
+		<include refid="dynamicCheckout" />
+	</select>
+	<sql id="dynamicCheckout">
+		<where>
+			<if test="@Ognl@isNotEmpty(archiveStorageName)"> AND a.archiveStorageName  LIKE #{archiveStorageName}  </if>
+			<if test="@Ognl@isNotEmpty(archiveStorageOrgName)"> AND a.archiveStorageOrgName  LIKE #{archiveStorageOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(beginArchivePrintLabel)"> AND a.archivePrintLabel  >=#{beginArchivePrintLabel} </if>
+			<if test="@Ognl@isNotEmpty(endArchivePrintLabel)"> AND a.archivePrintLabel  <![CDATA[ <=#{endArchivePrintLabel}]]>  </if>
+			<if test="@Ognl@isNotEmpty(cabinetsLattice)"> AND a.cabinetsLattice  LIKE #{cabinetsLattice}  </if>
+			<if test="@Ognl@isNotEmpty(cabinetsLayer)"> AND a.cabinetsLayer  LIKE #{cabinetsLayer}  </if>
+		    <if test="@Ognl@isNotEmpty(cabinetsCode)"> AND a.cabinetsCode  LIKE #{cabinetsCode}  </if>
+		    <if test="@Ognl@isNotEmpty(cabinetsLibrary)"> AND a.cabinetsLibrary  LIKE #{cabinetsLibrary}  </if>
+			<if test="@Ognl@isNotEmpty(marketPosition)"> AND a.marketPosition  LIKE #{marketPosition}  </if>
+			<if test="@Ognl@isNotEmpty(id)"> AND a.ID  = #{id}  </if>
+			<if test="@Ognl@isNotEmpty(tarchiveCode)"> AND upper(a.archiveCode) = upper(#{tarchiveCode}) </if>
+			<if test="@Ognl@isNotEmpty(archiveName)"> AND a.archiveName  LIKE #{archiveName}  </if>
+			<if test="@Ognl@isNotEmpty(taac002)"> AND upper(a.AAC002) = upper(#{taac002})  </if>
+			<if test="@Ognl@isNotEmpty(aac004)"> AND a.AAC004  = #{aac004}  </if>
+			<if test="@Ognl@isNotEmpty(archiveCode)"> AND upper(a.archiveCode) LIKE upper(#{archiveCode}) </if>
+			<if test="@Ognl@isNotEmpty(aac002)"> AND upper(a.AAC002) LIKE upper(#{aac002})  </if>
+			<if test="@Ognl@isNotEmpty(archiveStatusValue)"> AND a.archiveStatus in (${archiveStatusValue}) </if>
+			<if test="@Ognl@isNotEmpty(archiveFlowStatusValue)"> AND a.archiveFlowStatus in (${archiveFlowStatusValue}) </if>
+			<if test="@Ognl@isNotEmpty(archiveReceiveStatus)"> AND a.archiveReceiveStatus  =#{archiveReceiveStatus} </if>
+			<if test="@Ognl@isNotEmpty(beginArchiveCode)"> AND a.archiveCode  >=#{beginArchiveCode} </if>
+			<if test="@Ognl@isNotEmpty(endArchiveCode)"> AND a.archiveCode  <![CDATA[ <=#{endArchiveCode}]]>  </if>
+			<if test="@Ognl@isNotEmpty(archiveType)"> AND a.archiveType  =#{archiveType} </if>
+			<if test="@Ognl@isNotEmpty(beginarchiveBirthDate)"> AND a.archiveBirthDate  >=#{beginarchiveBirthDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endarchiveBirthDate)"> AND a.archiveBirthDate <![CDATA[ <=#{endarchiveBirthDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(beginplanRetiredDate)"> AND  a.planRetiredDate >=#{beginplanRetiredDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endplanRetiredDate)"> AND a.planRetiredDate <![CDATA[ <=#{endplanRetiredDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(beginarchiveStorageDate)"> AND a.archiveStorageDate  >=#{beginarchiveStorageDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endarchiveStorageDate)"> AND a.archiveStorageDate <![CDATA[ <=#{endarchiveStorageDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(archiveStatus)"> AND a.archiveStatus  =#{archiveStatus} </if>
+			<if test="@Ognl@isNotEmpty(archiveFlowStatus)"> AND a.archiveFlowStatus  =#{archiveFlowStatus} </if>
+			<if test="@Ognl@isNotEmpty(beginreceiveDate)"> AND a.receiveDate  >=#{beginreceiveDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endreceiveDate)"> AND a.receiveDate <![CDATA[ <=#{endreceiveDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(beginarchiveReceiveDate)"> AND a.archiveReceiveDate  >=#{beginarchiveReceiveDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endarchiveReceiveDate)"> AND a.archiveReceiveDate <![CDATA[ <=#{endarchiveReceiveDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(archiveReceiveOrgName)"> AND a.archiveReceiveOrgName  LIKE #{archiveReceiveOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(archiveReceiveName)"> AND a.archiveReceiveName  LIKE #{archiveReceiveName}  </if>
+			<if test="@Ognl@isNotEmpty(aab004)"> AND a.aab004  LIKE #{aab004}  </if>
+			<if test="@Ognl@isNotEmpty(uaNo)"> AND a.uaNo    LIKE #{uaNo} </if>
+			<if test="@Ognl@isNotEmpty(batchName)"> AND a.batchName  LIKE #{batchName} </if>
+			<if test="@Ognl@isNotEmpty(aac003)"> AND a.AAC003  LIKE #{aac003}  </if>
+			<if test="@Ognl@isNotEmpty(aac022)"> AND upper(a.AAC022)   LIKE upper(#{aac022})  </if>
+			<if test="@Ognl@isNotEmpty(beginaac006)"> AND a.AAC006  >=#{beginaac006,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaac006)"> AND a.AAC006 <![CDATA[ <=#{endaac006,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aac011)"> AND a.AAC011  LIKE #{aac011}  </if>
+			<if test="@Ognl@isNotEmpty(faMarriage)"> AND a.faMarriage  LIKE #{faMarriage}  </if>
+			<if test="@Ognl@isNotEmpty(expSoctalNumber)"> AND a.expSoctalNumber  LIKE #{expSoctalNumber}  </if>
+			<if test="@Ognl@isNotEmpty(expEntrustCompany)"> AND a.expEntrustCompany  LIKE #{expEntrustCompany}  </if>
+			<if test="@Ognl@isNotEmpty(expOldCompany)"> AND a.expOldCompany  LIKE #{expOldCompany}  </if>
+			<if test="@Ognl@isNotEmpty(lendCreaterName)"> AND a.lendCreaterName  LIKE #{lendCreaterName}  </if>
+			<if test="@Ognl@isNotEmpty(lendStringReason)"> AND a.lendStringReason  LIKE #{lendStringReason}  </if>
+			<if test="@Ognl@isNotEmpty(lendCreaterOrgName)"> AND a.lendCreaterOrgName  LIKE #{lendCreaterOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(beginlendCreaterDate)"> AND a.LENDCREATERDATE  >=#{beginlendCreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endlendCreaterDate)"> AND a.LENDCREATERDATE <![CDATA[ <=#{endlendCreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(lendReason)"> AND a.lendReason  =#{lendReason} </if>
+			<if test="@Ognl@isNotEmpty(expIsCadre)"> AND a.expIsCadre  LIKE #{expIsCadre}  </if>
+			<if test="@Ognl@isNotEmpty(expIsDiscount)"> AND a.expIsDiscount  LIKE #{expIsDiscount}  </if>
+			<if test="@Ognl@isNotEmpty(searchValue)"> AND (upper(a.archiveCode) LIKE upper(#{searchValue})  or a.AAC002 like #{searchValue} or a.AAC003 like #{searchValue}) </if>
+			
+			<if test="@Ognl@isNotEmpty(personId)"> AND a.personId  =#{personId} </if>
+			<if test="@Ognl@isNotEmpty(archiveCodes)"> AND a.archiveCode in (${archiveCodes}) </if>
+			<if test="@Ognl@isNotEmpty(archiveReceiveOrgIdApp)"> AND a.archiveReceiveOrgId in (${archiveReceiveOrgIdApp})</if>
+			
+		</where>
+	</sql>
+	<!-- 根据档案状态查询条数 -->
+	<select id="getArchivesCount"  parameterType="java.lang.Long" resultType="java.lang.Long">
+		select count(*)
+		FROM RSDA_BS_ARCHIVE_ARCHIVES
+		WHERE
+		ARCHIVE_STATUS =#{archiveStatus} and ARCHIVE_FLOW_STATUS =#{archiveFlowStatus} and ARCHIVE_RECEIVE_STATUS =#{archiveReceiveStatus} and DATA_SOURCES = 1
+		<include refid="dynamicOrgWhere" />
+	</select>
+	<sql id="dynamicOrgWhere">
+		<if test="@Ognl@isNotEmpty(archiveReceiveOrgId)"> AND ARCHIVE_RECEIVE_ORG_ID  in (${archiveReceiveOrgId}) </if>
+	</sql>
+	
+	<!-- 档案入库手机app接口 -->
+	<select id="getAllArchivesApp" resultMap="StorageArchiveAppDto">
+		select  a.ID as "id",p.AAC003 as "aac003",p.AAC002 as "aac002",p.AAC022 as "aac022"
+				,e.name as "genderName",a.ARCHIVE_CODE as "archiveCode",a.ARCHIVE_NAME as "archiveName"
+				,a.ARCHIVE_RECEIVE_STATUS as "archiveReceiveStatus"
+				,decode(a.ARCHIVE_RECEIVE_STATUS , 1, '未入库', 2, '已入库') as "archiveReceiveStatusName"
+				,a.MARKET_POSITION as "position"
+				,a.ARCHIVE_RECEIVE_NAME as "archiveReceiveName"
+				
+		from RSDA_BS_ARCHIVE_ARCHIVES a 
+		left join ac01 p on p.aac001=a.PERSON_ID
+        left join TAB_SEX e on e.code=p.AAC004
+        left join RSDA_TAB_ARCHIVESTATUS s on s.code=a.ARCHIVE_STATUS
+        
+        <include refid="dynamicWhereApp" />
+        
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+			order by a.id asc
+		</if>
+	</select>
+	
+	<sql id="dynamicWhereApp">
+		<where>
+			<if test="@Ognl@isNotEmpty(archiveStatus)"> AND a.ARCHIVE_STATUS  =#{archiveStatus} </if>
+			<if test="@Ognl@isNotEmpty(archiveFlowStatus)"> AND a.ARCHIVE_FLOW_STATUS  =#{archiveFlowStatus} </if>
+			<if test="@Ognl@isNotEmpty(archiveReceiveStatus)"> AND a.ARCHIVE_RECEIVE_STATUS  =#{archiveReceiveStatus} </if>
+			<if test="@Ognl@isNotEmpty(archiveReceiveOrgIdApp)"> AND a.ARCHIVE_RECEIVE_ORG_ID in (${archiveReceiveOrgIdApp})</if>
+		</where>
+	</sql>
+	<!-- 档案入库手机app接口 -->
+	<select id="getArchivesAppBy" resultMap="ArchiveAppDto">
+		select  a.ID as "id",
+				a.AAC003 as "aac003",
+				a.AAC002 as "aac002"
+				,a.GENDERNAME as "genderName"
+				,a.ARCHIVECODE as "archiveCode"
+				,a.ARCHIVENAME as "archiveName"
+				,a.position as "position"
+				,a.archiveReceiveName as "archiveReceiveName"
+				,a.archiveTypeName as "archiveTypeName"
+				,a.batchName as "batchName"
+				,a.archiveReceiveStatusName as "archiveReceiveStatusName"
+				,a.archiveStatusName as "archiveStatusName"
+				,a.archiveFlowStatusName as "archiveFlowStatusName"
+				
+		from  v_rsda_bs_all_archives a
+        <include refid="dynamicCheckout" />
+	</select>
+	<!-- 今日完成接口 -->
+	<select id="getFinshTotalApp" resultMap="ArchivesStatisticsAppDto">
+		select * from v_rsda_bs_archives_statistics a
+        
+        <include refid="dynamicWhereFinshApp" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+			order by a.createrDate desc,a.id desc
+		</if>
+	</select>
+	<!-- 获取今日完成提示 -->
+	<select id="getFinshTotalAppCount"  parameterType="java.lang.Long" resultType="java.lang.Long">
+		select count(*) 
+		FROM V_RSDA_BS_ARCHIVES_STATISTICS a
+		
+		<include refid="dynamicWhereFinshApp" />
+	</select>
+	
+	<sql id="dynamicWhereFinshApp">
+		<where>
+			<if test="@Ognl@isNotEmpty(userid)"> AND a.CREATERID  =#{userid} </if>
+			<if test="@Ognl@isNotEmpty(type)"> AND a.TYPE  =#{type} </if>
+			<if test="@Ognl@isNotEmpty(windowCreateName)"> AND a.windowCreateName  =#{windowCreateName} </if>
+			<if test="@Ognl@isNotEmpty(beginCreaterDate)"> AND a.createrDate  >=#{beginCreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endCreaterDate)"> AND a.createrDate <![CDATA[ <=#{endCreaterDate,jdbcType=DATE}]]> </if>
+		</where>
+	</sql>
+	<resultMap id="ArchivesStatisticsDetailAppDto" type="com.xunfeng.business.personagency.archive.dto.ArchivesStatisticsDetailAppDto">
+		<result property="windowCreaterName" column="windowCreaterName" jdbcType="VARCHAR"/>
+	</resultMap>
+	<!-- 今日完成详情接口 -->
+	<select id="getFinshTotalDetailApp" resultMap="ArchivesStatisticsDetailAppDto">
+		select distinct(a.windowCreateName) from v_rsda_bs_archives_statistics a
+        
+        <include refid="dynamicWhereFinshApp" />
+	</select>
+	<!-- 获取打印的数据 -->
+	<select id="getArchivesByArchivesId" resultType="java.util.HashMap">
+		select  
+				a.ID as "archivesId",a.ARCHIVE_CODE as "archiveCode"
+				,nvl(a.ARCHIVE_NAME,p.aac003) as "archiveName"
+				,e.name as "genderName"
+				,i.EXP_OLD_COMPANY as "expOldCompany"
+				,p.AAC002 as "aac002"
+				,to_char(a.RECEIVE_DATE,'yyyy') as "year"
+				,to_char(a.RECEIVE_DATE,'mm') as "month"
+				,to_char(a.RECEIVE_DATE,'dd') as "day"
+				
+		from RSDA_BS_ARCHIVE_ARCHIVES a 
+		left join ac01 p on p.aac001=a.PERSON_ID
+		left join RSDA_BS_PERSON_EXPAND i on i.EXP_PERSON_ID=a.PERSON_ID
+		left join TAB_SEX e on e.code=p.AAC004
+		
+        where a.id=#{id} and a.DATA_SOURCES = 1
+	</select>
+		<select id="getAllArchives_customPage" resultType="java.util.HashMap">
+        SELECT t.*
+			  FROM v_rsda_bs_all_archives t
+			  inner join (SELECT id
+			               FROM (SELECT t.id, rownum rn
+			                       FROM RSDA_BS_ARCHIVE_ARCHIVES t
+			                       		left join ac01 t2 on t2.aac001=t.person_id
+			                       		left join rsda_bs_corp_person rbcp on rbcp.PERSON_ID=t2.AAC001
+        		  						left join ab01 ab on ab.aab001 = rbcp.corp_id
+        		  						left join RSDA_BS_PERSON_FAMILY pf on pf.FA_PERSON_ID=t2.AAC001
+        		  						left join TAB_MARRIAGE u on u.code=pf.FA_MARRIAGE
+        		  						left join RSDA_BS_PERSON_EXPAND i on i.EXP_PERSON_ID=t.PERSON_ID
+        		  						left join (select * from  RSDA_BS_ARCHIVE_LEND where LEND_ID in (select max(LEND_ID) from RSDA_BS_ARCHIVE_LEND m group by m.ARCHIVES_ID)) m on m.ARCHIVES_ID=t.ID
+			                       where rownum <![CDATA[<=#{rowLast}]]> and t.DATA_SOURCES = 1 <include refid="dynamicCheckoutCustomPage" /> ) t
+			              where rn > #{rowFirst}) a
+			    on t.ID = a.id order by t.receiveDate desc,t.id desc
+	</select>
+	<select id="getAllArchives_customPage_count"  resultType="java.lang.Integer">
+        SELECT count(t.id) FROM RSDA_BS_ARCHIVE_ARCHIVES t
+        		  left join ac01 t2 on t2.aac001=t.person_id
+        		  left join rsda_bs_corp_person rbcp on rbcp.PERSON_ID=t2.AAC001
+        		  left join ab01 ab on ab.aab001 = rbcp.corp_id
+        		  left join RSDA_BS_PERSON_FAMILY pf on pf.FA_PERSON_ID=t2.AAC001
+        		  left join TAB_MARRIAGE u on u.code=pf.FA_MARRIAGE
+        		  left join RSDA_BS_PERSON_EXPAND i on i.EXP_PERSON_ID=t.PERSON_ID
+        		  left join (select * from  RSDA_BS_ARCHIVE_LEND where LEND_ID in (select max(LEND_ID) from RSDA_BS_ARCHIVE_LEND m group by m.ARCHIVES_ID)) m on m.ARCHIVES_ID=t.ID
+        		  
+			where  t.DATA_SOURCES = 1 <include refid="dynamicCheckoutCustomPage" />
+			
+	</select>
+	<!-- 获取打印企业下人员表单的数据 -->
+	<select id="getPersonArchives" resultType="java.util.HashMap">
+		select  
+				a.ID as "archivesId",a.ARCHIVE_CODE as "archiveCode"
+				,p.aac003 as "aac003"
+				,substr(e.name,0,1) as "genderName"
+				,p.AAC002 as "aac002"
+				,p.AAE005 as "aae005"
+				,to_char(p.AAC006,'yyyy-mm') as "aac006"
+				,to_char(a.RECEIVE_DATE,'yyyy-mm-dd') as "receiveDate"
+				,h.name as "archiveTypeName"
+				,s.name as "archiveStatusName"
+				,ab.AAB004 as "aab004"
+				
+		from RSDA_BS_ARCHIVE_ARCHIVES a 
+		left join ac01 p on p.aac001=a.PERSON_ID
+		left join TAB_SEX e on e.code=p.AAC004
+		left join RSDA_TAB_ARCHIVETYPE h on h.code=a.ARCHIVE_TYPE
+		left join RSDA_TAB_ARCHIVESTATUS s on s.code=a.ARCHIVE_STATUS
+		left join RSDA_BS_CORP_PERSON cp on cp.PERSON_ID = a.PERSON_ID
+		left join ab01 ab on ab.aab001 = cp.corp_id
+		
+        where a.DATA_SOURCES = 1 AND ab.AAB001 =#{aab001}
+        
+        order by a.RECEIVE_DATE  desc,a.person_id asc
+	</select>
+	
+	<sql id="dynamicCheckoutCustomPage">
+			<if test="@Ognl@isNotEmpty(archiveStorageName)"> AND t.ARCHIVE_STORAGE_NAME  LIKE #{archiveStorageName}  </if>
+			<if test="@Ognl@isNotEmpty(archiveCode)"> AND upper(t.ARCHIVE_CODE) LIKE upper(#{archiveCode}) </if>
+			<if test="@Ognl@isNotEmpty(archiveStorageOrgName)"> AND t.ARCHIVE_STORAGE_ORG_NAME  LIKE #{archiveStorageOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(beginArchivePrintLabel)"> AND t.ARCHIVE_PRINT_LABEL  >=#{beginArchivePrintLabel} </if>
+			<if test="@Ognl@isNotEmpty(endArchivePrintLabel)"> AND t.ARCHIVE_PRINT_LABEL  <![CDATA[ <=#{endArchivePrintLabel}]]>  </if>
+			<if test="@Ognl@isNotEmpty(cabinetsLattice)"> AND t.CABINETS_LATTICE  LIKE #{cabinetsLattice}  </if>
+			<if test="@Ognl@isNotEmpty(cabinetsLayer)"> AND t.CABINETS_LAYER  LIKE #{cabinetsLayer}  </if>
+		    <if test="@Ognl@isNotEmpty(cabinetsCode)"> AND t.CABINETS_CODE  LIKE #{cabinetsCode}  </if>
+		    <if test="@Ognl@isNotEmpty(cabinetsLibrary)"> AND t.CABINETS_LIBRARY  LIKE #{cabinetsLibrary}  </if>
+			<if test="@Ognl@isNotEmpty(marketPosition)"> AND t.MARKET_POSITION  LIKE #{marketPosition}  </if>
+			<if test="@Ognl@isNotEmpty(id)"> AND t.ID  = #{id}  </if>
+			<if test="@Ognl@isNotEmpty(tarchiveCode)"> AND upper(t.ARCHIVE_CODE) = upper(#{tarchiveCode}) </if>
+			<if test="@Ognl@isNotEmpty(archiveName)"> AND t.ARCHIVE_NAME  LIKE #{archiveName}  </if>
+			<if test="@Ognl@isNotEmpty(taac002)"> AND upper(t2.AAC002) = upper(#{taac002})  </if>
+			<if test="@Ognl@isNotEmpty(aac004)"> AND t2.AAC004  = #{aac004}  </if>
+			<if test="@Ognl@isNotEmpty(aac002)"> AND upper(t2.AAC002) LIKE upper(#{aac002})  </if>
+			<if test="@Ognl@isNotEmpty(archiveStatusValue)"> AND t.ARCHIVE_STATUS in (${archiveStatusValue}) </if>
+			<if test="@Ognl@isNotEmpty(archiveFlowStatusValue)"> AND t.ARCHIVE_FLOW_STATUS in (${archiveFlowStatusValue}) </if>
+			<if test="@Ognl@isNotEmpty(archiveReceiveStatus)"> AND t.ARCHIVE_RECEIVE_STATUS  =#{archiveReceiveStatus} </if>
+			<if test="@Ognl@isNotEmpty(beginArchiveCode)"> AND t.ARCHIVE_CODE  >=#{beginArchiveCode} </if>
+			<if test="@Ognl@isNotEmpty(endArchiveCode)"> AND t.ARCHIVE_CODE  <![CDATA[ <=#{endArchiveCode}]]>  </if>
+			<if test="@Ognl@isNotEmpty(archiveType)"> AND t.ARCHIVE_TYPE  =#{archiveType} </if>
+			<if test="@Ognl@isNotEmpty(beginarchiveBirthDate)"> AND t.ARCHIVE_BIRTH_DATE  >=#{beginarchiveBirthDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endarchiveBirthDate)"> AND t.ARCHIVE_BIRTH_DATE <![CDATA[ <=#{endarchiveBirthDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(beginplanRetiredDate)"> AND  t.PLAN_RETIRED_DATE >=#{beginplanRetiredDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endplanRetiredDate)"> AND t.PLAN_RETIRED_DATE <![CDATA[ <=#{endplanRetiredDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(beginarchiveStorageDate)"> AND t.ARCHIVE_STORAGE_DATE  >=#{beginarchiveStorageDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endarchiveStorageDate)"> AND t.ARCHIVE_STORAGE_DATE <![CDATA[ <=#{endarchiveStorageDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(archiveStatus)"> AND t.ARCHIVE_STATUS  =#{archiveStatus} </if>
+			<if test="@Ognl@isNotEmpty(archiveFlowStatus)"> AND t.ARCHIVE_FLOW_STATUS  =#{archiveFlowStatus} </if>
+			<if test="@Ognl@isNotEmpty(beginreceiveDate)"> AND t.RECEIVE_DATE  >=#{beginreceiveDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endreceiveDate)"> AND t.RECEIVE_DATE <![CDATA[ <=#{endreceiveDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(beginarchiveReceiveDate)"> AND t.ARCHIVE_RECEIVE_DATE  >=#{beginarchiveReceiveDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endarchiveReceiveDate)"> AND t.ARCHIVE_RECEIVE_DATE <![CDATA[ <=#{endarchiveReceiveDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(archiveReceiveOrgName)"> AND t.ARCHIVE_RECEIVE_ORG_NAME  LIKE #{archiveReceiveOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(archiveReceiveName)"> AND t.ARCHIVE_RECEIVE_NAME  LIKE #{archiveReceiveName}  </if>
+			<if test="@Ognl@isNotEmpty(aab004)"> AND ab.AAB004  LIKE #{aab004}  </if>
+			<if test="@Ognl@isNotEmpty(aac003)"> AND t2.AAC003  LIKE #{aac003}  </if>
+			<if test="@Ognl@isNotEmpty(aac022)"> AND upper(t2.AAC022)   LIKE upper(#{aac022})  </if>
+			<if test="@Ognl@isNotEmpty(beginaac006)"> AND t2.AAC006  >=#{beginaac006,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaac006)"> AND t2.AAC006 <![CDATA[ <=#{endaac006,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aac011)"> AND t2.AAC011  LIKE #{aac011}  </if>
+			<if test="@Ognl@isNotEmpty(faMarriage)"> AND pf.FA_MARRIAGE  LIKE #{faMarriage}  </if>
+			<if test="@Ognl@isNotEmpty(expSoctalNumber)"> AND i.EXP_SOCTAL_NUMBER  LIKE #{expSoctalNumber}  </if>
+			<if test="@Ognl@isNotEmpty(expEntrustCompany)"> AND i.EXP_ENTRUST_COMPANY  LIKE #{expEntrustCompany}  </if>
+			<if test="@Ognl@isNotEmpty(expOldCompany)"> AND i.EXP_OLD_COMPANY  LIKE #{expOldCompany}  </if>
+			<if test="@Ognl@isNotEmpty(expIsCadre)"> AND i.EXP_IS_CADRE  LIKE #{expIsCadre}  </if>
+			<if test="@Ognl@isNotEmpty(expIsDiscount)"> AND i.EXP_IS_DISCOUNT  LIKE #{expIsDiscount}  </if>
+			<if test="@Ognl@isNotEmpty(archiveCodes)"> AND t.ARCHIVE_CODE in (${archiveCodes}) </if>
+			<if test="@Ognl@isNotEmpty(personId)"> AND t.PERSON_ID  =#{personId} </if>
+			<if test="@Ognl@isNotEmpty(searchValue)"> AND (upper(t.ARCHIVE_CODE) LIKE upper(#{searchValue})  or t2.AAC002 like #{searchValue} or t2.AAC003 like #{searchValue}) </if>
+			<if test="@Ognl@isNotEmpty(archiveReceiveOrgIdApp)"> AND t.ARCHIVE_RECEIVE_ORG_ID in (${archiveReceiveOrgIdApp})</if>
+			
+			<!-- <if test="@Ognl@isNotEmpty(uaNo)"> AND a.uaNo    LIKE #{uaNo} </if>
+			<if test="@Ognl@isNotEmpty(batchName)"> AND a.batchName  LIKE #{batchName} </if> -->
+			<if test="@Ognl@isNotEmpty(lendCreaterName)"> AND m.LEND_CREATER_NAME  LIKE #{lendCreaterName}  </if>
+			<if test="@Ognl@isNotEmpty(lendStringReason)"> AND m.LEND_STRING_REASON  LIKE #{lendStringReason}  </if>
+			<if test="@Ognl@isNotEmpty(lendCreaterOrgName)"> AND m.LEND_CREATER_ORG_NAME  LIKE #{lendCreaterOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(beginlendCreaterDate)"> AND m.LEND_CREATER_DATE  >=#{beginlendCreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endlendCreaterDate)"> AND m.LEND_CREATER_DATE <![CDATA[ <=#{endlendCreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(lendReason)"> AND m.LEND_REASON  =#{lendReason} </if>
+	</sql>
+</mapper>

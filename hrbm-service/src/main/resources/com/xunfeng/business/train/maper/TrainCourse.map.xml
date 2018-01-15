@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.train.model.TrainCourse">
+	<resultMap id="TrainCourse" type="com.xunfeng.business.train.model.TrainCourse">
+		<id property="pxCourseId" column="PX_COURSE_ID" jdbcType="NUMERIC"/>
+		<result property="pxOrgId" column="PX_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="clickTimes" column="CLICK_TIMES" jdbcType="NUMERIC"/>
+		<result property="courseName" column="COURSE_NAME" jdbcType="VARCHAR"/>
+		<result property="courseType" column="COURSE_TYPE" jdbcType="VARCHAR"/>
+		<result property="courseStartTime" column="COURSE_START_TIME" jdbcType="VARCHAR"/>
+		<result property="coursePeriod" column="COURSE_PERIOD" jdbcType="VARCHAR"/>
+		<result property="courseAddr" column="COURSE_ADDR" jdbcType="VARCHAR"/>
+		<result property="courseFeature" column="COURSE_FEATURE" jdbcType="VARCHAR"/>
+		<result property="courseContent" column="COURSE_CONTENT" jdbcType="CLOB"/>
+		<result property="contactsName" column="CONTACTS_NAME" jdbcType="VARCHAR"/>
+		<result property="contactsTel" column="CONTACTS_TEL" jdbcType="VARCHAR"/>
+		<result property="isAudit" column="IS_AUDIT" jdbcType="VARCHAR"/>
+		<result property="acb208" column="ACB208" jdbcType="VARCHAR"/>
+		<result property="isDel" column="IS_DEL" jdbcType="VARCHAR"/>
+		<result property="isDisable" column="IS_DISABLE" jdbcType="VARCHAR"/>
+		<result property="cost" column="COST" jdbcType="NUMERIC"/>
+		<result property="aae011" column="AAE011" jdbcType="VARCHAR"/>
+		<result property="aae017" column="AAE017" jdbcType="VARCHAR"/>
+		<result property="aae036" column="AAE036" jdbcType="TIMESTAMP"/>
+		<result property="aae019" column="AAE019" jdbcType="VARCHAR"/>
+		<result property="aae020" column="AAE020" jdbcType="VARCHAR"/>
+		<result property="cczy06" column="CCZY06" jdbcType="VARCHAR"/>
+		<result property="abb771" column="ABB771" jdbcType="TIMESTAMP"/>
+		<result property="abb767" column="ABB767" jdbcType="VARCHAR"/>
+		<result property="abb768" column="ABB768" jdbcType="VARCHAR"/>
+		<result property="abb769" column="ABB769" jdbcType="VARCHAR"/>
+		<result property="abb770" column="ABB770" jdbcType="VARCHAR"/>
+		<result property="abb772" column="ABB772" jdbcType="VARCHAR"/>
+		<result property="aac022" column="AAC022" jdbcType="VARCHAR"/>
+		<result property="courseLogo" column="COURSE_LOGO" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		PX_COURSE_ID,PX_ORG_ID,CLICK_TIMES,COURSE_NAME,COURSE_TYPE,COURSE_START_TIME,COURSE_PERIOD,COURSE_ADDR,COURSE_FEATURE,COURSE_CONTENT,CONTACTS_NAME,CONTACTS_TEL,IS_AUDIT,ACB208,IS_DEL,IS_DISABLE,COST,AAE011,AAE017,AAE036,AAE019,AAE020,CCZY06,ABB771,ABB767,ABB768,ABB769,ABB770,ABB772,AAC022,COURSE_LOGO
+	</sql>
+	<sql id="columnsNoContent">
+		PX_COURSE_ID,PX_ORG_ID,CLICK_TIMES,COURSE_NAME,COURSE_TYPE,COURSE_START_TIME,COURSE_PERIOD,COURSE_ADDR,COURSE_FEATURE,CONTACTS_NAME,CONTACTS_TEL,IS_AUDIT,ACB208,IS_DEL,IS_DISABLE,COST,AAE011,AAE017,AAE036,AAE019,AAE020,CCZY06,ABB771,ABB767,ABB768,ABB769,ABB770,ABB772,AAC022,COURSE_LOGO
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(pxCourseId)"> AND PX_COURSE_ID  =#{pxCourseId} </if>
+			<if test="@Ognl@isNotEmpty(pxOrgId)"> AND PX_ORG_ID  =#{pxOrgId} </if>
+			<if test="@Ognl@isNotEmpty(pxOrgIds)"> AND PX_ORG_ID IN  <![CDATA[ ${pxOrgIds} ]]> </if>
+			<if test="@Ognl@isNotEmpty(clickTimes)"> AND CLICK_TIMES  =#{clickTimes} </if>
+			<if test="@Ognl@isNotEmpty(courseName)"> AND COURSE_NAME  LIKE '%${courseName}%' </if>
+			<if test="@Ognl@isNotEmpty(courseType)"> AND COURSE_TYPE  = #{courseType}  </if>
+			<if test="@Ognl@isNotEmpty(courseStartTime)"> AND COURSE_START_TIME  LIKE #{courseStartTime}  </if>
+			<if test="@Ognl@isNotEmpty(coursePeriod)"> AND COURSE_PERIOD  LIKE #{coursePeriod}  </if>
+			<if test="@Ognl@isNotEmpty(courseAddr)"> AND COURSE_ADDR  LIKE #{courseAddr}  </if>
+			<if test="@Ognl@isNotEmpty(courseFeature)"> AND COURSE_FEATURE  LIKE #{courseFeature}  </if>
+			<if test="@Ognl@isNotEmpty(courseContent)"> AND COURSE_CONTENT  LIKE #{courseContent}  </if>
+			<if test="@Ognl@isNotEmpty(contactsName)"> AND CONTACTS_NAME  = #{contactsName}  </if>
+			<if test="@Ognl@isNotEmpty(contactsTel)"> AND CONTACTS_TEL  = #{contactsTel}  </if>
+			<if test="@Ognl@isNotEmpty(isAudit)"> AND IS_AUDIT  = #{isAudit}  </if>
+			<if test="@Ognl@isNotEmpty(acb208)"> AND ACB208  = #{acb208}  </if>
+			<if test="@Ognl@isNotEmpty(isDel)"> AND IS_DEL  = #{isDel}  </if>
+			<if test="@Ognl@isNotEmpty(isDisable)"> AND IS_DISABLE  = #{isDisable}  </if>
+			<if test="@Ognl@isNotEmpty(cost)"> AND COST  =#{cost} </if>
+			<if test="@Ognl@isNotEmpty(aae011)"> AND AAE011  LIKE #{aae011}  </if>
+			<if test="@Ognl@isNotEmpty(aae017)"> AND AAE017  LIKE #{aae017}  </if>
+			<if test="@Ognl@isNotEmpty(aae036)"> AND AAE036  =#{aae036} </if>
+			<if test="@Ognl@isNotEmpty(beginaae036)"> AND AAE036  >=#{beginaae036,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaae036)"> AND AAE036 <![CDATA[ <=#{endaae036,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aae019)"> AND AAE019  LIKE #{aae019}  </if>
+			<if test="@Ognl@isNotEmpty(aae020)"> AND AAE020  LIKE #{aae020}  </if>
+			<if test="@Ognl@isNotEmpty(cczy06)"> AND CCZY06  LIKE #{cczy06}  </if>
+			<if test="@Ognl@isNotEmpty(abb771)"> AND ABB771  =#{abb771} </if>
+			<if test="@Ognl@isNotEmpty(beginabb771)"> AND ABB771  >=#{beginabb771,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endabb771)"> AND ABB771 <![CDATA[ <=#{endabb771,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(abb767)"> AND ABB767  LIKE #{abb767}  </if>
+			<if test="@Ognl@isNotEmpty(abb768)"> AND ABB768  LIKE #{abb768}  </if>
+			<if test="@Ognl@isNotEmpty(abb769)"> AND ABB769  LIKE #{abb769}  </if>
+			<if test="@Ognl@isNotEmpty(abb770)"> AND ABB770  LIKE #{abb770}  </if>
+			<if test="@Ognl@isNotEmpty(abb772)"> AND ABB772  LIKE #{abb772}  </if>
+			<if test="@Ognl@isNotEmpty(aac022)"> AND AAC022  LIKE #{aac022}  </if>
+			<if test="@Ognl@isNotEmpty(courseLogo)"> AND COURSE_LOGO  = #{courseLogo}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.train.model.TrainCourse">
+		INSERT INTO PX_COURSE
+		(PX_COURSE_ID,PX_ORG_ID,CLICK_TIMES,COURSE_NAME,COURSE_TYPE,COURSE_START_TIME,COURSE_PERIOD,COURSE_ADDR,COURSE_FEATURE,COURSE_CONTENT,CONTACTS_NAME,CONTACTS_TEL,IS_AUDIT,ACB208,IS_DEL,IS_DISABLE,COST,AAE011,AAE017,AAE036,AAE019,AAE020,CCZY06,ABB771,ABB767,ABB768,ABB769,ABB770,ABB772,AAC022,COURSE_LOGO)
+		VALUES
+		(#{pxCourseId,jdbcType=NUMERIC}, #{pxOrgId,jdbcType=NUMERIC}, #{clickTimes,jdbcType=NUMERIC}, #{courseName,jdbcType=VARCHAR}, #{courseType,jdbcType=VARCHAR}, #{courseStartTime,jdbcType=VARCHAR}, #{coursePeriod,jdbcType=VARCHAR}, #{courseAddr,jdbcType=VARCHAR}, #{courseFeature,jdbcType=VARCHAR}, #{courseContent,jdbcType=VARCHAR}, #{contactsName,jdbcType=VARCHAR}, #{contactsTel,jdbcType=VARCHAR}, #{isAudit,jdbcType=VARCHAR}, #{acb208,jdbcType=VARCHAR}, #{isDel,jdbcType=VARCHAR}, #{isDisable,jdbcType=VARCHAR}, #{cost,jdbcType=NUMERIC}, #{aae011,jdbcType=VARCHAR}, #{aae017,jdbcType=VARCHAR}, #{aae036,jdbcType=TIMESTAMP}, #{aae019,jdbcType=VARCHAR}, #{aae020,jdbcType=VARCHAR}, #{cczy06,jdbcType=VARCHAR}, #{abb771,jdbcType=TIMESTAMP}, #{abb767,jdbcType=VARCHAR}, #{abb768,jdbcType=VARCHAR}, #{abb769,jdbcType=VARCHAR}, #{abb770,jdbcType=VARCHAR}, #{abb772,jdbcType=VARCHAR}, #{aac022,jdbcType=VARCHAR},#{courseLogo,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM PX_COURSE 
+		WHERE
+		PX_COURSE_ID=#{pxCourseId}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.train.model.TrainCourse">
+		UPDATE PX_COURSE SET
+		PX_ORG_ID=#{pxOrgId,jdbcType=NUMERIC},
+		CLICK_TIMES=#{clickTimes,jdbcType=NUMERIC},
+		COURSE_NAME=#{courseName,jdbcType=VARCHAR},
+		COURSE_TYPE=#{courseType,jdbcType=VARCHAR},
+		COURSE_START_TIME=#{courseStartTime,jdbcType=VARCHAR},
+		COURSE_PERIOD=#{coursePeriod,jdbcType=VARCHAR},
+		COURSE_ADDR=#{courseAddr,jdbcType=VARCHAR},
+		COURSE_FEATURE=#{courseFeature,jdbcType=VARCHAR},
+		COURSE_CONTENT=#{courseContent,jdbcType=VARCHAR},
+		CONTACTS_NAME=#{contactsName,jdbcType=VARCHAR},
+		CONTACTS_TEL=#{contactsTel,jdbcType=VARCHAR},
+		IS_AUDIT=#{isAudit,jdbcType=VARCHAR},
+		ACB208=#{acb208,jdbcType=VARCHAR},
+		IS_DEL=#{isDel,jdbcType=VARCHAR},
+		IS_DISABLE=#{isDisable,jdbcType=VARCHAR},
+		COST=#{cost,jdbcType=NUMERIC},
+		AAE011=#{aae011,jdbcType=VARCHAR},
+		AAE017=#{aae017,jdbcType=VARCHAR},
+		AAE036=#{aae036,jdbcType=TIMESTAMP},
+		AAE019=#{aae019,jdbcType=VARCHAR},
+		AAE020=#{aae020,jdbcType=VARCHAR},
+		CCZY06=#{cczy06,jdbcType=VARCHAR},
+		ABB771=#{abb771,jdbcType=TIMESTAMP},
+		ABB767=#{abb767,jdbcType=VARCHAR},
+		ABB768=#{abb768,jdbcType=VARCHAR},
+		ABB769=#{abb769,jdbcType=VARCHAR},
+		ABB770=#{abb770,jdbcType=VARCHAR},
+		ABB772=#{abb772,jdbcType=VARCHAR},
+		AAC022=#{aac022,jdbcType=VARCHAR},
+		COURSE_LOGO=#{courseLogo,jdbcType=VARCHAR}
+		WHERE
+		PX_COURSE_ID=#{pxCourseId}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="TrainCourse">
+		SELECT <include refid="columns"/>
+		FROM PX_COURSE
+		WHERE
+		PX_COURSE_ID=#{pxCourseId}
+	</select>
+	
+	<select id="getAll" resultMap="TrainCourse">
+		SELECT <include refid="columns"/>
+		FROM PX_COURSE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by PX_COURSE_ID  desc
+		</if>
+	</select>
+	<select id="getFavouriteCourse" resultMap="TrainCourse">
+		SELECT PX_COURSE_ID,COURSE_NAME
+		FROM PX_COURSE   
+		where IS_AUDIT=1 and ACB208 =0 and IS_DEL=0 and IS_DISABLE=0 
+		      and px_org_id in(select px_org_id from px_org t2 where  t2.IS_AUDIT=1 and t2.IS_DEL=0 )
+		order by CLICK_TIMES desc
+	</select>
+	<select id="getCourseByCondition" resultType="java.util.HashMap">
+		SELECT 
+			c.PX_COURSE_ID,
+			c.PX_ORG_ID,
+			c.CLICK_TIMES,
+			c.COURSE_NAME,
+			c.COURSE_TYPE,
+			c.COURSE_START_TIME,
+			c.COURSE_PERIOD,
+			c.COURSE_ADDR,
+			c.COURSE_FEATURE,
+			c.CONTACTS_NAME,
+			c.CONTACTS_TEL,
+			c.COST,
+			c.AAC022,
+			c.COURSE_LOGO,
+			O.ORG_NAME
+		 FROM PX_COURSE C LEFT JOIN PX_ORG O ON C.PX_ORG_ID = O.PX_ORG_ID
+		WHERE 1=1  and c.IS_AUDIT=1 and c.ACB208=0 and c.IS_DEL=0  and c.IS_DISABLE=0 
+		           and o.IS_DEL = 0 and o.IS_AUDIT=1
+		<if test="@Ognl@isNotEmpty(courseType)"> AND C.COURSE_TYPE = #{courseType}  </if>
+		<if test="@Ognl@isNotEmpty(orgType)"> AND O.ORG_TYPE = #{orgType}  </if>
+		<if test="@Ognl@isNotEmpty(courseName)"> AND C.COURSE_NAME LIKE #{courseName}  </if>
+	</select>
+	<select id="getCourseByOrgId" resultMap="TrainCourse">
+		SELECT <include refid="columns"/>
+		FROM PX_COURSE
+		WHERE 1=1 
+		<if test="@Ognl@isNotEmpty(orgId)"> AND PX_ORG_ID = #{orgId}  </if>
+		and  IS_AUDIT=1 and ACB208 =0 and IS_DEL=0 and IS_DISABLE=0
+		order by CLICK_TIMES desc
+	</select>
+	<select id="getMyCourse" resultType="java.util.HashMap">
+	  select
+		 a.PX_COURSE_ID,
+		 a.COURSE_NAME, 
+		 a.COURSE_ADDR,
+		 to_char(a.AAE036,'yyyy-mm-dd') AAE036,
+		 a.COURSE_START_TIME,
+		 a.COST,
+		 c.px_org_id,
+		 c.ORG_LOGO_DIR
+		 from PX_COURSE a,px_sign_up b  ,px_org c  where a.PX_COURSE_ID=b.px_course_id and a.px_org_id=c.px_org_id
+		  and a.IS_DEL=0 and a.IS_DISABLE=0 and a.IS_AUDIT=1  
+		  and b.aac001=#{personId}
+		  and c.IS_DEL=0
+		  and c.IS_AUDIT=1 
+		  <if test="flag!=1"> 
+		      <if test="flag==2">
+		         and a.ACB208=0
+		      </if>
+		      <if test="flag==3">
+		      	  and a.ACB208=1
+		      </if>
+		  </if>
+		  order by  b.AAE036 desc
+	</select>
+	<select id="getCourseByExcept" resultType="java.util.HashMap">
+	 	select <include refid="columnsNoContent"/> from PX_COURSE WHERE 1=1
+	 	<if test="@Ognl@isNotEmpty(orgId)"> AND PX_ORG_ID = #{orgId} </if>
+	 	<if test="@Ognl@isNotEmpty(coursekey)"> AND COURSE_NAME like #{coursekey} </if>
+	 	 and IS_AUDIT=1 and ACB208=0  and IS_DEL=0 and IS_DISABLE=0
+	 	 and PX_ORG_ID in (select PX_ORG_ID from PX_ORG  where  IS_AUDIT=1 and IS_DEL=0 )
+	</select>
+	
+	<!--批量更新开班审核或冻结或禁用或删除的状态 -->
+	<update id="updateBatchStatus" parameterType="java.util.HashMap">
+		UPDATE PX_COURSE SET
+		<if test="@Ognl@isNotEmpty(isAudit)"> IS_AUDIT=#{isAudit,jdbcType=VARCHAR}</if>
+		<if test="@Ognl@isNotEmpty(acb208)">  ACB208=#{acb208,jdbcType=VARCHAR}</if>
+		<if test="@Ognl@isNotEmpty(isDel)">   IS_DEL=#{isDel,jdbcType=VARCHAR}</if>
+		<if test="@Ognl@isNotEmpty(isDisable)">IS_DISABLE=#{isDisable,jdbcType=VARCHAR}</if>
+		<if test="@Ognl@isNotEmpty(aae011)"> ,AAE011=#{aae011,jdbcType=VARCHAR}</if>
+		<if test="@Ognl@isNotEmpty(aae017)"> ,AAE017=#{aae017,jdbcType=VARCHAR}</if>
+		<if test="@Ognl@isNotEmpty(aae036)"> ,AAE036=#{aae036,jdbcType=TIMESTAMP}</if>
+		<if test="@Ognl@isNotEmpty(aae019)"> ,AAE019=#{aae019,jdbcType=VARCHAR} </if>
+		<if test="@Ognl@isNotEmpty(aae020)"> ,AAE020=#{aae020,jdbcType=VARCHAR} </if>
+		<if test="@Ognl@isNotEmpty(abb769)"> ,ABB769=#{abb769,jdbcType=VARCHAR}</if>
+		<if test="@Ognl@isNotEmpty(abb767)"> ,ABB767=#{abb767,jdbcType=VARCHAR}</if>
+		<if test="@Ognl@isNotEmpty(abb770)"> ,ABB770=#{abb770,jdbcType=VARCHAR}</if>
+		<if test="@Ognl@isNotEmpty(abb768)"> ,ABB768=#{abb768,jdbcType=VARCHAR}</if>
+		<if test="@Ognl@isNotEmpty(abb772)"> ,ABB772=#{abb772,jdbcType=VARCHAR}</if>
+		<if test="@Ognl@isNotEmpty(abb771)"> ,ABB771=#{abb771,jdbcType=TIMESTAMP} </if>
+		where 1=1 AND PX_COURSE_ID in
+		<foreach item="item" collection="courseIdList" separator="," open="(" close=")" index="">    
+                   #{item}    
+        </foreach>    
+	</update>
+	
+	<!-- 根据培训机构Id获取开班数 -->
+	<select id="getCourseCountByOrgId" parameterType="java.lang.Long"  resultType="java.lang.Integer">
+		SELECT count(1)
+		FROM PX_COURSE
+		WHERE 1=1 
+		AND IS_DEL='0'
+		AND PX_ORG_ID = #{pxOrgId,jdbcType=NUMERIC}
+		order by CLICK_TIMES desc
+	</select>
+	
+	 <!-- 根据开班名称获取开班信息-->
+     <select id="getCourseByName" parameterType="java.lang.String" resultMap="TrainCourse">
+		SELECT <include refid="columns"/>
+		FROM PX_COURSE
+		WHERE
+		COURSE_NAME=#{courseName,jdbcType=VARCHAR}
+	 </select>
+	
+</mapper>

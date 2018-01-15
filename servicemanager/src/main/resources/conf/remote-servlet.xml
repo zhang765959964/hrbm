@@ -1,0 +1,606 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!-- 接口的具体实现类 -->
+	<!-- 使用Spring的HessianServie做代理 -->
+	<!-- 网站2.0 -->
+	<bean name="/corpBlackList"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="corpBlackListService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.person.interf.CorpBlackListServiceInterf" />
+	</bean>
+	<bean name="/jobCollect"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="jobCollectService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.person.interf.JobCollectServiceInterf" />
+	</bean>
+	<!-- 职位申请 -->
+	<bean name="/jobApply"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="jobApplyService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.person.interf.JobApplyServiceInterf" />
+	</bean>
+	<!-- 个人收到的面试邀请 -->
+	<bean name="/jobAuditionInvited"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="jobAuditionInvitedService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.person.interf.JobAuditionInvitedServiceInterf" />
+	</bean>
+	<!-- 我的收藏 -->
+	<bean name="/myCollect"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="myCollectService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.person.interf.MyCollectServiceInterf" />
+	</bean>
+	<!-- 企业下载简历 -->
+	<bean name="/downloadResume"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="downloadResumeService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.corp.interf.DownloadResumeServiceInterf" />
+	</bean>
+	<!-- 站内信 -->
+	<bean name="/accountMessage"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="accountMessageService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.sys.message.interf.AccountMessageServiceInterf" />
+	</bean>
+	<!-- 生成账号发送短息记录存储表-->
+	<bean name="/shortMessage"   class="org.springframework.remoting.caucho.HessianServiceExporter">  
+        <!-- service引用具体的实现实体Bean-->  
+        <property name="service" ref="shortMessageService" />  
+        <property name="serviceInterface" value="com.xunfeng.sys.shortMessage.interf.ShortMessageServiceInterf" />  
+	</bean>  
+	<!-- 关注 -->
+	<bean name="/notice"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="noticeService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.sys.notice.interf.NoticeServiceInterf" />
+	</bean>
+	<!-- 2.0end -->
+	<!-- 删除广告记录表 -->
+	<bean name="/adDelRecord"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="adDelRecordService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.advert.interf.AdDelRecordServiceInterf" />
+	</bean>
+	<!-- 企业或者职位广告 -->
+	<bean name="/adCompany"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="adCompanyService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.advert.interf.AdCompanyServiceInterf" />
+	</bean>
+	<!-- 网站广告 -->
+	<bean name="/adWeb"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="adWebService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.advert.interf.AdWebServiceInterf" />
+	</bean>
+	<!-- 广告分类 -->
+	<bean name="/adCategory"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="adCategoryService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.advert.interf.AdCategoryServiceInterf" />
+	</bean>
+	<!-- 信息发布 -->
+	<bean name="/cmsBannerManage"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="cmsBannerManageService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.cms.interf.CmsBannerManageServiceInterf" />
+	</bean>
+	<bean name="/article"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="articleService" />
+		<property name="serviceInterface" value="com.xunfeng.business.cms.interf.ArticleInter" />
+	</bean>
+	<bean name="/articlecol"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="articleColumnService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.cms.interf.ArticleColumnInter" />
+	</bean>
+	<!-- 友情链接 -->
+	<bean name="/link"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="linkService" />
+		<property name="serviceInterface"
+			value=" com.xunfeng.business.link.interf.LinkInterfaceService" />
+	</bean>
+	<!-- 企业管理 -->
+	<bean name="/corp"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="corpService" />
+		<property name="serviceInterface"
+			value=" com.xunfeng.business.corp.interf.CorpServiceInter" />
+	</bean>
+	<bean name="/corpPositionPublish"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="corpPositionPublishService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.corp.interf.CorpPositionPublishServiceInterf" />
+	</bean>
+	<!-- 职位管理 -->
+	<bean name="/corpPosition"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="corpPositionService" />
+		<property name="serviceInterface"
+			value=" com.xunfeng.business.corp.interf.CorpPositionServiceInter" />
+	</bean>
+	<!-- 招聘会 -->
+	<bean name="/jobfair"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="jobFairInfoService" />
+		<property name="serviceInterface"
+			value=" com.xunfeng.business.jobfair.interf.JobFairInfoServiceInter" />
+	</bean>
+	<bean name="/jobfairBooth"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="jobFairBoothService" />
+		<property name="serviceInterface"
+			value=" com.xunfeng.business.jobfair.interf.JobFairBoothServiceInterf" />
+	</bean>
+	<bean name="/jobFairInfoSite"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="jobFairInfoSiteService" />
+		<property name="serviceInterface"
+			value=" com.xunfeng.business.jobfair.interf.JobFairInfoSiteServiceInterf" />
+	</bean>
+	<bean name="/jobfairSite"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="jobFairSiteService" />
+		<property name="serviceInterface"
+			value=" com.xunfeng.business.jobfair.interf.JobFairSiteServiceInterf" />
+	</bean>
+	<bean name="/boothBook"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="boothBookService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.jobfair.interf.BoothBookServiceInterf" />
+	</bean>
+	<!-- 会员管理 -->
+	<bean name="/accounts"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="accountsService" />
+		<property name="serviceInterface"
+			value=" com.xunfeng.sys.accounts.interf.AccountsServiceInter" />
+	</bean>
+	<!--个人会员管理 -->
+	<bean name="/person"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="personBaseInfoService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.person.interf.PersonBaseInfoServiceInterf" />
+	</bean>
+	<!-- 个人家庭关系 -->
+	<bean name="/personFamily"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="personFamilyService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.person.interf.PersonFamilyServiceInterf" />
+	</bean>
+	<!-- 个人扩展信息添加 -->
+	<bean name="/personExpand"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="personExpandService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.person.interf.PersonExpandServiceInterf" />
+	</bean>
+	<!-- 个人教育背景 -->
+	<bean name="/personEducation"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="personEducationService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.person.interf.PersonEducationServiceInterf" />
+	</bean>
+	<!-- 个人工作经历 -->
+	<bean name="/personWorkExpce"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="personWorkExpceService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.person.interf.PersonWorkExpceServiceInterf" />
+	</bean>
+	<!-- 个人会员求职登记 -->
+	<bean name="/personJobRegist"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="personJobRegistService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.person.interf.PersonJobRegistServiceInter" />
+	</bean>
+	<!-- 个人培训经历登记 -->
+	<bean name="/personTrain"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="personTrainService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.person.interf.PersonTrainServiceInterf" />
+	</bean>
+	<!-- 个人技能 -->
+	<bean name="/personSkill"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="personSkillService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.person.interf.PersonSkillServiceInterf" />
+	</bean>
+	<!-- 个人资格证书表 -->
+	<bean name="/personQualification"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="personQualificationService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.person.interf.PersonQualificationServiceInterf" />
+	</bean>
+	<bean name="/personLabel"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="personLabelService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.person.interf.PersonLabelServiceInterf" />
+	</bean>
+	<!-- 城市管理 -->
+	<bean name="/city"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="cityComponentService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.sys.component.interf.CityComponentServiceInterf" />
+	</bean>
+	<!-- 工作管理 -->
+	<bean name="/job"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="jobService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.sys.component.interf.JobServiceInter" />
+	</bean>
+	<!-- 系统人员管理 -->
+	<bean name="/sysuser"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="sysUserService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.sys.uums.interf.SysUserServiceInterf" />
+	</bean>
+	<bean name="/sysorg"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="sysOrgService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.sys.uums.interf.SysOrgServiceInterf" />
+	</bean>
+	<bean name="/sysdept"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="sysDeptService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.sys.uums.interf.SysDeptServiceInterf" />
+	</bean>
+	<!-- 系统权限管理 -->
+	<bean name="/sysResource"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="sysResourceService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.sys.resource.interf.SysResourceServiceInterf" />
+	</bean>
+	<bean name="/sysRoleResource"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="sysRoleResourceService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.sys.role.interf.SysRoleResourceServiceInterf" />
+	</bean>
+	<bean name="/sysRole"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="sysRoleService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.sys.role.interf.SysRoleServiceInterf" />
+	</bean>
+	<bean name="/sysRoleUser"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="sysRoleUserService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.sys.role.interf.SysRoleUserServiceInterf" />
+	</bean>
+	<!-- 查询机管理 -->
+	<bean name="/machine"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="machineService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.machine.interf.MachineServiceInterf" />
+	</bean>
+	<!-- 附件管理 -->
+	<bean name="/attachment"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="attachmentService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.sys.attachment.interf.AttachmentServiceInterf" />
+	</bean>
+	<bean name="/attachmentParams"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="attachmentParamsService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.sys.attachment.interf.AttachmentParamsServiceInterf" />
+	</bean>
+	<!-- 配置管理 -->
+	<bean name="/config"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="sysConfigService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.sys.config.interf.SysConfigServiceInter" />
+	</bean>
+	<!-- 认证管理 -->
+	<bean name="/authentication"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="authenticationService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.cation.interf.AuthenticationServiceInterf" />
+	</bean>
+	<!-- 字典管理 -->
+	<bean name="/dictionary"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="dictionaryService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.sys.dictionary.interf.DictionaryServiceInterf" />
+	</bean>
+	<!-- id生成器管理 -->
+	<bean name="/uniqueId"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="uniqueIdUtilService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.sys.identity.interf.UniqueIdUtilInterf" />
+	</bean>
+	<bean name="/hRToolModelCol"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="HRToolModelColService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.hrtool.interf.HRToolModelColServiceInterf" />
+	</bean>
+	<!-- 企业收藏 -->
+	<bean name="/corpCollection"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="corpCollectionService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.corp.interf.CorpCollectionServiceInterf" />
+	</bean>
+	<bean name="/hRToolModel"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="HRToolModelService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.hrtool.interf.HRToolModelServiceInterf" />
+	</bean>
+	<bean name="/baseConfig"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="baseConfigService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.sys.config.interf.BaseConfigServiceInterf" />
+	</bean>
+	<!-- 短信接口发送 -->
+	<bean name="/senderService"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="senderService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.sys.sendmessage.interf.SenderServiceInterf" />
+	</bean>
+	<!-- 邮箱接口发送 -->
+	<bean name="/senderEmailService"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="senderEmailService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.sys.component.interf.SenderEmailServiceInterf" />
+	</bean>
+	<!-- 短信接口模板 -->
+	<bean name="/messageTemplates"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="messageTemplatesService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.sys.sendmessage.interf.MessageTemplatesServiceInterf" />
+	</bean>
+	<!-- 单点登录Token -->
+	<bean name="/sSOToken"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="ssoTokenService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.sys.identity.interf.SSOTokenServiceInterf" />
+	</bean>
+
+	<!-- 培训机构 -->
+	<bean name="/trainOrg"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="trainOrgService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.train.interf.TrainOrgServiceInterf" />
+	</bean>
+	<!-- 培训机构类型 -->
+	<bean name="/trainOrgType"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="trainOrgTypeService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.train.interf.TrainOrgTypeServiceInterf" />
+	</bean>
+
+	<!-- 培训课程 -->
+	<bean name="/trainCourse"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="trainCourseService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.train.interf.TrainCourseServiceInterf" />
+	</bean>
+	<!-- 培训课程类型 -->
+	<bean name="/trainCourseType"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="trainCourseTypeService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.train.interf.TrainCourseTypeServiceInterf" />
+	</bean>
+
+	<!-- 培训系统设置 -->
+	<bean name="/trainSysSet"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="trainSysSetService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.train.interf.TrainSysSetServiceInterf" />
+	</bean>
+
+	<!-- 报名表 -->
+	<bean name="/trainSignUp"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="trainSignUpService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.train.interf.TrainSignUpServiceInterf" />
+	</bean>
+	<!-- 劳动力采集系统就业情况 -->
+	<bean name="/laborAccom"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="laborAccomService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.laborcollection.interf.LaborAccomServiceInterf" />
+	</bean>
+	<!-- 劳动力采集系统不在岗信息 -->
+	<bean name="/laborAcpost"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="laborAcpostService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.laborcollection.interf.LaborAcpostServiceInterf" />
+	</bean>
+	<!-- 劳动力采集系统未就业或者失业 -->
+	<bean name="/laborAcemployed"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="laborAcemployedService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.laborcollection.interf.LaborAcemployedServiceInterf" />
+	</bean>
+	<!-- 套餐收费项目 -->
+	<bean name="/feeOrderDetail"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="feeOrderDetailService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.sys.setMeal.interf.FeeOrderDetailServiceInterf" />
+	</bean>
+	<bean name="/feeOrderMain"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="feeOrderMainService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.sys.setMeal.interf.FeeOrderMainServiceInterf" />
+	</bean>
+	<bean name="/feeUseDetail"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="feeUseDetailService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.sys.setMeal.interf.FeeUseDetailServiceInterf" />
+	</bean>
+	<bean name="/feeServCfg"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="feeServCfgService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.sys.setMeal.interf.FeeServCfgServiceInterf" />
+	</bean>
+	<bean name="/sysStatistics"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="sysStatisticsService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.sys.statistics.interf.SysStatisticsServiceInterf" />
+	</bean>
+	<!-- 	设备管理相关接口 -->
+	<bean name="/diviceModel"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="diviceModelService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.dissupport.divice.interf.DiviceModelServiceInterf" />
+	</bean>
+	<bean name="/divice"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="diviceService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.dissupport.divice.interf.DiviceServiceInterf" />
+	</bean>
+	<bean name="/diviceStyle"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<!-- service引用具体的实现实体Bean -->
+		<property name="service" ref="diviceStyleService" />
+		<property name="serviceInterface"
+			value="com.xunfeng.business.dissupport.divice.interf.DiviceStyleServiceInterf" />
+	</bean>
+	<!-- 	发布屏控制接口 -->
+	<bean name="/diviConfig"   class="org.springframework.remoting.caucho.HessianServiceExporter">  
+        <!-- service引用具体的实现实体Bean-->  
+        <property name="service" ref="diviConfigService" />  
+        <property name="serviceInterface" value="com.xunfeng.business.dissupport.divice.interf.DiviConfigServiceInterf" />  
+</bean>  
+<!-- 个人求职匹配招聘推荐 -->
+<bean name="/personJobRecommend"   class="org.springframework.remoting.caucho.HessianServiceExporter">  
+        <!-- service引用具体的实现实体Bean-->  
+        <property name="service" ref="personJobRecommendService" />  
+        <property name="serviceInterface" value="com.xunfeng.business.dissupport.jobmatch.interf.PersonJobRecommendServiceInterf" />  
+</bean> 
+</beans> 

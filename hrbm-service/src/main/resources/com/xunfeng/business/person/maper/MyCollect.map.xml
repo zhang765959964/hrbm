@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.person.model.MyCollect">
+	<resultMap id="MyCollect" type="com.xunfeng.business.person.model.MyCollect">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="collectUserId" column="COLLECT_USER_ID" jdbcType="NUMERIC"/>
+		<result property="beCollectUserId" column="BE_COLLECT_USER_ID" jdbcType="NUMERIC"/>
+		<result property="collectDate" column="COLLECT_DATE" jdbcType="DATE"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,COLLECT_USER_ID,BE_COLLECT_USER_ID,COLLECT_DATE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(collectUserId)"> AND COLLECT_USER_ID  =#{collectUserId} </if>
+			<if test="@Ognl@isNotEmpty(beCollectUserId)"> AND BE_COLLECT_USER_ID  =#{beCollectUserId} </if>
+			<if test="@Ognl@isNotEmpty(collectDate)"> AND COLLECT_DATE  =#{collectDate} </if>
+			<if test="@Ognl@isNotEmpty(begincollectDate)"> AND COLLECT_DATE  >=#{begincollectDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcollectDate)"> AND COLLECT_DATE <![CDATA[ <=#{endcollectDate,jdbcType=DATE}]]> </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.person.model.MyCollect">
+		INSERT INTO MY_COLLECT
+		(ID,COLLECT_USER_ID,BE_COLLECT_USER_ID,COLLECT_DATE)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{collectUserId,jdbcType=NUMERIC}, #{beCollectUserId,jdbcType=NUMERIC}, #{collectDate,jdbcType=DATE})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM MY_COLLECT 
+		WHERE
+		ID=#{id}
+	</delete>
+	<!-- 通过收藏和被收藏id删除记录 -->
+	<delete id="delByUserIdAndBeuserId">
+		DELETE FROM MY_COLLECT 
+		WHERE
+		COLLECT_USER_ID	=#{collectUserid}
+		and BE_COLLECT_USER_ID	= #{beCollectUserid}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.person.model.MyCollect">
+		UPDATE MY_COLLECT SET
+		COLLECT_USER_ID=#{collectUserId,jdbcType=NUMERIC},
+		BE_COLLECT_USER_ID=#{beCollectUserId,jdbcType=NUMERIC},
+		COLLECT_DATE=#{collectDate,jdbcType=DATE}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="MyCollect">
+		SELECT <include refid="columns"/>
+		FROM MY_COLLECT
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="MyCollect">
+		SELECT <include refid="columns"/>
+		FROM MY_COLLECT   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	<select id ="getCollectCompany" resultType="java.util.HashMap">
+		<!--  select a.id,a.collect_user_id,a.be_collect_user_id,to_char(a.collect_date,'yyyy-MM-dd hh24:mi') as collect_date ,b.AAB001,b.aab004,b.AAE006 
+		from my_collect a,AB01 b 
+		where a.BE_COLLECT_USER_ID =b.AAB001  and collect_user_id =#{ccmu01}-->
+		
+	    select a.id,a.collect_user_id,a.be_collect_user_id,to_char(a.collect_date,'yyyy-MM-dd') as collect_date ,b.AAB001,b.aab004,b.AAE006 ,
+	    nvl(b.imgcount,'0') as imgcount,nvl(b.videCount,'0') as videCount, nvl(b.CABQ08,'0') as CABQ08,b.ccmu15
+		from my_collect a,
+	     ( select d.CCMU01,d.aab001,d.CABQ08,d.aab004,d.AAE006, imgcount, videCount,z.ccmu15 from ab01 d,ccm01 z ,
+	        (select count(*) as imgCount,aab001 from CAO04  where CAOA04=6 and caoa07=1 and ccpr08=0 and aab001 is not null  
+	         group by aab001 ) e,
+	         (select count(*) as videCount,aab001 from CAO04  where CAOA04=7 and caoa07=1 and ccpr08=0  and aab001 is not null  
+	          group by aab001 )f 
+	          where d.ccmu01=z.ccmu01(+) and  d.aab001=e.aab001(+) and  d.aab001=f.aab001(+)
+	        )  b  
+        where a.BE_COLLECT_USER_ID = b.CCMU01  and collect_user_id =#{ccmu01}
+		<if test="@Ognl@isNotEmpty(delayTime)">
+		 and  to_date(to_char(a.collect_date,'yyyy-mm-dd'),'yyyy-mm-dd')>=to_date(#{delayTime},'yyyy-mm-dd') 
+		</if>
+		order by collect_date desc
+	</select>
+	<select id ="getTotalCountCollectCompany" resultType="java.lang.Long">
+		select count(*) from  my_collect 
+		where 
+		COLLECT_USER_ID	=#{collectUserid}
+		and BE_COLLECT_USER_ID	= #{beCollectUserid}
+	</select>
+	
+</mapper>

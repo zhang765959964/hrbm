@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.xunfeng</groupId>
+    <artifactId>hrbm</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <groupId>com.xunfeng</groupId>
+  <artifactId>hrbm-service</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>hrbm-service</name>
+  <url>http://maven.apache.org</url>
+    <build>
+      <plugins>     
+      			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<executions>
+				   <execution>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<classesDirectory>${project.basedir}/target/classes/</classesDirectory>
+							<finalName>servicemanager-1.0</finalName>
+							<outputDirectory>D:/sofeware/Maven/xfMaven/repository/com/xunfeng/servicemanager/1.0/</outputDirectory>
+							<includes>
+								<include>com/**/dto/**</include>
+								<include>com/**/model/**</include>
+								<include>com/**/interf/**</include>
+								<include>com/**/exception/**</include>
+								<include>com/**/enumeration/**</include>
+							</includes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+<!--       <plugin> -->
+<!--             <groupId>org.apache.maven.plugins</groupId> -->
+<!--             <artifactId>maven-deploy-plugin</artifactId> -->
+<!--             <version>2.7</version> -->
+<!--             <executions> -->
+<!--                 <execution> -->
+<!--                     <id>deploy-features-xml</id> -->
+<!--                     <phase>deploy</phase> -->
+<!--                     <goals> -->
+<!--                         <goal>deploy-file</goal> -->
+<!--                     </goals> -->
+<!--                     <configuration> -->
+<!--                         <repositoryId>${project.distributionManagement.snapshotRepository.id}</repositoryId> -->
+<!--                         <url>${project.distributionManagement.snapshotRepository.url}</url> -->
+<!--                         <groupId>${project.groupId}</groupId> -->
+<!--                         <artifactId>${project.artifactId}</artifactId> -->
+<!--                         <version>${project.version}</version> -->
+<!--                         <file>features.xml</file> -->
+<!--                     </configuration> -->
+<!--                 </execution> -->
+<!--             </executions> -->
+<!--          </plugin> -->
+        </plugins>
+     </build>   
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  <dependencies>
+		<dependency>
+			<groupId>com.xunfeng</groupId>
+			<artifactId>hrbm-framework</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>${servlet-api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.htmlparser</groupId>
+			<artifactId>htmlparser</artifactId>
+			<version>2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>oracle.jdbc</groupId>
+			<artifactId>oracledriver</artifactId>
+			<version>11.2.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache-web</artifactId>
+			<version>2.0.4</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.4.0.v201005080615</version>
+		</dependency>
+		<dependency>
+			<groupId>json</groupId>
+			<artifactId>json</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.baidu.ueditor</groupId>
+			<artifactId>ueditor</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.jms</groupId>
+			<artifactId>javax.jms-api</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>${org.springframework.security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${org.springframework.security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${org.springframework.security.version}</version>
+		</dependency> 
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${org.springframework.security.version}</version>
+		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.springframework</groupId> -->
+<!-- 			<artifactId>org.springframework.test</artifactId> -->
+<!-- 			<version>${org.springframework.security.version}</version> -->
+<!-- 		</dependency> -->
+		<dependency>
+			<groupId>axis</groupId>
+			<artifactId>axis</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>jaxrpc</groupId>
+			<artifactId>jaxrpc</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-discovery</groupId>
+			<artifactId>commons-discovery</artifactId>
+			<version>20040218.194635</version>
+		</dependency>
+	</dependencies>
+</project>

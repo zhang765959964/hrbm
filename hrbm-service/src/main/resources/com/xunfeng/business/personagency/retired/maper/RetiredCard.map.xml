@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.retired.model.RetiredCard">
+	<resultMap id="RetiredCard" type="com.xunfeng.business.personagency.retired.model.RetiredCard">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="isRetiredCard" column="IS_RETIRED_CARD" jdbcType="NUMERIC"/>
+		<result property="retiredCardDate" column="RETIRED_CARD_DATE" jdbcType="DATE"/>
+		<result property="retiredCardCode" column="RETIRED_CARD_CODE" jdbcType="VARCHAR"/>
+		<result property="retiredCardName" column="RETIRED_CARD_NAME" jdbcType="VARCHAR"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="DATE"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="retiredDeclareId" column="RETIRED_DECLARE_ID" jdbcType="NUMERIC"/>
+		<result property="personId" column="PERSON_ID" jdbcType="NUMERIC"/>
+		
+	</resultMap>
+
+	<sql id="columns">
+		ID,IS_RETIRED_CARD,RETIRED_CARD_DATE,RETIRED_CARD_CODE,RETIRED_CARD_NAME,CREATER_ID,CREATER_NAME,CREATER_DATE,CREATER_ORG_ID,CREATER_ORG_NAME,RETIRED_DECLARE_ID,PERSON_ID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(noid)"> AND ID  !=#{noid} </if>
+			<if test="@Ognl@isNotEmpty(isRetiredCard)"> AND IS_RETIRED_CARD  =#{isRetiredCard} </if>
+			<if test="@Ognl@isNotEmpty(retiredCardDate)"> AND RETIRED_CARD_DATE  =#{retiredCardDate} </if>
+			<if test="@Ognl@isNotEmpty(beginretiredCardDate)"> AND RETIRED_CARD_DATE  >=#{beginretiredCardDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endretiredCardDate)"> AND RETIRED_CARD_DATE <![CDATA[ <=#{endretiredCardDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(retiredCardCode)"> AND RETIRED_CARD_CODE  LIKE #{retiredCardCode}  </if>
+			<if test="@Ognl@isNotEmpty(retiredCardName)"> AND RETIRED_CARD_NAME  LIKE #{retiredCardName}  </if>
+			<if test="@Ognl@isNotEmpty(createrId)"> AND CREATER_ID  =#{createrId} </if>
+			<if test="@Ognl@isNotEmpty(createrName)"> AND CREATER_NAME  LIKE #{createrName}  </if>
+			<if test="@Ognl@isNotEmpty(createrDate)"> AND CREATER_DATE  =#{createrDate} </if>
+			<if test="@Ognl@isNotEmpty(begincreaterDate)"> AND CREATER_DATE  >=#{begincreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(createrOrgId)"> AND CREATER_ORG_ID  =#{createrOrgId} </if>
+			<if test="@Ognl@isNotEmpty(createrOrgName)"> AND CREATER_ORG_NAME  LIKE #{createrOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(retiredDeclareId)"> AND RETIRED_DECLARE_ID  LIKE #{retiredDeclareId}  </if>
+			<if test="@Ognl@isNotEmpty(personId)"> AND PERSON_ID  = #{personId}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.retired.model.RetiredCard">
+		INSERT INTO RSDA_BS_RETIRED_CARD
+		(ID,IS_RETIRED_CARD,RETIRED_CARD_DATE,RETIRED_CARD_CODE,RETIRED_CARD_NAME,CREATER_ID,CREATER_NAME,CREATER_DATE,CREATER_ORG_ID,CREATER_ORG_NAME,RETIRED_DECLARE_ID,PERSON_ID)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{isRetiredCard,jdbcType=NUMERIC}, #{retiredCardDate,jdbcType=DATE}, #{retiredCardCode,jdbcType=VARCHAR}, #{retiredCardName,jdbcType=VARCHAR}, #{createrId,jdbcType=NUMERIC}, #{createrName,jdbcType=VARCHAR}, #{createrDate,jdbcType=DATE}, #{createrOrgId,jdbcType=NUMERIC}, #{createrOrgName,jdbcType=VARCHAR}, #{retiredDeclareId,jdbcType=NUMERIC},#{personId,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_RETIRED_CARD 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<!-- 根据人员id删除信息 -->
+	<delete id="delByPersonId" parameterType="java.lang.Long">
+			DELETE FROM RSDA_BS_RETIRED_CARD 
+			WHERE
+			PERSON_ID=#{personId}
+	</delete>
+	
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.retired.model.RetiredCard">
+		UPDATE RSDA_BS_RETIRED_CARD SET
+		IS_RETIRED_CARD=#{isRetiredCard,jdbcType=NUMERIC},
+		RETIRED_CARD_DATE=#{retiredCardDate,jdbcType=DATE},
+		RETIRED_CARD_CODE=#{retiredCardCode,jdbcType=VARCHAR},
+		RETIRED_CARD_NAME=#{retiredCardName,jdbcType=VARCHAR},
+		CREATER_ID=#{createrId,jdbcType=NUMERIC},
+		CREATER_NAME=#{createrName,jdbcType=VARCHAR},
+		CREATER_DATE=#{createrDate,jdbcType=DATE},
+		CREATER_ORG_ID=#{createrOrgId,jdbcType=NUMERIC},
+		CREATER_ORG_NAME=#{createrOrgName,jdbcType=VARCHAR},
+		RETIRED_DECLARE_ID=#{retiredDeclareId,jdbcType=VARCHAR},
+		PERSON_ID=#{personId,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="RetiredCard">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_RETIRED_CARD
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<!-- 根据人员id查询 退休证信息 -->
+	<select id="getByRetiredId"  parameterType="java.lang.Long" resultMap="RetiredCard">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_RETIRED_CARD
+		WHERE
+		PERSON_ID=#{personId}
+	</select>
+	
+	<select id="getByPersonId"  parameterType="java.lang.Long" resultMap="RetiredCard">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_RETIRED_CARD
+		WHERE
+		PERSON_ID=#{personId}
+	</select>
+	
+	
+	
+	
+	<select id="getAll" resultMap="RetiredCard">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_RETIRED_CARD   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<!-- 退休人员基本信息 -->
+	<select id="getRetiredPersonList"  resultType="java.util.Map">
+	 SELECT 
+	 		retired.id as "id",
+            archive.archive_code as "archiveCode",
+            people.AAC003 AS "personName",
+            people.AAC002 AS "personCard",
+            retired.retired_people_no as "retiredPeopleNo",
+            retired.xh as "xh",
+            retired.retired_people_bm as "retiredPeopleBm",
+            decode(people.AAC004,1,'男',2,'女') AS "sex",
+            to_char(people.aac006,'yyyy-MM-dd') as "personCsrq",
+            nation.name as "nationName",
+            expand.EXP_PERSON_PHONE AS "phone",
+            people.AAE005 AS "mobilePhone",
+            decode(card.is_retired_card,0,'否',1,'是') AS "isRetiredCard",
+            to_char(card.retired_card_date,'yyyy-MM-dd') as "retiredCardDate",
+            card.retired_card_code as "retiredCardCode",
+            card.retired_card_name as "retiredCardName",
+            card.creater_name as "retiredCreaterName",
+            decode(retired.retired_status,0,'否',1,'是') as  "retiredStatus",
+            st.name as "statusName",
+            retired.retired_area as  "retiredArea",
+            expand.EXP_OLD_COMPANY AS "oldCompany",      
+            to_char(retired.create_work_date,'yyyy-MM-dd') as "workJobDate",
+            rg.name as "rgName", 
+            to_char(yl.pay_date,'yyyy-MM-dd') as "payDate",
+            to_char(yl.retired_date,'yyyy-MM-dd') as "retiredDate",
+            rt.name as "rtName",
+            retired.creater_name as "createrName",
+            to_char(retired.creater_date,'yyyy-MM-dd') as "createrDate",
+            retired.creater_org_name as "createrOgnName",
+            retired.retired_type_id as "typeId",
+            decode(social.is_retired_social,0,'否',1,'是') as "isRetiredSocial"
+      FROM    
+        	RSDA_BS_RETIRED_DECLARE retired
+            left join RSDA_BS_YANGLAO yl on yl.person_id = retired.people_id
+            left join RSDA_BS_RETIRED_SOCIAL social on social.person_id = retired.people_id
+            left JOIN RSDA_TAB_RETIRED_TYPE rt on rt.id = retired.retired_type_id
+            left JOIN RSDA_TAB_RETIRED_GIST rg on rg.id = retired.retired_yj_id
+            left JOIN RSDA_TAB_RETIRED_STATUS st on st.id = retired.retired_declare_status
+            left JOIN AC01 people on people.aac001 = retired.people_id
+            left JOIN TAB_NATION nation on nation.code = people.AAC005
+            left JOIN RSDA_BS_PERSON_EXPAND expand ON  expand.EXP_PERSON_ID = people.AAC001
+            left JOIN RSDA_BS_ARCHIVE_ARCHIVES archive on archive.person_id = people.aac001
+            left join rsda_bs_retired_card card on card.person_id = retired.people_id
+        	where 1=1
+            <!-- 个人信息 -->
+            <if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+            <if test="@Ognl@isNotEmpty(ids)"> AND retired.ID  in  (${ids}) </if>
+            <if test="@Ognl@isNotEmpty(archiveCode)"> AND upper(archive_code)  like upper(#{archiveCode})  </if>
+			<if test="@Ognl@isNotEmpty(personCard)"> AND  upper(AAC002)   LIKE  upper(#{personCard}) </if>
+			<if test="@Ognl@isNotEmpty(personName)"> AND  AAC003  <![CDATA[ LIKE #{personName,jdbcType=VARCHAR} ]]> </if>            
+            <if test="@Ognl@isNotEmpty(sex)"> AND AAC004    <![CDATA[ = #{sex,jdbcType=NUMERIC}]]></if>
+            <if test="@Ognl@isNotEmpty(pinyin)"> AND upper(AAC022)  like upper(#{pinyin})  </if>
+            <if test="@Ognl@isNotEmpty(retiredPeopleNo)"> AND  RETIRED_PEOPLE_NO  <![CDATA[ LIKE #{retiredPeopleNo,jdbcType=VARCHAR}]]>  </if>
+          	<if test="@Ognl@isNotEmpty(begincreateWorkDate)"> AND CREATE_WORK_DATE <![CDATA[  >=#{begincreateWorkDate,jdbcType=DATE}]]> </if>
+		    <if test="@Ognl@isNotEmpty(endcreateWorkDate)"> AND  CREATE_WORK_DATE <![CDATA[ <=#{endcreateWorkDate,jdbcType=DATE}]]> </if>
+            <if test="@Ognl@isNotEmpty(retiredDeclareStatus)"> AND  RETIRED_DECLARE_STATUS  <![CDATA[ =#{retiredDeclareStatus,jdbcType=VARCHAR}]]>  </if>
+            <if test="@Ognl@isNotEmpty(retiredSite)"> AND    RETIRED_SITE  <![CDATA[ like #{retiredSite,jdbcType=VARCHAR}]]>  </if>
+            <if test="@Ognl@isNotEmpty(retiredTypeId)"> AND    RETIRED_TYPE_ID  <![CDATA[ =  #{retiredTypeId,jdbcType=NUMERIC}]]>  </if>	
+           	<if test="@Ognl@isNotEmpty(isRetiredSocial)" > AND IS_RETIRED_SOCIAL <![CDATA[ = #{isRetiredSocial,jdbcType=NUMERIC} ]]> </if>
+            <if test="@Ognl@isNotEmpty(beginretiredDate)"> AND RETIRED_DATE <![CDATA[  >=#{beginretiredDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(endretiredDate)"> AND  RETIRED_DATE <![CDATA[ <=#{endretiredDate,jdbcType=DATE}]]> </if>
+            <if test="@Ognl@isNotEmpty(retiredStatus)"> AND    retired_status <![CDATA[ = #{retiredStatus,jdbcType=NUMERIC} ]]> </if>
+            <if test="@Ognl@isNotEmpty(beginpayDate)"> AND  yl.PAY_DATE <![CDATA[  >=#{beginpayDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(endpayDate)"> AND   yl.PAY_DATE <![CDATA[ <=#{endpayDate,jdbcType=DATE}]]> </if>
+            <if test="@Ognl@isNotEmpty(oldCompany)"> AND   EXP_OLD_COMPANY  <![CDATA[ like #{oldCompany,jdbcType=VARCHAR} ]]> </if>
+            <if test="@Ognl@isNotEmpty(begincreaterDate)"> AND  retired.CREATER_DATE <![CDATA[  >=#{begincreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND   retired.CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+            <if test="@Ognl@isNotEmpty(retiredYj)"> AND   	 RETIRED_YJ_ID  <![CDATA[ = #{retiredYj,jdbcType=NUMERIC} ]]> </if>
+            <if test="@Ognl@isNotEmpty(createrName)"> AND    retired.CREATER_NAME <![CDATA[ like #{createrName,jdbcType=VARCHAR} ]]> </if>
+            <if test="@Ognl@isNotEmpty(createrOrgId)"> AND   retired.CREATER_ORG_ID <![CDATA[ = #{createrOrgId,jdbcType=NUMERIC} ]]> </if>
+            <if test="@Ognl@isNotEmpty(retiredArea)"> AND    RETIRED_AREA <![CDATA[ like #{retiredArea,jdbcType=VARCHAR}]]>  </if>
+           	<if test="@Ognl@isNotEmpty(retiredPeopleBmStart)"> AND  RETIRED_PEOPLE_BM <![CDATA[ >=#{retiredPeopleBmStart,jdbcType=VARCHAR}]]>  </if>
+			<if test="@Ognl@isNotEmpty(retiredPeopleBmEnd)"> AND RETIRED_PEOPLE_BM <![CDATA[ <=#{retiredPeopleBmEnd,jdbcType=VARCHAR}]]>  </if>
+	  		
+			<if test="@Ognl@isNotEmpty(orderField)">
+				order by ${orderField} ${orderSeq}
+			</if>
+			<if test="@Ognl@isEmpty(orderField)">
+				order by retired.ID  desc
+			</if>
+	</select>
+	
+	
+	
+	<!-- 退休审批表打印查询功能 -->
+	<select id="getRetiredReport" resultType="java.util.Map">
+	  SELECT 
+	  		retired.id as "id",
+            archive.archive_code as "archiveCode",
+            retired.retired_people_no as "retiredPeopleNo",
+            retired.xh as "xh",
+            retired.retired_people_bm as "retiredPeopleBm",
+            people.AAC001 as "personId",
+            people.AAC002 AS "personCard",
+            people.AAC003 AS "personName",
+            decode(people.AAC004,1,'男',2,'女') AS "sex",
+            to_char(people.aac006,'yyyy-MM-dd') as "personCsrq",
+            decode(retired.retired_status,0,'否',1,'是') as  "retiredStatus",
+            st.name as "statusName",
+            retired.retired_area as  "retiredArea",
+            expand.EXP_PERSON_PHONE AS "phone",
+            people.AAE005 AS "mobilePhone",    
+            nation.name as "nationName",
+            to_char(expand.exp_start_job_date,'yyyy-MM-dd') as "workJobDate",
+            rg.name as "rgName",            
+            to_char(yl.pay_date,'yyyy-MM-dd') as "payDate", 
+            to_char(yl.retired_date,'yyyy-MM-dd') as "retiredDate",
+            gz.name as "gzName",
+            retired.declare_note as "declareNote",
+            retired.creater_name as "createrName",            
+            card.creater_name as "retiredCreaterName",
+            to_char(retired.creater_date,'yyyy-MM-dd') as "createrDate",
+            retired.creater_org_name as "createrOgnName"
+      FROM    
+            RSDA_BS_RETIRED_DECLARE retired
+            left join RSDA_BS_YANGLAO yl on yl.person_id = retired.people_id
+            left join RSDA_BS_RETIRED_SOCIAL social on social.person_id = retired.people_id
+            left join RSDA_TAB_CRAFT gz on gz.code = retired.gz_id
+            left JOIN RSDA_TAB_RETIRED_TYPE rt on rt.id = retired.retired_type_id
+            left JOIN RSDA_TAB_RETIRED_GIST rg on rg.id = retired.retired_yj_id
+            left JOIN RSDA_TAB_RETIRED_STATUS st on st.id = retired.retired_declare_status
+            left JOIN AC01 people on people.aac001 = retired.people_id
+            left JOIN TAB_NATION nation on nation.code = people.AAC005
+            left JOIN RSDA_BS_PERSON_EXPAND expand ON  expand.EXP_PERSON_ID = people.AAC001
+            left JOIN RSDA_BS_ARCHIVE_ARCHIVES archive on archive.person_id = people.aac001
+            left join rsda_bs_retired_card card on card.retired_declare_id = retired.id
+			where 1=1
+			
+			<if test="@Ognl@isNotEmpty(ids)"> AND retired.ID  in  (${ids}) </if>
+			<if test="@Ognl@isNotEmpty(archiveCode)"> AND upper(archive_code)   like upper(#{archiveCode})  </if>
+			<if test="@Ognl@isNotEmpty(personCard)"> AND  upper(AAC002)  like  upper(#{personCard})  </if>
+			<if test="@Ognl@isNotEmpty(personName)"> AND  AAC003  <![CDATA[ LIKE #{personName,jdbcType=VARCHAR} ]]> </if>            
+			<if test="@Ognl@isNotEmpty(retiredPeopleBmStart)"> AND  RETIRED_PEOPLE_BM <![CDATA[ >=#{retiredPeopleBmStart,jdbcType=VARCHAR}]]>  </if>
+			<if test="@Ognl@isNotEmpty(retiredPeopleBmEnd)"> AND RETIRED_PEOPLE_BM <![CDATA[ <=#{retiredPeopleBmEnd,jdbcType=VARCHAR}]]>  </if>
+			<if test="@Ognl@isNotEmpty(retiredPeopleNo)"> AND  RETIRED_PEOPLE_NO  <![CDATA[ LIKE #{retiredPeopleNo,jdbcType=VARCHAR}]]>  </if>
+			<if test="@Ognl@isNotEmpty(beginWorkJobDate)"> AND  CREATE_WORK_DATE  <![CDATA[  >=#{beginWorkJobDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(endWorkJobDate)"> AND  CREATE_WORK_DATE <![CDATA[ <=#{endWorkJobDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(sex)"> AND AAC004  <![CDATA[ = #{sex,jdbcType=NUMERIC}]]></if>
+			<if test="@Ognl@isNotEmpty(retiredSite)"> AND  RETIRED_SITE <![CDATA[ like #{retiredSite,jdbcType=VARCHAR}]]>  </if>
+			<if test="@Ognl@isNotEmpty(retiredTypeId)"> AND    RETIRED_TYPE_ID  <![CDATA[ =  #{retiredTypeId,jdbcType=NUMERIC}]]>  </if>	
+			<if test="@Ognl@isNotEmpty(retiredDeclareStatus)"> AND  RETIRED_DECLARE_STATUS  <![CDATA[ =#{retiredDeclareStatus,jdbcType=VARCHAR}]]>  </if>
+			<if test="@Ognl@isNotEmpty(beginretiredDate)"> AND RETIRED_DATE <![CDATA[  >=#{beginretiredDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(endretiredDate)"> AND  RETIRED_DATE <![CDATA[ <=#{endretiredDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(isRetiredSocial)" > AND IS_RETIRED_SOCIAL <![CDATA[ = #{isRetiredSocial,jdbcType=NUMERIC} ]]> </if>
+			<if test="@Ognl@isNotEmpty(beginpayDate)"> AND  PAY_DATE <![CDATA[  >=#{beginpayDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(endpayDate)"> AND   PAY_DATE <![CDATA[ <=#{endpayDate,jdbcType=DATE}]]> </if>
+            <if test="@Ognl@isNotEmpty(retiredStatus)"> AND    RETIRED_STATUS <![CDATA[ = #{retiredStatus,jdbcType=NUMERIC} ]]> </if>
+            <if test="@Ognl@isNotEmpty(begincreaterDate)"> AND  retired.CREATER_DATE <![CDATA[  >=#{begincreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND   retired.CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+            <if test="@Ognl@isNotEmpty(oldCompany)"> AND   EXP_OLD_COMPANY  <![CDATA[ like #{oldCompany,jdbcType=VARCHAR} ]]> </if>
+            <if test="@Ognl@isNotEmpty(createrName)"> AND    retired.CREATER_NAME <![CDATA[ like #{createrName,jdbcType=VARCHAR} ]]> </if>
+			<if test="@Ognl@isNotEmpty(createrOrgId)"> AND   retired.CREATER_ORG_ID <![CDATA[ = #{createrOrgId,jdbcType=NUMERIC} ]]> </if>
+			<if test="@Ognl@isNotEmpty(retiredYjId)"> AND   RETIRED_YJ_ID <![CDATA[ = #{retiredYjId,jdbcType=NUMERIC} ]]> </if>
+			<if test="@Ognl@isNotEmpty(retiredArea)"> AND    RETIRED_AREA <![CDATA[ like #{retiredArea,jdbcType=VARCHAR}]]>  </if>
+			<if test="@Ognl@isNotEmpty(pinyin)"> AND upper(AAC022) like upper(#{pinyin})   </if>
+			
+	</select>
+	
+</mapper>

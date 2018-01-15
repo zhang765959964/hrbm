@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>bpm-demo</display-name>
+
+   <context-param>
+		<param-name>webAppRootKey</param-name>
+		<param-value>webapp.root</param-value>
+	</context-param>
+	<!--设置Spring的配置文件启动路径 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:conf/app-context.xml</param-value>
+	</context-param>
+	<!--设置Log4j的配置文件的路径 -->
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>classpath:conf/log4j.xml</param-value>
+	</context-param>
+	<!-- 显示关闭连接池 -->
+	<!--<servlet> -->
+    	<!--<servlet-name>loadServlet</servlet-name> -->
+    	<!--<servlet-class>com.xunfeng.core.web.servlet.HouseKeeperServlet</servlet-class> -->
+   	 	<!--<load-on-startup>1</load-on-startup> -->
+  	<!--</servlet>-->
+
+
+    <servlet>
+	  <servlet-name>Admin</servlet-name>
+	  <servlet-class>org.logicalcobwebs.proxool.admin.servlet.AdminServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	  <servlet-name>Admin</servlet-name>
+	  <url-pattern>/admin</url-pattern>
+	</servlet-mapping> 
+
+<servlet>  
+    <servlet-name>remote</servlet-name>  
+    <!-- 使用Spring的代理Servlet -->  
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>  
+    <init-param>  
+        <param-name>namespace</param-name>  
+        <param-value>classes/conf/hassionremote-servlet</param-value>  
+    </init-param>  
+    <load-on-startup>1</load-on-startup>  
+</servlet>  
+ 	<servlet>
+		<servlet-name>action</servlet-name>
+		<servlet-class>com.xunfeng.core.web.servlet.SpringMvcServlet</servlet-class>
+		<!-- org.springframework.web.servlet.DispatcherServlet -->
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:conf/app-action.xml</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet> 
+<servlet-mapping>  
+    <servlet-name>remote</servlet-name>  
+    <url-pattern>/remote/*</url-pattern>  
+</servlet-mapping>  
+	<servlet-mapping>
+		<servlet-name>action</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+    
+		<!--Log4j日志监听器 -->
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>com.xunfeng.core.web.listener.StartupListner</listener-class>
+	</listener>
+
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+
+
+	<error-page>
+		<error-code>403</error-code>
+		<location>/WEB-INF/view/sys/common/403.jsp</location>
+	</error-page>
+
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error.xf</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.Exception</exception-type>
+		<location>/error.xf</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/view/sys/common/404.jsp</location>
+	</error-page>
+
+
+
+
+
+</web-app>

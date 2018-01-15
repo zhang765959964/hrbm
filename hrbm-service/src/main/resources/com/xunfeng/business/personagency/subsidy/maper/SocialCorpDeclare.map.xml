@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.subsidy.model.SocialCorpDeclare">
+	<resultMap id="SocialCorpDeclare" type="com.xunfeng.business.personagency.subsidy.model.SocialCorpDeclare">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="pensionSubsidyNum" column="PENSION_SUBSIDY_NUM" jdbcType="NUMERIC"/>
+		<result property="pensionSubsidyAmount" column="PENSION_SUBSIDY_AMOUNT" jdbcType="NUMERIC"/>
+		<result property="medicalSubsidyNum" column="MEDICAL_SUBSIDY_NUM" jdbcType="NUMERIC"/>
+		<result property="medicalSubsidyAmount" column="MEDICAL_SUBSIDY_AMOUNT" jdbcType="NUMERIC"/>
+		<result property="totalSubsidyNum" column="TOTAL_SUBSIDY_NUM" jdbcType="NUMERIC"/>
+		<result property="totalSubsidyAmount" column="TOTAL_SUBSIDY_AMOUNT" jdbcType="NUMERIC"/>
+		<result property="approvalDesc" column="APPROVAL_DESC" jdbcType="VARCHAR"/>
+		<result property="description" column="DESCRIPTION" jdbcType="VARCHAR"/>
+		<result property="createrId" column="CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="createrName" column="CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="createrOrgId" column="CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="createrOrgName" column="CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="createrDate" column="CREATER_DATE" jdbcType="DATE"/>
+		<result property="batchId" column="BATCH_ID" jdbcType="NUMERIC"/>
+		<result property="corpid" column="CORPID" jdbcType="NUMERIC"/>
+		<result property="bankName" column="BANK_NAME" jdbcType="VARCHAR"/>
+		<result property="bankCardNo" column="BANK_CARD_NO" jdbcType="VARCHAR"/>
+		<result property="bankOwnerName" column="BANK_OWNER_NAME" jdbcType="VARCHAR"/>
+		<result property="fillDate" column="FILL_DATE" jdbcType="DATE"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,PENSION_SUBSIDY_NUM,PENSION_SUBSIDY_AMOUNT,MEDICAL_SUBSIDY_NUM,MEDICAL_SUBSIDY_AMOUNT,TOTAL_SUBSIDY_NUM,TOTAL_SUBSIDY_AMOUNT,APPROVAL_DESC,DESCRIPTION,CREATER_ID,CREATER_NAME,CREATER_ORG_ID,CREATER_ORG_NAME,CREATER_DATE,BATCH_ID,CORPID,BANK_NAME,BANK_CARD_NO,BANK_OWNER_NAME,FILL_DATE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(pensionSubsidyNum)"> AND PENSION_SUBSIDY_NUM  =#{pensionSubsidyNum} </if>
+			<if test="@Ognl@isNotEmpty(pensionSubsidyAmount)"> AND PENSION_SUBSIDY_AMOUNT  LIKE #{pensionSubsidyAmount}  </if>
+			<if test="@Ognl@isNotEmpty(medicalSubsidyNum)"> AND MEDICAL_SUBSIDY_NUM  =#{medicalSubsidyNum} </if>
+			<if test="@Ognl@isNotEmpty(medicalSubsidyAmount)"> AND MEDICAL_SUBSIDY_AMOUNT  LIKE #{medicalSubsidyAmount}  </if>
+			<if test="@Ognl@isNotEmpty(totalSubsidyNum)"> AND TOTAL_SUBSIDY_NUM  =#{totalSubsidyNum} </if>
+			<if test="@Ognl@isNotEmpty(totalSubsidyAmount)"> AND TOTAL_SUBSIDY_AMOUNT  LIKE #{totalSubsidyAmount}  </if>
+			<if test="@Ognl@isNotEmpty(approvalDesc)"> AND APPROVAL_DESC  LIKE #{approvalDesc}  </if>
+			<if test="@Ognl@isNotEmpty(description)"> AND DESCRIPTION  LIKE #{description}  </if>
+			<if test="@Ognl@isNotEmpty(createrId)"> AND CREATER_ID  =#{createrId} </if>
+			<if test="@Ognl@isNotEmpty(createrName)"> AND CREATER_NAME  LIKE #{createrName}  </if>
+			<if test="@Ognl@isNotEmpty(createrOrgId)"> AND CREATER_ORG_ID  =#{createrOrgId} </if>
+			<if test="@Ognl@isNotEmpty(createrOrgName)"> AND CREATER_ORG_NAME  LIKE #{createrOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(createrDate)"> AND CREATER_DATE  =#{createrDate} </if>
+			<if test="@Ognl@isNotEmpty(begincreaterDate)"> AND CREATER_DATE  >=#{begincreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreaterDate)"> AND CREATER_DATE <![CDATA[ <=#{endcreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(batchId)"> AND BATCH_ID  =#{batchId} </if>
+			<if test="@Ognl@isNotEmpty(corpid)"> AND CORPID  =#{corpid} </if>
+			<if test="@Ognl@isNotEmpty(bankName)"> AND BANK_NAME  LIKE #{bankName}  </if>
+			<if test="@Ognl@isNotEmpty(bankCardNo)"> AND BANK_CARD_NO  LIKE #{bankCardNo}  </if>
+			<if test="@Ognl@isNotEmpty(bankOwnerName)"> AND BANK_OWNER_NAME  LIKE #{bankOwnerName}  </if>
+			<if test="@Ognl@isNotEmpty(fillDate)"> AND FILL_DATE  =#{fillDate} </if>
+			<if test="@Ognl@isNotEmpty(beginfillDate)"> AND FILL_DATE  >=#{beginfillDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endfillDate)"> AND FILL_DATE <![CDATA[ <=#{endfillDate,jdbcType=DATE}]]> </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.subsidy.model.SocialCorpDeclare">
+		INSERT INTO RSDA_BS_SOCIAL_CORP_DECLARE
+		(ID,PENSION_SUBSIDY_NUM,PENSION_SUBSIDY_AMOUNT,MEDICAL_SUBSIDY_NUM,MEDICAL_SUBSIDY_AMOUNT,TOTAL_SUBSIDY_NUM,TOTAL_SUBSIDY_AMOUNT,APPROVAL_DESC,DESCRIPTION,CREATER_ID,CREATER_NAME,CREATER_ORG_ID,CREATER_ORG_NAME,CREATER_DATE,BATCH_ID,CORPID,BANK_NAME,BANK_CARD_NO,BANK_OWNER_NAME,FILL_DATE)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{pensionSubsidyNum,jdbcType=NUMERIC}, #{pensionSubsidyAmount,jdbcType=NUMERIC}, #{medicalSubsidyNum,jdbcType=NUMERIC}, #{medicalSubsidyAmount,jdbcType=NUMERIC}, #{totalSubsidyNum,jdbcType=NUMERIC}, #{totalSubsidyAmount,jdbcType=NUMERIC}, #{approvalDesc,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{createrId,jdbcType=NUMERIC}, #{createrName,jdbcType=VARCHAR}, #{createrOrgId,jdbcType=NUMERIC}, #{createrOrgName,jdbcType=VARCHAR}, #{createrDate,jdbcType=DATE}, #{batchId,jdbcType=NUMERIC}, #{corpid,jdbcType=NUMERIC}, #{bankName,jdbcType=VARCHAR}, #{bankCardNo,jdbcType=VARCHAR}, #{bankOwnerName,jdbcType=VARCHAR}, #{fillDate,jdbcType=DATE})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_SOCIAL_CORP_DECLARE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.subsidy.model.SocialCorpDeclare">
+		UPDATE RSDA_BS_SOCIAL_CORP_DECLARE SET
+		PENSION_SUBSIDY_NUM=#{pensionSubsidyNum,jdbcType=NUMERIC},
+		PENSION_SUBSIDY_AMOUNT=#{pensionSubsidyAmount,jdbcType=NUMERIC},
+		MEDICAL_SUBSIDY_NUM=#{medicalSubsidyNum,jdbcType=NUMERIC},
+		MEDICAL_SUBSIDY_AMOUNT=#{medicalSubsidyAmount,jdbcType=NUMERIC},
+		TOTAL_SUBSIDY_NUM=#{totalSubsidyNum,jdbcType=NUMERIC},
+		TOTAL_SUBSIDY_AMOUNT=#{totalSubsidyAmount,jdbcType=NUMERIC},
+		APPROVAL_DESC=#{approvalDesc,jdbcType=VARCHAR},
+		DESCRIPTION=#{description,jdbcType=VARCHAR},
+		CREATER_ID=#{createrId,jdbcType=NUMERIC},
+		CREATER_NAME=#{createrName,jdbcType=VARCHAR},
+		CREATER_ORG_ID=#{createrOrgId,jdbcType=NUMERIC},
+		CREATER_ORG_NAME=#{createrOrgName,jdbcType=VARCHAR},
+		CREATER_DATE=#{createrDate,jdbcType=DATE},
+		BATCH_ID=#{batchId,jdbcType=NUMERIC},
+		CORPID=#{corpid,jdbcType=NUMERIC},
+		BANK_NAME=#{bankName,jdbcType=VARCHAR},
+		BANK_CARD_NO=#{bankCardNo,jdbcType=VARCHAR},
+		BANK_OWNER_NAME=#{bankOwnerName,jdbcType=VARCHAR},
+		FILL_DATE=#{fillDate,jdbcType=DATE}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SocialCorpDeclare">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_SOCIAL_CORP_DECLARE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SocialCorpDeclare">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_SOCIAL_CORP_DECLARE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getAllSocialCorpDeclareList" resultType="java.util.HashMap">
+		SELECT a.id as "id",
+       a.batch_id as "batchId",
+       b.aab004 as "aab004",
+       c.batch_name as "batchName",
+       a.creater_name as "createrName",
+       to_char(a.creater_date, 'yyyy-mm-dd') as "createrDate",
+       a.creater_org_name as "createrOrgName",
+       v.total_Subsidy_Num as "totalSubsidyNum",
+       v.total_Subsidy_Amount as "totalSubsidyAmount",
+       '批次共有'||v.TOTAL_SUBSIDY_NUM||'人次，其中已通过'||v.passed||'人次，未通过'||v.noPassed||'人次。未审核'||v.noReview||'人次' as "approvalDesc"
+  FROM RSDA_BS_SOCIAL_CORP_DECLARE   a,
+       ab01                          b,
+       rsda_bs_social_batch          c,
+       v_RSDA_BS_SOCIAL_CORP_DECLARE v
+   where c.id = a.batch_id
+   and b.aab001 = a.corpid
+   and v.batch_id = a.batch_id
+        <if test="@Ognl@isNotEmpty(batchName)">
+		and c.batch_Name like #{batchName}
+		</if>
+		<if test="@Ognl@isNotEmpty(aab004)">
+		and b.aab004 like #{aab004} 
+		</if>
+		<if test="@Ognl@isNotEmpty(searchValue)">
+		and (b.aab004 like #{searchValue} or c.batch_Name like #{searchValue})
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		  order by c.creater_Date desc
+		</if>
+	</select>
+	
+</mapper>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.advert.model.AdWeb">
+	<resultMap id="AdWeb" type="com.xunfeng.business.advert.model.AdWeb">
+		<id property="caad01" column="CAAD01" jdbcType="NUMERIC"/>
+		<result property="caac01" column="CAAC01" jdbcType="NUMERIC"/>
+		<result property="caad02" column="CAAD02" jdbcType="VARCHAR"/>
+		<result property="caad13" column="CAAD13" jdbcType="VARCHAR"/>
+		<result property="caad03" column="CAAD03" jdbcType="VARCHAR"/>
+		<result property="caad12" column="CAAD12" jdbcType="VARCHAR"/>
+		<result property="caad04" column="CAAD04" jdbcType="NUMERIC"/>
+		<result property="caad05" column="CAAD05" jdbcType="NUMERIC"/>
+		<result property="caad06" column="CAAD06" jdbcType="NUMERIC"/>
+		<result property="caad07" column="CAAD07" jdbcType="NUMERIC"/>
+		<result property="caad08" column="CAAD08" jdbcType="NUMERIC"/>
+		<result property="caad11" column="CAAD11" jdbcType="NUMERIC"/>
+		<result property="caad14" column="CAAD14" jdbcType="NUMERIC"/>
+		<result property="caad15" column="CAAD15" jdbcType="NUMERIC"/>
+		<result property="caad16" column="CAAD16" jdbcType="DATE"/>
+		
+		<result property="craftAsId" column="CRAFT_AS_ID" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		CAAD01,CAAC01,CAAD02,CAAD13,CAAD03,CAAD12,CAAD04,CAAD05,CAAD06,CAAD07,CAAD08,CAAD11,CRAFT_AS_ID,CAAD14,CAAD15,to_char(CAAD16,'yyyy-mm-dd') CAAD16
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(caad01)"> AND CAAD01  =#{caad01} </if>
+			<if test="@Ognl@isNotEmpty(caac01)"> AND CAAC01  =#{caac01} </if>
+			<if test="@Ognl@isNotEmpty(caad02)"> AND CAAD02  LIKE CONCAT(CONCAT('%',#{caad02}),'%')  </if>
+			<if test="@Ognl@isNotEmpty(caad13)"> AND CAAD13  LIKE #{caad13}  </if>
+			<if test="@Ognl@isNotEmpty(caad03)"> AND CAAD03  LIKE #{caad03}  </if>
+			<if test="@Ognl@isNotEmpty(caad12)"> AND CAAD12  LIKE #{caad12}  </if>
+			<if test="@Ognl@isNotEmpty(caad04)"> AND CAAD04  =#{caad04} </if>
+			<if test="@Ognl@isNotEmpty(caad05)"> AND CAAD05  =#{caad05} </if>
+			<if test="@Ognl@isNotEmpty(caad06)"> AND CAAD06  =#{caad06} </if>
+			<if test="@Ognl@isNotEmpty(caad07)"> AND CAAD07  =#{caad07} </if>
+			<if test="@Ognl@isNotEmpty(caad08)"> AND CAAD08  =#{caad08} </if>
+			<if test="@Ognl@isNotEmpty(caad11)"> AND CAAD11  =#{caad11} </if>
+			<if test="@Ognl@isNotEmpty(indent)"> AND CAAC01 in (select CAAC01 from CAA01 where indent=#{indent} )   </if>
+			<if test="@Ognl@isNotEmpty(craftAsId)"> AND CRAFT_AS_ID  =#{craftAsId} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.advert.model.AdWeb">
+		INSERT INTO CAA02
+		(CAAD01,CAAC01,CAAD02,CAAD13,CAAD03,CAAD12,CAAD04,CAAD05,CAAD06,CAAD07,CAAD08,CAAD11,CRAFT_AS_ID,CAAD16)
+		VALUES
+		(#{caad01,jdbcType=NUMERIC}, #{caac01,jdbcType=NUMERIC}, #{caad02,jdbcType=VARCHAR}, #{caad13,jdbcType=VARCHAR}, #{caad03,jdbcType=VARCHAR}, #{caad12,jdbcType=VARCHAR}, #{caad04,jdbcType=NUMERIC}, #{caad05,jdbcType=NUMERIC}, #{caad06,jdbcType=NUMERIC}, #{caad07,jdbcType=NUMERIC}, #{caad08,jdbcType=NUMERIC}, #{caad11,jdbcType=NUMERIC}, #{craftAsId,jdbcType=NUMERIC}, #{caad16,jdbcType=DATE})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM CAA02 
+		WHERE
+		CAAD01=#{caad01}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.advert.model.AdWeb">
+		UPDATE CAA02 SET
+		CAAC01=#{caac01,jdbcType=NUMERIC},
+		CAAD02=#{caad02,jdbcType=VARCHAR},
+		CAAD13=#{caad13,jdbcType=VARCHAR},
+		CAAD03=#{caad03,jdbcType=VARCHAR},
+		CAAD12=#{caad12,jdbcType=VARCHAR},
+		CAAD04=#{caad04,jdbcType=NUMERIC},
+		CAAD05=#{caad05,jdbcType=NUMERIC},
+		CAAD06=#{caad06,jdbcType=NUMERIC},
+		CAAD07=#{caad07,jdbcType=NUMERIC},
+		CAAD08=#{caad08,jdbcType=NUMERIC},
+		CAAD11=#{caad11,jdbcType=NUMERIC},
+		CAAD16=#{craftAsId,jdbcType=DATE},
+		CRAFT_AS_ID=#{craftAsId,jdbcType=NUMERIC}
+		WHERE
+		CAAD01=#{caad01}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="AdWeb">
+		SELECT <include refid="columns"/>
+		FROM CAA02
+		WHERE
+		CAAD01=#{caad01}
+	</select>
+	<select id="getAllWebByExcept" resultType="java.util.HashMap">
+		SELECT CAAD01,CAAC01,CAAD02,CAAD13,CAAD03,CAAD12,CAAD04,CAAD05,CAAD06,CAAD07,CAAD08,
+			   CAAD11,CRAFT_AS_ID,CAAD14,CAAD15,to_char(CAAD16,'yyyy-mm-dd') CAAD16
+		FROM CAA02    
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by CAAD15 asc, CAAD01  desc
+		</if>
+	</select>
+	<select id="getadWebByIndent"  resultMap="AdWeb">
+		select * from CAA02 a 
+		where a.CAAC01 in(select caac01 from caa01 where indent=#{indent}) 
+		<if test="@Ognl@isNotEmpty(caad06)">
+			and CAAD06=#{caad06}
+		</if>
+		order by a.CAAD15 asc, a.CAAD01 desc
+	</select>
+	<!-- 修改浏览次数 -->
+	<update id="updateHitNum" parameterType="java.util.Map">
+		UPDATE CAA02 SET  CAAD14=nvl(CAAD14,0)+1
+		WHERE
+		CAAD01=#{CAAD01}
+	</update>
+	<!-- 广告排序 -->
+	<update id="updateOrderNum">
+		UPDATE CAA02 SET
+		CAAD15=#{ordernum,jdbcType=NUMERIC}
+		WHERE
+		CAAD01=#{id}
+	</update>
+</mapper>

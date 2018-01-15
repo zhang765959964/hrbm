@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.person.model.PersonLabel">
+	<resultMap id="PersonLabel" type="com.xunfeng.business.person.model.PersonLabel">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="userId" column="USER_ID" jdbcType="NUMERIC"/>
+		<result property="labelCode" column="LABEL_CODE" jdbcType="VARCHAR"/>
+		<result property="aae011" column="AAE011" jdbcType="VARCHAR"/>
+		<result property="aae017" column="AAE017" jdbcType="VARCHAR"/>
+		<result property="aae036" column="AAE036" jdbcType="TIMESTAMP"/>
+		<result property="aae019" column="AAE019" jdbcType="VARCHAR"/>
+		<result property="aae020" column="AAE020" jdbcType="VARCHAR"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+		<result property="cczy06" column="CCZY06" jdbcType="VARCHAR"/>
+		<result property="labelName" column="LABEL_NAME" jdbcType="VARCHAR"/>
+		<result property="labelType" column="LABEL_TYPE" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,USER_ID,LABEL_CODE,AAE011,AAE017,AAE036,AAE019,AAE020,CCPR08,CCZY06,LABEL_NAME,LABEL_TYPE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(userId)"> AND USER_ID  =#{userId} </if>
+			<if test="@Ognl@isNotEmpty(labelCode)"> AND LABEL_CODE  LIKE #{labelCode}  </if>
+			<if test="@Ognl@isNotEmpty(aae011)"> AND AAE011  LIKE #{aae011}  </if>
+			<if test="@Ognl@isNotEmpty(aae017)"> AND AAE017  LIKE #{aae017}  </if>
+			<if test="@Ognl@isNotEmpty(aae036)"> AND AAE036  =#{aae036} </if>
+			<if test="@Ognl@isNotEmpty(beginaae036)"> AND AAE036  >=#{beginaae036,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaae036)"> AND AAE036 <![CDATA[ <=#{endaae036,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aae019)"> AND AAE019  LIKE #{aae019}  </if>
+			<if test="@Ognl@isNotEmpty(aae020)"> AND AAE020  LIKE #{aae020}  </if>
+			<if test="@Ognl@isNotEmpty(ccpr08)"> AND CCPR08  LIKE #{ccpr08}  </if>
+			<if test="@Ognl@isNotEmpty(cczy06)"> AND CCZY06  LIKE #{cczy06}  </if>
+			<if test="@Ognl@isNotEmpty(labelName)"> AND LABEL_NAME  LIKE #{labelName}  </if>
+			<if test="@Ognl@isNotEmpty(labelType)"> AND LABEL_TYPE  LIKE #{labelType}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.person.model.PersonLabel">
+		INSERT INTO T_LABEL_DETAIL
+		(ID,USER_ID,LABEL_CODE,AAE011,AAE017,AAE036,AAE019,AAE020,CCPR08,CCZY06,LABEL_NAME,LABEL_TYPE)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{userId,jdbcType=NUMERIC}, #{labelCode,jdbcType=VARCHAR}, #{aae011,jdbcType=VARCHAR}, #{aae017,jdbcType=VARCHAR}, #{aae036,jdbcType=TIMESTAMP}, #{aae019,jdbcType=VARCHAR}, #{aae020,jdbcType=VARCHAR}, #{ccpr08,jdbcType=VARCHAR}, #{cczy06,jdbcType=VARCHAR}, #{labelName,jdbcType=VARCHAR}, #{labelType,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM T_LABEL_DETAIL 
+		WHERE
+		ID=#{id}
+	</delete>
+	<delete id="delByPersonId" parameterType="java.lang.Long">
+		DELETE FROM T_LABEL_DETAIL 
+		WHERE
+		USER_ID=#{userId}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.person.model.PersonLabel">
+		UPDATE T_LABEL_DETAIL SET
+		USER_ID=#{userId,jdbcType=NUMERIC},
+		LABEL_CODE=#{labelCode,jdbcType=VARCHAR},
+		AAE011=#{aae011,jdbcType=VARCHAR},
+		AAE017=#{aae017,jdbcType=VARCHAR},
+		AAE036=#{aae036,jdbcType=TIMESTAMP},
+		AAE019=#{aae019,jdbcType=VARCHAR},
+		AAE020=#{aae020,jdbcType=VARCHAR},
+		CCPR08=#{ccpr08,jdbcType=VARCHAR},
+		CCZY06=#{cczy06,jdbcType=VARCHAR},
+		LABEL_NAME=#{labelName,jdbcType=VARCHAR},
+		LABEL_TYPE=#{labelType,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="PersonLabel">
+		SELECT <include refid="columns"/>
+		FROM T_LABEL_DETAIL
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="PersonLabel">
+		SELECT <include refid="columns"/>
+		FROM T_LABEL_DETAIL   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

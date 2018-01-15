@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.sys.message.model.AccountMessage">
+	<resultMap id="AccountMessage" type="com.xunfeng.sys.message.model.AccountMessage">
+		<id property="ccmc01" column="CCMC01" jdbcType="NUMERIC"/>
+		<result property="ccms01" column="CCMS01" jdbcType="NUMERIC"/>
+		<result property="ccmc02" column="CCMC02" jdbcType="VARCHAR"/>
+		<result property="ccmc03" column="CCMC03" jdbcType="VARCHAR"/>
+		<result property="ccmc04" column="CCMC04" jdbcType="TIMESTAMP"/>
+		<result property="ccmr01" column="CCMR01" jdbcType="NUMERIC"/>
+		<result property="ccmc05" column="CCMC05" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		CCMC01,CCMS01,CCMC02,CCMC03,CCMC04,CCMR01,CCMC05
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(ccmc01)"> AND CCMC01  =#{ccmc01} </if>
+			<if test="@Ognl@isNotEmpty(ccms01)"> AND CCMS01  =#{ccms01} </if>
+			<if test="@Ognl@isNotEmpty(ccmc02)"> AND CCMC02  LIKE #{ccmc02}  </if>
+			<if test="@Ognl@isNotEmpty(ccmc03)"> AND CCMC03  LIKE #{ccmc03}  </if>
+			<if test="@Ognl@isNotEmpty(ccmc04)"> AND CCMC04  =#{ccmc04} </if>
+			<if test="@Ognl@isNotEmpty(beginccmc04)"> AND CCMC04  >=#{beginccmc04,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endccmc04)"> AND CCMC04 <![CDATA[ <=#{endccmc04,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(ccmr01)"> AND CCMR01  =#{ccmr01} </if>
+			<if test="@Ognl@isNotEmpty(ccmc05)"> AND CCMC05  LIKE #{ccmc05}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.sys.message.model.AccountMessage">
+		INSERT INTO CCM06
+		(CCMC01,CCMS01,CCMC02,CCMC03,CCMC04,CCMR01,CCMC05)
+		VALUES
+		(#{ccmc01,jdbcType=NUMERIC}, #{ccms01,jdbcType=NUMERIC}, #{ccmc02,jdbcType=VARCHAR}, #{ccmc03,jdbcType=VARCHAR}, #{ccmc04,jdbcType=TIMESTAMP}, #{ccmr01,jdbcType=NUMERIC}, #{ccmc05,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM CCM06 
+		WHERE
+		CCMC01=#{ccmc01}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.sys.message.model.AccountMessage">
+		UPDATE CCM06 SET
+		CCMS01=#{ccms01,jdbcType=NUMERIC},
+		CCMC02=#{ccmc02,jdbcType=VARCHAR},
+		CCMC03=#{ccmc03,jdbcType=VARCHAR},
+		CCMC04=#{ccmc04,jdbcType=TIMESTAMP},
+		CCMR01=#{ccmr01,jdbcType=NUMERIC},
+		CCMC05=#{ccmc05,jdbcType=VARCHAR}
+		WHERE
+		CCMC01=#{ccmc01}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="AccountMessage">
+		SELECT <include refid="columns"/>
+		FROM CCM06
+		WHERE
+		CCMC01=#{ccmc01}
+	</select>
+	
+	<select id="getAll" resultMap="AccountMessage">
+		SELECT <include refid="columns"/>
+		FROM CCM06   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by CCMC01  desc
+		</if>
+	</select>
+	<select id="getAllMessageMap" resultType="java.util.HashMap">
+		SELECT CCMC01,CCMS01,CCMC02,replace(CCMC03,'currentContextPath',#{currentContextPath}) CCMC03,to_char(CCMC04,'yyyy-MM-dd') as CCMC04,CCMR01  
+		from CCM06
+		where CCMR01=#{ccmu01} 
+		 <if test="ccmc05==0 or ccmc05==1">
+               AND CCMC05  =#{ccmc05}
+         </if>
+         order by  CCMC04 desc
+	</select>
+	<!-- 获得当前登录账户站内信总条数 -->
+	<select id="getTotalCountMessageByCcmu01" resultType="java.lang.Long">
+		SELECT count(*)
+		from CCM06
+		where CCMR01=#{ccmu01} 
+	</select>
+	
+	<!--根据收件人会员号，获取统计信息-->
+	<resultMap id="AccountMessageStatisticsDto" type="com.xunfeng.sys.message.dto.AccountMessageStatisticsDto">
+		<result property="totalCount" column="totalCount" jdbcType="NUMERIC"/>
+		<result property="unreadCount" column="unreadCount" jdbcType="VARCHAR"/>
+	</resultMap>
+	<select id="getStatsticsInfo" parameterType="java.lang.Long"  resultMap="AccountMessageStatisticsDto" >
+		select count(*) as totalCount,
+        count(case
+               when ccmc05 = 0 then
+                1
+             end) as unreadCount
+
+        from CCM06 t where ccmr01=#{ccmr01}
+	</select>
+
+	<update id="updateMessageStatus" parameterType="hashmap">
+		UPDATE CCM06 SET
+		CCMC05=#{ccmc05,jdbcType=VARCHAR}
+		WHERE
+		CCMC01=#{ccmc01}
+	</update>
+
+</mapper>

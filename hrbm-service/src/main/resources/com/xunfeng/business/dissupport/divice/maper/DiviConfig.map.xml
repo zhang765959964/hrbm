@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.dissupport.divice.model.DiviConfig">
+	<resultMap id="DiviConfig" type="com.xunfeng.business.dissupport.divice.model.DiviConfig">
+		<id property="con001" column="CON001" jdbcType="NUMERIC"/>
+		<result property="acd200" column="ACD200" jdbcType="NUMERIC"/>
+		<result property="div001" column="DIV001" jdbcType="NUMERIC"/>
+		<result property="con002" column="CON002" jdbcType="VARCHAR"/>
+		<result property="con003" column="CON003" jdbcType="VARCHAR"/>
+		<result property="con004" column="CON004" jdbcType="VARCHAR"/>
+		<result property="con005" column="CON005" jdbcType="VARCHAR"/>
+		<result property="con006" column="CON006" jdbcType="VARCHAR"/>
+		<result property="con007" column="CON007" jdbcType="VARCHAR"/>
+		<result property="con008" column="CON008" jdbcType="VARCHAR"/>
+		<result property="con009" column="CON009" jdbcType="VARCHAR"/>
+		<result property="con010" column="CON010" jdbcType="VARCHAR"/>
+		<result property="con011" column="CON011" jdbcType="VARCHAR"/>
+		<result property="con012" column="CON012" jdbcType="VARCHAR"/>
+		<result property="con013" column="CON013" jdbcType="VARCHAR"/>
+		<result property="con014" column="CON014" jdbcType="VARCHAR"/>
+		<result property="con015" column="CON015" jdbcType="VARCHAR"/>
+		<result property="con016" column="CON016" jdbcType="VARCHAR"/>
+		<result property="con999" column="CON999" jdbcType="VARCHAR"/>
+		<result property="aae013" column="AAE013" jdbcType="VARCHAR"/>
+		<result property="aae011" column="AAE011" jdbcType="VARCHAR"/>
+		<result property="aae017" column="AAE017" jdbcType="VARCHAR"/>
+		<result property="aae036" column="AAE036" jdbcType="TIMESTAMP"/>
+		<result property="aae019" column="AAE019" jdbcType="VARCHAR"/>
+		<result property="aae020" column="AAE020" jdbcType="VARCHAR"/>
+		<result property="con202" column="CON202" jdbcType="VARCHAR"/>
+		<result property="con203" column="CON203" jdbcType="VARCHAR"/>
+		<result property="con204" column="CON204" jdbcType="VARCHAR"/>
+		<result property="con205" column="CON205" jdbcType="VARCHAR"/>
+		<result property="con206" column="CON206" jdbcType="VARCHAR"/>
+		<result property="con207" column="CON207" jdbcType="VARCHAR"/>
+		<result property="con208" column="CON208" jdbcType="VARCHAR"/>
+		<result property="con209" column="CON209" jdbcType="VARCHAR"/>
+		<result property="con210" column="CON210" jdbcType="VARCHAR"/>
+		<result property="con211" column="CON211" jdbcType="VARCHAR"/>
+		<result property="con212" column="CON212" jdbcType="VARCHAR"/>
+		<result property="con213" column="CON213" jdbcType="VARCHAR"/>
+		<result property="con214" column="CON214" jdbcType="VARCHAR"/>
+		<result property="con215" column="CON215" jdbcType="VARCHAR"/>
+		<result property="con216" column="CON216" jdbcType="VARCHAR"/>
+		<result property="con099" column="CON099" jdbcType="VARCHAR"/>
+		<result property="con299" column="CON299" jdbcType="VARCHAR"/>
+		<result property="con017" column="CON017" jdbcType="VARCHAR"/>
+		<result property="bae013" column="BAE013" jdbcType="VARCHAR"/>
+		<result property="bae011" column="BAE011" jdbcType="VARCHAR"/>
+		<result property="bae017" column="BAE017" jdbcType="VARCHAR"/>
+		<result property="bae036" column="BAE036" jdbcType="TIMESTAMP"/>
+		<result property="bae019" column="BAE019" jdbcType="VARCHAR"/>
+		<result property="bae020" column="BAE020" jdbcType="VARCHAR"/>
+		<result property="con018" column="CON018" jdbcType="VARCHAR"/>
+		<result property="con019" column="CON019" jdbcType="VARCHAR"/>
+		<result property="con020" column="CON020" jdbcType="VARCHAR"/>
+		<result property="con021" column="CON021" jdbcType="VARCHAR"/>
+		<result property="con022" column="CON022" jdbcType="VARCHAR"/>
+		<result property="con024" column="CON024" jdbcType="VARCHAR"/>
+		<result property="con025" column="CON025" jdbcType="VARCHAR"/>
+		<result property="con026" column="CON026" jdbcType="VARCHAR"/>
+		<result property="con027" column="CON027" jdbcType="VARCHAR"/>
+		<result property="con028" column="CON028" jdbcType="VARCHAR"/>
+		<result property="con031" column="CON031" jdbcType="VARCHAR"/>
+		<result property="con032" column="CON032" jdbcType="VARCHAR"/>
+		<result property="con033" column="CON033" jdbcType="VARCHAR"/>
+		<result property="con217" column="CON217" jdbcType="VARCHAR"/>
+		<result property="con218" column="CON218" jdbcType="VARCHAR"/>
+		<result property="con219" column="CON219" jdbcType="VARCHAR"/>
+		<result property="con220" column="CON220" jdbcType="VARCHAR"/>
+		<result property="con221" column="CON221" jdbcType="VARCHAR"/>
+		<result property="con222" column="CON222" jdbcType="VARCHAR"/>
+		<result property="con223" column="CON223" jdbcType="VARCHAR"/>
+		<result property="con224" column="CON224" jdbcType="VARCHAR"/>
+		<result property="con225" column="CON225" jdbcType="VARCHAR"/>
+		<result property="con226" column="CON226" jdbcType="VARCHAR"/>
+		<result property="con227" column="CON227" jdbcType="VARCHAR"/>
+		<result property="con228" column="CON228" jdbcType="TIMESTAMP"/>
+		<result property="con229" column="CON229" jdbcType="VARCHAR"/>
+		<result property="con230" column="CON230" jdbcType="TIMESTAMP"/>
+		<result property="con034" column="CON034" jdbcType="VARCHAR"/>
+		<result property="con232" column="CON232" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		CON001,ACD200,DIV001,CON002,CON003,CON004,CON005,CON006,CON007,CON008,CON009,CON010,CON011,CON012,CON013,CON014,CON015,CON016,CON999,AAE013,AAE011,AAE017,AAE036,AAE019,AAE020,CON202,CON203,CON204,CON205,CON206,CON207,CON208,CON209,CON210,CON211,CON212,CON213,CON214,CON215,CON216,CON099,CON299,CON017,BAE013,BAE011,BAE017,BAE036,BAE019,BAE020,CON018,CON019,CON020,CON021,CON022,CON024,CON025,CON026,CON027,CON028,CON031,CON032,CON033,CON217,CON218,CON219,CON220,CON221,CON222,CON223,CON224,CON225,CON226,CON227,CON228,CON229,CON230,CON034,CON232
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(con001)"> AND CON001  =#{con001} </if>
+			<if test="@Ognl@isNotEmpty(acd200)"> AND ACD200  =#{acd200} </if>
+			<if test="@Ognl@isNotEmpty(div001)"> AND DIV001  =#{div001} </if>
+			<if test="@Ognl@isNotEmpty(con002)"> AND CON002  LIKE #{con002}  </if>
+			<if test="@Ognl@isNotEmpty(con003)"> AND CON003  LIKE #{con003}  </if>
+			<if test="@Ognl@isNotEmpty(con004)"> AND CON004  LIKE #{con004}  </if>
+			<if test="@Ognl@isNotEmpty(con005)"> AND CON005  LIKE #{con005}  </if>
+			<if test="@Ognl@isNotEmpty(con006)"> AND CON006  LIKE #{con006}  </if>
+			<if test="@Ognl@isNotEmpty(con007)"> AND CON007  LIKE #{con007}  </if>
+			<if test="@Ognl@isNotEmpty(con008)"> AND CON008  LIKE #{con008}  </if>
+			<if test="@Ognl@isNotEmpty(con009)"> AND CON009  LIKE #{con009}  </if>
+			<if test="@Ognl@isNotEmpty(con010)"> AND CON010  LIKE #{con010}  </if>
+			<if test="@Ognl@isNotEmpty(con011)"> AND CON011  LIKE #{con011}  </if>
+			<if test="@Ognl@isNotEmpty(con012)"> AND CON012  LIKE #{con012}  </if>
+			<if test="@Ognl@isNotEmpty(con013)"> AND CON013  LIKE #{con013}  </if>
+			<if test="@Ognl@isNotEmpty(con014)"> AND CON014  LIKE #{con014}  </if>
+			<if test="@Ognl@isNotEmpty(con015)"> AND CON015  LIKE #{con015}  </if>
+			<if test="@Ognl@isNotEmpty(con016)"> AND CON016  LIKE #{con016}  </if>
+			<if test="@Ognl@isNotEmpty(con999)"> AND CON999  LIKE #{con999}  </if>
+			<if test="@Ognl@isNotEmpty(aae013)"> AND AAE013  LIKE #{aae013}  </if>
+			<if test="@Ognl@isNotEmpty(aae011)"> AND AAE011  LIKE #{aae011}  </if>
+			<if test="@Ognl@isNotEmpty(aae017)"> AND AAE017  LIKE #{aae017}  </if>
+			<if test="@Ognl@isNotEmpty(aae036)"> AND AAE036  =#{aae036} </if>
+			<if test="@Ognl@isNotEmpty(beginaae036)"> AND AAE036  >=#{beginaae036,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaae036)"> AND AAE036 <![CDATA[ <=#{endaae036,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aae019)"> AND AAE019  LIKE #{aae019}  </if>
+			<if test="@Ognl@isNotEmpty(aae020)"> AND AAE020  LIKE #{aae020}  </if>
+			<if test="@Ognl@isNotEmpty(con202)"> AND CON202  LIKE #{con202}  </if>
+			<if test="@Ognl@isNotEmpty(con203)"> AND CON203  LIKE #{con203}  </if>
+			<if test="@Ognl@isNotEmpty(con204)"> AND CON204  LIKE #{con204}  </if>
+			<if test="@Ognl@isNotEmpty(con205)"> AND CON205  LIKE #{con205}  </if>
+			<if test="@Ognl@isNotEmpty(con206)"> AND CON206  LIKE #{con206}  </if>
+			<if test="@Ognl@isNotEmpty(con207)"> AND CON207  LIKE #{con207}  </if>
+			<if test="@Ognl@isNotEmpty(con208)"> AND CON208  LIKE #{con208}  </if>
+			<if test="@Ognl@isNotEmpty(con209)"> AND CON209  LIKE #{con209}  </if>
+			<if test="@Ognl@isNotEmpty(con210)"> AND CON210  LIKE #{con210}  </if>
+			<if test="@Ognl@isNotEmpty(con211)"> AND CON211  LIKE #{con211}  </if>
+			<if test="@Ognl@isNotEmpty(con212)"> AND CON212  LIKE #{con212}  </if>
+			<if test="@Ognl@isNotEmpty(con213)"> AND CON213  LIKE #{con213}  </if>
+			<if test="@Ognl@isNotEmpty(con214)"> AND CON214  LIKE #{con214}  </if>
+			<if test="@Ognl@isNotEmpty(con215)"> AND CON215  LIKE #{con215}  </if>
+			<if test="@Ognl@isNotEmpty(con216)"> AND CON216  LIKE #{con216}  </if>
+			<if test="@Ognl@isNotEmpty(con099)"> AND CON099  LIKE #{con099}  </if>
+			<if test="@Ognl@isNotEmpty(con299)"> AND CON299  LIKE #{con299}  </if>
+			<if test="@Ognl@isNotEmpty(con017)"> AND CON017  LIKE #{con017}  </if>
+			<if test="@Ognl@isNotEmpty(bae013)"> AND BAE013  LIKE #{bae013}  </if>
+			<if test="@Ognl@isNotEmpty(bae011)"> AND BAE011  LIKE #{bae011}  </if>
+			<if test="@Ognl@isNotEmpty(bae017)"> AND BAE017  LIKE #{bae017}  </if>
+			<if test="@Ognl@isNotEmpty(bae036)"> AND BAE036  =#{bae036} </if>
+			<if test="@Ognl@isNotEmpty(beginbae036)"> AND BAE036  >=#{beginbae036,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endbae036)"> AND BAE036 <![CDATA[ <=#{endbae036,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(bae019)"> AND BAE019  LIKE #{bae019}  </if>
+			<if test="@Ognl@isNotEmpty(bae020)"> AND BAE020  LIKE #{bae020}  </if>
+			<if test="@Ognl@isNotEmpty(con018)"> AND CON018  LIKE #{con018}  </if>
+			<if test="@Ognl@isNotEmpty(con019)"> AND CON019  LIKE #{con019}  </if>
+			<if test="@Ognl@isNotEmpty(con020)"> AND CON020  LIKE #{con020}  </if>
+			<if test="@Ognl@isNotEmpty(con021)"> AND CON021  LIKE #{con021}  </if>
+			<if test="@Ognl@isNotEmpty(con022)"> AND CON022  LIKE #{con022}  </if>
+			<if test="@Ognl@isNotEmpty(con024)"> AND CON024  LIKE #{con024}  </if>
+			<if test="@Ognl@isNotEmpty(con025)"> AND CON025  LIKE #{con025}  </if>
+			<if test="@Ognl@isNotEmpty(con026)"> AND CON026  LIKE #{con026}  </if>
+			<if test="@Ognl@isNotEmpty(con027)"> AND CON027  LIKE #{con027}  </if>
+			<if test="@Ognl@isNotEmpty(con028)"> AND CON028  LIKE #{con028}  </if>
+			<if test="@Ognl@isNotEmpty(con031)"> AND CON031  LIKE #{con031}  </if>
+			<if test="@Ognl@isNotEmpty(con032)"> AND CON032  LIKE #{con032}  </if>
+			<if test="@Ognl@isNotEmpty(con033)"> AND CON033  LIKE #{con033}  </if>
+			<if test="@Ognl@isNotEmpty(con217)"> AND CON217  LIKE #{con217}  </if>
+			<if test="@Ognl@isNotEmpty(con218)"> AND CON218  LIKE #{con218}  </if>
+			<if test="@Ognl@isNotEmpty(con219)"> AND CON219  LIKE #{con219}  </if>
+			<if test="@Ognl@isNotEmpty(con220)"> AND CON220  LIKE #{con220}  </if>
+			<if test="@Ognl@isNotEmpty(con221)"> AND CON221  LIKE #{con221}  </if>
+			<if test="@Ognl@isNotEmpty(con222)"> AND CON222  LIKE #{con222}  </if>
+			<if test="@Ognl@isNotEmpty(con223)"> AND CON223  LIKE #{con223}  </if>
+			<if test="@Ognl@isNotEmpty(con224)"> AND CON224  LIKE #{con224}  </if>
+			<if test="@Ognl@isNotEmpty(con225)"> AND CON225  LIKE #{con225}  </if>
+			<if test="@Ognl@isNotEmpty(con226)"> AND CON226  LIKE #{con226}  </if>
+			<if test="@Ognl@isNotEmpty(con227)"> AND CON227  LIKE #{con227}  </if>
+			<if test="@Ognl@isNotEmpty(con228)"> AND CON228  =#{con228} </if>
+			<if test="@Ognl@isNotEmpty(begincon228)"> AND CON228  >=#{begincon228,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcon228)"> AND CON228 <![CDATA[ <=#{endcon228,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(con229)"> AND CON229  LIKE #{con229}  </if>
+			<if test="@Ognl@isNotEmpty(con230)"> AND CON230  =#{con230} </if>
+			<if test="@Ognl@isNotEmpty(begincon230)"> AND CON230  >=#{begincon230,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcon230)"> AND CON230 <![CDATA[ <=#{endcon230,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(con034)"> AND CON034  LIKE #{con034}  </if>
+			<if test="@Ognl@isNotEmpty(con232)"> AND CON232  LIKE #{con232}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.dissupport.divice.model.DiviConfig">
+		INSERT INTO G_DIVICONFIG
+		(CON001,ACD200,DIV001,CON002,CON003,CON004,CON005,CON006,CON007,CON008,CON009,CON010,CON011,CON012,CON013,CON014,CON015,CON016,CON999,AAE013,AAE011,AAE017,AAE036,AAE019,AAE020,CON202,CON203,CON204,CON205,CON206,CON207,CON208,CON209,CON210,CON211,CON212,CON213,CON214,CON215,CON216,CON099,CON299,CON017,BAE013,BAE011,BAE017,BAE036,BAE019,BAE020,CON018,CON019,CON020,CON021,CON022,CON024,CON025,CON026,CON027,CON028,CON031,CON032,CON033,CON217,CON218,CON219,CON220,CON221,CON222,CON223,CON224,CON225,CON226,CON227,CON228,CON229,CON230,CON034,CON232)
+		VALUES
+		(#{con001,jdbcType=NUMERIC}, #{acd200,jdbcType=NUMERIC}, #{div001,jdbcType=NUMERIC}, #{con002,jdbcType=VARCHAR}, #{con003,jdbcType=VARCHAR}, #{con004,jdbcType=VARCHAR}, #{con005,jdbcType=VARCHAR}, #{con006,jdbcType=VARCHAR}, #{con007,jdbcType=VARCHAR}, #{con008,jdbcType=VARCHAR}, #{con009,jdbcType=VARCHAR}, #{con010,jdbcType=VARCHAR}, #{con011,jdbcType=VARCHAR}, #{con012,jdbcType=VARCHAR}, #{con013,jdbcType=VARCHAR}, #{con014,jdbcType=VARCHAR}, #{con015,jdbcType=VARCHAR}, #{con016,jdbcType=VARCHAR}, #{con999,jdbcType=VARCHAR}, #{aae013,jdbcType=VARCHAR}, #{aae011,jdbcType=VARCHAR}, #{aae017,jdbcType=VARCHAR}, #{aae036,jdbcType=TIMESTAMP}, #{aae019,jdbcType=VARCHAR}, #{aae020,jdbcType=VARCHAR}, #{con202,jdbcType=VARCHAR}, #{con203,jdbcType=VARCHAR}, #{con204,jdbcType=VARCHAR}, #{con205,jdbcType=VARCHAR}, #{con206,jdbcType=VARCHAR}, #{con207,jdbcType=VARCHAR}, #{con208,jdbcType=VARCHAR}, #{con209,jdbcType=VARCHAR}, #{con210,jdbcType=VARCHAR}, #{con211,jdbcType=VARCHAR}, #{con212,jdbcType=VARCHAR}, #{con213,jdbcType=VARCHAR}, #{con214,jdbcType=VARCHAR}, #{con215,jdbcType=VARCHAR}, #{con216,jdbcType=VARCHAR}, #{con099,jdbcType=VARCHAR}, #{con299,jdbcType=VARCHAR}, #{con017,jdbcType=VARCHAR}, #{bae013,jdbcType=VARCHAR}, #{bae011,jdbcType=VARCHAR}, #{bae017,jdbcType=VARCHAR}, #{bae036,jdbcType=TIMESTAMP}, #{bae019,jdbcType=VARCHAR}, #{bae020,jdbcType=VARCHAR}, #{con018,jdbcType=VARCHAR}, #{con019,jdbcType=VARCHAR}, #{con020,jdbcType=VARCHAR}, #{con021,jdbcType=VARCHAR}, #{con022,jdbcType=VARCHAR}, #{con024,jdbcType=VARCHAR}, #{con025,jdbcType=VARCHAR}, #{con026,jdbcType=VARCHAR}, #{con027,jdbcType=VARCHAR}, #{con028,jdbcType=VARCHAR}, #{con031,jdbcType=VARCHAR}, #{con032,jdbcType=VARCHAR}, #{con033,jdbcType=VARCHAR}, #{con217,jdbcType=VARCHAR}, #{con218,jdbcType=VARCHAR}, #{con219,jdbcType=VARCHAR}, #{con220,jdbcType=VARCHAR}, #{con221,jdbcType=VARCHAR}, #{con222,jdbcType=VARCHAR}, #{con223,jdbcType=VARCHAR}, #{con224,jdbcType=VARCHAR}, #{con225,jdbcType=VARCHAR}, #{con226,jdbcType=VARCHAR}, #{con227,jdbcType=VARCHAR}, #{con228,jdbcType=TIMESTAMP}, #{con229,jdbcType=VARCHAR}, #{con230,jdbcType=TIMESTAMP}, #{con034,jdbcType=VARCHAR}, #{con232,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM G_DIVICONFIG 
+		WHERE
+		CON001=#{con001}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.dissupport.divice.model.DiviConfig">
+		UPDATE G_DIVICONFIG SET
+		ACD200=#{acd200,jdbcType=NUMERIC},
+		DIV001=#{div001,jdbcType=NUMERIC},
+		CON002=#{con002,jdbcType=VARCHAR},
+		CON003=#{con003,jdbcType=VARCHAR},
+		CON004=#{con004,jdbcType=VARCHAR},
+		CON005=#{con005,jdbcType=VARCHAR},
+		CON006=#{con006,jdbcType=VARCHAR},
+		CON007=#{con007,jdbcType=VARCHAR},
+		CON008=#{con008,jdbcType=VARCHAR},
+		CON009=#{con009,jdbcType=VARCHAR},
+		CON010=#{con010,jdbcType=VARCHAR},
+		CON011=#{con011,jdbcType=VARCHAR},
+		CON012=#{con012,jdbcType=VARCHAR},
+		CON013=#{con013,jdbcType=VARCHAR},
+		CON014=#{con014,jdbcType=VARCHAR},
+		CON015=#{con015,jdbcType=VARCHAR},
+		CON016=#{con016,jdbcType=VARCHAR},
+		CON999=#{con999,jdbcType=VARCHAR},
+		AAE013=#{aae013,jdbcType=VARCHAR},
+		AAE011=#{aae011,jdbcType=VARCHAR},
+		AAE017=#{aae017,jdbcType=VARCHAR},
+		AAE036=#{aae036,jdbcType=TIMESTAMP},
+		AAE019=#{aae019,jdbcType=VARCHAR},
+		AAE020=#{aae020,jdbcType=VARCHAR},
+		CON202=#{con202,jdbcType=VARCHAR},
+		CON203=#{con203,jdbcType=VARCHAR},
+		CON204=#{con204,jdbcType=VARCHAR},
+		CON205=#{con205,jdbcType=VARCHAR},
+		CON206=#{con206,jdbcType=VARCHAR},
+		CON207=#{con207,jdbcType=VARCHAR},
+		CON208=#{con208,jdbcType=VARCHAR},
+		CON209=#{con209,jdbcType=VARCHAR},
+		CON210=#{con210,jdbcType=VARCHAR},
+		CON211=#{con211,jdbcType=VARCHAR},
+		CON212=#{con212,jdbcType=VARCHAR},
+		CON213=#{con213,jdbcType=VARCHAR},
+		CON214=#{con214,jdbcType=VARCHAR},
+		CON215=#{con215,jdbcType=VARCHAR},
+		CON216=#{con216,jdbcType=VARCHAR},
+		CON099=#{con099,jdbcType=VARCHAR},
+		CON299=#{con299,jdbcType=VARCHAR},
+		CON017=#{con017,jdbcType=VARCHAR},
+		BAE013=#{bae013,jdbcType=VARCHAR},
+		BAE011=#{bae011,jdbcType=VARCHAR},
+		BAE017=#{bae017,jdbcType=VARCHAR},
+		BAE036=#{bae036,jdbcType=TIMESTAMP},
+		BAE019=#{bae019,jdbcType=VARCHAR},
+		BAE020=#{bae020,jdbcType=VARCHAR},
+		CON018=#{con018,jdbcType=VARCHAR},
+		CON019=#{con019,jdbcType=VARCHAR},
+		CON020=#{con020,jdbcType=VARCHAR},
+		CON021=#{con021,jdbcType=VARCHAR},
+		CON022=#{con022,jdbcType=VARCHAR},
+		CON024=#{con024,jdbcType=VARCHAR},
+		CON025=#{con025,jdbcType=VARCHAR},
+		CON026=#{con026,jdbcType=VARCHAR},
+		CON027=#{con027,jdbcType=VARCHAR},
+		CON028=#{con028,jdbcType=VARCHAR},
+		CON031=#{con031,jdbcType=VARCHAR},
+		CON032=#{con032,jdbcType=VARCHAR},
+		CON033=#{con033,jdbcType=VARCHAR},
+		CON217=#{con217,jdbcType=VARCHAR},
+		CON218=#{con218,jdbcType=VARCHAR},
+		CON219=#{con219,jdbcType=VARCHAR},
+		CON220=#{con220,jdbcType=VARCHAR},
+		CON221=#{con221,jdbcType=VARCHAR},
+		CON222=#{con222,jdbcType=VARCHAR},
+		CON223=#{con223,jdbcType=VARCHAR},
+		CON224=#{con224,jdbcType=VARCHAR},
+		CON225=#{con225,jdbcType=VARCHAR},
+		CON226=#{con226,jdbcType=VARCHAR},
+		CON227=#{con227,jdbcType=VARCHAR},
+		CON228=#{con228,jdbcType=TIMESTAMP},
+		CON229=#{con229,jdbcType=VARCHAR},
+		CON230=#{con230,jdbcType=TIMESTAMP},
+		CON034=#{con034,jdbcType=VARCHAR},
+		CON232=#{con232,jdbcType=VARCHAR}
+		WHERE
+		CON001=#{con001}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="DiviConfig">
+		SELECT <include refid="columns"/>
+		FROM G_DIVICONFIG
+		WHERE
+		CON001=#{con001}
+	</select>
+	<select id="getViewList" resultType="map">
+		SELECT 
+        B.DIV003,B.DIV004, B.DIV012,B.DIV002,M.MOD002,T.CON001
+        FROM  G_DIVICE B 
+        LEFT JOIN G_DIVICONFIG T ON T.DIV001=B.DIV001
+		LEFT JOIN CD20 A ON T.ACD200=A.ACD200
+		LEFT JOIN G_MODEL M ON M.MOD001 = B.MOD001
+	    <where>
+	    <if test="@Ognl@isNotEmpty(div002)"> AND B.DIV002 LIKE CONCAT(CONCAT('%', #{div002}),'%') </if>
+	    <if test="@Ognl@isNotEmpty(div012)"> AND B.DIV012 LIKE CONCAT(CONCAT('%', #{div012}),'%') </if>
+	    <if test="@Ognl@isNotEmpty(mod001)"> AND B.MOD001  = #{mod001}  </if>
+	    <if test="@Ognl@isNotEmpty(div014)"> AND B.DIV014  = #{div014}  </if>
+	      <choose>
+			<when test="@Ognl@isNotEmpty(view_sub)">
+			 <if test="@Ognl@isNotEmpty(curr_org)">
+			  AND B.ACD200 IN ( SELECT  ACD200  FROM CD20 M START WITH M.ACD200= #{curr_org} CONNECT BY M.AAB034=PRIOR M.ACD200 )
+			 </if>
+			</when>
+			<otherwise>
+			<if test="@Ognl@isNotEmpty(curr_org)">
+			  AND B.ACD200 = #{curr_org}</if>
+			</otherwise>
+	  	  </choose>
+	    </where>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by CON230  desc
+		</if>
+	</select>
+	<select id="getPostionViewList" resultType="map">
+	  SELECT 
+	  AAB004,ACA112,BCA112,ACC034,ACB21R,AAB040
+<!-- 	  ACB210,ACB200,AAB001,AAB004,AAE030,AAE031,ACA111,ACA112,BCA111,BCA112,ACB21R,ACB21P,AAD004,AAD004N,AAC005,AAC005N,ACB221,ACB222,ACB223,AAC009,AAC009N,AAC011,AAC011N,AAC024,AAC024N,AAC017,AAC017N,AAC033,AAC033N,AAC034,AAC035,AAC036,ACC217,ACC217N,AAC015,AAC015N,AAC014,AAC014N,AAC038,AAC038N,AAC039,AAC043,AAC043N,ACB224,ACC20T,ACC20TN,BYS,AAC029,ACB202,ACB203,ACB204,ACB21X,ACB21XN,ACB21Y,ACB21YN,ACC034,ACC034N,ACC214,ACC214N,ACB228,ACB228N,ACB22D,ACB214,ACB208,ACB208N,ACB20D,ACB20E,ACB20L,ACB21Q,ACB21T,ACB21G,ACB21F,AAE013,AAE011,AAE017,BAE017,AAE036,AAE019,AAE020,AAE022,ACB20C,AAB003,ACC01G,ACC01GN,BCB21A,BCB21B,BCC01G,BAC014,BCC039,BCC038,BCC20X,BBC20XN,BCC02I,CBPPCC,AAB301,AAB040,CABQ01N,CABQ01,CABQ02,CABQ03,CABQ04,AAA021,BCB202,BCB203,BCB204,ABB561,ABB771,ABB769,ABB770,ABB772,ABB773,ABB773N,CCA111,CCA112,CCA113,CCA114,ACB217,AAC013,ACB21H,ACB21I,ACB21IN,ACB21K,ACB21C,ACB035,ACB21D,ACB21E,ACB211,ACB212,ACB213,ACB219,ACB218,ACB21A,ACB21B,ACB21L,ACB21M,ACB21N,ACB20B,CCZY06,ECZY06,CCPR05,CCPR06,CCPR07,ACB20Q,ECB20Q,ACB201,AAE030N,AAE031N,AAE004,AAE005,AAE139,AAE006,ACB206,BAB004,AAB019,AAB020,AAB022,CCPR08,CCPR09,CCPR11,ACB204N,BCB201 -->
+	  FROM V_CB21_FB
+	  WHERE 1=1
+	  <include refid="dynamicWhereView" />
+	  <choose>
+			<when test="@Ognl@isNotEmpty(view_sub)">
+			 <if test="@Ognl@isNotEmpty(curr_org)">
+			  AND AAE017 IN ( SELECT  ACD200  FROM CD20 M START WITH M.ACD200= #{curr_org} CONNECT BY M.AAB034=PRIOR M.ACD200 )
+			 </if>
+			</when>
+			<otherwise>
+			<if test="@Ognl@isNotEmpty(curr_org)">
+			  AND AAE017 = #{curr_org}</if>
+			</otherwise>
+	  	  </choose>
+	</select>
+		<sql id="dynamicWhereView">
+		
+		    <if test="@Ognl@isNotEmpty(aab301)"> AND aab301=#{aab301} </if>
+			<if test="@Ognl@isNotEmpty(con299)"> AND ${con299} </if>
+			<if test='con017=="T"'> 
+				<if test="@Ognl@isNotEmpty(con099)"> AND ${con099} </if>
+			</if>
+		</sql>
+	<select id="getAll" resultMap="DiviConfig">
+		SELECT <include refid="columns"/>
+		FROM G_DIVICONFIG   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by CON001  desc
+		</if>
+	</select>
+</mapper>

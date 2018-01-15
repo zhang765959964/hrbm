@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.personagency.params.model.ParamsMonthBase">
+	<resultMap id="ParamsMonthBase" type="com.xunfeng.business.personagency.params.model.ParamsMonthBase">
+		<id property="pkId" column="PK_ID" jdbcType="NUMERIC"/>
+		<result property="fdMonthBase" column="FD_MONTH_BASE" jdbcType="NUMERIC"/>
+		<result property="fdParmsDesc" column="FD_PARMS_DESC" jdbcType="VARCHAR"/>
+		<result property="fdDesc" column="FD_DESC" jdbcType="VARCHAR"/>
+		<result property="fkCreaterId" column="FK_CREATER_ID" jdbcType="NUMERIC"/>
+		<result property="fdCreaterName" column="FD_CREATER_NAME" jdbcType="VARCHAR"/>
+		<result property="fdCreaterDate" column="FD_CREATER_DATE" jdbcType="DATE"/>
+		<result property="fkCreaterOrgId" column="FK_CREATER_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="fdCreaterOrgName" column="FD_CREATER_ORG_NAME" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		PK_ID,FD_MONTH_BASE,FD_PARMS_DESC,FD_DESC,FK_CREATER_ID,FD_CREATER_NAME,FD_CREATER_DATE,FK_CREATER_ORG_ID,FD_CREATER_ORG_NAME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(pkId)"> AND PK_ID  =#{pkId} </if>
+			<if test="@Ognl@isNotEmpty(fdMonthBase)"> AND FD_MONTH_BASE  =#{fdMonthBase} </if>
+			<if test="@Ognl@isNotEmpty(fdParmsDesc)"> AND FD_PARMS_DESC  LIKE #{fdParmsDesc}  </if>
+			<if test="@Ognl@isNotEmpty(fdDesc)"> AND FD_DESC  LIKE #{fdDesc}  </if>
+			<if test="@Ognl@isNotEmpty(fkCreaterId)"> AND FK_CREATER_ID  =#{fkCreaterId} </if>
+			<if test="@Ognl@isNotEmpty(fdCreaterName)"> AND FD_CREATER_NAME  LIKE #{fdCreaterName}  </if>
+			<if test="@Ognl@isNotEmpty(fdCreaterDate)"> AND FD_CREATER_DATE  =#{fdCreaterDate} </if>
+			<if test="@Ognl@isNotEmpty(beginfdCreaterDate)"> AND FD_CREATER_DATE  >=#{beginfdCreaterDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endfdCreaterDate)"> AND FD_CREATER_DATE <![CDATA[ <=#{endfdCreaterDate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(fkCreaterOrgId)"> AND FK_CREATER_ORG_ID  =#{fkCreaterOrgId} </if>
+			<if test="@Ognl@isNotEmpty(fdCreaterOrgName)"> AND FD_CREATER_ORG_NAME  LIKE #{fdCreaterOrgName}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.personagency.params.model.ParamsMonthBase">
+		INSERT INTO RSDA_BS_PARAMS_MONTH_BASE
+		(PK_ID,FD_MONTH_BASE,FD_PARMS_DESC,FD_DESC,FK_CREATER_ID,FD_CREATER_NAME,FD_CREATER_DATE,FK_CREATER_ORG_ID,FD_CREATER_ORG_NAME)
+		VALUES
+		(#{pkId,jdbcType=NUMERIC}, #{fdMonthBase,jdbcType=NUMERIC}, #{fdParmsDesc,jdbcType=VARCHAR}, #{fdDesc,jdbcType=VARCHAR}, #{fkCreaterId,jdbcType=NUMERIC}, #{fdCreaterName,jdbcType=VARCHAR}, #{fdCreaterDate,jdbcType=DATE}, #{fkCreaterOrgId,jdbcType=NUMERIC}, #{fdCreaterOrgName,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM RSDA_BS_PARAMS_MONTH_BASE 
+		WHERE
+		PK_ID=#{pkId}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.personagency.params.model.ParamsMonthBase">
+		UPDATE RSDA_BS_PARAMS_MONTH_BASE SET
+		FD_MONTH_BASE=#{fdMonthBase,jdbcType=NUMERIC},
+		FD_PARMS_DESC=#{fdParmsDesc,jdbcType=VARCHAR},
+		FD_DESC=#{fdDesc,jdbcType=VARCHAR},
+		FK_CREATER_ID=#{fkCreaterId,jdbcType=NUMERIC},
+		FD_CREATER_NAME=#{fdCreaterName,jdbcType=VARCHAR},
+		FD_CREATER_DATE=#{fdCreaterDate,jdbcType=DATE},
+		FK_CREATER_ORG_ID=#{fkCreaterOrgId,jdbcType=NUMERIC},
+		FD_CREATER_ORG_NAME=#{fdCreaterOrgName,jdbcType=VARCHAR}
+		WHERE
+		PK_ID=#{pkId}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="ParamsMonthBase">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PARAMS_MONTH_BASE
+		WHERE
+		PK_ID=#{pkId}
+	</select>
+	
+	<select id="getAll" resultMap="ParamsMonthBase">
+		SELECT <include refid="columns"/>
+		FROM RSDA_BS_PARAMS_MONTH_BASE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by PK_ID  desc
+		</if>
+	</select>
+</mapper>

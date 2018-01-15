@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.xunfeng.business.person.model.JobCollect">
+	<resultMap id="JobCollect" type="com.xunfeng.business.person.model.JobCollect">
+		<id property="ccpf01" column="CCPF01" jdbcType="NUMERIC"/>
+		<result property="ccmu01" column="CCMU01" jdbcType="NUMERIC"/>
+		<result property="acb210" column="ACB210" jdbcType="NUMERIC"/>
+		<result property="ccpf02" column="CCPF02" jdbcType="TIMESTAMP"/>
+		<result property="ccpr08" column="CCPR08" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		CCPF01,CCMU01,ACB210,CCPF02,CCPR08
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(ccpf01)"> AND CCPF01  =#{ccpf01} </if>
+			<if test="@Ognl@isNotEmpty(ccmu01)"> AND CCMU01  =#{ccmu01} </if>
+			<if test="@Ognl@isNotEmpty(acb210)"> AND ACB210  =#{acb210} </if>
+			<if test="@Ognl@isNotEmpty(ccpf02)"> AND CCPF02  =#{ccpf02} </if>
+			<if test="@Ognl@isNotEmpty(beginccpf02)"> AND CCPF02  >=#{beginccpf02,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endccpf02)"> AND CCPF02 <![CDATA[ <=#{endccpf02,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(ccpr08)"> AND CCPR08  LIKE #{ccpr08}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.xunfeng.business.person.model.JobCollect">
+		INSERT INTO CCP02
+		(CCPF01,CCMU01,ACB210,CCPF02,CCPR08)
+		VALUES
+		(#{ccpf01,jdbcType=NUMERIC}, #{ccmu01,jdbcType=NUMERIC}, #{acb210,jdbcType=NUMERIC}, #{ccpf02,jdbcType=TIMESTAMP}, #{ccpr08,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM CCP02 
+		WHERE
+		CCPF01=#{ccpf01}
+	</delete>
+	<delete id="delByjobidAndUserid" parameterType="java.lang.Long">
+		DELETE FROM CCP02 
+		WHERE
+		acb210=#{acb210} and ccmu01=#{ccmu01}
+	</delete>
+	
+	<update id="update" parameterType="com.xunfeng.business.person.model.JobCollect">
+		UPDATE CCP02 SET
+		CCMU01=#{ccmu01,jdbcType=NUMERIC},
+		ACB210=#{acb210,jdbcType=NUMERIC},
+		CCPF02=#{ccpf02,jdbcType=TIMESTAMP},
+		CCPR08=#{ccpr08,jdbcType=VARCHAR}
+		WHERE
+		CCPF01=#{ccpf01}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="JobCollect">
+		SELECT <include refid="columns"/>
+		FROM CCP02
+		WHERE
+		CCPF01=#{ccpf01}
+	</select>
+	
+	<select id="getAll" resultMap="JobCollect">
+		SELECT <include refid="columns"/>
+		FROM CCP02   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by CCPF01  desc
+		</if>
+	</select>
+
+	<select id="getJobCollectList" resultType="java.util.HashMap">
+		<!--  SELECT p.ccpf01,p.acb210,to_char(p.ccpf02,'yyyy-mm-dd hh24:mi') as ccpf02,
+		 t.cca113,t.bca112,t.aab004,t.aab001,t.ecb208,t.acc034 FROM CCP02 p,v_job_list_bs t
+		 where t.acb210=p.acb210 and p.ccmu01=#{ccmu01} -->
+		 
+		 SELECT p.ccpf01,p.acb210,to_char(p.ccpf02,'yyyy-mm-dd hh24:mi') as ccpf02,
+		 t.ccb208, t.cca113,t.bca112,t.aab004,t.aab001,t.ecb208,t.acc034,nvl(t.imgcount,'0') as imgcount,nvl(t.videCount,'0') as videCount, nvl(t.CABQ08,'0') as CABQ08  
+		 FROM CCP02 p,
+		     (
+		     select v.ccb208, v.acb210, v.cca113,v.bca112,v.aab004,v.aab001,v.ecb208,v.acc034,g.CABQ08,g.imgcount,g.videCount from  v_job_list_bs v 
+		     left join 
+		     (select d.aab001,d.CABQ08, imgcount, videCount from ab01 d,
+		      (select count(*) as imgCount,aab001 from CAO04  where CAOA04=6 and caoa07=1 and ccpr08=0 and aab001 is not null  
+		        group by aab001 ) e,
+		       (select count(*) as videCount,aab001 from CAO04  where CAOA04=7 and caoa07=1 and ccpr08=0 and aab001 is not null  
+		         group by aab001 )f 
+		        where d.aab001=e.aab001(+) and  d.aab001=f.aab001(+)
+		      ) g  
+               on v.aab001= g.aab001         
+             ) t
+		 where t.acb210=p.acb210
+		 and p.ccmu01 = #{ccmu01}
+		 <if test="@Ognl@isNotEmpty(delayTime)"> 
+		   and  to_date(to_char(p.ccpf02,'yyyy-mm-dd'),'yyyy-mm-dd')>=to_date(#{delayTime},'yyyy-mm-dd') 
+		 </if>
+		and ccpr08=0
+		order by p.ccpf02 desc
+	</select>
+	<!-- 获得职位收藏个数 -->
+	<select id="getTotalJobCollect" resultType="java.lang.Long">
+		select count(*) from CCP02 a ,v_job_list_bs b 
+		where a.ccpr08=0 and a.ccmu01 = #{ccmu01} and a.acb210=b.acb210
+	</select>
+</mapper>
