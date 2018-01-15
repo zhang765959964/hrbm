@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.xunfeng</groupId>
+  <artifactId>hrbm</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <modules>
+    <module>servicemanager</module>
+    <module>hrbm-framework</module>
+    <module>hrbm-websitemanager</module>
+    <module>hrbm-service</module>
+	<module>hrbm-commons-deps</module>
+  </modules>
+  	<repositories>
+		<repository>
+			<id>local nexus</id>
+			<name>local nexus</name>
+			<url>http://192.168.1.198:8081/nexus/content/groups/public/</url>
+		</repository>
+		<repository>
+			<id>nexus</id>
+			<name>local private nexus</name>
+			<url>http://maven.oschina.net/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled> 
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	
+	<distributionManagement>
+		<repository>
+			<id>nexus-releases</id>
+			<name>Nexus Release Repository</name>
+			<url>http://192.168.1.198:8081/nexus/content/repositories/releases/</url>
+		</repository> 
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<name>Nexus Snapshot Repository</name>
+			<url>http://192.168.1.198:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+	<properties>
+		<!-- == Google == -->
+		<com.google.guava.version>14.0.1</com.google.guava.version>
+		<!-- == Apache Commons == -->
+		<commons-beanutils.version>1.8.3</commons-beanutils.version>
+		<commons-collections.version>3.2.1</commons-collections.version>
+		<!-- <commons-dbcp.version>1.2.2</commons-dbcp.version> <commons-pool.version>1.6</commons-pool.version> -->
+		<commons-io.version>2.4</commons-io.version>
+		<commons-fileupload.version>1.3</commons-fileupload.version>
+		<commons-lang.version>3.1</commons-lang.version>
+		<commons-codec.version>1.9</commons-codec.version>
+		<!-- == orika== -->
+		<ma.glasnost.orika>1.4.3</ma.glasnost.orika>
+		<!-- == Joda-Time == -->
+		<joda-time.version>2.2</joda-time.version>
+		<joda-time.joda-time-jsptags.version>1.1.1</joda-time.joda-time-jsptags.version>
+		<jadira-usertype-core.version>3.0.0.GA</jadira-usertype-core.version>
+		<!-- == AspectJ == -->
+		<org.aspectj-version>1.7.3</org.aspectj-version>
+		<!-- == Jackson == -->
+		<org.codehaus.jackson.version>1.9.7</org.codehaus.jackson.version>
+		<!-- == JPA == -->
+		<org.hibernate.javax.persistence.version>1.0.1.Final</org.hibernate.javax.persistence.version>
+		<org.hibernate.version>4.2.4.Final</org.hibernate.version>
+		<!-- == BeanValidation == -->
+		<javax.validation.version>1.0.0.Final</javax.validation.version>
+		<org.hibernate.hibernate-validator.version>4.3.1.Final</org.hibernate.hibernate-validator.version>
+		<!-- == Logging == -->
+		<org.slf4j-version>1.7.5</org.slf4j-version>
+		<ch.qos.logback.version>1.0.13</ch.qos.logback.version>
+		<log4jdbc.version>0.2.7</log4jdbc.version>
+		<!-- == Spring Framework == -->
+		<org.springframework-version>3.2.5.RELEASE</org.springframework-version>
+		<org.springframework.data.spring-data-jpa.version>1.3.4.RELEASE</org.springframework.data.spring-data-jpa.version>
+		<org.springframework.data.version>1.5.2.RELEASE</org.springframework.data.version>
+		<org.springframework.security.version>3.2.0.RELEASE</org.springframework.security.version>
+		<!-- == JavaEE/SE APIs == -->
+		<javax.inject.version>1</javax.inject.version>
+		<javax.servlet.jstl.version>1.2</javax.servlet.jstl.version>
+		<javax.transaction.version>1.1</javax.transaction.version>
+		<!-- == database == -->
+		<com.h2database.version>1.3.156</com.h2database.version>
+		<!-- == JUnit == -->
+		<junit.version>4.7</junit.version>
+		<org.mockito.version>1.9.0</org.mockito.version>
+		<selenium.version>2.32.0</selenium.version>
+
+		<!-- javax.el -->
+		<javax.el.version>3.0.0</javax.el.version>
+		<pinyin4j.version>2.5.0</pinyin4j.version>
+		
+		
+
+		<!-- == Maven Plugins == -->
+		<org.apache.maven.plugins.maven-compiler-plugin.version>3.1</org.apache.maven.plugins.maven-compiler-plugin.version>
+		<org.apache.maven.plugins.maven-dependency-plugin.version>2.5</org.apache.maven.plugins.maven-dependency-plugin.version>
+		<org.apache.maven.plugins.maven-resources-plugin.version>2.6</org.apache.maven.plugins.maven-resources-plugin.version>
+		<org.apache.maven.plugins.maven-source-plugin.version>2.2</org.apache.maven.plugins.maven-source-plugin.version>
+		<org.apache.maven.plugins.maven-surefire-report-plugin.version>2.4.3</org.apache.maven.plugins.maven-surefire-report-plugin.version>
+		<org.apache.maven.plugins.maven-war-plugin.version>2.2</org.apache.maven.plugins.maven-war-plugin.version>
+		<org.apache.maven.plugins.version>2.9</org.apache.maven.plugins.version>
+		<org.apache.maven.wagon.version>1.0-beta-7</org.apache.maven.wagon.version>
+		<org.apache.tomcat.maven.version>2.2</org.apache.tomcat.maven.version>
+		<org.apache.shiro.version>1.2.2</org.apache.shiro.version>
+		<com.googlecode.flyway.version>2.3.1</com.googlecode.flyway.version>
+		<mysql.version>5.1.28</mysql.version>
+		<juel-impl.version>2.2.1</juel-impl.version>
+		<kaptcha.version>2.3.2</kaptcha.version>
+		<jdbc-pool.version>7.0.50</jdbc-pool.version>
+		<assertj-core.version>1.5.0</assertj-core.version>
+		<activiti.version>5.15</activiti.version>
+		<fasterxml-uuid.version>3.1.3</fasterxml-uuid.version>
+		<mybatis.version>3.2.2</mybatis.version>
+		<!-- == Other Properties== -->
+		<license-maven-plugin>2.5</license-maven-plugin>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<encoding>UTF-8</encoding>
+		<java-version>1.7</java-version>
+		
+		<servlet-api.version>2.5</servlet-api.version>
+		<java-image-scaling.version>0.8.5</java-image-scaling.version>
+	</properties>
+</project>
